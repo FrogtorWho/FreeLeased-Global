@@ -1,0 +1,403 @@
+// SHOGO:CUSTOM-START prisma-header
+// Managed by Shogo. Do not add a datasource `url` or change the generator `provider` — the database URL is configured in prisma.config.ts (Prisma 7+).
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+// SHOGO:CUSTOM-END
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+// Dossier sign-off ledger — the HITL / resident acceptance record (Redaction Protocol).
+model Signoff {
+  id           String   @id @default(cuid())
+  residentId   String   @map("resident_id")
+  jurisdiction String
+  decision     String   // "accepted" | "hitl-reviewed" | "rejected"
+  signOff      String   @map("sign_off") // dossier engine state at time of sign-off
+  rowHash      String   @map("row_hash")
+  reviewer     String   @default("resident")
+  note         String?
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@index([residentId])
+  @@map("signoffs")
+}
+
+// Per-query audit ledger — every dossier build logs its provenance summary.
+model AuditEntry {
+  id           String   @id @default(cuid())
+  residentId   String   @map("resident_id")
+  jurisdiction String
+  agent        String
+  ds           Int
+  band         String
+  abstain      Boolean  @default(false)
+  rowHash      String   @map("row_hash")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@index([residentId])
+  @@map("audit_entries")
+}
+
+// ─── Dynamic research & maintenance layer (scalable jurisdiction expansion) ───
+
+// A unit of research work: structure a new jurisdiction / statute / contract.
+model ResearchTask {
+  id               String   @id @default(cuid())
+  kind             String   // "jurisdiction" | "statute" | "contract"
+  target           String
+  jurisdictionCode String   @map("jurisdiction_code")
+  status           String   @default("open") // open | in-progress | drafted | verified | rejected
+  rationale        String?
+  officialSources  String   @default("[]") @map("official_sources") // JSON OfficialSource[]
+  checklist        String   @default("[]") // JSON string[]
+  findings         String?  // JSON structured draft / notes
+  assignedAgent    String   @default("research-agent") @map("assigned_agent")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  @@index([jurisdictionCode])
+  @@index([status])
+  @@map("research_tasks")
+}
+
+// A researched jurisdiction record (grows as new jurisdictions are added).
+model JurisdictionRecord {
+  id            String   @id @default(cuid())
+  code          String   @unique
+  name          String
+  tenureSystem  String?  @map("tenure_system")
+  registryName  String?  @map("registry_name")
+  registryUrl   String?  @map("registry_url")
+  status        String   @default("draft") // draft | in-review | verified | stale
+  conviction    String   @default("pending")
+  lastReviewed  DateTime @default(now()) @map("last_reviewed")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  @@map("jurisdiction_records")
+}
+
+// A researched statute record (per-jurisdiction, versioned by review date).
+model StatuteRecord {
+  id               String   @id @default(cuid())
+  jurisdictionCode String   @map("jurisdiction_code")
+  shortTitle       String   @map("short_title")
+  citation         String?
+  url              String?
+  covers           String?
+  status           String   @default("draft")
+  conviction       String   @default("pending")
+  provenance       String   @default("[]") // JSON OfficialSource[]
+  lastReviewed     DateTime @default(now()) @map("last_reviewed")
+  createdAt        DateTime @default(now()) @map("created_at")
+
+  @@index([jurisdictionCode])
+  @@map("statute_records")
+}
+
+model CompetitionTask {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  priority    Int      @default(0) // 0=low, 5=critical
+  category    String   // "build" | "submission" | "social" | "pitch" | "admin"
+  status      String   @default("pending") // pending | in-progress | done | blocked
+  dueDay      Int?     @map("due_day")
+  owner       String   @default("agent")
+  blockedBy   String?  @map("blocked_by")
+  completedAt DateTime? @map("completed_at")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@index([status])
+  @@index([priority(sort: Desc)])
+  @@map("competition_tasks")
+}
+
+model ContentDraft {
+  id          String   @id @default(cuid())
+  kind        String   // "social" | "journal" | "compliance" | "demo-script" | "overview"
+  title       String
+  body        String
+  channel     String?  // "twitter" | "linkedin" | "telegram" | null
+  status      String   @default("draft") // draft | approved | rejected | posted
+  metadata    String   @default("{}")    // JSON: tags, target audience, etc.
+  approvedAt  DateTime? @map("approved_at")
+  postedAt    DateTime? @map("posted_at")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@index([kind])
+  @@index([status])
+  @@map("content_drafts")
+}
+
+// Individual or collective contract records mapped clause-by-clause.
+model ContractRecord {
+  id               String   @id @default(cuid())
+  jurisdictionCode String   @map("jurisdiction_code")
+  contractType     String   @map("contract_type") // lease | share-of-freehold | strata-bylaws | management-agreement
+  scope            String   @default("individual") // individual | collective
+  parties          String   @default("[]") // JSON
+  clauses          String   @default("[]") // JSON: clause vs statutory floor
+  riskFlags        String   @default("[]") @map("risk_flags") // JSON
+  status           String   @default("draft")
+  lastReviewed     DateTime @default(now()) @map("last_reviewed")
+  createdAt        DateTime @default(now()) @map("created_at")
+
+  @@index([jurisdictionCode])
+  @@map("contract_records")
+}
+
+// ─── Resident Community / Collective Action Hub ──────────────────────────────
+// The core differentiator: residents organising together for RTM, challenges, etc.
+
+model ResidentGroup {
+  id              String   @id @default(cuid())
+  name            String                          // "12 Harbour Road RTM Group"
+  buildingName    String?  @map("building_name")  // "12 Harbour Road, Apt Block"
+  jurisdictionCode String @map("jurisdiction_code")
+  goal            String   // "RTM" | "service-charge-challenge" | "building-safety" | "enfranchisement" | "general"
+  status          String   @default("forming")    // forming | active | achieved | dissolved
+  description     String?
+  isPublic        Boolean  @default(false) @map("is_public")
+  memberCount     Int      @default(0) @map("member_count")
+  qualifyingThreshold Int? @map("qualifying_threshold") // e.g. 50% for RTM
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@index([jurisdictionCode])
+  @@index([goal])
+  @@map("resident_groups")
+}
+
+model GroupMember {
+  id        String   @id @default(cuid())
+  groupId   String   @map("group_id")
+  userId    String   @map("user_id")
+  role      String   @default("member")  // owner | admin | member
+  displayName String @map("display_name")  // pseudonymised or real
+  joinedAt  DateTime @default(now()) @map("joined_at")
+
+  @@unique([groupId, userId])
+  @@index([groupId])
+  @@map("group_members")
+}
+
+model GroupTask {
+  id          String   @id @default(cuid())
+  groupId     String   @map("group_id")
+  title       String
+  description String?
+  assignedTo  String?  @map("assigned_to")  // GroupMember.id
+  priority    String   @default("normal")   // urgent | high | normal | low
+  status      String   @default("todo")     // todo | in-progress | done | blocked
+  dueDate     DateTime? @map("due_date")
+  category    String   @default("general")  // legal | admin | outreach | documents | other
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@index([groupId])
+  @@index([status])
+  @@map("group_tasks")
+}
+
+model GroupVote {
+  id          String   @id @default(cuid())
+  groupId     String   @map("group_id")
+  title       String
+  description String?
+  type        String   @default("simple")   // simple | threshold | ranked
+  status      String   @default("open")     // open | closed | cancelled
+  threshold   Int?     // for threshold votes: minimum votes needed (e.g. 50% + 1)
+  createdBy   String   @map("created_by")   // GroupMember.id
+  closesAt    DateTime? @map("closes_at")
+  result      String?  // "passed" | "failed" | null if open
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@index([groupId])
+  @@index([status])
+  @@map("group_votes")
+}
+
+model GroupBallot {
+  id       String   @id @default(cuid())
+  voteId   String   @map("vote_id")
+  option   String   // free-text option label
+  memberId String   @map("member_id")  // GroupMember.id
+  castAt   DateTime @default(now()) @map("cast_at")
+
+  @@unique([voteId, memberId])
+  @@index([voteId])
+  @@map("group_ballots")
+}
+
+model GroupMessage {
+  id       String   @id @default(cuid())
+  groupId  String   @map("group_id")
+  memberId String   @map("member_id")  // GroupMember.id
+  content  String
+  pinned   Boolean  @default(false)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([groupId, createdAt(sort: Desc)])
+  @@map("group_messages")
+}
+
+model GroupDocument {
+  id          String   @id @default(cuid())
+  groupId     String   @map("group_id")
+  title       String
+  docType     String   @map("doc_type")  // lease | correspondence | tribunal | notice | evidence | other
+  content     String?                    // text content or description
+  fileUrl     String?  @map("file_url")
+  uploadedBy  String   @map("uploaded_by") // GroupMember.id
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@index([groupId])
+  @@map("group_documents")
+}
+
+model GroupMilestone {
+  id          String   @id @default(cuid())
+  groupId     String   @map("group_id")
+  title       String
+  description String?
+  deadline    DateTime
+  status      String   @default("pending")  // pending | achieved | missed | waived
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@index([groupId])
+  @@map("group_milestones")
+}
+
+// ─── Document Capture Pipeline ─────────────────────────────────────────────
+// QR-linked mobile → desktop capture, OCR, visual analysis, correspondence.
+
+model CaptureSession {
+  id          String   @id @default(cuid())
+  token       String   @unique                          // short-lived QR token
+  status      String   @default("waiting")              // waiting | captured | processing | complete | expired
+  deviceType  String?  @map("device_type")              // "desktop" | "mobile"
+  imageUrl    String?  @map("image_url")                // captured image path
+  ocrText     String?  @map("ocr_text")                 // OCR result text
+  docType     String?  @map("doc_type")                 // classified document type
+  confidence  Float    @default(0)                      // OCR confidence 0..1
+  metadata    String   @default("{}")                   // JSON: preprocessing stats, engine version
+  expiresAt   DateTime @map("expires_at")               // auto-expire after 15 min
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@index([token])
+  @@index([status])
+  @@map("capture_sessions")
+}
+
+// ─── Correspondence Templates ───────────────────────────────────────────────
+
+model CorrespondenceTemplate {
+  id              String   @id @default(cuid())
+  name            String                                    // "Section 20 Consultation Notice"
+  jurisdictionCode String @map("jurisdiction_code")         // "UK" | "KY" | "BB" | "JM"
+  category        String                                    // "rtm" | "service_charge" | "building_safety" | "enfranchisement" | "general"
+  subject         String                                    // display subject line
+  body            String                                    // template body with {{variables}}
+  legalRefs       String   @default("[]") @map("legal_refs") // JSON string[] of statute citations
+  variables       String   @default("[]")                   // JSON TemplateVariable[]
+  tier            String   @default("free")                 // "free" | "pro" | "enterprise"
+  isOss           Boolean  @default(true) @map("is_oss")   // open-source flag
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@index([jurisdictionCode])
+  @@index([category])
+  @@index([tier])
+  @@map("correspondence_templates")
+}
+
+// ─── Community Signing ──────────────────────────────────────────────────────
+
+model SignedDocument {
+  id              String   @id @default(cuid())
+  groupId         String   @map("group_id")                // links to ResidentGroup
+  templateId      String?  @map("template_id")             // links to CorrespondenceTemplate
+  title           String
+  body            String                                    // final rendered body
+  jurisdictionCode String @map("jurisdiction_code")
+  status          String   @default("draft")               // draft | collecting_signatures | ready | sent | archived
+  requiredSigs    Int      @default(1) @map("required_sigs")
+  collectedSigs   Int      @default(0) @map("collected_sigs")
+  sentAt          DateTime? @map("sent_at")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@index([groupId])
+  @@index([status])
+  @@map("signed_documents")
+}
+
+model DocumentSignature {
+  id           String   @id @default(cuid())
+  documentId   String   @map("document_id")               // links to SignedDocument
+  memberId     String   @map("member_id")                 // links to GroupMember
+  displayName  String   @map("display_name")              // pseudonymised at time of signing
+  signedAt     DateTime @default(now()) @map("signed_at")
+  ipAddress    String?  @map("ip_address")                // for audit trail (hashed)
+  method       String   @default("click")                 // click | drawn | typed
+
+  @@unique([documentId, memberId])
+  @@index([documentId])
+  @@map("document_signatures")
+}
+
+// ─── HITL Sign-off Queue ────────────────────────────────────────────────────
+// Every AI output that touches a resident-facing legal claim, or where the
+// consensus gate diverged, lands here for human sign-off before it is surfaced.
+// This is the auditable human-in-the-loop control plane (CoC §4 compliance).
+
+model ReviewItem {
+  id            String   @id @default(cuid())
+  kind          String                                     // "consensus_divergence" | "legal_claim" | "redaction" | "fairness_flag" | "rights_assertion"
+  title         String                                     // short human-readable summary
+  claim         String                                     // the actual claim/output awaiting sign-off
+  jurisdiction  String   @default("UK")
+  residentId    String   @default("demo-resident") @map("resident_id")
+  // Provenance — why the system produced this, so a human can judge it.
+  evidenceClass String   @map("evidence_class")            // "established" | "heuristic" | "contested" | "unfalsifiable"
+  confidence    Float    @default(0)                       // 0..1 capped by evidence class
+  sources       String   @default("[]")                    // JSON string[] of source citations
+  agentTrail    String   @default("[]") @map("agent_trail") // JSON: which agents touched this + their outputs
+  // Routing from the consensus gate.
+  routing       String   @default("review")                // "surface" | "review" | "abstain"
+  // Decision lifecycle.
+  status        String   @default("pending")               // "pending" | "approved" | "rejected" | "appealed" | "resolved"
+  reviewer      String?                                     // who actioned it
+  annotation    String?                                     // reviewer's note
+  decidedAt     DateTime? @map("decided_at")
+  rowHash       String   @default("") @map("row_hash")     // immutable integrity hash
+  // Resident appeal path.
+  appealReason  String?  @map("appeal_reason")
+  appealedAt    DateTime? @map("appealed_at")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  @@index([status])
+  @@index([kind])
+  @@index([residentId])
+  @@map("review_items")
+}

@@ -1,0 +1,17 @@
+{
+  "model": {
+    "provider": "anthropic",
+    "name": "a5cf99d6-4401-4ce0-85aa-5a7f52a59aaa",
+    "thinkingLevel": "high"
+  },
+  "activeMode": "none",
+  "heartbeat": {
+    "enabled": false,
+    "intervalMs": 300000
+  },
+  "channels": [],
+  "skills": [],
+  "memory": {
+    "enabled": false
+  }
+}

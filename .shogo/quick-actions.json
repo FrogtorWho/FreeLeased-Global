@@ -1,0 +1,12 @@
+{
+  "actions": [
+    {
+      "label": "Verify build",
+      "prompt": "Run the full FreeLeased verification and report with evidence: (1) `bun x tsc --noEmit` filtering out `src/generated/` noise — my source must be clean; (2) run `bun scripts/test-suite.ts` and report N/N; (3) force `curl -s -X POST http://localhost:$RUNTIME_PORT/preview/rebuild`, wait, then confirm the served JS bundle hash at http://localhost:8080/ actually changed (guard against the stale-bundle trap); (4) curl the key /api endpoints and confirm 2xx + expected shape. Report pass/fail per step."
+    },
+    {
+      "label": "Craft pass",
+      "prompt": "Do a design-system + data-viz craft pass on the module I name next (or audit all if I don't): enforce the shared primitives (SectionHeader/ChartCard/MethodologyNote/Formula/MetricTile), pick the right chart for each data relationship, articulate every model in-context with its actual formula, keep the peacock palette, then verify (tsc + tests + forced rebuild). Spawn fl-craft-review first for the punch list if the scope is broad."
+    }
+  ]
+}
