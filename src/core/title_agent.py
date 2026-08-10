@@ -1,4 +1,6 @@
-﻿import typing
+﻿import json
+from typing import Any
+
 from pydantic import BaseModel, Field
 
 from .nebius_client import get_nebius_client_or_none
@@ -7,30 +9,74 @@ from .nebius_client import get_nebius_client_or_none
 class CadastralAudit(BaseModel):
     """Schema capturing cadastral/title audit results extracted from text."""
 
-    unit_entitlement_percentage: float = Field(..., description="Unit entitlement as a percentage")
-    statutory_vulnerabilities: typing.List[str] = Field(default_factory=list, description="List of statutory vulnerabilities or flags")
-    voting_threshold_met: bool = Field(..., description="Whether the required voting threshold has been met")
-    compliance_notes: str = Field("", description="Human-readable compliance and notes section")
+    unit_entitlement_percentage: float = Field(
+        ..., description="Unit entitlement as a percentage"
+    )
+    statutory_vulnerabilities: list[str] = Field(
+        default_factory=list, description="List of statutory vulnerabilities or flags"
+    )
+    voting_threshold_met: bool = Field(
+        ..., description="Whether the required voting threshold has been met"
+    )
+    compliance_notes: str = Field(
+        "", description="Human-readable compliance and notes section"
+    )
+
+
+def _extract_response_text(response: Any) -> str:
+    if hasattr(response, "output_text") and response.output_text:
+        return response.output_text
+
+    output = getattr(response, "output", None)
+    if output:
+        try:
+            first = output[0]
+            content = getattr(first, "content", None)
+            if content:
+                if isinstance(content, str):
+                    return content
+                if isinstance(content, (list, tuple)):
+                    fragments = []
+                    for item in content:
+                        if isinstance(item, dict) and "text" in item:
+                            fragments.append(item["text"])
+                        elif hasattr(item, "text"):
+                            fragments.append(item.text)
+                    return "".join(fragments)
+        except (AttributeError, IndexError, TypeError):
+            pass
+
+    if hasattr(response, "to_dict"):
+        try:
+            raw = response.to_dict()
+            output_data = raw.get("output")
+            if output_data and isinstance(output_data, list):
+                first = output_data[0]
+                if isinstance(first, dict):
+                    content = first.get("content")
+                    if isinstance(content, list):
+                        for item in content:
+                            if (
+                                isinstance(item, dict)
+                                and item.get("type") == "output_text"
+                            ):
+                                return item.get("text", "")
+                            if isinstance(item, dict) and "text" in item:
+                                return item.get("text", "")
+        except (AttributeError, IndexError, TypeError):
+            pass
+    raise ValueError("Unable to extract textual output from Nebius response")
 
 
 def run_title_audit(cadastral_text: str) -> CadastralAudit:
     """Run a title/cadastral audit over freeform cadastral_text.
 
-    This is a stubbed implementation. Production version will:
-      - Instantiate the Nebius client via get_nebius_client() from nebius_client.py
-      - Call the Nebius DeepSeek-R1 (or equivalent search/extraction) endpoint with the cadastral_text
-        and a precise instruction/prompt to extract the fields matching CadastralAudit.
-      - Validate and coerce the returned structured data into the CadastralAudit Pydantic model.
-      - Return the populated CadastralAudit instance or raise an informative exception on failure.
-
-    For now this function returns a placeholder CadastralAudit instance to allow integration tests
-    to run while the extraction pipeline is implemented.
+    Uses Nebius DeepSeek-R1 to extract the values needed for the CadastralAudit
+    schema from the provided description.
     """
 
     client = get_nebius_client_or_none()
     if client is None:
-        # In environments without NEBIUS_API_KEY, return a conservative default or raise.
-        # Choosing a conservative default here to avoid crashing automated tooling.
         return CadastralAudit(
             unit_entitlement_percentage=0.0,
             statutory_vulnerabilities=[],
@@ -38,20 +84,39 @@ def run_title_audit(cadastral_text: str) -> CadastralAudit:
             compliance_notes="Nebius client not configured. Extraction not performed.",
         )
 
-    # PSEUDO-CODE / PLAN:
-    # 1) Prepare a structured prompt/instruction that asks DeepSeek-R1 to extract:
-    #    - unit_entitlement_percentage (as a float percentage)
-    #    - statutory_vulnerabilities (list of strings)
-    #    - voting_threshold_met (boolean)
-    #    - compliance_notes (string summary)
-    # 2) Call client.responses.create(...) or the appropriate DeepSeek-R1 method with the prompt
-    # 3) Parse the response into Python primitives and validate with CadastralAudit.parse_obj(...)
-
-    # TODO: implement actual Nebius call and parsing here.
-    # Returning a placeholder until implementation is complete.
-    return CadastralAudit(
-        unit_entitlement_percentage=0.0,
-        statutory_vulnerabilities=[],
-        voting_threshold_met=False,
-        compliance_notes="Extraction stub — implement Nebius DeepSeek-R1 integration.",
+    instructions = (
+        "Return only valid JSON that maps exactly to the CadastralAudit schema. "
+        "Do not include any explanatory text, markdown, or comments. "
+        "The JSON object must contain the keys: unit_entitlement_percentage, "
+        "statutory_vulnerabilities, voting_threshold_met, and compliance_notes. "
+        "Provide unit_entitlement_percentage as a float, "
+        "statutory_vulnerabilities as a list of strings, "
+        "voting_threshold_met as a boolean, "
+        "and compliance_notes as a string."
     )
+
+    response = client.responses.create(
+        model="deepseek-ai/DeepSeek-R1",
+        input=cadastral_text,
+        instructions=instructions,
+        temperature=0.0,
+        max_output_tokens=800,
+        user="title-audit-extraction",
+    )
+
+    output_text = _extract_response_text(response)
+    try:
+        parsed = json.loads(output_text)
+    except json.JSONDecodeError as exc:
+        raise ValueError(
+            "Nebius DeepSeek-R1 response did not contain valid JSON. "
+            f"Raw output was: {output_text!r}"
+        ) from exc
+
+    if not isinstance(parsed, dict):
+        raise TypeError(
+            "Nebius DeepSeek-R1 response must deserialize to a JSON object "
+            "matching CadastralAudit"
+        )
+
+    return CadastralAudit.parse_obj(parsed)

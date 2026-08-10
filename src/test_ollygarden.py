@@ -1,15 +1,17 @@
 import os
+
 from dotenv import load_dotenv
 from opentelemetry import trace
-from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
 from opentelemetry.sdk.resources import Resource
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
 
 load_dotenv()
 
 api_key = os.getenv("OLLYGARDEN_API_KEY")
-endpoint = os.getenv("OLLYGARDEN_OTLP_ENDPOINT", "https://otlp.ollygarden.app/v1/traces")
+default_ollygarden_endpoint = "https://otlp.ollygarden.app/v1/traces"
+endpoint = os.getenv("OLLYGARDEN_OTLP_ENDPOINT", default_ollygarden_endpoint)
 
 # Initialize Provider
 resource = Resource.create({"service.name": "freeleased-ollygarden-test"})

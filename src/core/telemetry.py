@@ -1,5 +1,4 @@
 ﻿import os
-from typing import Optional
 
 from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
@@ -7,11 +6,12 @@ from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 
-
 DEFAULT_OTLP_ENDPOINT = "https://in.ollygarden.cloud/v1/traces"
 
 
-def configure_telemetry(service_name: str = "freeleased-backend") -> Optional[TracerProvider]:
+def configure_telemetry(
+    service_name: str = "freeleased-backend",
+) -> TracerProvider | None:
     """Configure OpenTelemetry tracing for Ollygarden OTLP export."""
     endpoint = os.getenv("OLLYGARDEN_OTLP_ENDPOINT", DEFAULT_OTLP_ENDPOINT)
     api_key = os.getenv("OLLYGARDEN_API_KEY")

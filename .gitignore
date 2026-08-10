@@ -16,6 +16,7 @@ __pycache__/
 .venv/
 .env
 .env.*
+!.env.example
 
 # Databases
 *.sqlite
@@ -32,13 +33,13 @@ secrets/
 *.pdf
 
 # IDEs and editors
-.vscode/
 .idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+.pre-commit-home/
 
 # OS
 .DS_Store

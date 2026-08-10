@@ -1,0 +1,9 @@
+﻿openai
+pydantic
+python-dotenv
+ruff
+black
+opentelemetry-api
+opentelemetry-sdk
+opentelemetry-exporter-otlp
+pre-commit

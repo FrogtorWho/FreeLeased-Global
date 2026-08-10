@@ -73,3 +73,17 @@ End of configuration journal for Step 1-3.
 - **Justification:** Provides a strict schema contract for title/cadastral extraction so downstream code and agents can rely on typed data.
 - **Replication Ease:** The model is importable as `from src.core.title_agent import CadastralAudit` after installing dependencies and ensures validation via Pydantic.
 - **Alternative/Fallback:** Use plain dataclasses or dictionaries temporarily, but Pydantic is preferred for validation and serialization.
+
+## 2026-08-10 Nebius DeepSeek-R1 Activation
+
+- **Setting/Configuration:** src/core/title_agent.py — live Nebius DeepSeek-R1 integration
+- **Justification:** Implements real extraction of cadastral title data into a strict Pydantic schema, enabling the Title Agent to provide structured audit output.
+- **Replication Ease:** Requires NEBIUS_API_KEY in environment and the configured Nebius client; run the test script or integrate the model into the application pipeline.
+- **Alternative/Fallback:** If Nebius is unavailable, the function falls back to a safe placeholder CadastralAudit instance and logs the environment configuration issue.
+
+## 2026-08-10 Live Nebius Extraction Implementation
+
+- **Setting/Configuration:** src/core/title_agent.py — DeepSeek-R1 extraction implementation
+- **Justification:** Enables the title audit agent to convert cadastral text into a validated JSON object consistent with the CadastralAudit schema.
+- **Replication Ease:** Requires a Nebius API key in NEBIUS_API_KEY and the existing Nebius client configuration; run the test suite or call run_title_audit directly.
+- **Alternative/Fallback:** If Nebius is unavailable, the function safely returns a placeholder CadastralAudit instance and indicates the extraction was skipped.

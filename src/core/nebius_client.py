@@ -1,5 +1,4 @@
 import os
-from typing import Optional
 
 from openai import OpenAI
 
@@ -16,7 +15,7 @@ def get_nebius_client() -> OpenAI:
     )
 
 
-def get_nebius_client_or_none() -> Optional[OpenAI]:
+def get_nebius_client_or_none() -> OpenAI | None:
     """Return a configured client when the API key is present."""
     api_key = os.getenv("NEBIUS_API_KEY")
     if not api_key:
