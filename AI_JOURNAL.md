@@ -207,3 +207,18 @@ Post-sprint: weekly Sunday 18:00 UTC full audit rerun; per-PR tsc + tests + ruff
 - Commit: 492875d
 - Overnight agent task list embedded in gauntlet-loop.md
 - Next: Sam to provide Data Room URL; morning digest expected 03:30 UTC
+
+## 2026-08-10 cont. — Data Room Mapped
+- Data Room path: `G:\My Drive\Development\Future Caribbean\Data Room\`
+- memory/data-room-map.md created with folder inventory + TRL mapping + gap report
+- MEMORY.md indexed with Data Room reference (External Repositories section)
+- Commit: 7d14d3f
+- Top N gaps for code freeze:
+  1. TRL 1 — Companies House PDF + problem paragraph + sample lease → `01_Company Overview/project_summary/`
+  2. TRL 4 — Test-suite output + smoke screenshots + architecture PDF → `04_Technical Proof/`
+  3. TRL 2 — 3+ interview logs (or validation plan) → `02_Problem Validation/interview_notes/`
+  4. TRL 3 — 5 wireframe PNGs (one per surface) → `03_Product Evidence/wireframes/`
+  5. TRL 4 — Demo video MP4 → `03_Product Evidence/demo_video/`
+- Critical finding: Data Room has 9 top-level dirs + 24 sub-dirs but **zero files** — folder structure is scaffolded but no evidence has been placed yet
+- Unclassified folder: `Shogo/` (likely agent-runtime scaffolding, not validation evidence — needs human decision)
+- Estimated ~7 hours of focused work to close TRL 1–4 evidence gaps before code freeze
