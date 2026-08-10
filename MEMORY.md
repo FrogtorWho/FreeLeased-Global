@@ -56,3 +56,7 @@ Long-lived facts and learnings.
 - `.shogo/screenshots/` — 15MB agent session screenshots.
 - `.shogo/plans/` — Completed sprint plans.
 - Duplicate MOU files (nested under `10-mou-letters/10-mou-letters\`).
+
+## External Repositories
+
+- **Data Room** — `G:\My Drive\Development\Future Caribbean\Data Room\` (Google Drive, synced locally). Validation layer for TRL claims. See `memory/data-room-map.md` for the folder → TRL mapping and gap report. READ-ONLY for the agent.
