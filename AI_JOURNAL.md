@@ -199,3 +199,11 @@ Post-sprint: weekly Sunday 18:00 UTC full audit rerun; per-PR tsc + tests + ruff
 - Commits staged: `1fe5f15` (initial integration) + `33d1c50` (fix breakages)
 - Health: lint clean (black + ruff), mobile route repaired, test counter accurate (159/159), caps drift resolved, HEARTBEAT.md populated, .env.example correct
 - Remaining known gaps: `bun` not on PATH for live tsc/test run; `src/generated/*` regen pending; `public/sw.js` pending; fl-* meta-agents narrative vs reality
+
+## 2026-08-10 cont. — Gauntlet Loop Shipped
+- Created project/strategy/gauntlet-loop.md (5-sub-loop: PROCESS/RESEARCH/UPDATE/MAINTENANCE/SELF-IMPROVE)
+- Indexed gauntlet loop in MEMORY.md
+- Added bun x tsc --noEmit step to .github/workflows/ci.yml
+- Commit: 492875d
+- Overnight agent task list embedded in gauntlet-loop.md
+- Next: Sam to provide Data Room URL; morning digest expected 03:30 UTC
