@@ -24,7 +24,6 @@ from __future__ import annotations
 
 import logging
 import os
-from typing import Optional
 
 from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
@@ -61,7 +60,7 @@ def _build_resource(service_name: str) -> Resource:
 
 def init_telemetry(
     service_name: str = DEFAULT_SERVICE_NAME,
-) -> Optional[TracerProvider]:
+) -> TracerProvider | None:
     """Initialise OpenTelemetry tracing for OllyGarden export.
 
     This is the canonical entry point. It is safe to call multiple times;
@@ -73,7 +72,7 @@ def init_telemetry(
         service_name: Logical service name to attach to every span.
 
     Returns:
-        Optional[TracerProvider]: The configured provider, or ``None`` if
+        TracerProvider | None: The configured provider, or ``None`` if
         telemetry was disabled because credentials are missing.
     """
     endpoint = os.getenv("OLLYGARDEN_OTLP_ENDPOINT", DEFAULT_OTLP_ENDPOINT)
@@ -95,7 +94,7 @@ def init_telemetry(
         trace.set_tracer_provider(provider)
         logger.info("Telemetry initialised for OllyGarden endpoint=%s", endpoint)
         return provider
-    except Exception as exc:  # pragma: no cover - defensive
+    except Exception as exc:  # pragma: no cover - defensive  # noqa: BLE001
         # Telemetry must never crash the host application.
         logger.error("Failed to initialise telemetry: %s", exc)
         return None
@@ -103,14 +102,14 @@ def init_telemetry(
 
 def configure_telemetry(
     service_name: str = DEFAULT_SERVICE_NAME,
-) -> Optional[TracerProvider]:
+) -> TracerProvider | None:
     """Backward-compatible alias for :func:`init_telemetry`.
 
     Args:
         service_name: Logical service name to attach to every span.
 
     Returns:
-        Optional[TracerProvider]: The configured provider, or ``None`` if
+        TracerProvider | None: The configured provider, or ``None`` if
         telemetry was disabled because credentials are missing.
     """
     return init_telemetry(service_name=service_name)

@@ -9,11 +9,12 @@ export type EvidenceClass = "established" | "heuristic" | "contested" | "unfalsi
 
 // Confidence ceiling per evidence class. Honesty is enforced here: a flag can
 // never display more certainty than its evidentiary basis allows.
+// Canonical caps per truth-protocol.md (see project/strategy/truth-protocol.md).
 export const CONFIDENCE_CAP: Record<EvidenceClass, number> = {
-  established: 0.95,
-  heuristic: 0.6,
-  contested: 0.4,
-  unfalsifiable: 0.2,
+  established: 0.99,
+  heuristic: 0.75,
+  contested: 0.6,
+  unfalsifiable: 0.33,
 };
 
 export type Severity = "high" | "medium" | "low";

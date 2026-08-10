@@ -23,6 +23,7 @@ import { RTMWizard } from "@/components/auri/RTMWizard";
 import { CommunityHub } from "@/components/auri/CommunityHub";
 import { DocumentHub } from "@/components/auri/DocumentHub";
 import { SignoffQueue } from "@/components/auri/SignoffQueue";
+import MobileCapture from "@/pages/MobileCapture";
 
 const PRIMARY_NAV = [
   { id: "rights-check", label: "My Rights", icon: ShieldCheck },
@@ -56,7 +57,6 @@ export default function App() {
   // Mobile capture route — renders standalone page when /mobile/capture?token=xxx
   const isMobileCapture = window.location.pathname === "/mobile/capture";
   if (isMobileCapture) {
-    const MobileCapture = require("@/pages/MobileCapture").default;
     return <MobileCapture />;
   }
 

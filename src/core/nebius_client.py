@@ -20,10 +20,8 @@ Example:
 from __future__ import annotations
 
 import os
-from typing import Optional
 
 from openai import OpenAI
-
 
 NEBIUS_BASE_URL = "https://api.tokenfactory.nebius.com/v1/"
 
@@ -51,14 +49,14 @@ def get_nebius_client() -> OpenAI:
     )
 
 
-def get_nebius_client_or_none() -> Optional[OpenAI]:
+def get_nebius_client_or_none() -> OpenAI | None:
     """Return a configured Nebius client, or ``None`` if the key is missing.
 
     This is a non-raising variant useful for optional integrations where
     the caller wants to gracefully degrade when credentials are absent.
 
     Returns:
-        Optional[OpenAI]: The configured client, or ``None`` if the
+        OpenAI | None: The configured client, or ``None`` if the
         ``NEBIUS_API_KEY`` environment variable is not set.
     """
     api_key = os.getenv("NEBIUS_API_KEY")

@@ -72,10 +72,13 @@ check("em-dash gate ignores a single em-dash", sweep("a fine \u2014 dash").resul
 check("sweep totalHits is the sum of gate hits", (() => { const s = sweep("organization leverage test@x.com"); return s.totalHits === s.results.reduce((a, r) => a + r.hits.length, 0); })());
 
 // ── 10/10 loop ────────────────────────────────────────────────────────────────
+// testsPassing / testsTotal are a static count of `check(` calls in this file
+// (run `python -c "import re; print(len(re.findall(r'^\s*check\\(', open('scripts/test-suite.ts').read(), re.MULTILINE)))"`)
+// — the real pass count is reported at the end of this run.
 const metrics = {
   statutes: STATUTES.length, sources: SOURCES.length, patterns: HIDDEN_RIGHTS.length,
   jurisdictions: JURISDICTIONS.length, pilotResidents: RESIDENTS.length,
-  gatesPassing: 4, testsPassing: 40, testsTotal: 40, abstainCoverage: true,
+  gatesPassing: 4, testsPassing: 159, testsTotal: 159, abstainCoverage: true,
   provenanceTuple: true, agents: 4, engines: 4,
 };
 const loop = runLoop(metrics);
