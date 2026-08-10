@@ -61,3 +61,15 @@
 ---
 
 End of configuration journal for Step 1-3.
+
+## 2026-08-10 Title Agent Schema and Pre-commit Hooks
+
+- **Setting/Configuration:** .pre-commit-config.yaml — Black & Ruff hooks
+- **Justification:** Enforces local developer consistency before commits; prevents style drift and reduces CI failures.
+- **Replication Ease:** Install pre-commit (`pip install pre-commit`) and run `pre-commit install` to enable the hooks locally.
+- **Alternative/Fallback:** Run `black .` and `ruff check .` manually or enforce in CI only.
+
+- **Setting/Configuration:** src/core/title_agent.py — CadastralAudit Pydantic model and run_title_audit stub
+- **Justification:** Provides a strict schema contract for title/cadastral extraction so downstream code and agents can rely on typed data.
+- **Replication Ease:** The model is importable as `from src.core.title_agent import CadastralAudit` after installing dependencies and ensures validation via Pydantic.
+- **Alternative/Fallback:** Use plain dataclasses or dictionaries temporarily, but Pydantic is preferred for validation and serialization.
