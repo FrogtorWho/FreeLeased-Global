@@ -19,6 +19,7 @@ Long-lived facts and learnings.
 - Never edit `src/generated/*` or `server.tsx`. Prisma 7: append models only.
 - Design system: `src/components/auri/primitives.tsx`.
 - Verification: `bun x tsc --noEmit` (ignore src/generated) + `bun scripts/test-suite.ts` + curl endpoints.
+- **Gauntlet Loop** — see [`project/strategy/gauntlet-loop.md`](project/strategy/gauntlet-loop.md:1) for the 5-sub-loop overnight agent cycle (PROCESS → RESEARCH → UPDATE → MAINTENANCE → SELF-IMPROVE). Runs nightly 02:00 + 03:00 UTC. Cadence file: `HEARTBEAT.md`. Last run: see `memory/<date>.md`.
 
 ## Competition — Sprint Window
 
