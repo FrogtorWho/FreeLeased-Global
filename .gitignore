@@ -1,46 +1,7 @@
-﻿# Node / build
-node_modules/
-dist/
-build/
-
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-
-# Python
-__pycache__/
-*.py[cod]
-*.pyo
-.venv/
 .env
 .env.*
 !.env.example
-
-# Databases
+*.db
 *.sqlite
 *.sqlite3
-*.db
-
-# Secrets and credentials
-*.pem
-*.key
-*.crt
-secrets/
-
-# Documents (sensitive exports)
 *.pdf
-
-# IDEs and editors
-.idea/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-.pre-commit-home/
-
-# OS
-.DS_Store
-Thumbs.db
