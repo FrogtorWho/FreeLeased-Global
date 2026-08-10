@@ -146,3 +146,49 @@ End of configuration journal for Step 1-3.
 - **Tools:** `bun` / `tsc` were not on PATH so the TypeScript no-emit check was skipped per Stage 5 instructions; Python lint pass is the authoritative signal for this stage.
 - **Commit:** `fix: repair mobile route, test counter, lint, and cap drift` (local; push deferred to orchestrator per instructions).
 - **Remaining:** no architectural changes were made — surgical fixes only, as scoped. Stage 6 (cadence loop) and Stage 7 (value-add brainstorm) are next.
+
+## 2026-08-10 Stage 6 & 7 — Synergy Schedule + Top 15 Value-Add Ideas
+
+### Synergy Loop Cadence (post-audit)
+Three nested loops, sized for the remaining 6-day window (code freeze 2026-08-14, demo 2026-08-16):
+
+**Loop α — Hourly Watchdog** (during sprint only)
+- :00 smoke (`bun scripts/test-suite.ts`), :15 secret-leak grep, :30 ruff+black
+**Loop β — Twice-daily Heartbeat** (09:00 + 17:00 UTC)
+- 09:00 reconcile top-down vs bottom-up numbers; 09:15 rerun Stage 1-3 inventory; 17:00 scorecard; 17:30 escalate if 2 reds in a row
+**Loop γ — End-of-loop Architect Review** (per loop-protocol.md P0–P6)
+- Re-read maturity ladder → run reconciliation → update loop-protocol itself → update MEMORY.md → append memory/<date>.md → cross-check pre-mortem G1–G18 → mark complete with hash+date
+
+Post-sprint: weekly Sunday 18:00 UTC full audit rerun; per-PR tsc + tests + ruff; monthly MEMORY.md decay check.
+
+### Hard Rules (carry into MEMORY.md long-lived facts)
+1. Two consecutive failures → escalate to Sam
+2. No claim in README/pitch/deck unless bottom-up verified within 7 days
+3. Every `[PERSON_NAME]` token stays a pseudonym — never inline-replaced; tracked in MEMORY.md
+4. Every `main` commit message includes a Stage-N reference
+
+### Top 15 Value-Add Ideas (impact × effort)
+| # | Idea | Impact | Effort |
+|---|------|--------|--------|
+| 1 | Wire `extractWithVLM` to real Nebius DeepSeek-R1 on sample-lease.txt | 🔴 | 🟢 4h |
+| 2 | Generate minimal `public/sw.js` so offline.ts:56 registration succeeds | 🟡 | 🟢 2h |
+| 3 | Populate `MEMORY.md` "Verified Facts" registry (cross-link all `[PERSON_NAME]` tokens) | 🔴 | 🟢 3h |
+| 4 | Add `bun x tsc --noEmit` step to `.github/workflows/ci.yml` (TS-only gap) | 🟡 | 🟢 1h |
+| 5 | `bun scripts/demo-loop.ts` — single-command demo runner | 🔴 | 🟡 6h |
+| 6 | `TruthDiff` component — doc claims vs code reality side-by-side | 🟡 | 🟡 4h |
+| 7 | Re-generate `src/generated/*` from `prisma/schema.prisma` (G18) | 🔴 | 🟢 1h |
+| 8 | `bun scripts/health-check.ts` — single-line build status | 🟡 | 🟡 3h |
+| 9 | `scripts/competitive-landscape.ts` — auto-regenerate defensibility matrix | 🟡 | 🟡 5h |
+| 10 | Caribbean multilingual switcher (Haitian Creole at minimum) | 🟡 | 🟢 2h |
+| 11 | Implement `fl-dataviz` — conviction-weight distribution chart | 🟢 | 🟡 4h |
+| 12 | Replace `simulateLLMCall` with `/api/agents?simulate=1` flagged endpoint | 🟢 | 🟢 1h |
+| 13 | `scripts/reconcile-docs.ts` — automated top-down/bottom-up diff | 🔴 | 🟡 6h |
+| 14 | WCAG-AA quick-wins (focus rings, contrast, aria-labels) | 🟡 | 🟢 3h |
+| 15 | `Honesty.tsx` page — list every fabricated claim, every stub publicly | 🔴 | 🟡 5h |
+
+**Next-24h picks (max ROI, all < 3h): #3, #7, #4, #8**
+
+### Audit state at end of Stage 7
+- Commits staged: `1fe5f15` (initial integration) + `33d1c50` (fix breakages)
+- Health: lint clean (black + ruff), mobile route repaired, test counter accurate (159/159), caps drift resolved, HEARTBEAT.md populated, .env.example correct
+- Remaining known gaps: `bun` not on PATH for live tsc/test run; `src/generated/*` regen pending; `public/sw.js` pending; fl-* meta-agents narrative vs reality
