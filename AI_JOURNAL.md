@@ -87,3 +87,15 @@ End of configuration journal for Step 1-3.
 - **Justification:** Enables the title audit agent to convert cadastral text into a validated JSON object consistent with the CadastralAudit schema.
 - **Replication Ease:** Requires a Nebius API key in NEBIUS_API_KEY and the existing Nebius client configuration; run the test suite or call run_title_audit directly.
 - **Alternative/Fallback:** If Nebius is unavailable, the function safely returns a placeholder CadastralAudit instance and indicates the extraction was skipped.
+
+## 2026-08-10 MiniMax + FastAPI Pipeline
+
+- **Setting/Configuration:** src/core/document_processor.py and src/core/pipeline.py — MiniMax document reader and dual-agent pipeline
+- **Justification:** Condenses lease text to the most relevant statutory paragraphs before passing it to the Nebius title audit engine, reducing token cost and improving signal quality.
+- **Replication Ease:** Install the updated requirements and set MINIMAX_API_KEY; otherwise the processor falls back to local heuristics extracted from the uploaded file.
+- **Alternative/Fallback:** If MiniMax is unavailable, the pipeline still works using local text extraction and a safe placeholder audit result.
+
+- **Setting/Configuration:** src/api/main.py and src/db/models.py — FastAPI upload endpoint and SQLite persistence
+- **Justification:** Gives the backend a first-class API entry point and a lightweight storage layer for audit results so the frontend can be wired immediately.
+- **Replication Ease:** Run `uvicorn src.api.main:app --reload` and POST a document to `/upload-lease`.
+- **Alternative/Fallback:** If a database is not desired at first, the endpoint can still return the result without persisting it.

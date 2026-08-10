@@ -1,4 +1,4 @@
-﻿{
+{
   "python.formatting.provider": "black",
   "python.formatting.blackArgs": ["--line-length", "88"],
   "python.linting.enabled": true,
@@ -43,5 +43,6 @@
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
     "**/.venv/**": true
-  }
+  },
+  "python-envs.defaultEnvManager": "ms-python.python:system"
 }
