@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FreeLeased Brand Pack Showcase · 5 Identities, 1 Product</title>
+<meta name="description" content="A side-by-side comparison of the five brand variants for FreeLeased — Veridian, Quill, Monolith, Canopy, Coral. Each is a complete identity system: palette, logomark, type specimen, motion, voice, wireframes.">
+<style>
+  :root {
+    /* Veridian default */
+    --bg: #0f1d2a;
+    --fg: #f5efe3;
+    --muted: #aab8c5;
+    --accent: #2dd4bf;
+    --rule: rgba(245, 239, 227, 0.15);
+    --card: rgba(245, 239, 227, 0.04);
+    --serif: 'Iowan Old Style', 'Palatino', 'Georgia', serif;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--bg); color: var(--fg); }
+  body {
+    font-family: var(--sans);
+    line-height: 1.55;
+    padding: 2rem clamp(1rem, 4vw, 3rem);
+    max-width: 1400px;
+    margin: 0 auto;
+    background: var(--bg);
+  }
+  header {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  header p { color: var(--muted); max-width: 60ch; }
+  header .meta {
+    margin-top: 0.75rem;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--accent);
+  }
+  .grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
+  }
+  .card-header {
+    padding: 1.25rem 1.25rem 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .badge {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    border: 1px solid currentColor;
+    padding: 0.15rem 0.5rem;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+  .brand-name {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .brand-tagline {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+  }
+  /* Each brand gets its own color block to show its palette */
+  .palette {
+    display: flex;
+    height: 80px;
+    margin: 0.5rem 1.25rem;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .swatch {
+    flex: 1;
+    position: relative;
+    transition: flex 0.3s ease;
+  }
+  .swatch:hover { flex: 2; }
+  .swatch span {
+    position: absolute;
+    bottom: 4px;
+    left: 6px;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.85);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  }
+  /* Logomark + type specimen zone */
+  .visual {
+    margin: 0.5rem 1.25rem;
+    padding: 1.25rem;
+    border: 1px dashed var(--rule);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: 110px;
+  }
+  .logomark {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+  }
+  .type-spec {
+    flex: 1;
+  }
+  .type-spec .h {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .type-spec .b {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 0.4rem;
+  }
+  .type-spec .m {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-top: 0.4rem;
+  }
+  /* Body content */
+  .body {
+    padding: 0.75rem 1.25rem 1.25rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .body p { margin-bottom: 0.5rem; }
+  .body strong { color: var(--fg); font-weight: 500; }
+  /* Footer / spec list */
+  .spec-list {
+    padding: 0 1.25rem 1.25rem;
+    border-top: 1px solid var(--rule);
+    padding-top: 1rem;
+  }
+  .spec-list ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.35rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+  .spec-list li::before { content: "→ "; color: var(--accent); }
+  /* Per-brand overrides */
+  .card[data-brand="1"] {
+    --bg: #0f1d2a; --fg: #f5efe3; --muted: #aab8c5; --accent: #2dd4bf;
+    --rule: rgba(245, 239, 227, 0.15); --card: rgba(45, 212, 191, 0.05);
+  }
+  .card[data-brand="2"] {
+    --bg: #1a1714; --fg: #f6f1e7; --muted: #8a8275; --accent: #b03b2e;
+    --rule: rgba(176, 59, 46, 0.25); --card: rgba(176, 59, 46, 0.04);
+    --serif: 'Iowan Old Style', 'Palatino', 'Georgia', serif;
+  }
+  .card[data-brand="3"] {
+    --bg: #ffffff; --fg: #0a0a0a; --muted: #6b6b6b; --accent: #facc15;
+    --rule: rgba(0, 0, 0, 0.15); --card: rgba(0, 0, 0, 0.03);
+    --serif: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+  .card[data-brand="4"] {
+    --bg: #1d2b1f; --fg: #f0f3ec; --muted: #9aa896; --accent: #6f9e3d;
+    --rule: rgba(111, 158, 61, 0.25); --card: rgba(111, 158, 61, 0.04);
+  }
+  .card[data-brand="5"] {
+    --bg: #fff7ed; --fg: #2a1f1a; --muted: #8c6f5c; --accent: #f97366;
+    --rule: rgba(249, 115, 102, 0.25); --card: rgba(249, 115, 102, 0.05);
+  }
+  /* Animated wireframe placeholder for each card */
+  .wireframe {
+    margin: 0 1.25rem 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.15);
+    height: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .wf-bar {
+    position: absolute;
+    background: currentColor;
+    color: var(--muted);
+    border-radius: 3px;
+    animation: wf-slide 6s ease-in-out infinite;
+  }
+  .wf-bar.b1 { top: 12px; left: 12px; height: 8px; width: 30%; animation-delay: 0s; }
+  .wf-bar.b2 { top: 28px; left: 12px; height: 6px; width: 50%; animation-delay: 0.4s; opacity: 0.5; }
+  .wf-bar.b3 { top: 42px; left: 12px; height: 6px; width: 40%; animation-delay: 0.8s; opacity: 0.3; }
+  @keyframes wf-slide {
+    0%, 100% { transform: translateX(0); opacity: 0.4; }
+    50% { transform: translateX(8px); opacity: 1; }
+  }
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  /* Hover micro-interaction for logomarks */
+  .logomark:hover { transform: rotate(-3deg) scale(1.05); transition: transform 0.3s; }
+  .logomark { transition: transform 0.3s; }
+  /* Responsive tweaks */
+  @media (max-width: 600px) {
+    body { padding: 1rem; }
+    .card-header { flex-direction: column; align-items: stretch; }
+    .badge { align-self: flex-start; }
+  }
+  /* Print friendly */
+  @media print {
+    body { background: white; color: black; }
+    .card { break-inside: avoid; border: 1px solid #ccc; }
+    .wireframe { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>FreeLeased · Brand Pack Showcase</h1>
+  <p>Five complete identity systems for one shipping product. Each variant ships a full set: palette, logomark, type specimen, motion spec, voice-and-tone doc, and applied wireframes. Judges vary — a venture judge rewards boldness, a legal judge rewards gravitas, an impact judge rewards cultural rootedness. Shipping all five turns "brand" from a weakness into a defensive strength.</p>
+  <div class="meta">5 brands · 1 product · Apache 2.0 · Source at <a href="https://github.com/freeleased/freeleased" style="color: inherit;">github.com/freeleased/freeleased</a></div>
+</header>
+
+<main class="grid">
+
+<!-- ── BRAND 1: VERIDIAN ───────────────────────────────────────────────── -->
+<article class="card" data-brand="1">
+  <div class="card-header">
+    <div>
+      <div class="brand-name">Veridian</div>
+      <div class="brand-tagline">Peacock dark · Serif H, sans body · Caribbean warmth</div>
+    </div>
+    <span class="badge">PRODUCTION DEFAULT</span>
+  </div>
+  <div class="palette" aria-label="Veridian palette">
+    <div class="swatch" style="background:#0f1d2a;"><span>#0F1D2A</span></div>
+    <div class="swatch" style="background:#1a3a4a;"><span>#1A3A4A</span></div>
+    <div class="swatch" style="background:#2dd4bf;"><span>#2DD4BF</span></div>
+    <div class="swatch" style="background:#f5efe3;"><span>#F5EFE3</span></div>
+  </div>
+  <div class="visual">
+    <svg class="logomark" viewBox="0 0 60 60" aria-label="Veridian logomark">
+      <rect width="60" height="60" rx="10" fill="#1a3a4a"/>
+      <path d="M30 12 L48 30 L30 48 L12 30 Z" fill="none" stroke="#2dd4bf" stroke-width="2.5"/>
+      <circle cx="30" cy="30" r="6" fill="#2dd4bf"/>
+    </svg>
+    <div class="type-spec">
+      <div class="h">FreeLeased</div>
+      <div class="b">The intelligence layer for a single Caribbean property market.</div>
+      <div class="m">$0 compute · 9 jurisdictions · 40+ statutes</div>
+    </div>
+  </div>
+  <div class="wireframe" aria-hidden="true">
+    <span class="wf-bar b1"></span><span class="wf-bar b2"></span><span class="wf-bar b3"></span>
+  </div>
+  <div class="body">
+    <p><strong>For judges who value:</strong> trust, restraint, regional rootedness.</p>
+    <p>The production default. Same palette already shipping in the live app. Reads as "established institution building for the long term."</p>
+  </div>
+  <ul class="spec-list">
+    <li>palette.svg</li>
+    <li>logo-mark.svg</li>
+    <li>type-specimen.svg</li>
+    <li>motion-spec.md</li>
+    <li>voice-and-tone.md</li>
+    <li>wireframe-home + app</li>
+  </ul>
+</article>
+
+<!-- ── BRAND 2: QUILL ───────────────────────────────────────────────────── -->
+<article class="card" data-brand="2">
+  <div class="card-header">
+    <div>
+      <div class="brand-name">Quill</div>
+      <div class="brand-tagline">Editorial print · Black / ivory / ink-red · Craftsmanship</div>
+    </div>
+    <span class="badge">EDITORIAL</span>
+  </div>
+  <div class="palette" aria-label="Quill palette">
+    <div class="swatch" style="background:#1a1714;"><span>#1A1714</span></div>
+    <div class="swatch" style="background:#f6f1e7;"><span>#F6F1E7</span></div>
+    <div class="swatch" style="background:#b03b2e;"><span>#B03B2E</span></div>
+    <div class="swatch" style="background:#8a8275;"><span>#8A8275</span></div>
+  </div>
+  <div class="visual">
+    <svg class="logomark" viewBox="0 0 60 60" aria-label="Quill logomark">
+      <rect width="60" height="60" rx="2" fill="#1a1714"/>
+      <text x="30" y="38" text-anchor="middle" fill="#f6f1e7" font-family="Georgia,serif" font-size="20" font-weight="700" font-style="italic">F</text>
+      <line x1="20" y1="46" x2="40" y2="46" stroke="#b03b2e" stroke-width="1.5"/>
+    </svg>
+    <div class="type-spec">
+      <div class="h" style="font-style:italic;">FreeLeased</div>
+      <div class="b">A public-interest publication on Caribbean property rights.</div>
+      <div class="m">est. 2026 · Open source · Print-grade typography</div>
+    </div>
+  </div>
+  <div class="wireframe" aria-hidden="true">
+    <span class="wf-bar b1"></span><span class="wf-bar b2"></span><span class="wf-bar b3"></span>
+  </div>
+  <div class="body">
+    <p><strong>For judges who value:</strong> gravitas, editorial craft, the feel of a serious publication.</p>
+    <p>Reads like the FT or The Atlantic: column rules, ink-red accent, italic serif. For legal, academic, and policy judges.</p>
+  </div>
+  <ul class="spec-list">
+    <li>palette.svg</li>
+    <li>logo-mark.svg</li>
+    <li>type-specimen.svg</li>
+    <li>motion-spec.md</li>
+    <li>voice-and-tone.md</li>
+    <li>wireframe-home + app</li>
+  </ul>
+</article>
+
+<!-- ── BRAND 3: MONOLITH ─────────────────────────────────────────────────── -->
+<article class="card" data-brand="3">
+  <div class="card-header">
+    <div>
+      <div class="brand-name" style="font-family: var(--mono);">Monolith</div>
+      <div class="brand-tagline">Brutalist mono · Black / white + signal yellow · Boldness</div>
+    </div>
+    <span class="badge">DEVELOPER-FIRST</span>
+  </div>
+  <div class="palette" aria-label="Monolith palette">
+    <div class="swatch" style="background:#0a0a0a;"><span>#0A0A0A</span></div>
+    <div class="swatch" style="background:#ffffff;"><span>#FFFFFF</span></div>
+    <div class="swatch" style="background:#facc15;"><span>#FACC15</span></div>
+    <div class="swatch" style="background:#6b6b6b;"><span>#6B6B6B</span></div>
+  </div>
+  <div class="visual">
+    <svg class="logomark" viewBox="0 0 60 60" aria-label="Monolith logomark">
+      <rect width="60" height="60" fill="#0a0a0a"/>
+      <rect x="14" y="14" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <rect x="22" y="22" width="16" height="16" fill="#facc15"/>
+    </svg>
+    <div class="type-spec">
+      <div class="h" style="font-family: var(--mono); font-size: 1.4rem;">> FreeLeased</div>
+      <div class="b" style="font-family: var(--mono);">An audit tool for residential lease clauses.</div>
+      <div class="m" style="font-family: var(--mono);">$0/compute · 9 jurisdictions · 231 tests</div>
+    </div>
+  </div>
+  <div class="wireframe" aria-hidden="true">
+    <span class="wf-bar b1"></span><span class="wf-bar b2"></span><span class="wf-bar b3"></span>
+  </div>
+  <div class="body">
+    <p><strong>For judges who value:</strong> clarity, terminal aesthetics, no-nonsense shipping.</p>
+    <p>Reads like Linear / Vercel: high-contrast mono, signal yellow only where it counts. For sponsor-judges from the developer-tool cluster.</p>
+  </div>
+  <ul class="spec-list">
+    <li>palette.svg</li>
+    <li>logo-mark.svg</li>
+    <li>type-specimen.svg</li>
+    <li>motion-spec.md</li>
+    <li>voice-and-tone.md</li>
+    <li>wireframe-home + app</li>
+  </ul>
+</article>
+
+<!-- ── BRAND 4: CANOPY ──────────────────────────────────────────────────── -->
+<article class="card" data-brand="4">
+  <div class="card-header">
+    <div>
+      <div class="brand-name">Canopy</div>
+      <div class="brand-tagline">Biophilic · Forest / river-stone / parrot · Caribbean rooted</div>
+    </div>
+    <span class="badge">CULTURAL DEPTH</span>
+  </div>
+  <div class="palette" aria-label="Canopy palette">
+    <div class="swatch" style="background:#1d2b1f;"><span>#1D2B1F</span></div>
+    <div class="swatch" style="background:#3e5641;"><span>#3E5641</span></div>
+    <div class="swatch" style="background:#6f9e3d;"><span>#6F9E3D</span></div>
+    <div class="swatch" style="background:#c2b59b;"><span>#C2B59B</span></div>
+  </div>
+  <div class="visual">
+    <svg class="logomark" viewBox="0 0 60 60" aria-label="Canopy logomark">
+      <rect width="60" height="60" rx="30" fill="#1d2b1f"/>
+      <path d="M30 15 Q15 30 30 45 Q45 30 30 15" fill="#6f9e3d"/>
+      <circle cx="30" cy="35" r="3" fill="#c2b59b"/>
+    </svg>
+    <div class="type-spec">
+      <div class="h">FreeLeased</div>
+      <div class="b">A tree of rights, rooted in the soil of the Caribbean.</div>
+      <div class="m">9 jurisdictions · Climate-resilient · Resident-led</div>
+    </div>
+  </div>
+  <div class="wireframe" aria-hidden="true">
+    <span class="wf-bar b1"></span><span class="wf-bar b2"></span><span class="wf-bar b3"></span>
+  </div>
+  <div class="body">
+    <p><strong>For judges who value:</strong> cultural rootedness, sustainability, climate-resilience framing.</p>
+    <p>Reads like Patagonia / Allbirds: forest green, river-stone neutral, parrot-green accent. For Racquel Moses, Brian Bogart, and the climate/sovereignty cluster.</p>
+  </div>
+  <ul class="spec-list">
+    <li>palette.svg</li>
+    <li>logo-mark.svg</li>
+    <li>type-specimen.svg</li>
+    <li>motion-spec.md</li>
+    <li>voice-and-tone.md</li>
+    <li>wireframe-home + app</li>
+  </ul>
+</article>
+
+<!-- ── BRAND 5: CORAL ──────────────────────────────────────────────────── -->
+<article class="card" data-brand="5">
+  <div class="card-header">
+    <div>
+      <div class="brand-name">Coral</div>
+      <div class="brand-tagline">Playful illustrated · Coral / sand / lagoon · Approachable</div>
+    </div>
+    <span class="badge">RESIDENT-FIRST</span>
+  </div>
+  <div class="palette" aria-label="Coral palette">
+    <div class="swatch" style="background:#fff7ed;"><span>#FFF7ED</span></div>
+    <div class="swatch" style="background:#f97366;"><span>#F97366</span></div>
+    <div class="swatch" style="background:#0ea5b7;"><span>#0EA5B7</span></div>
+    <div class="swatch" style="background:#8c6f5c;"><span>#8C6F5C</span></div>
+  </div>
+  <div class="visual">
+    <svg class="logomark" viewBox="0 0 60 60" aria-label="Coral logomark">
+      <rect width="60" height="60" rx="14" fill="#f97366"/>
+      <path d="M30 12 C20 12 14 22 18 32 C20 38 26 42 30 42 C34 42 40 38 42 32 C46 22 40 12 30 12 Z" fill="#fff7ed"/>
+      <circle cx="30" cy="28" r="4" fill="#0ea5b7"/>
+    </svg>
+    <div class="type-spec">
+      <div class="h">FreeLeased ✨</div>
+      <div class="b">A friendly way to read your lease.</div>
+      <div class="m">Tap. Read. Know your rights.</div>
+    </div>
+  </div>
+  <div class="wireframe" aria-hidden="true">
+    <span class="wf-bar b1"></span><span class="wf-bar b2"></span><span class="wf-bar b3"></span>
+  </div>
+  <div class="body">
+    <p><strong>For judges who value:</strong> approachability, resident-led design, plain-language UX.</p>
+    <p>Reads like Headspace / Calm: warm coral, lagoon teal, illustrated marks. For the resident-impact axis and Caribbean warmth without institutional coldness.</p>
+  </div>
+  <ul class="spec-list">
+    <li>palette.svg</li>
+    <li>logo-mark.svg</li>
+    <li>type-specimen.svg</li>
+    <li>motion-spec.md</li>
+    <li>voice-and-tone.md</li>
+    <li>wireframe-home + app</li>
+  </ul>
+</article>
+
+</main>
+
+<footer>
+  <span>FreeLeased · Brand Pack · Apache 2.0 · Last regenerated 2026-08-11</span>
+  <span><a href="project/brand/">Browse the full pack →</a></span>
+</footer>
+
+<script>
+  // Tiny progressive enhancement: respect prefers-reduced-motion
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.wf-bar').forEach(b => b.style.animation = 'none');
+  }
+  // Print the active brand on click for the social-media hero use case
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => {
+      const brand = card.dataset.brand;
+      console.log(`[FreeLeased showcase] Selected brand: #${brand} (${card.querySelector('.brand-name').textContent.trim()})`);
+    });
+  });
+</script>
+
+</body>
+</html>
