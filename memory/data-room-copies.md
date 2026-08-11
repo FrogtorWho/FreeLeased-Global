@@ -613,3 +613,38 @@ GLOBAL TOP-DOWN ONBOARDING" for the full audit table, the per-
 framework statute inventory, the rubric-axis delta, and the
 constraint-compliance checklist.
 
+---
+
+## Workspace-only additions (Phase 12 — Close the 9 Honest Gaps: G1 + G2)
+
+These are workspace-only entries added on 2026-08-11 during the
+Phase 12 close-the-gaps work for G1 (real pilot workflow) and G2
+(bulletproof pricing + revenue ledger). They are workspace-only
+because they are submission-critical (the pilot workflow is the
+canonical procedure; the pricing page is public), but they are not
+TRL-grade evidence and are not copied to the Data Room.
+
+| discretion_id | timestamp (ISO 8601 UTC) | source | target | TRL | reason | reversibility | result |
+|---|---|---|---|---|---|---|---|
+| COPY-116 | 2026-08-11T19:30:00Z | (workspace-only — NOT copied to Data Room) | `project/pilot-audit/real-pilot-onboarding.md` (new) | n/a | Phase 12 G1 — 30-minute procedure for onboarding a real leaseholder. Verbatim operator scripts, data-flow diagram, withdrawal + deletion rehearsal. CoC §2 + §4 compliant. | revert commit | OK |
+| COPY-117 | 2026-08-11T19:30:00Z | (workspace-only — NOT copied to Data Room) | `project/pilot-audit/consent-template.md` (new) | n/a | Phase 12 G1 — copy-paste consent form with explicit opt-ins (a/b/c checkboxes), data-residency disclosure, withdrawal + deletion path. 3 pages: consent, data flow, third-party providers. | revert commit | OK |
+| COPY-118 | 2026-08-11T19:30:00Z | (workspace-only — NOT copied to Data Room) | `project/pilot-audit/mock-pilot-session-2026-08-11.md` (new) | n/a | Phase 12 G1 — 1-session walk-through as if [PERSON_NAME-7K3M] used FreeLeased end-to-end. Documents every consent step, every data-sharing decision, every output. Pseudonym generated with seed=42 for reproducibility. | revert commit | OK |
+| COPY-119 | 2026-08-11T19:30:00Z | (workspace-only — NOT copied to Data Room) | `src/lib/pseudonym.ts` (new) | n/a | Phase 12 G1 — pseudonym generator. `generatePseudonym(seed?)` returns `[PERSON_NAME-XXXX]`. `generatePseudonyms(n, seed?)` returns N unique pseudonyms. `isValidPseudonym(s)` validates shape. `mulberry32` PRNG for deterministic tests. | revert commit | OK |
+| COPY-120 | 2026-08-11T19:30:00Z | (workspace-only — NOT copied to Data Room) | `project/strategy/pricing-page-v1.md` (new) | n/a | Phase 12 G2 — public pricing page. Three tiers (Free Resident / Pro Advisor / Institution), transparent pricing, GDPR-residency disclosure, no hidden fees. 10-section "negative list" of what FreeLeased will never do. | revert commit | OK |
+| COPY-121 | 2026-08-11T19:30:00Z | (workspace-only — NOT copied to Data Room) | `project/strategy/revenue-ledger-v1.md` (new) | n/a | Phase 12 G2 — current state $0, pre-seed outreach in progress, first paying user target Q4 2026 with 4-condition falsifiable definition. Honest forecast scenarios (35/40/20/5). | revert commit | OK |
+| COPY-122 | 2026-08-11T19:30:00Z | (workspace-only — NOT copied to Data Room) | `project/strategy/revenue-model-gtm.md` (edited) | n/a | Phase 12 G2 — added cross-reference to canonical pricing page (revenue doc = rationale; pricing page = contract). | revert commit | OK |
+
+**Why this section exists:** Phase 12 G1+G2 is the closure of two
+honest gaps named in the saturation report — real pilot workflow
+(closed via procedure + consent form + mock session + pseudonym
+generator) and bulletproof pricing (closed via public pricing page
++ revenue ledger + cross-references). The pricing page IS
+submission evidence (publishable URL); the consent form IS the
+contract that every pilot session signs against. Both live in the
+workspace where the rest of the docs live.
+
+**Reversibility:** `git revert <commit>` for any single entry above.
+
+**Cross-reference:** See [`AI_JOURNAL.md`](AI_JOURNAL.md) section
+"2026-08-11 — Phase 12: G1+G2 closed" for the full audit table.
+
