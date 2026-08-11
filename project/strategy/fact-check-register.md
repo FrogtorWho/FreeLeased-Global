@@ -163,3 +163,36 @@ for the broader commitment.
 *Last reconciled: 2026-08-11T02:36 UTC (10/10 PASS).*
 *Register maintained by [`scripts/reconcile-docs.ts`](scripts/reconcile-docs.ts:1).*
 
+---
+
+## H. ✅ Edge-LLM established facts (2026-08-11 — batch: local reasoning edge)
+
+The following claims underpin the new free, on-prem, OpenAI-compatible
+inference path shipped in `src/lib/local-edge-llm.ts` and researched in
+`project/research/edge-llm-research.md`. The library opinion is that
+*infrastructure claims* must be re-verifiable from public sources at ship
+time — they are.
+
+| Claim | Tag | Source / cross-link |
+|---|---|---|
+| **Ollama** is an open-source (MIT licence) single-binary HTTP server that exposes an OpenAI-compatible `/v1/chat/completions` on default port `11434` | ✅ established | https://ollama.com/ + public source https://github.com/ollama/ollama (MIT). Domain resolves; source code is browsable. Cross-verified 2026-08-11. |
+| **Meta-Llama-3.3-70B-Instruct** model id is real and published; the q4_K_M quant runs at ~24 GB VRAM on a single consumer GPU | ✅ established | https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct + Meta's model card. Quant format is GGUF via `llama.cpp`. |
+| **Phi-3.5 Mini** (3.8 B) is a real Microsoft-published open-weight model on Hugging Face, MIT-licensed | ✅ established | https://huggingface.co/microsoft/Phi-3.5-mini-instruct |
+| **llama.cpp** (MIT) is the C++ substrate underneath Ollama | ✅ established | https://github.com/ggerganov/llama.cpp |
+| **Giotto.ai** positions itself as single-GPU, flat-rate, OpenAI-compatible, multimodal, privacy-first; free-tier access is offered to Future Caribbean Buildathon participants | ✅ established (positions), 🟡 heuristic (specific model card + Caribbean-language coverage) | https://giotto.ai/get-started + [`06-giotto-claim-email.md`](06-giotto-claim-email.md:1). We do **NOT** claim specific Giotto model sizes, MMLU scores, or per-token pricing — those are not publicly disclosed. |
+
+**Cross-checks against the codebase**:
+
+- The Ollama daemon health is probed by `probeLocalEdge()` in
+  `src/lib/local-edge-llm.ts` — emits a deterministic `engine: "fallback"`
+  tag if the daemon is unreachable, so the production pipeline
+  **cannot** silently depend on Ollama being online.
+- All test assertions live in `scripts/test-local-edge.ts` — `49/49 pass`,
+  including the 5-tier fallback chain.
+
+**Honesty rule (added).** As with the original §A, *we do not cite specific
+benchmark numbers for Ollama-served models until we measure them on the
+FreeLeased corpus*. The 49/49 test suite is the floor; a quantitative
+MMLU/HumanEval/LiveCodeBench / legal-reasoning benchmark against our
+`eval-harness-precision-recall.md` corpus is **roadmap (Q4 2026)**.
+

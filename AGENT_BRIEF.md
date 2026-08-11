@@ -35,6 +35,7 @@ Three blocks, per [`project/strategy/gauntlet-loop.md`](project/strategy/gauntle
 5. [`HEARTBEAT.md`](HEARTBEAT.md:1) — cadence rules + today's progress log
 6. [`AI_JOURNAL.md`](AI_JOURNAL.md:1) — append-only loop history
 7. [`project/strategy/giotto-integration-research.md`](project/strategy/giotto-integration-research.md:1) — Giotto.ai sponsor integration (added 2026-08-11, 7th sponsor); claim email at [`06-giotto-claim-email.md`](project/strategy/06-giotto-claim-email.md:1)
+8. [`src/lib/local-edge-llm.ts`](src/lib/local-edge-llm.ts:1) — **NEW 2026-08-11 — primary on-prem inference.** Ollama-backed, OpenAI-compatible, $0 compute. Tier-1 of `src/lib/llm.server.ts` whenever `USE_LOCAL_EDGE=1` and Ollama is reachable. Crumpled-Bill guardrail + citation safety built in. See [`docs/local-edge-llm.md`](docs/local-edge-llm.md:1) and [`project/research/edge-llm-research.md`](project/research/edge-llm-research.md:1).
 
 ## Test signals (the truth)
 - **Test count**: 159/159 assertions in `bun scripts/test-suite.ts`

@@ -19,6 +19,10 @@ import {
   type IntakeType,
 } from "./giotto";
 import { classifyDocument, type DocClassification } from "./ocr-pipeline";
+import {
+  chatCompletion as localEdgeChatCompletion,
+  localEdgeConfigured as localEdgeConfiguredFn,
+} from "./local-edge-llm.ts";
 
 // Map Giotto's coarser IntakeType to the OCR pipeline's DocClassification
 // so downstream dossier engines receive a consistent label set.
@@ -62,13 +66,67 @@ const TYPE_MAP_REVERSE: Partial<Record<DocClassification, IntakeType>> = {
   other: "other",
 };
 
-// Single entry point — Giotto if configured, regex otherwise. Identical
-// shape returned by both.
+// Single entry point — Local-edge (Tier 1) → Giotto (Tier 2) → regex (Tier 3). Identical
+// shape returned by all three. Local-edge is preferred when `USE_LOCAL_EDGE=1`
+// AND the Ollama daemon is reachable (it isn't — falls through).
+const ALLOWED_INTAKE_TYPES = new Set<IntakeType>([
+  "lease",
+  "service_charge",
+  "correspondence_landlord",
+  "tribunal_notice",
+  "building_safety",
+  "schedule",
+  "other",
+]);
+
+function parseIntakeJson(text: string, generatedAt: string): IntakeClassification | null {
+  const jsonStart = text.indexOf("{");
+  const jsonEnd = text.lastIndexOf("}");
+  if (jsonStart === -1 || jsonEnd === -1) return null;
+  let parsed: any;
+  try { parsed = JSON.parse(text.slice(jsonStart, jsonEnd + 1)); } catch { return null; }
+  const type = ALLOWED_INTAKE_TYPES.has(parsed?.type) ? (parsed.type as IntakeType) : "other";
+  const conf = typeof parsed.confidence === "number" ? Math.min(1, Math.max(0, parsed.confidence)) : 0.5;
+  return {
+    type,
+    confidence: conf,
+    suggestedRules: Array.isArray(parsed?.suggestedRules) ? parsed.suggestedRules.filter((s: unknown) => typeof s === "string").slice(0, 10) : [],
+    suggestedFocus: Array.isArray(parsed?.suggestedFocus) ? parsed.suggestedFocus.filter((s: unknown) => typeof s === "string").slice(0, 10) : [],
+    engine: "fallback",
+    generatedAt,
+  };
+}
+
 export async function classifyGauntletIntake(args: {
   text?: string;
   imageBase64?: string;
   mimeType?: string;
 }): Promise<IntakeClassification> {
+  const generatedAt = new Date().toISOString();
+  // Tier 1 — local edge (Ollama). Crumpled-Bill guardrail is applied by the wrapper.
+  if (localEdgeConfiguredFn()) {
+    const user = JSON.stringify({
+      kind: "classify_intake",
+      textPreview: (args.text ?? "").slice(0, 4000),
+      hasImage: Boolean(args.imageBase64),
+    });
+    const le = await localEdgeChatCompletion({
+      system:
+        "Return ONLY compact JSON: " +
+        "{ type: one of lease|service_charge|correspondence_landlord|tribunal_notice|building_safety|schedule|other, " +
+        "confidence: 0..1, suggestedRules: string[] of rule ids from {contracts, hidden_rights, tenure, resident_status}, " +
+        "suggestedFocus: string[] }. Do not invent.",
+      user,
+      maxTokens: 300,
+      temperature: 0.1,
+    });
+    if (le.ok && typeof le.text === "string") {
+      const parsed = parseIntakeJson(le.text, generatedAt);
+      if (parsed) return { ...parsed, engine: "fallback" };
+      // else fall through (engine tag stays fallback so the audit trail is honest)
+    }
+  }
+  // Tier 2 — Giotto (cloud, vendor-managed). Falls through to regex if not configured.
   return classifyIntake(args);
 }
 

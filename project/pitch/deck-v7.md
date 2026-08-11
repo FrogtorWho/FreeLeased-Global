@@ -63,6 +63,17 @@ Small open model via Impala, MiniMax for redundancy, Nebius/H200 for batch jobs.
 Provider-aware routing keeps inference cheap. Built entirely on the event's own
 stack.
 
+> **NEW 2026-08-11 — Local reasoning edge (Phase 2.7).** We also ship
+> [`src/lib/local-edge-llm.ts`](../src/lib/local-edge-llm.ts:1) — a
+> Tier-1 wrapper around an Ollama daemon running on a single consumer
+> GPU. Llama 3.3 70B Instruct at 4-bit quant (`q4_K_M`) gives Sam
+> **on-prem, private, $0-compute** inference; the Crumpled-Bill
+> guardrail + citation safety scrubber in [`project/research/edge-llm-research.md`](../research/edge-llm-research.md:1)
+> beat Giotto on our four use-case-specific axes (citation safety,
+> reproducibility, conviction classes, auditability) while keeping
+> Giotto / MiniMax / Impala / deterministic as the 5-tier fall-back.
+> Research doc at [`docs/local-edge-llm.md`](../../docs/local-edge-llm.md:1).
+
 ### 8. Defensibility (for Bill Tai)
 Provenance-tracked, multi-jurisdiction data spine + registry relationships +
 verification IP. A data network effect: each jurisdiction makes the whole worth

@@ -65,6 +65,12 @@ thesis for judges and the pitch:
   market sizing + GTM.
 - [`project/research/roadmap.md`](../research/roadmap.md:1) —
   product roadmap.
+- [`project/research/edge-llm-research.md`](../research/edge-llm-research.md:1) —
+  **NEW 2026-08-11.** Edge-LLM landscape (Giotto + 9 competitors) and the
+  FreeLeased local-reasoning edge. Picks Ollama + Llama 3.3 70B as the
+  primary on-prem, $0-compute path; vLLM + Qwen 2.5 72B as the scale-out
+  tier. Companion code in [`src/lib/local-edge-llm.ts`](../../src/lib/local-edge-llm.ts:1)
+  and user guide at [`docs/local-edge-llm.md`](../../docs/local-edge-llm.md:1).
 
 The asymmetry numbers (cost-per-dossier pre/post FreeLeased,
 leaseholder-vs-freeholder cost ratio) feed directly into

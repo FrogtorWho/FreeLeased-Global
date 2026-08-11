@@ -4,10 +4,20 @@
 // propose what to verify and structure notes — never to assert law.
 
 // Provider resolution order (all OpenAI-compatible /chat/completions):
-//   1. Impala gateway  (sponsor infra) — IMPALA_API_KEY
-//   2. MiniMax         (partner benefit) — MINIMAX_API_KEY
-//   3. Shogo pod gateway (default) — RUNTIME_AUTH_SECRET, $0 in-pod
+//   1. Local edge (Ollama)         — USE_LOCAL_EDGE=1 + OLLAMA_BASE_URL  (NEW 2026-08-11)
+//   2. Impala gateway              — IMPALA_API_KEY
+//   3. MiniMax                     — USE_MINIMAX=1 + MINIMAX_API_KEY
+//   4. Shogo pod gateway (default) — RUNTIME_AUTH_SECRET, $0 in-pod
 // Keys are read from env only; never hardcode a secret here.
+//
+// The local edge tier is reached first ONLY when USE_LOCAL_EDGE=1 AND the
+// Ollama daemon is running (probe is cheap; failure → next tier). It is
+// documented in `src/lib/local-edge-llm.ts` + `project/research/edge-llm-research.md`.
+import {
+  chatCompletion as localEdgeChatCompletion,
+  localEdgeConfigured as localEdgeConfiguredFn,
+} from "./local-edge-llm.ts";
+
 interface Provider {
   name: string;
   url: string;
@@ -47,10 +57,12 @@ function resolveProvider(): Provider | null {
 }
 
 export function llmAvailable(): boolean {
+  if (localEdgeConfiguredFn()) return true;
   return resolveProvider() !== null;
 }
 
 export function activeProvider(): string {
+  if (localEdgeConfiguredFn()) return "local-edge";
   return resolveProvider()?.name ?? "none";
 }
 
@@ -63,6 +75,25 @@ export interface AssistResult {
 }
 
 export async function assistJurisdictionResearch(code: string, name: string): Promise<AssistResult> {
+  // Tier-1 — Local edge (Ollama). Crumpled-Bill guardrail is applied by the
+  // wrapper. Failure here → fall through to the existing chain.
+  if (localEdgeConfiguredFn()) {
+    const le = await localEdgeChatCompletion({
+      system: `You draft JSON research plans for a Caribbean resident-advocacy platform (jurisdiction ${code}). Stay within the citation allow-list.`,
+      user: `For the jurisdiction "${name}" (code ${code}), produce a JSON research plan. Do NOT invent statute names, citations, or URLs. Only propose WHAT to look for and WHICH TYPE of official source to check. Everything you return is an unverified candidate a human must confirm against the original. Return ONLY minified JSON of shape: {"tenureSystemHypothesis":string,"itemsToSource":[{"category":string,"whatToFind":string,"officialSourceType":string,"riskIfMissing":string}],"maintenanceNote":string}. Categories must cover: land registration statute, strata/condominium statute, landlord-tenant/service-charge statute, building/fire-safety code, beneficial-ownership registry, data-protection basis.`,
+      maxTokens: 900,
+      temperature: 0.2,
+    });
+    if (le.ok && le.text) {
+      const jsonStart = le.text.indexOf("{");
+      const jsonEnd = le.text.lastIndexOf("}");
+      const slice = jsonStart >= 0 && jsonEnd > jsonStart ? le.text.slice(jsonStart, jsonEnd + 1) : le.text;
+      let candidate: unknown = null;
+      try { candidate = JSON.parse(slice); } catch { candidate = null; }
+      return { ok: true, model: `local-edge:${le.model ?? "?"}`, candidate, raw: candidate ? undefined : le.text };
+    }
+    // else fall through.
+  }
   const provider = resolveProvider();
   if (!provider) return { ok: false, model: "none", error: "no LLM provider configured (set IMPALA_API_KEY, MINIMAX_API_KEY, or run in a Shogo pod)" };
   const { token, model } = provider;
@@ -108,6 +139,20 @@ export async function chatComplete(
   prompt: string,
   opts: { system?: string; temperature?: number; maxTokens?: number } = {},
 ): Promise<ChatResult> {
+  // Tier-1 — Local edge (Ollama). Crumpled-Bill guardrail is applied by the
+  // wrapper. Failure here → fall through to the existing chain.
+  if (localEdgeConfiguredFn()) {
+    const le = await localEdgeChatCompletion({
+      system: opts.system,
+      user: prompt,
+      maxTokens: opts.maxTokens ?? 700,
+      temperature: opts.temperature ?? 0.7,
+    });
+    if (le.ok && typeof le.text === "string") {
+      return { ok: true, model: `local-edge:${le.model ?? "?"}`, text: le.text };
+    }
+    // else fall through.
+  }
   const provider = resolveProvider();
   if (!provider) return { ok: false, model: "none", error: "no LLM provider configured (set IMPALA_API_KEY, MINIMAX_API_KEY, or run in a Shogo pod)" };
   const { token, model } = provider;

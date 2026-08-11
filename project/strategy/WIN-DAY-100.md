@@ -172,6 +172,7 @@ scope once we hit steady state**, not by chasing the last 0.1.
 | 8 | **Public service announcement blog post** — `project/story/blog-launch.md`, 1,500 words in Sam's voice, honest disclosure sections | A6, B1, B2 | Caribbean-Sovereignty, Founder-Builder, VC-Global | `b412852` |
 | 9 | **Social campaign exporter** — `scripts/social-export.ts` generates 750 rows (30 days × 5 platforms × 5 brands) as CSV/JSON/summary | A5, A6 | Cloud-Compute, VC-Global, Caribbean-Sovereignty | `2ddd1e4` |
 | 10 | **Self-rubric-score** — `project/strategy/self-rubric-score.md` with 1-paragraph per-axis justification + concrete lift ledger | A6, B2, B1 | All 5 judges | `c09f15d` |
+| 11 | **Phase 2.7 — Local reasoning edge (Ollama)** — `src/lib/local-edge-llm.ts` wrapper + Tier-1 priority in `llm.server.ts` + Crumpled-Bill guardrail + citation safety scrubber + 50-assertion test (`scripts/test-local-edge.ts`) + installer (`scripts/setup-local-edge.{sh,ps1}`) + research pack (`project/research/edge-llm-research.md`) + user doc (`docs/local-edge-llm.md`). Closes the **$0-compute / on-prem** story. | A2, B1, A7 | Cloud-Compute, Caribbean-Sovereignty, Founder-Builder | _this batch_ |
 
 ### Updated per-judge projection (post Phase 2B)
 

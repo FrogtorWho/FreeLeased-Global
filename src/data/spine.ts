@@ -250,4 +250,4 @@ export const SOURCES: DataSource[] = [
   { id: "wb-ppi", tier: 3, name: "World Bank property price / CPI indicator", gives: "Property price index, CPI", url: "https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG", license: "CC-BY 4.0", cadence: "monthly", conviction: "verified" },
 ];
 
-export { HIDDEN_RIGHTS } from "./patterns";
+export { HIDDEN_RIGHTS } from "./patterns.ts";

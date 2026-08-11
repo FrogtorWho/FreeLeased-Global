@@ -146,8 +146,34 @@ bun scripts/test-signoff-queue.ts      # Batch 3 sign-off queue (component + API
 bun scripts/test-truth-diff.ts         # TruthDiff component parity
 bun scripts/test-health-check.ts       # health-check helpers
 bun scripts/test-reconcile-docs.ts     # doc-vs-code reconciler
+bun scripts/test-local-edge.ts         # local edge-LLM suite (~50 assertions)
 bun scripts/test-all.ts                # aggregator: runs all five above
 ```
+
+## Local development — the on-prem edge (optional)
+
+FreeLeased ships with an **Ollama-backed local reasoning edge** for the
+$0-compute, single-GPU, on-prem path. It's **optional** — the entire
+deterministic pipeline runs without it — but when Ollama is running on
+your laptop you get real LLM reasoning at no per-token cost.
+
+```bash
+# 1. install + start Ollama
+./scripts/setup-local-edge.sh          # macOS / Linux / WSL
+pwsh -File scripts/setup-local-edge.ps1 # Windows
+
+# 2. set the env vars (defaults in .env.example)
+echo 'USE_LOCAL_EDGE=1' >> .env
+echo 'OLLAMA_BASE_URL=http://localhost:11434/v1' >> .env
+echo 'OLLAMA_MODEL=llama3.3:70b-instruct-q4_K_M' >> .env
+```
+
+Then in your next `bun dev`, every LLM call goes:
+**local-edge → Giotto → MiniMax → Impala/Shogo → deterministic**.
+
+Full disclosure: [`docs/local-edge-llm.md`](docs/local-edge-llm.md:1) ·
+research pack: [`project/research/edge-llm-research.md`](project/research/edge-llm-research.md:1) ·
+wrapper: [`src/lib/local-edge-llm.ts`](src/lib/local-edge-llm.ts:1).
 
 ## Documentation
 

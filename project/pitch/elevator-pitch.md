@@ -14,7 +14,7 @@
 
 **PROMISE.** FreeLeased audits any lease against 25+ statutes across 9 jurisdictions in 30 seconds. Every clause gets an evidence class — primary, case-law, or unfalsifiable — that caps confidence. A £1,000–£7,000 paralegal dossier collapses to £0–£50 of resident time.
 
-**PROOF.** 159/159 truth-protocol tests pass. 22 of 24 data-room folders evidenced. 10 of 10 doc-vs-code claims reconcile. $0 compute. The shadow-economy research (BVI/Cayman ownership chains, ECTA 2022, LFRA 2024) grounds every claim in a primary-source citation. Judges can run it now.
+**PROOF.** 159/159 truth-protocol tests pass. 22 of 24 data-room folders evidenced. 10 of 10 doc-vs-code claims reconcile. **$0 compute, no token anxiety — local-first via Ollama (`src/lib/local-edge-llm.ts`) or Giotto flat-rate; either way your dossier is private and on-prem.** The shadow-economy research (BVI/Cayman ownership chains, ECTA 2022, LFRA 2024) grounds every claim in a primary-source citation. Judges can run it now.
 
 **ASK.** Pilot with one government housing agency. We bring the audit engine; you bring the residents.
 
