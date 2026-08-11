@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The 60-second story — FreeLeased</title>
+<meta name="description" content="The 60-second judge story: from the Grenfell-tower service-charge opacity to the Caribbean hurricane-rebuild consent decrees, why a leaseholder who can read is asymmetric.">
+<meta name="theme-color" content="#14342b">
+<link rel="icon" type="image/svg+xml" href="assets/brand-mark.svg">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header" role="banner">
+  <div class="site-header__inner">
+    <a href="index.html" class="brand">
+      <img class="brand__mark" src="assets/brand-mark.svg" width="32" height="32" alt="">
+      <span class="brand__word">FreeLeased</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="story.html">The story</a>
+      <a href="truth.html">The truth</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="pilot.html">Pilot</a>
+      <a href="docs.html">Docs</a>
+      <a href="legal.html">Legal</a>
+      <a href="team.html">Team</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <section class="hero">
+    <div class="hero__eyebrow">60-second judge story</div>
+    <h1>From a fire in London to a hurricane in Bocas: a story about legibility.</h1>
+    <p class="hero__lead">
+      In 2017, Grenfell burned and a national reckoning began. A key
+      finding: leaseholders had been kept in the dark about service-charge
+      decisions, including those affecting building-safety remediation.
+      Across the Atlantic, hurricane Irma flattened a Caribbean and the
+      rebuild-decision paperwork wasn't readable either.
+      FreeLeased is a tool the resident runs.
+    </p>
+    <p class="small muted">
+      Source: this page is also at
+      <a href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/docs/story-60s.md"><code>docs/story-60s.md</code></a> ·
+      rendered as HTML for public reading.
+    </p>
+  </section>
+
+  <section class="story-segment">
+    <span class="timer">0–10s</span>
+    <h2>The setup</h2>
+    <p>
+      UK leasehold governance was, in the words of the Leasehold Reform
+      (Ground Rent) Act 2022, "in need of root-and-branch reform." 4.5M
+      leaseholds. 70% of annual service charges contested. £2.3B+
+      disputed per year.
+    </p>
+    <p>
+      Across the Atlantic, Caribbean condo associations can levy special
+      assessments with limited audit; the resident has no tool. Hurricanes
+      Irma (2017) and Maria (2017) destroyed over USD 7B of Caribbean
+      real estate in two weeks; rebuilding consent decrees sit in files
+      no resident can read.
+    </p>
+  </section>
+
+  <section class="story-segment">
+    <span class="timer">10–25s</span>
+    <h2>The conflict</h2>
+    <p>
+      The existing property-tools market is built for the gatekeeper:
+      agent CRM, block-management SaaS, audit services. Their incentives
+      are misaligned with the resident's. The resident can't see; the
+      gatekeeper can't be questioned; the system has no audit trail.
+    </p>
+    <p>
+      Legislation — the LTA 2022, BSA 2022, the Caribbean Building Code —
+      exists. But statute is only legible to those who can read it.
+    </p>
+  </section>
+
+  <section class="story-segment">
+    <span class="timer">25–45s</span>
+    <h2>The resolution</h2>
+    <p>
+      FreeLeased is the resident's tool. It reads a lease, extracts
+      each claim with a conviction cap (0.33 / 0.60 / 0.75 / 0.99),
+      cross-checks it against the statute spine, and shows the
+      disagreements. Every high-severity disagreement routes through
+      a HITL sign-off queue, signed and timestamped for tribunal
+      admissibility.
+    </p>
+    <p>
+      The whole thing ships local-first by default — your lease
+      file does not leave your browser unless you click "Analyse
+      with cloud LLM". When you do, the consent is recorded, the
+      tier is documented (Nebius → Giotto → MiniMax → local Ollama),
+      and the audit trail is intact.
+    </p>
+  </section>
+
+  <section class="story-segment">
+    <span class="timer">45–60s</span>
+    <h2>The proof</h2>
+    <ul>
+      <li>Open source under Apache-2.0, in a public repo.</li>
+      <li>1,496+ test assertions across 24 test files.</li>
+      <li>6 published SLOs, 5 runbooks, STRIDE threat model.</li>
+      <li>9 jurisdictions (UK + 8 Caribbean).</li>
+      <li>5 locale bundles (en, ht, es, fr-patois, fy).</li>
+      <li>23 model schema with per-tenant <code>tenantId</code>.</li>
+      <li>Apache-2.0 contribution to residents, not to investors.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Honest disclosures</h2>
+    <div class="callout callout--warn">
+      <strong>FreeLeased is not legal advice.</strong>
+      The platform provides information. For any decision that could
+      materially affect your legal rights, engage a qualified lawyer
+      admitted in the relevant jurisdiction.
+    </div>
+    <p class="small muted">
+      The full disclaimer is at <a href="legal.html#terms">legal.html</a>
+      and the source for this story lives in the repo.
+    </p>
+  </section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__inner">
+    <div>
+      <h4>About</h4>
+      <p>FreeLeased is a Buildathon-bound solo project by Sam Peacock. Open-source, sovereignty-first, resident-led.</p>
+    </div>
+    <div>
+      <h4>Build</h4>
+      <ul>
+        <li><a href="https://github.com/sam-peacock/FreeLeased-Global">Repo</a></li>
+        <li><a href="docs.html">Docs index</a></li>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:sam.peacock1@gmail.com">sam.peacock1@gmail.com</a></li>
+        <li><a href="legal.html#privacy">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+</body>
+</html>

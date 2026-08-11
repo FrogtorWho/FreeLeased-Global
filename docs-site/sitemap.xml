@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://freeleased.org/index.html</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://freeleased.org/story.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://freeleased.org/truth.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://freeleased.org/pricing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://freeleased.org/pilot.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://freeleased.org/docs.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://freeleased.org/legal.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://freeleased.org/team.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+</urlset>

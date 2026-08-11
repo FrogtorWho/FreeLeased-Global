@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Docs — FreeLeased</title>
+<meta name="description" content="Developer + non-developer documentation for FreeLeased: AGENT_BRIEF, README, CONTRIBUTING, and the public Trust Bundle.">
+<meta name="theme-color" content="#14342b">
+<link rel="icon" type="image/svg+xml" href="assets/brand-mark.svg">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header" role="banner">
+  <div class="site-header__inner">
+    <a href="index.html" class="brand">
+      <img class="brand__mark" src="assets/brand-mark.svg" width="32" height="32" alt="">
+      <span class="brand__word">FreeLeased</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="story.html">The story</a>
+      <a href="truth.html">The truth</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="pilot.html">Pilot</a>
+      <a href="docs.html">Docs</a>
+      <a href="legal.html">Legal</a>
+      <a href="team.html">Team</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <section class="hero">
+    <div class="hero__eyebrow">Docs index</div>
+    <h1>Documentation, audits, and trust.</h1>
+    <p class="hero__lead">
+      The codebase, the briefs, and the published audits. Every link
+      points either at the canonical source of truth in this repo or
+      at a static page that resolves from this site. No external
+      paywall, no broken link.
+    </p>
+  </section>
+
+  <section>
+    <h2>If you are a new contributor</h2>
+    <div class="cards">
+      <a class="card" href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/README.md">
+        <h3><code>README.md</code></h3>
+        <p>Project overview, build instructions, scripts.</p>
+      </a>
+      <a class="card" href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/AGENT_BRIEF.md">
+        <h3><code>AGENT_BRIEF.md</code></h3>
+        <p>60-second cold-start one-pager for AI agents and humans.</p>
+      </a>
+      <a class="card" href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/CONTRIBUTING.md">
+        <h3><code>CONTRIBUTING.md</code></h3>
+        <p>Issue labels, PR template, codeowners, sign-off rules.</p>
+      </a>
+      <a class="card" href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/AGENTS.md">
+        <h3><code>AGENTS.md</code></h3>
+        <p>Persona + operating instructions for the overnight agent.</p>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>For tenants, lenders, insurers, regulators</h2>
+    <div class="cards">
+      <a class="card" href="legal.html#privacy">
+        <h3>Privacy Policy</h3>
+        <p>UK GDPR + EU GDPR + Caribbean DPA compliance.</p>
+      </a>
+      <a class="card" href="legal.html#terms">
+        <h3>Terms of Use</h3>
+        <p>Including "not legal advice" disclaimer and Code-of-Conduct compliance.</p>
+      </a>
+      <a class="card" href="legal.html#cookies">
+        <h3>Cookie Policy</h3>
+        <p>Zero cookies. Zero cross-site tracking. Zero fingerprinting.</p>
+      </a>
+      <a class="card" href="legal.html#security">
+        <h3>Security Disclosure</h3>
+        <p>How to report. Bounty programme. Safe-harbour.</p>
+      </a>
+      <a class="card" href="legal.html#threat-model">
+        <h3>Threat Model</h3>
+        <p>STRIDE classification, controls, residual risk, mitigations.</p>
+      </a>
+      <a class="card" href="legal.html#sla">
+        <h3>SLA + SLOs</h3>
+        <p>6 published SLOs, 4 perf budgets, tier-based service credits.</p>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>For the technical due-diligence reader</h2>
+    <div class="cards">
+      <a class="card" href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/docs/RUNBOOK.md">
+        <h3>Operational Runbook</h3>
+        <p>10 runbook entries: OllyGarden outage, LLM outage, Prisma migration, bundle regression, DSR, etc.</p>
+      </a>
+      <a class="card" href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/SECURITY-AUDIT.md">
+        <h3>Self-audit (OWASP Top 10)</h3>
+        <p>A01–A10 scored 8.75/10 mean. A06 in progress.</p>
+      </a>
+      <a class="card" href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/project/management/RACI.md">
+        <h3>RACI</h3>
+        <p>Per-workstream responsibility / accountability matrix.</p>
+      </a>
+      <a class="card" href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/project/management/risk-register.md">
+        <h3>Risk Register</h3>
+        <p>39 named risks with likelihood × impact scoring.</p>
+      </a>
+      <a class="card" href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/project/management/decision-log.md">
+        <h3>Decision Log (ADR)</h3>
+        <p>Every material decision with alternatives + consequences.</p>
+      </a>
+      <a class="card" href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/project/management/project-stats.md">
+        <h3>Project Stats</h3>
+        <p>The truth, no padding: 86 commits, 76,610 LOC, 0 paying customers.</p>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Status + uptime</h2>
+    <p>
+      Internal SLO status lives in
+      <a href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/src/lib/slo.ts"><code>src/lib/slo.ts</code></a>.
+      Public SLO commitments are at
+      <a href="legal.html#sla">legal.html#sla</a>.
+      A public status page is a Q1 2027 milestone.
+    </p>
+  </section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__inner">
+    <div>
+      <h4>About</h4>
+      <p>FreeLeased is a Buildathon-bound solo project by Sam Peacock. Open-source, sovereignty-first, resident-led.</p>
+    </div>
+    <div>
+      <h4>Build</h4>
+      <ul>
+        <li><a href="https://github.com/sam-peacock/FreeLeased-Global">Repo</a></li>
+        <li><a href="team.html">Team</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:sam.peacock1@gmail.com">sam.peacock1@gmail.com</a></li>
+        <li><a href="legal.html#privacy">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+</body>
+</html>

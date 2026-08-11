@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Legal & Trust — FreeLeased</title>
+<meta name="description" content="Privacy Policy, Terms of Use, Cookie Policy, Security Disclosure, Threat Model, and SLA — all public and reconcilable against the codebase.">
+<meta name="theme-color" content="#14342b">
+<link rel="icon" type="image/svg+xml" href="assets/brand-mark.svg">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header" role="banner">
+  <div class="site-header__inner">
+    <a href="index.html" class="brand">
+      <img class="brand__mark" src="assets/brand-mark.svg" width="32" height="32" alt="">
+      <span class="brand__word">FreeLeased</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="story.html">The story</a>
+      <a href="truth.html">The truth</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="pilot.html">Pilot</a>
+      <a href="docs.html">Docs</a>
+      <a href="legal.html">Legal</a>
+      <a href="team.html">Team</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <section class="hero">
+    <div class="hero__eyebrow">Legal & trust</div>
+    <h1>Privacy. Terms. Cookies. Security. Threat model. SLA.</h1>
+    <p class="hero__lead">
+      The canonical source for each document lives in the public
+      repo. This page mirrors them inline so a reviewer who landed
+      on the marketing site can audit them in one place. Each
+      section is anchored; deep-link with
+      <code>#privacy</code>, <code>#terms</code>, etc.
+    </p>
+    <p class="small muted">
+      Effective: 2026-08-11 · Version 1.0 · Owner: Sam Peacock ·
+      <a href="mailto:sam.peacock1@gmail.com">sam.peacock1@gmail.com</a>
+    </p>
+  </section>
+
+  <nav aria-label="On this page" class="card" style="margin:1em 0;">
+    <strong>On this page:</strong>
+    <ul style="display:inline-block;margin-left:.5em;">
+      <li><a href="#privacy">Privacy Policy</a></li>
+      <li><a href="#terms">Terms of Use</a></li>
+      <li><a href="#cookies">Cookies</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#threat-model">Threat Model</a></li>
+      <li><a href="#sla">SLA + SLOs</a></li>
+    </ul>
+  </nav>
+
+  <section id="privacy">
+    <h2>Privacy Policy</h2>
+    <p><em>Mirrors <a href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/docs/PRIVACY.md"><code>docs/PRIVACY.md</code></a>.</em></p>
+
+    <h3>TL;DR</h3>
+    <p>FreeLeased is local-first. Your lease uploads are processed
+      on your device, or — only where you opt in — on our EU/UK-hosted
+      infrastructure. We never sell data. We never train third-party
+      models on your data. The legally binding text follows.</p>
+
+    <h3>1. Data controller</h3>
+    <p>The data controller is Sam Peacock ("Founder"),
+      <code>sam.peacock1@gmail.com</code>. If you self-host, you are
+      the data controller and the Founder is not a joint controller.</p>
+
+    <h3>2. What we collect</h3>
+    <h4>2.1 Lease documents and case data</h4>
+    <ol>
+      <li><strong>Local browser</strong> (default — file content never leaves your device).</li>
+      <li><strong>Cloud LLM endpoint</strong> (only if you click "Analyse with cloud LLM").</li>
+      <li><strong>OllyGarden trace endpoint</strong> (sampled metadata only — no file content, no pseudonym).</li>
+    </ol>
+    <h4>2.2 Account data</h4>
+    <p>Email, display name, org/tenant ID. Retained until you delete + 30 days.</p>
+    <h4>2.3 Telemetry</h4>
+    <p>Anonymous page-views, crash reports (stack-trace only), and
+      LLM spans (jurisdiction, severity — never claim text). Opt-out in <code>Settings → Privacy</code>.</p>
+    <h4>2.4 What we never collect</h4>
+    <p>Biometric data, financial account credentials, special-category
+      data under Art. 9, children's data.</p>
+
+    <h3>3. Lawful basis (UK GDPR Art. 6)</h3>
+    <table>
+      <thead><tr><th>Processing</th><th>Basis</th></tr></thead>
+      <tbody>
+        <tr><td>Authenticated sign-in</td><td>(b) Contract</td></tr>
+        <tr><td>Lease analysis on cloud LLM</td><td>(a) Consent (explicit)</td></tr>
+        <tr><td>Anonymised telemetry</td><td>(f) Legitimate interest; opt-out</td></tr>
+        <tr><td>Defensive security logging</td><td>(f) Legitimate interest</td></tr>
+        <tr><td>On-device processing</td><td>(a) Consent (your browser is the processor)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>4. Sub-processors (current)</h3>
+    <p>Vercel · Supabase · OllyGarden · Nebius AI Studio · Giotto.ai · MiniMax.
+      Full list with DPAs at <a href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/docs/PRIVACY.md"><code>docs/PRIVACY.md §6</code></a>.</p>
+
+    <h3>5. Your rights</h3>
+    <p>Access, rectification, erasure, restriction, portability,
+      objection, withdraw-consent. Email <code>sam.peacock1@gmail.com</code>
+      with subject "DSR — <action>". 30-day SLA. In-product
+      <code>Settings → Privacy</code> covers the common ones.</p>
+
+    <h3>6. International transfers</h3>
+    <p>EEA/UK → US transfers rely on SCCs. The Caribbean sovereign-edge
+      path actually <em>avoids</em> most transfers.</p>
+
+    <h3>7. Retention</h3>
+    <p>7 years for sign-off audit (UK limitation period); 30-day raw
+      OTLP; 30-day encrypted backups. Anonymous telemetry: 90 days
+      aggregated.</p>
+
+    <h3>8. Complaints</h3>
+    <p>ICO (UK), national EU supervisory authority, or your
+      Caribbean DPA. Email us first at <code>sam.peacock1@gmail.com</code>
+      subject "Privacy complaint".</p>
+  </section>
+
+  <hr>
+
+  <section id="terms">
+    <h2>Terms of Use</h2>
+    <p><em>Mirrors <a href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/docs/TERMS.md"><code>docs/TERMS.md</code></a>.</em></p>
+
+    <h3>5. Not legal advice</h3>
+    <div class="callout callout--warn">
+      <strong>The Service provides information, not legal advice.</strong>
+      We are not a law firm. The Founder is not your solicitor.
+      Any content generated by FreeLeased — "dossiers", "verdicts",
+      "citation snippets", "claim text" — is for educational and
+      informational purposes only and does not create a solicitor-client
+      relationship. For any decision that could materially affect
+      your legal rights, you must engage a qualified lawyer admitted
+      in the relevant jurisdiction.
+    </div>
+
+    <h3>Acceptable use</h3>
+    <ol>
+      <li>Do not upload documents you don't have the right to upload.</li>
+      <li>Do not surveil, profile, or discriminate.</li>
+      <li>Do not extract model weights from any LLM endpoint you don't own.</li>
+      <li>Do not resell the Service without a written reseller agreement.</li>
+      <li>Do not use the Service to prepare false evidence for any court.</li>
+      <li>Do not bypass rate limits.</li>
+    </ol>
+
+    <h3>Account tiers + pricing</h3>
+    <p>Free · Pro £12/mo · Institutional Custom. See <a href="pricing.html">/pricing</a>.</p>
+
+    <h3>Open source</h3>
+    <p>The codebase is released under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache-2.0</a>. These Terms do not restrict your rights under Apache-2.0.</p>
+
+    <h3>Governing law</h3>
+    <p>England & Wales, except where an institutional Caribbean
+      customer has elected (in writing) to use the courts of their
+      operating jurisdiction.</p>
+  </section>
+
+  <hr>
+
+  <section id="cookies">
+    <h2>Cookies</h2>
+    <p><em>Mirrors <a href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/docs/COOKIES.md"><code>docs/COOKIES.md</code></a>.</em></p>
+
+    <h3>The entire list</h3>
+    <table>
+      <thead><tr><th>Key</th><th>Type</th><th>Purpose</th><th>Lifetime</th></tr></thead>
+      <tbody>
+        <tr><td><code>freeleased.session</code></td><td>localStorage</td><td>Encrypted session token</td><td>30 days</td></tr>
+        <tr><td><code>freeleased.locale</code></td><td>localStorage</td><td>UI language (en, ht, es, fr-patois, fy)</td><td>1 year</td></tr>
+        <tr><td><code>freeleased.consent</code></td><td>localStorage</td><td>Telemetry consent choice</td><td>1 year</td></tr>
+        <tr><td>Service-worker cache</td><td>Cache Storage</td><td>Offline-mode assets</td><td>until evicted</td></tr>
+      </tbody>
+    </table>
+    <p>That is the entire list. We use <strong>zero</strong> cookies in
+      the <code>Cookie</code> HTTP header. We use <strong>no</strong>
+      third-party scripts. We use <strong>no</strong> fingerprinting.</p>
+  </section>
+
+  <hr>
+
+  <section id="security">
+    <h2>Security disclosure</h2>
+    <p><em>Mirrors <a href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/docs/SECURITY.md"><code>docs/SECURITY.md</code></a>.</em></p>
+
+    <h3>Reporting</h3>
+    <p>Email <a href="mailto:sam.peacock1@gmail.com?subject=SECURITY"><code>sam.peacock1@gmail.com</code></a> subject <code>SECURITY:</code> + short title.
+      Encrypt with PGP if the report includes exploit code.</p>
+
+    <h3>Our timeline commitments</h3>
+    <table>
+      <thead><tr><th>Stage</th><th>Time</th></tr></thead>
+      <tbody>
+        <tr><td>Acknowledge</td><td>≤ 72 hours</td></tr>
+        <tr><td>Triage</td><td>≤ 7 days</td></tr>
+        <tr><td>Status update</td><td>Every 14 days</td></tr>
+        <tr><td>Patch — Critical</td><td>≤ 7 days</td></tr>
+        <tr><td>Patch — High</td><td>≤ 30 days</td></tr>
+        <tr><td>Patch — Medium/Low</td><td>≤ 90 days</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Bounty</h3>
+    <p>Critical £500 · High £200 · Medium £50 · Low credit only.
+      See <a href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/docs/SECURITY.md"><code>docs/SECURITY.md §6</code></a>.</p>
+  </section>
+
+  <hr>
+
+  <section id="threat-model">
+    <h2>Threat Model (STRIDE)</h2>
+    <p><em>Mirrors <a href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/docs/THREAT-MODEL.md"><code>docs/THREAT-MODEL.md</code></a>.</em></p>
+
+    <h3>Trust boundaries</h3>
+    <p>Browser → marketing CDN → web UI → API → Postgres / OllyGarden /
+      LLM providers. Each boundary has an explicit auth or
+      redaction step.</p>
+
+    <h3>Top threats + status</h3>
+    <table>
+      <thead><tr><th>ID</th><th>Threat</th><th>Residual</th></tr></thead>
+      <tbody>
+        <tr><td>S1</td><td>Spoof tenant admin via API</td><td>LOW</td></tr>
+        <tr><td>T2</td><td>Cross-tenant tamper</td><td>LOW</td></tr>
+        <tr><td>T4</td><td>LLM tier returns tampered verdict</td><td>LOW</td></tr>
+        <tr><td>I1</td><td>LLM tier-2 logs/uploads claim text</td><td>MEDIUM (documented)</td></tr>
+        <tr><td>I5</td><td>Self-host operator logs PII</td><td>MEDIUM (documented)</td></tr>
+        <tr><td>D2</td><td>API exhaustion</td><td>LOW</td></tr>
+        <tr><td>E3</td><td>Privileged promotion to "Founder" role</td><td>LOW (no such role)</td></tr>
+      </tbody>
+    </table>
+
+    <p class="small muted">
+      Full STRIDE pass with 7 out-of-scope acknowledgements at
+      <a href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/docs/THREAT-MODEL.md"><code>docs/THREAT-MODEL.md</code></a>.
+    </p>
+  </section>
+
+  <hr>
+
+  <section id="sla">
+    <h2>SLA + SLOs</h2>
+    <p><em>Mirrors <a href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/docs/SLA.md"><code>docs/SLA.md</code></a> and <a href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/src/lib/slo.ts"><code>src/lib/slo.ts</code></a>.</em></p>
+
+    <h3>The 6 published SLOs</h3>
+    <table>
+      <thead><tr><th>ID</th><th>Surface</th><th>Target</th><th>Error budget</th></tr></thead>
+      <tbody>
+        <tr><td><code>api-fairness-check-availability</code></td><td><code>POST /api/fairness/check</code></td><td>99.9%</td><td>0.1%</td></tr>
+        <tr><td><code>api-review-queue-availability</code></td><td><code>GET /api/review-queue</code></td><td>99.9%</td><td>0.1%</td></tr>
+        <tr><td><code>api-consensus-decide-latency</code></td><td><code>POST /api/consensus/decide</code></td><td>99% < 500ms p99</td><td>1.0%</td></tr>
+        <tr><td><code>ui-ttfi-mobile</code></td><td>My Rights (mobile 4G)</td><td>95% < 3s</td><td>5.0%</td></tr>
+        <tr><td><code>ui-ttfi-desktop</code></td><td>My Rights (desktop)</td><td>99% < 1.5s</td><td>1.0%</td></tr>
+        <tr><td><code>ollygarden-trace-completeness</code></td><td>OTLP export</td><td>99.9%</td><td>0.1%</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Tiered commitments</h3>
+    <table>
+      <thead><tr><th>Tier</th><th>Availability</th><th>Support response</th></tr></thead>
+      <tbody>
+        <tr><td>Free</td><td>99.0% best-effort</td><td>7 business days</td></tr>
+        <tr><td>Pro</td><td>99.5%</td><td>3 business days</td></tr>
+        <tr><td>Institutional</td><td>99.95% with credits</td><td>1 business day</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Service credits (Institutional)</h3>
+    <p>If Institutional SLO is missed: 10% / 25% / 50% credit on
+      the next month's invoice (sliding by severity). See
+      <a href="https://github.com/sam-peacock/FreeLeased-Global/blob/main/docs/SLA.md"><code>docs/SLA.md §3</code></a>.</p>
+  </section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__inner">
+    <div>
+      <h4>About</h4>
+      <p>FreeLeased is a Buildathon-bound solo project by Sam Peacock. Open-source, sovereignty-first, resident-led.</p>
+    </div>
+    <div>
+      <h4>Build</h4>
+      <ul>
+        <li><a href="https://github.com/sam-peacock/FreeLeased-Global">Repo</a></li>
+        <li><a href="docs.html">Docs index</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:sam.peacock1@gmail.com">sam.peacock1@gmail.com</a></li>
+        <li><a href="#privacy">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+</body>
+</html>

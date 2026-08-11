@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Truth-Diff — FreeLeased</title>
+<meta name="description" content="Where your lease disagrees with statute, FreeLeased surfaces it. Static HTML preview of the in-app Truth-Diff component.">
+<meta name="theme-color" content="#14342b">
+<link rel="icon" type="image/svg+xml" href="assets/brand-mark.svg">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header" role="banner">
+  <div class="site-header__inner">
+    <a href="index.html" class="brand">
+      <img class="brand__mark" src="assets/brand-mark.svg" width="32" height="32" alt="">
+      <span class="brand__word">FreeLeased</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="story.html">The story</a>
+      <a href="truth.html">The truth</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="pilot.html">Pilot</a>
+      <a href="docs.html">Docs</a>
+      <a href="legal.html">Legal</a>
+      <a href="team.html">Team</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <section class="hero">
+    <div class="hero__eyebrow">Live surface · Static preview</div>
+    <h1>Where the lease disagrees with statute, we surface it.</h1>
+    <p class="hero__lead">
+      The FreeLeased Truth-Diff reads a lease, extracts each claim
+      with a conviction cap (0.33 / 0.60 / 0.75 / 0.99), and lines up
+      the lease's wording next to the statute's wording, with a verdict
+      and a HITL sign-off queue. The excerpts below are public sample
+      inputs; the live running app processes them on-device by default.
+    </p>
+  </section>
+
+  <section>
+    <h2>Filter the table</h2>
+    <p>
+      <label for="filter">Find a statute, a verdict, or a keyword:</label>
+      <input id="filter" data-truth-filter type="search" placeholder="e.g. s.20, service charge, GR"
+             style="width:100%;padding:.6em .9em;border:1px solid var(--v-rule);border-radius:8px;background:var(--v-bg-elev);">
+    </p>
+  </section>
+
+  <section class="card" aria-label="Truth-Diff table">
+    <div class="truth-row" style="border-bottom:1px solid var(--v-rule);font-weight:600;background:var(--v-rule-soft);">
+      <div>Lease says</div>
+      <div>Statute says</div>
+      <div>Verdict</div>
+    </div>
+
+    <div class="truth-row">
+      <div class="truth-row__cell">
+        <span class="label label--lease">Lease clause 4.2</span>
+        <p>"The Tenant shall pay a service charge comprising the
+          cost of all works to the Building as the Landlord in its
+          absolute discretion deems necessary."</p>
+      </div>
+      <div class="truth-row__cell">
+        <span class="label label--statute">s.19(1) LTA 1985</span>
+        <p>Service charges are payable only if "reasonable", and
+          recoverable costs are limited to those specifically
+          incurred. The landlord's discretion is constrained.</p>
+      </div>
+      <div class="truth-row__cell">
+        <span class="label label--verdict">CONFLICT · 0.99</span>
+        <p>"Absolute discretion" over broad scope is not a lawful
+          basis. Recommend: demand itemised accounts + reasonableness
+          challenge under s.27A LTA 1985. Engage a solicitor.</p>
+      </div>
+    </div>
+
+    <div class="truth-row">
+      <div class="truth-row__cell">
+        <span class="label label--lease">Lease clause 6.1</span>
+        <p>"The Tenant shall not assign or underlet without the
+          prior written consent of the Landlord, such consent not
+          to be unreasonably withheld."</p>
+      </div>
+      <div class="truth-row__cell">
+        <span class="label label--statute">s.19(1A) LTA 1985 (added LFRA 2024)</span>
+        <p>Landlord must respond to consent request within 28 days;
+          deemed consent if silent; cannot impose conditions
+          beyond statute.</p>
+      </div>
+      <div class="truth-row__cell">
+        <span class="label label--verdict">PARTIAL · 0.75</span>
+        <p>Lease wording still lawful but new statutory protections
+          apply even where the lease is silent. Recommend: serve a
+          formal consent request, time-box 28 days.</p>
+      </div>
+    </div>
+
+    <div class="truth-row">
+      <div class="truth-row__cell">
+        <span class="label label--lease">Lease clause 9.4</span>
+        <p>"Ground rent: £250 per annum, doubling every 10 years."</p>
+      </div>
+      <div class="truth-row__cell">
+        <span class="label label--statute">LTA 2022 (Ground Rent) Act</span>
+        <p>For new leases, ground rent must be a "peppercorn" (zero).
+          For existing leases, the doubling clause is unenforceable
+          on demand. Eligible tenants can apply to the Tribunal to
+          vary.</p>
+      </div>
+      <div class="truth-row__cell">
+        <span class="label label--verdict">CONFLICT · 0.99</span>
+        <p>If lease dated after 30 June 2022, the doubling clause
+          has no effect. If earlier, vary it via s.19 LTA 1985 (as
+          amended). High severity: engage a solicitor.</p>
+      </div>
+    </div>
+
+    <div class="truth-row">
+      <div class="truth-row__cell">
+        <span class="label label--lease">Caribbean condo declaration § 11</span>
+        <p>"The Council may levy a special assessment for emergency
+          works, with the amount to be determined by the Council's
+          surveyor."</p>
+      </div>
+      <div class="truth-row__cell">
+        <span class="label label--statute">Barbados Condominium Act 1985, s.22</span>
+        <p>Special assessments require notice to all unit-owners +
+          14-day review; the amount must be reasonable + supported
+          by invoices. "Council's surveyor" alone is insufficient.</p>
+      </div>
+      <div class="truth-row__cell">
+        <span class="label label--verdict">CONFLICT · 0.85</span>
+        <p>If your building received an emergency assessment
+          post-hurricane without a 14-day review window, the levy
+          may be challengeable.</p>
+      </div>
+    </div>
+
+    <div class="truth-row">
+      <div class="truth-row__cell">
+        <span class="label label--lease">Lease clause 11.3</span>
+        <p>"The Tenant shall maintain the Building in good repair."</p>
+      </div>
+      <div class="truth-row__cell">
+        <span class="label label--statute">s.11 LTA 1985 (implied repairing obligation, landlord's side)</span>
+        <p>Structural and common-part repair is the LANDLORD's
+          implied obligation, not the tenant's. The lease as
+          drafted wrongly inverts this.</p>
+      </div>
+      <div class="truth-row__cell">
+        <span class="label label--verdict">CONFLICT · 0.99</span>
+        <p>If you are billed for structural works, this is a
+          textbook s.11 claim. Caveat: specialist counsel for
+          lease-specific carve-outs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How the conviction cap works</h2>
+    <p>
+      Every claim is tagged with one of four conviction levels:
+      <span class="tag tag--accent">0.99 (statute-anchored)</span>
+      <span class="tag">0.75 (well-sourced)</span>
+      <span class="tag">0.60 (probable)</span>
+      <span class="tag tag--warn">0.33 (unanchored LLM)</span>
+    </p>
+    <p>
+      Anything at <span class="tag tag--warn">0.33</span>
+      requires HITL sign-off before it appears in a published
+      dossier. Anything at <span class="tag tag--accent">0.99</span>
+      cites the source statute.
+    </p>
+  </section>
+
+  <section>
+    <h2>The non-removable "Engage a local attorney" nudge</h2>
+    <div class="callout">
+      <strong>Why this nudge is permanent.</strong>
+      FreeLeased gives you information, never legal advice.
+      At high severity, a non-removable banner nudges the
+      user toward a qualified lawyer admitted in the
+      jurisdiction. We will not ship a version of this banner
+      that is behind a paywall or that can be dismissed without
+      a deliberate click.
+    </div>
+    <p class="small muted">
+      See <a href="legal.html#terms">Terms of Use §5</a> and the
+      conviction-cap principle in <code>FREELEASED-PRINCIPLES.md</code>.
+    </p>
+  </section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__inner">
+    <div>
+      <h4>About</h4>
+      <p>FreeLeased is a Buildathon-bound solo project by Sam Peacock. Open-source, sovereignty-first, resident-led.</p>
+    </div>
+    <div>
+      <h4>Build</h4>
+      <ul>
+        <li><a href="https://github.com/sam-peacock/FreeLeased-Global">Repo</a></li>
+        <li><a href="docs.html">Docs index</a></li>
+        <li><a href="story.html">60s story</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:sam.peacock1@gmail.com">sam.peacock1@gmail.com</a></li>
+        <li><a href="legal.html#terms">Terms</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+</body>
+</html>

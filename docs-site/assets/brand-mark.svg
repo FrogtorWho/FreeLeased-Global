@@ -1,0 +1,13 @@
+<!-- FreeLeased veridian logomark -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="FreeLeased logomark">
+  <title>FreeLeased</title>
+  <!-- Veridian stack: a leaf + a banner reading "FL" -->
+  <g fill="none">
+    <!-- Leaf -->
+    <path d="M14 40 C 14 24, 32 14, 50 14 C 50 32, 40 50, 24 50 Z" fill="#1f6e4a"/>
+    <path d="M14 40 C 24 30, 36 24, 50 14" stroke="#14342b" stroke-width="1.5" fill="none"/>
+    <!-- Banner -->
+    <rect x="10" y="44" width="44" height="14" rx="3" fill="#14342b"/>
+    <text x="32" y="55" text-anchor="middle" fill="#f7f5ee" font-family="Iowan Old Style, Georgia, serif" font-weight="600" font-size="10">FL</text>
+  </g>
+</svg>
