@@ -426,4 +426,4 @@ the re-runs above; their `documentId` fields are timestamped to 2026-08-11
 is timestamped `2026-08-11T13:08:27Z`.
 
 **Commit:** `docs(proof): live-activation proof — per-perk variable inventory + verified test results`
-**Commit hash:** _filled at commit time_
+**Commit hash:** [`57d3ef8`](https://github.com/FrogtorWho/FreeLeased-Global/commit/57d3ef8) — pushed to origin/main at 2026-08-11T13:12Z.
