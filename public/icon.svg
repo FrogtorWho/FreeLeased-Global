@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="96" fill="#04141a"/>
+  <g transform="translate(64, 96)">
+    <!-- House silhouette -->
+    <path d="M0 200 L192 0 L384 200 L384 320 L0 320 Z" fill="#0d9488" opacity="0.15"/>
+    <!-- Stylised "FL" wordmark in the centre -->
+    <text x="192" y="220"
+          font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+          font-size="160"
+          font-weight="800"
+          text-anchor="middle"
+          fill="#2dd4bf">FL</text>
+    <!-- Subtle baseline -->
+    <line x1="80" y1="280" x2="304" y2="280" stroke="#2dd4bf" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
+  </g>
+</svg>

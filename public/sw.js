@@ -1,11 +1,20 @@
-// FreeLeased Service Worker — Stage 7 #2
+// FreeLeased Service Worker — Stage 7 #2 + Phase 12 G4
 // Scope: "/" (root). Registered from src/lib/offline.ts:62 as "/sw.js".
-// Version: fl-v1. Network-first strategy; falls back to cache when offline.
+// Version: fl-v2. Network-first strategy; falls back to cache when offline.
+// Caches the PWA manifest and 3 icon sizes for install prompt + standalone.
 // No external deps; pure browser APIs.
 
 // ── Lifecycle ─────────────────────────────────────────────────────────
-const CACHE = "fl-v1";
-const PRECACHE = ["/", "/index.html", "/favicon.ico"];
+const CACHE = "fl-v2";
+const PRECACHE = [
+  "/",
+  "/index.html",
+  "/favicon.ico",
+  "/manifest.json",
+  "/icon.svg",
+  "/icon-192.png",
+  "/icon-512.png",
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
