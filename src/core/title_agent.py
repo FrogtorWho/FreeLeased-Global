@@ -25,6 +25,30 @@ class CadastralAudit(BaseModel):
 
 
 def _extract_response_text(response: Any) -> str:
+    # chat.completions path (Nebius Token Factory, OpenAI-compatible).
+    choices = getattr(response, "choices", None)
+    if choices:
+        try:
+            first = choices[0]
+            message = (
+                getattr(first, "message", None) or first.get("message")
+                if isinstance(first, dict)
+                else getattr(first, "message", None)
+            )
+            content = getattr(message, "content", None) if message is not None else None
+            if isinstance(content, str):
+                return content
+            if isinstance(content, (list, tuple)):
+                fragments = []
+                for item in content:
+                    if isinstance(item, dict) and "text" in item:
+                        fragments.append(item["text"])
+                    elif hasattr(item, "text"):
+                        fragments.append(item.text)
+                return "".join(fragments)
+        except (AttributeError, IndexError, TypeError):
+            pass
+
     if hasattr(response, "output_text") and response.output_text:
         return response.output_text
 
@@ -102,12 +126,20 @@ def run_title_audit(cadastral_text: str) -> CadastralAudit:
         "and compliance_notes as a string."
     )
 
-    response = client.responses.create(
-        model="deepseek-ai/DeepSeek-R1",
-        input=cadastral_text,
-        instructions=instructions,
+    # 2026-08-11 activation: switched from the
+    # `responses.create` (OpenAI Responses API) and the legacy
+    # `deepseek-ai/DeepSeek-R1` model to Nebius's
+    # `chat.completions` + `deepseek-ai/DeepSeek-V4-Pro` (the
+    # successor to R1 on the Token Factory model list, verified via
+    # `/v1/models` on the live endpoint 2026-08-11 12:22 UTC).
+    response = client.chat.completions.create(
+        model="deepseek-ai/DeepSeek-V4-Pro",
+        messages=[
+            {"role": "system", "content": instructions},
+            {"role": "user", "content": cadastral_text},
+        ],
         temperature=0.0,
-        max_output_tokens=800,
+        max_tokens=800,
         user="title-audit-extraction",
     )
 
@@ -152,8 +184,8 @@ def run_title_audit_safe(cadastral_text: str) -> CadastralAudit:
         # Live call succeeded — annotate the audit so callers can tell.
         if "compliance_notes" in result.dict():
             note = result.compliance_notes or ""
-            if "deepseek-r1" not in note.lower():
-                result.compliance_notes = f"[engine: deepseek-r1] {note}".strip()
+            if "deepseek" not in note.lower():
+                result.compliance_notes = f"[engine: deepseek-v4-pro] {note}".strip()
         return result
     except Exception as exc:  # noqa: BLE001 — we deliberately swallow all errors
         return CadastralAudit(

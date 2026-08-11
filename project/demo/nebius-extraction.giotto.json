@@ -1,0 +1,42 @@
+{
+  "documentId": "giotto_live_1786450778554",
+  "filename": "sample-lease.txt",
+  "engine": "fallback",
+  "startedAt": "2026-08-11T12:19:38.553Z",
+  "finishedAt": "2026-08-11T12:19:38.554Z",
+  "giottoConfigured": false,
+  "apiKeyMasked": "(unset)",
+  "liveCallAttempted": false,
+  "parties": [],
+  "termYears": null,
+  "rentAnnual": null,
+  "deposit": null,
+  "clauses": [],
+  "statutesCited": [],
+  "summary": "Giotto API key not configured — extraction returned without LLM assistance. Deterministic fallback engaged.",
+  "counts": {
+    "parties": 0,
+    "clauses": 0,
+    "statutesCited": 0
+  },
+  "convictionClasses": {
+    "low": 0,
+    "medium": 0,
+    "high": 0
+  },
+  "sourceFile": "project/demo/sample-lease.txt",
+  "scriptSource": "scripts/activate-giotto-live.ts",
+  "wrapperSource": "src/lib/giotto.ts (mirror — runtime fetch; wrapper unreachable under node --experimental-strip-types due to .ts extension resolution)",
+  "metadata": {
+    "activationRun": "2026-08-11",
+    "livePartner": "Giotto.ai",
+    "wrapperHelpers": [
+      "extractLease",
+      "callGiotto",
+      "giottoConfigured"
+    ],
+    "notes": [
+      "GIOTTO_API_KEY MISSING from .env (only NEBIUS_API_KEY, OLLYGARDEN_API_KEY, TENKI_API_KEY, MINIMAX_API_KEY were pasted)."
+    ]
+  }
+}

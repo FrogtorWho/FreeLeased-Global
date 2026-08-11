@@ -1,8 +1,11 @@
 # Tenki PR-Reviewer — Operating Manual
 
 > **Owner:** Sam Peacock (PR author) · **Agent:** code/reviewer · **Drafted:** 2026-08-11
-> **Status:** Configuration live, no Tenki reviews performed yet. Workflow
-> is **advisory only** — never blocks a merge.
+> **Status (2026-08-11 12:20 UTC):** `TENKI_API_KEY` present in `.env`
+> (masked: `tk_***`). GitHub App install + bot invite still pending —
+> see [`docs/tenki-activation.md`](tenki-activation.md) for the manual
+> activation procedure. Workflow is **advisory only** — never blocks a
+> merge.
 >
 > **Cross-reference:** [`project/strategy/all-partners-brainstorm.md`](../project/strategy/all-partners-brainstorm.md:1) (Idea #11 + #14 + #16 + #20)
 

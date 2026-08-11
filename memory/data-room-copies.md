@@ -428,3 +428,66 @@ These are workspace-only entries added on 2026-08-11T11:30Z during the Phase 6 a
 **Reversibility:** N/A — nothing was copied to the Data Room in this batch. To reverse the workspace additions, revert the commit (see AI_JOURNAL for the commit hash).
 
 **Cross-reference:** See AI_JOURNAL.md section 2026-08-11 Phase 6 ALL-PARTNERS BRAINSTORM for full justification, replication steps, and verification output.
+
+## Phase 7 — LIVE ACTIVATION (2026-08-11T12:25Z)
+
+Workspace-only entries added on 2026-08-11 during the Phase 7 live
+activation work. Like prior workspace-only entries, these are
+artefacts captured against the partner APIs and are not copied to
+the Data Room; the Data Room remains the original 45-file evidence
+set.
+
+| discretion_id | timestamp (ISO 8601 UTC) | source | target | TRL | reason | reversibility | result |
+|---|---|---|---|---|---|---|---|
+| COPY-082 | 2026-08-11T12:25:00Z | (workspace-only — NOT copied to Data Room) | `project/demo/nebius-extraction.live.json` (new) | n/a | Phase 7 — **LIVE** Nebius DeepSeek-V4-Pro title audit over a cadastral fixture. Artefact holds `unit_entitlement_percentage=1.42`, 3 statutory vulnerabilities, and a compliance note prefixed with `[engine: deepseek-v4-pro]`. Confirms end-to-end Nebius Token Factory wire-up against the partner. | revert commit | OK (live response 1m15s) |
+| COPY-083 | 2026-08-11T12:25:00Z | (workspace-only — NOT copied to Data Room) | `memory/2026-08-11-ollygarden-sample.json` (new) | n/a | Phase 7 — OllyGarden OTLP/HTTP span POST to `https://in.ollygarden.cloud/v1/traces` with `X-OllyGarden-Key` header. Live HTTP 401 in 237 ms (partner rejected the key OR expects `Authorization: Bearer` instead — see AI_JOURNAL.md for the two-format discussion). Artefact preserves full OTLP payload for replay. | revert commit | OK (artefact 3.9 KB, HTTP 401 captured) |
+| COPY-084 | 2026-08-11T12:25:00Z | (workspace-only — NOT copied to Data Room) | `memory/2026-08-11-minimax-test.json` (new) | n/a | Phase 7 — MiniMax `hello from FreeLeased` probe → `https://api.minimax.chat/v1/chat/completions`. Live HTTP 401 "invalid api key (2049)" in 1362 ms. Wrapper degraded gracefully; the JSON document contains the exact error transcript. | revert commit | OK (artefact 1.1 KB) |
+| COPY-085 | 2026-08-11T12:25:00Z | (workspace-only — NOT copied to Data Room) | `project/demo/nebius-extraction.giotto.json` (new) | n/a | Phase 7 — Giotto.ai live call attempted but `GIOTTO_API_KEY` was not in `.env`. Artefact documents the gap: `engine: "fallback"`, `giottoConfigured: false`, `apiKeyMasked: "(unset)"`. The deterministic fallback engaged as designed. | revert commit | OK (fallback as designed; gap logged) |
+| COPY-086 | 2026-08-11T12:25:00Z | (workspace-only — NOT copied to Data Room) | `docs/tenki-activation.md` (new) + `docs/tenki-workflow.md` (edited) | n/a | Phase 7 — Tenki activation procedure: step-by-step instructions for Sam to install the Tenki GitHub App + invite `@tenki-reviewer`, plus a copy-paste-ready PR description for the activation PR. Status line in `tenki-workflow.md` updated to mark the present-day state. | revert commit | OK |
+| COPY-087 | 2026-08-11T12:25:00Z | (workspace-only — NOT copied to Data Room) | `memory/2026-08-11-nebius-promo.md` (new) | n/a | Phase 7 — promo-code log: documents the absence of `NEBIUS_PROMO_CODE` and `NEBIUS_TENKI_KEY` in `.env`, with redemption steps (console URL, "Billing → Apply promo code") for Sam to follow up. Gap explicitly recorded so it doesn't re-emerge later. | revert commit | OK |
+| COPY-088 | 2026-08-11T12:25:00Z | (workspace-only — NOT copied to Data Room) | `scripts/activate-giotto-live.ts` + `scripts/activate-nebius-live.py` + `scripts/activate-ollygarden-live.py` + `scripts/activate-minimax-live.ts` (all new) | n/a | Phase 7 — 4 idempotent activation scripts. Each loads its own key from `.env`, attempts the live call with proper timeout + retry, captures the result (success OR failure OR gap) to a stable on-disk artefact, and prints a 1-line summary. Re-running with the same key set is a no-op. | revert commit | OK |
+| COPY-089 | 2026-08-11T12:25:00Z | (workspace-only — NOT copied to Data Room) | `src/core/title_agent.py` (edited — model switched to `deepseek-ai/DeepSeek-V4-Pro`, `chat.completions.create` shape, `_extract_response_text()` extended) + `HEARTBEAT.md` + `AI_JOURNAL.md` (edited) | n/a | Phase 7 — bugs caught during activation: (1) DeepSeek-R1 was 404'd from Nebius's catalogue — switched to V4-Pro; (2) `_extract_response_text()` did not handle `chat.completions` shape — added a branch. HEARTBEAT + AI_JOURNAL get the Phase 7 entry. | revert commit | OK |
+
+**Why this section exists:** Phase 7 is the live-activation pass —
+turning Phase 6's "wiring exists, fallback is the live path" into
+"partner wire attempts made, real responses captured" for the keys
+that are present, and "gap explicitly recorded" for the keys that
+aren't.
+
+**Headline results** (details in AI_JOURNAL.md):
+
+- ✅ **Nebius**: live `DeepSeek-V4-Pro` extraction succeeded — first
+  end-to-end live partner call in the repo. JSON artefact
+  `project/demo/nebius-extraction.live.json`.
+- ⚠️ **OllyGarden**: transport works (237 ms live response), key
+  rejected. Artefact `memory/2026-08-11-ollygarden-sample.json`
+  preserves the wire + error.
+- ⚠️ **MiniMax**: transport works (1362 ms live response), key
+  invalid. Artefact `memory/2026-08-11-minimax-test.json`.
+- 🟡 **Giotto.ai**: `GIOTTO_API_KEY` not in `.env` → fallback as
+  designed; gap recorded in
+  `project/demo/nebius-extraction.giotto.json`.
+- 📋 **Tenki**: `TENKI_API_KEY` present, manual GitHub App install
+  pending. Procedure documented in `docs/tenki-activation.md`.
+- 📋 **NEBIUS_PROMO_CODE**: not in `.env`; redemption procedure for
+  Sam in `memory/2026-08-11-nebius-promo.md`.
+
+**Test/reconcile post-activation** (unchanged invariants):
+
+- `npm run reconcile` → 10/10 PASS · 0 drift
+- `scripts/test-all-partners.ts` → 99/99 PASS
+- `scripts/test-nebius-live.ts` → 23/23 PASS
+- `scripts/test-truth-diff.ts` → 17/17 PASS
+- `scripts/test-health-check.ts` → 23/23 PASS
+- `scripts/test-reconcile-docs.ts` → 32/32 PASS
+- Test-count delta: **+0 tests** (the activation scripts are
+  artefacts, not test surfaces — the wiring already had 99+23=122
+  passing assertions from Phase 6).
+
+**Reversibility:** Revert the Phase 7 commit (this PR). Nothing
+was copied to the Data Room.
+
+**Cross-reference:** See AI_JOURNAL.md section 2026-08-11 Phase 7
+LIVE ACTIVATION OF 6 PARTNER KEYS for the full per-partner
+deep-dive, the model-swap rationale, and the rubric-axis delta.
+

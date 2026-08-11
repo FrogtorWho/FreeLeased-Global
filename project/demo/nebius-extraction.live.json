@@ -1,0 +1,32 @@
+{
+  "documentId": "nebius_live_1786450982865",
+  "startedAt": "2026-08-11T12:23:02.865502+00:00",
+  "finishedAt": "2026-08-11T12:24:17.379956+00:00",
+  "engine": "nebius-deepseek-r1",
+  "nebiusConfigured": true,
+  "apiKeyMasked": "v1.C***",
+  "model": "deepseek-ai/DeepSeek-R1",
+  "endpoint": "https://api.tokenfactory.nebius.com/v1/",
+  "fixture": "cadastral-residential-flat",
+  "fixtureSource": "scripts/activate-nebius-live.py (inline)",
+  "audit": {
+    "unit_entitlement_percentage": 1.42,
+    "statutory_vulnerabilities": [
+      "Cap. 229 \u00a731 (non-compliance with required forms risks registration void)",
+      "Building Code \u00a74.3 (fire safety equipment missing on 3rd floor)",
+      "Data Protection Act 2019 (Section 6) basis missing on tenant card"
+    ],
+    "voting_threshold_met": false,
+    "compliance_notes": "[engine: deepseek-r1] Unit entitlement is 1.42% per Schedule II, paragraph 4. Voting threshold for extraordinary resolutions is 75% per Schedule III; 1.42% is insufficient to meet this threshold alone. Statutory vulnerabilities include registration risks under Cap. 229 \u00a731, fire safety non-compliance under Building Code \u00a74.3, and missing data protection basis under Data Protection Act 2019 Section 6. Pet clause requires landlord consent not to be unreasonably withheld. Section 20 consultation may apply for major works. Beneficial ownership disclosure required under Companies Act 1981, Cap. 308."
+  },
+  "liveCallError": null,
+  "scriptSource": "scripts/activate-nebius-live.py",
+  "wrapperSource": "src/core/title_agent.py",
+  "metadata": {
+    "activationRun": "2026-08-11",
+    "livePartner": "Nebius Token Factory",
+    "notes": [
+      "nebius_live_path_active=True"
+    ]
+  }
+}

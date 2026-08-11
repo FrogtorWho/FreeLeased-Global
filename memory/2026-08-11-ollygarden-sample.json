@@ -1,0 +1,129 @@
+{
+  "documentId": "ollygarden_live_1786450598224",
+  "startedAt": "2026-08-11T12:16:38.224115+00:00",
+  "finishedAt": "2026-08-11T12:16:38.224137+00:00",
+  "engine": "ollygarden-otlp",
+  "ollygardenConfigured": true,
+  "apiKeyMasked": "og_s***",
+  "endpoint": "https://in.ollygarden.cloud/v1/traces",
+  "otlpPayload": {
+    "resourceSpans": [
+      {
+        "resource": {
+          "attributes": [
+            {
+              "key": "service.name",
+              "value": {
+                "stringValue": "freeleased"
+              }
+            },
+            {
+              "key": "service.version",
+              "value": {
+                "stringValue": "0.1.0"
+              }
+            },
+            {
+              "key": "ollygarden.platform",
+              "value": {
+                "stringValue": "freeleased"
+              }
+            }
+          ]
+        },
+        "scopeSpans": [
+          {
+            "scope": {
+              "name": "freeleased.ollygarden.live-test",
+              "version": "0.1.0"
+            },
+            "spans": [
+              {
+                "traceId": "303030303030303030303030303061637469766174696f6e3230323630383131",
+                "spanId": "303030303030303030306f6c6c793031",
+                "name": "freeleased.partner_activation_test",
+                "kind": 1,
+                "startTimeUnixNano": "1786450597990568900",
+                "endTimeUnixNano": "1786450598003068900",
+                "attributes": [
+                  {
+                    "key": "activation.run",
+                    "value": {
+                      "stringValue": "2026-08-11"
+                    }
+                  },
+                  {
+                    "key": "activation.partner",
+                    "value": {
+                      "stringValue": "ollygarden"
+                    }
+                  },
+                  {
+                    "key": "service.name",
+                    "value": {
+                      "stringValue": "freeleased"
+                    }
+                  },
+                  {
+                    "key": "service.version",
+                    "value": {
+                      "stringValue": "0.1.0"
+                    }
+                  },
+                  {
+                    "key": "deployment.environment",
+                    "value": {
+                      "stringValue": "development"
+                    }
+                  },
+                  {
+                    "key": "test.kind",
+                    "value": {
+                      "stringValue": "live-activation"
+                    }
+                  }
+                ],
+                "status": {
+                  "code": 1
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "postResult": {
+    "attemptedAt": "2026-08-11T12:16:37.991137+00:00",
+    "endpoint": "https://in.ollygarden.cloud/v1/traces",
+    "elapsedMs": 233,
+    "httpStatus": 401,
+    "ok": false,
+    "error": "HTTPError: 401",
+    "responseBodyPreview": ""
+  },
+  "span": {
+    "name": "freeleased.partner_activation_test",
+    "traceId": "activation20260811",
+    "spanId": "olly01",
+    "durationMs": 12.5,
+    "attributeKeys": [
+      "activation.partner",
+      "activation.run",
+      "deployment.environment",
+      "service.name",
+      "service.version",
+      "test.kind"
+    ]
+  },
+  "scriptSource": "scripts/activate-ollygarden-live.py",
+  "wrapperSource": "src/core/ollygarden_observability.py",
+  "metadata": {
+    "activationRun": "2026-08-11",
+    "livePartner": "OllyGarden",
+    "notes": [
+      "OLLYGARDEN_API_KEY present \u2014 POST attempted.",
+      "Local artefact always produced so the activation record exists in version control."
+    ]
+  }
+}
