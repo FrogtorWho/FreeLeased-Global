@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="'Source Serif 4', Georgia, serif">
+  <rect width="1200" height="900" fill="#fbf8f1"/>
+  <line x1="40" y1="32" x2="1160" y2="32" stroke="#0a0a0a" stroke-width="1"/>
+  <text x="40" y="22" font-size="11" fill="#1f1f1f" font-style="italic">The FreeLeased Record · Vol. I · 2026</text>
+  <text x="1160" y="22" font-size="11" fill="#1f1f1f" text-anchor="end" font-style="italic">£0 compute · 9 jurisdictions · 40+ statutes</text>
+
+  <g transform="translate(80,80)">
+    <text font-size="14" font-weight="600" fill="#a8201a">FEATURE · THE HOUSING LEDGER</text>
+    <text y="100" font-size="96" font-weight="700" fill="#a8201a">T</text>
+    <text x="80" y="100" font-size="64" font-weight="700" fill="#0a0a0a" letter-spacing="-1.4">he single clause</text>
+    <text x="80" y="160" font-size="64" font-weight="700" fill="#0a0a0a" letter-spacing="-1.4">that cost a</text>
+    <text x="80" y="220" font-size="64" font-weight="700" fill="#0a0a0a" letter-spacing="-1.4">leaseholder</text>
+    <text x="80" y="280" font-size="64" font-weight="700" fill="#0a0a0a" letter-spacing="-1.4">£18,000.</text>
+    <text y="340" font-size="20" font-style="italic" fill="#1f1f1f">How a 14-word forfeiture clause passed three conveyancers —</text>
+    <text y="368" font-size="20" font-style="italic" fill="#1f1f1f">and what we built to make sure it never passes again.</text>
+
+    <text y="440" font-size="14" font-weight="600" fill="#a8201a" text-decoration="underline">READ THE INVESTIGATION  →</text>
+    <text x="280" y="440" font-size="14" font-weight="600" fill="#1f1f1f" text-decoration="underline">SEE THE SYSTEM  →</text>
+  </g>
+
+  <line x1="80" y1="560" x2="1120" y2="560" stroke="#0a0a0a" stroke-width="1"/>
+
+  <g transform="translate(80,600)">
+    <text font-size="14" font-weight="600" fill="#a8201a">DISPATCHES</text>
+    <line x1="0" y1="16" x2="1040" y2="16" stroke="#1f1f1f"/>
+    <text y="48" font-size="20" font-weight="600" fill="#0a0a0a">A note on provenance.</text>
+    <text y="76" font-size="14" fill="#1f1f1f">Every claim we publish carries the source it came from. Always.</text>
+    <text x="540" y="48" font-size="20" font-weight="600" fill="#0a0a0a">The sign-off queue.</text>
+    <text x="540" y="76" font-size="14" fill="#1f1f1f">A human approves every resident-facing claim before it ships.</text>
+    <text y="160" font-size="20" font-weight="600" fill="#0a0a0a">Statutes we cite.</text>
+    <text y="188" font-size="14" fill="#1f1f1f">40+ verified UK statutes. 9 jurisdictions. Evidence-classed.</text>
+    <text x="540" y="160" font-size="20" font-weight="600" fill="#0a0a0a">What we don't do.</text>
+    <text x="540" y="188" font-size="14" fill="#1f1f1f">No profiling. No emotion inference. No social scoring. No biometric.</text>
+  </g>
+
+  <line x1="80" y1="848" x2="1120" y2="848" stroke="#0a0a0a" stroke-width="1"/>
+  <text x="80" y="876" font-size="11" fill="#1f1f1f" font-style="italic">© 2026 FreeLeased · Published under Apache-2.0 · Data under CC-BY 4.0</text>
+  <text x="1120" y="876" font-size="11" fill="#1f1f1f" text-anchor="end" font-style="italic">Printed daily in London, Barbados, and Cayman</text>
+</svg>

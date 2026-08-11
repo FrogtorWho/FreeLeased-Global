@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" font-family="'Source Serif 4', Georgia, serif">
+  <rect x="0" y="0" width="800" height="200" fill="#f8fafc"/>
+  <rect x="0" y="200" width="800" height="200" fill="#0b1220"/>
+
+  <g transform="translate(80,60)">
+    <rect x="0" y="0" width="80" height="80" rx="8" fill="#2563eb"/>
+    <path d="M40 16 C58 16 72 30 72 50 C72 70 58 76 40 76 C22 76 8 70 8 50 C8 30 22 16 40 16 Z M40 24 C28 24 18 34 18 48 C18 60 28 66 40 66 C52 66 62 60 62 48 C62 34 52 24 40 24 Z M40 32 C36 36 32 42 32 48 C32 54 36 58 40 58 C44 58 48 54 48 48 C48 42 44 36 40 32 Z" fill="#f8fafc" fill-rule="evenodd"/>
+  </g>
+  <text x="180" y="118" font-size="64" font-weight="700" fill="#0f172a">Free</text>
+  <text x="294" y="118" font-size="64" font-weight="700" fill="#2563eb">Leased</text>
+
+  <g transform="translate(80,260)">
+    <rect x="0" y="0" width="80" height="80" rx="8" fill="#10b981"/>
+    <path d="M40 16 C58 16 72 30 72 50 C72 70 58 76 40 76 C22 76 8 70 8 50 C8 30 22 16 40 16 Z M40 24 C28 24 18 34 18 48 C18 60 28 66 40 66 C52 66 62 60 62 48 C62 34 52 24 40 24 Z M40 32 C36 36 32 42 32 48 C32 54 36 58 40 58 C44 58 48 54 48 48 C48 42 44 36 40 32 Z" fill="#0b1220" fill-rule="evenodd"/>
+  </g>
+  <text x="180" y="318" font-size="64" font-weight="700" fill="#f8fafc">Free</text>
+  <text x="294" y="318" font-size="64" font-weight="700" fill="#10b981">Leased</text>
+
+  <text x="500" y="118" font-family="Inter, system-ui, sans-serif" font-size="14" fill="#475569">Light theme</text>
+  <text x="500" y="138" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#94a3b8">Ink #0f172a · Mark #2563eb</text>
+  <text x="500" y="318" font-family="Inter, system-ui, sans-serif" font-size="14" fill="#cbd5e1">Dark theme</text>
+  <text x="500" y="338" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#64748b">Paper #f8fafc · Mark #10b981</text>
+</svg>

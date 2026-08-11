@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="'Source Serif 4', Georgia, serif">
+  <rect width="1200" height="900" fill="#fbf8f1"/>
+
+  <line x1="40" y1="32" x2="1160" y2="32" stroke="#0a0a0a"/>
+  <text x="40" y="22" font-size="11" fill="#1f1f1f" font-style="italic">The FreeLeased Record · The Desk · 02:14 UTC</text>
+  <text x="1160" y="22" font-size="11" fill="#1f1f1f" text-anchor="end" font-style="italic">Edition: 2026-08-11</text>
+
+  <line x1="0" y1="64" x2="240" y2="64" stroke="#0a0a0a"/>
+  <line x1="240" y1="64" x2="240" y2="900" stroke="#0a0a0a"/>
+  <text x="24" y="100" font-size="11" font-weight="600" fill="#a8201a">SECTIONS</text>
+  <g transform="translate(24,128)" font-family="'Source Serif 4', Georgia, serif">
+    <text font-size="16" font-weight="600" fill="#0a0a0a">Overview</text>
+    <text y="32" font-size="16" fill="#1f1f1f">Document Hub</text>
+    <text y="60" font-size="16" fill="#1f1f1f">Dossiers</text>
+    <text y="88" font-size="16" fill="#1f1f1f">Sign-off Queue</text>
+    <text y="116" font-size="16" fill="#1f1f1f">Reconciliation</text>
+    <text y="144" font-size="16" fill="#1f1f1f">Knowledge Graph</text>
+    <text y="172" font-size="16" fill="#1f1f1f">Fairness Engine</text>
+    <text y="200" font-size="16" fill="#1f1f1f">Compliance</text>
+  </g>
+
+  <g transform="translate(280,96)">
+    <text font-size="11" font-weight="600" fill="#a8201a">THE DESK · OVERVIEW</text>
+    <text y="60" font-size="48" font-weight="700" fill="#0a0a0a" letter-spacing="-1">The morning ledger.</text>
+    <text y="92" font-size="16" font-style="italic" fill="#1f1f1f">Three pending sign-offs · twelve dossiers · one reconciliation cycle.</text>
+  </g>
+
+  <line x1="280" y1="220" x2="1160" y2="220" stroke="#0a0a0a"/>
+
+  <g transform="translate(280,250)">
+    <text font-size="11" font-weight="600" fill="#a8201a">VERIFIED DOSSIERS</text>
+    <text y="48" font-size="48" font-weight="700" fill="#0a0a0a">142</text>
+    <text y="74" font-size="13" font-style="italic" fill="#1f1f1f">+12 in the last twenty-four hours</text>
+  </g>
+  <line x1="580" y1="240" x2="580" y2="420" stroke="#1f1f1f"/>
+  <g transform="translate(600,250)">
+    <text font-size="11" font-weight="600" fill="#a8201a">PENDING SIGN-OFF</text>
+    <text y="48" font-size="48" font-weight="700" fill="#a8201a">3</text>
+    <text y="74" font-size="13" font-style="italic" fill="#1f1f1f">two urgent · one routine</text>
+  </g>
+  <line x1="880" y1="240" x2="880" y2="420" stroke="#1f1f1f"/>
+  <g transform="translate(900,250)">
+    <text font-size="11" font-weight="600" fill="#a8201a">STATUTES CITED</text>
+    <text y="48" font-size="48" font-weight="700" fill="#0a0a0a">40+</text>
+    <text y="74" font-size="13" font-style="italic" fill="#1f1f1f">across nine jurisdictions</text>
+  </g>
+
+  <line x1="280" y1="460" x2="1160" y2="460" stroke="#0a0a0a"/>
+
+  <g transform="translate(280,492)">
+    <text font-size="11" font-weight="600" fill="#a8201a">THE DAY'S FILINGS</text>
+    <line x1="0" y1="14" x2="880" y2="14" stroke="#1f1f1f"/>
+    <g transform="translate(0,40)" font-family="'Source Serif 4', Georgia, serif" font-size="14" fill="#0a0a0a">
+      <text font-family="ui-monospace, monospace" font-size="12" fill="#a8201a">02:14</text>
+      <text x="60">Dossier #abc123 verified by three sources.</text>
+      <text x="700" font-style="italic" fill="#1f1f1f">UK · s.20 LTA 1985</text>
+      <text y="32" font-family="ui-monospace, monospace" font-size="12" fill="#a8201a">02:09</text>
+      <text x="60" y="32">Sign-off filed: lease clause v2 approved.</text>
+      <text x="700" y="32" font-style="italic" fill="#1f1f1f">Human · 2m 14s</text>
+      <text y="64" font-family="ui-monospace, monospace" font-size="12" fill="#a8201a">01:58</text>
+      <text x="60" y="64">Reconciliation cycle reports 10/10 PASS.</text>
+      <text x="700" y="64" font-style="italic" fill="#1f1f1f">doc-vs-code · 0 drift</text>
+      <text y="96" font-family="ui-monospace, monospace" font-size="12" fill="#a8201a">01:44</text>
+      <text x="60" y="96">Knowledge graph resolves twelve patterns.</text>
+      <text x="700" y="96" font-style="italic" fill="#1f1f1f">multi-agent · 4 dossiers</text>
+      <text y="128" font-family="ui-monospace, monospace" font-size="12" fill="#a8201a">01:31</text>
+      <text x="60" y="128">Sign-off filed: two clauses rejected.</text>
+      <text x="700" y="128" font-style="italic" fill="#1f1f1f">statute mis-cited</text>
+    </g>
+  </g>
+
+  <line x1="280" y1="780" x2="1160" y2="780" stroke="#0a0a0a"/>
+  <g transform="translate(280,808)">
+    <text font-size="11" font-weight="600" fill="#a8201a">SIGN-OFF QUEUE</text>
+    <line x1="0" y1="14" x2="880" y2="14" stroke="#1f1f1f"/>
+    <g font-family="'Source Serif 4', Georgia, serif" font-size="13" fill="#0a0a0a">
+      <text font-weight="700" y="38">URGENT · clause 4.b · entry-without-notice.</text>
+      <text y="56" font-style="italic" fill="#1f1f1f">s.27(3)(a) LTA 1985 · evidence: verified (3).</text>
+      <text font-weight="700" y="86">URGENT · clause 11 · forfeiture broad.</text>
+      <text y="104" font-style="italic" fill="#1f1f1f">s.167 CLRA 2002 · evidence: verified (2).</text>
+    </g>
+  </g>
+</svg>

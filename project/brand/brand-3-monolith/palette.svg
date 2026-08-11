@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" font-family="Inter, system-ui, sans-serif">
+  <rect width="1200" height="480" fill="#ffffff"/>
+  <rect x="0" y="0" width="1200" height="80" fill="#000000"/>
+  <text x="40" y="52" font-size="24" font-weight="800" fill="#ffffff" letter-spacing="-0.6">MONOLITH · PALETTE</text>
+  <text x="40" y="120" font-size="14" fill="#1a1a1a">6 tokens · WCAG AAA on Paper #ffffff</text>
+
+  <g transform="translate(40,140)">
+    <rect width="180" height="200" fill="#000000"/>
+    <rect width="180" height="200" fill="none" stroke="#000000" stroke-width="1"/>
+    <text x="12" y="24" font-size="11" font-weight="600" fill="#ffffff">PRIMARY</text>
+    <text x="12" y="160" font-size="20" font-weight="800" fill="#ffffff" letter-spacing="-0.4">CARBON</text>
+    <text x="12" y="184" font-size="12" font-family="ui-monospace, monospace" fill="#ffffff">#000000</text>
+  </g>
+  <g transform="translate(240,140)">
+    <rect width="180" height="200" fill="#1a1a1a"/>
+    <rect width="180" height="200" fill="none" stroke="#000000" stroke-width="1"/>
+    <text x="12" y="24" font-size="11" font-weight="600" fill="#ffffff">SECONDARY</text>
+    <text x="12" y="160" font-size="20" font-weight="800" fill="#ffffff" letter-spacing="-0.4">GRAPHITE</text>
+    <text x="12" y="184" font-size="12" font-family="ui-monospace, monospace" fill="#ffffff">#1a1a1a</text>
+  </g>
+  <g transform="translate(440,140)">
+    <rect width="180" height="200" fill="#facc15"/>
+    <rect width="180" height="200" fill="none" stroke="#000000" stroke-width="1"/>
+    <text x="12" y="24" font-size="11" font-weight="600" fill="#000000">ACCENT</text>
+    <text x="12" y="160" font-size="20" font-weight="800" fill="#000000" letter-spacing="-0.4">SIGNAL</text>
+    <text x="12" y="184" font-size="12" font-family="ui-monospace, monospace" fill="#000000">#facc15</text>
+  </g>
+  <g transform="translate(640,140)">
+    <rect width="180" height="200" fill="#000000"/>
+    <rect width="180" height="200" fill="none" stroke="#ffffff" stroke-width="1"/>
+    <text x="12" y="24" font-size="11" font-weight="600" fill="#ffffff">SURFACE</text>
+    <text x="12" y="160" font-size="20" font-weight="800" fill="#ffffff" letter-spacing="-0.4">DARK</text>
+    <text x="12" y="184" font-size="12" font-family="ui-monospace, monospace" fill="#ffffff">#000000</text>
+  </g>
+  <g transform="translate(840,140)">
+    <rect width="180" height="200" fill="#000000"/>
+    <rect width="180" height="200" fill="none" stroke="#ffffff" stroke-width="1"/>
+    <text x="12" y="24" font-size="11" font-weight="600" fill="#ffffff">INK</text>
+    <text x="12" y="160" font-size="20" font-weight="800" fill="#ffffff" letter-spacing="-0.4">CARBON</text>
+    <text x="12" y="184" font-size="12" font-family="ui-monospace, monospace" fill="#ffffff">#000000</text>
+  </g>
+  <g transform="translate(1040,140)">
+    <rect width="120" height="200" fill="#ffffff"/>
+    <rect width="120" height="200" fill="none" stroke="#000000" stroke-width="1"/>
+    <text x="12" y="24" font-size="11" font-weight="600" fill="#000000">PAPER</text>
+    <text x="12" y="160" font-size="20" font-weight="800" fill="#000000" letter-spacing="-0.4">PURE</text>
+    <text x="12" y="184" font-size="12" font-family="ui-monospace, monospace" fill="#000000">#ffffff</text>
+  </g>
+
+  <g transform="translate(40,376)" font-family="ui-monospace, monospace" font-size="11" fill="#1a1a1a">
+    <text x="0" y="0">contrast vs Paper #ffffff</text>
+    <text x="0" y="18">Carbon #000000 · 21.00:1 · AAA</text>
+    <text x="0" y="34">Graphite #1a1a1a · 18.36:1 · AAA</text>
+    <text x="0" y="50">Signal #facc15 · 1.32:1 · accent only (icons/dots/focus)</text>
+  </g>
+</svg>

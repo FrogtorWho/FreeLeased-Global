@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" font-family="Inter, system-ui, sans-serif">
+  <rect width="1200" height="480" fill="#faf6ee"/>
+  <text x="40" y="56" font-size="28" font-weight="600" fill="#0e3b2e" font-family="'Source Serif 4', Georgia, serif">Canopy — Palette</text>
+  <text x="40" y="84" font-size="14" fill="#4a5d52">6 tokens · WCAG AA on Paper #faf6ee</text>
+
+  <g transform="translate(40,120)">
+    <rect width="180" height="200" rx="16" fill="#0e3b2e"/>
+    <text x="16" y="32" font-size="13" font-weight="500" fill="#faf6ee">Primary</text>
+    <text x="16" y="156" font-size="22" font-weight="600" fill="#faf6ee" font-family="'Source Serif 4', Georgia, serif">Deep Forest</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#faf6ee">#0e3b2e</text>
+  </g>
+  <g transform="translate(240,120)">
+    <rect width="180" height="200" rx="16" fill="#4a5d52"/>
+    <text x="16" y="32" font-size="13" font-weight="500" fill="#faf6ee">Secondary</text>
+    <text x="16" y="156" font-size="22" font-weight="600" fill="#faf6ee" font-family="'Source Serif 4', Georgia, serif">River Stone</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#faf6ee">#4a5d52</text>
+  </g>
+  <g transform="translate(440,120)">
+    <rect width="180" height="200" rx="16" fill="#c2410c"/>
+    <text x="16" y="32" font-size="13" font-weight="500" fill="#faf6ee">Accent</text>
+    <text x="16" y="156" font-size="22" font-weight="600" fill="#faf6ee" font-family="'Source Serif 4', Georgia, serif">Parrot Feather</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#faf6ee">#c2410c</text>
+  </g>
+  <g transform="translate(640,120)">
+    <rect width="180" height="200" rx="16" fill="#1c2e25"/>
+    <text x="16" y="32" font-size="13" font-weight="500" fill="#faf6ee">Surface</text>
+    <text x="16" y="156" font-size="22" font-weight="600" fill="#faf6ee" font-family="'Source Serif 4', Georgia, serif">Moss Shadow</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#faf6ee">#1c2e25</text>
+  </g>
+  <g transform="translate(840,120)">
+    <rect width="180" height="200" rx="16" fill="#1a2e25"/>
+    <text x="16" y="32" font-size="13" font-weight="500" fill="#faf6ee">Ink</text>
+    <text x="16" y="156" font-size="22" font-weight="600" fill="#faf6ee" font-family="'Source Serif 4', Georgia, serif">Forest Floor</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#faf6ee">#1a2e25</text>
+  </g>
+  <g transform="translate(1040,120)">
+    <rect width="120" height="200" rx="16" fill="#faf6ee" stroke="#4a5d52" stroke-width="1"/>
+    <text x="16" y="32" font-size="13" font-weight="500" fill="#1a2e25">Paper</text>
+    <text x="16" y="156" font-size="20" font-weight="600" fill="#1a2e25" font-family="'Source Serif 4', Georgia, serif">Linen</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#1a2e25">#faf6ee</text>
+  </g>
+
+  <g transform="translate(40,360)" font-family="ui-monospace, monospace" font-size="12" fill="#4a5d52">
+    <text x="0" y="0">contrast vs Paper #faf6ee</text>
+    <text x="0" y="22">Deep Forest #0e3b2e · 11.94:1 · AAA</text>
+    <text x="0" y="40">River Stone #4a5d52 · 6.20:1 · AA</text>
+    <text x="0" y="58">Parrot Feather #c2410c · 4.83:1 · AA Large</text>
+    <text x="0" y="76">Moss Shadow #1c2e25 · 12.34:1 · AAA (dark surface)</text>
+    <text x="0" y="94">Forest Floor #1a2e25 · 11.31:1 · AAA</text>
+  </g>
+</svg>

@@ -79,3 +79,6 @@ The FreeLeased documentation forms a single navigable graph. If you're lost, sta
 10. [`memory/data-room-copies.md`](memory/data-room-copies.md:1) — reverse-copy journal
 11. [`HEARTBEAT.md`](HEARTBEAT.md:1) — cadence + daily progress log
 12. [`AI_JOURNAL.md`](AI_JOURNAL.md:1) — append-only loop history
+13. [`project/brand/`](project/brand/README.md:1) — 5-variant brand identity pack (Veridian / Quill / Monolith / Canopy / Coral) with palette, type, logomark, motion, voice, wireframes
+14. [`project/marketing/social-campaign-100.md`](project/marketing/social-campaign-100.md:1) — 30-day × 5-brand × 5-platform social campaign
+15. [`project/strategy/WIN-DAY-100.md`](project/strategy/WIN-DAY-100.md:1) — bridge doc to 100/100; per-judge breakdown + stopping criterion

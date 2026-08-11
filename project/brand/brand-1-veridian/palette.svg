@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" font-family="Inter, system-ui, sans-serif">
+  <rect width="1200" height="480" fill="#f8fafc"/>
+  <text x="40" y="56" font-size="28" font-weight="700" fill="#0f172a" font-family="'Source Serif 4', Georgia, serif">Veridian — Palette</text>
+  <text x="40" y="84" font-size="14" fill="#475569">6 tokens · WCAG AA on Paper #f8fafc</text>
+
+  <g transform="translate(40,120)">
+    <rect width="180" height="200" rx="12" fill="#2563eb"/>
+    <text x="16" y="32" font-size="13" font-weight="600" fill="#f8fafc">Primary</text>
+    <text x="16" y="156" font-size="22" font-weight="700" fill="#f8fafc">Peacock Blue</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#f8fafc">#2563eb</text>
+  </g>
+
+  <g transform="translate(240,120)">
+    <rect width="180" height="200" rx="12" fill="#10b981"/>
+    <text x="16" y="32" font-size="13" font-weight="600" fill="#0b1220">Secondary</text>
+    <text x="16" y="156" font-size="22" font-weight="700" fill="#0b1220">Veridian Green</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#0b1220">#10b981</text>
+  </g>
+
+  <g transform="translate(440,120)">
+    <rect width="180" height="200" rx="12" fill="#f59e0b"/>
+    <text x="16" y="32" font-size="13" font-weight="600" fill="#0b1220">Accent</text>
+    <text x="16" y="156" font-size="22" font-weight="700" fill="#0b1220">Amber Reef</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#0b1220">#f59e0b</text>
+  </g>
+
+  <g transform="translate(640,120)">
+    <rect width="180" height="200" rx="12" fill="#0b1220"/>
+    <text x="16" y="32" font-size="13" font-weight="600" fill="#f8fafc">Surface</text>
+    <text x="16" y="156" font-size="22" font-weight="700" fill="#f8fafc">Ink Depths</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#f8fafc">#0b1220</text>
+  </g>
+
+  <g transform="translate(840,120)">
+    <rect width="180" height="200" rx="12" fill="#0f172a"/>
+    <text x="16" y="32" font-size="13" font-weight="600" fill="#f8fafc">Ink</text>
+    <text x="16" y="156" font-size="22" font-weight="700" fill="#f8fafc">Sumi Black</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#f8fafc">#0f172a</text>
+  </g>
+
+  <g transform="translate(1040,120)">
+    <rect width="120" height="200" rx="12" fill="#f8fafc" stroke="#0f172a" stroke-width="1"/>
+    <text x="16" y="32" font-size="13" font-weight="600" fill="#0f172a">Paper</text>
+    <text x="16" y="156" font-size="18" font-weight="700" fill="#0f172a">Bone</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#0f172a">#f8fafc</text>
+  </g>
+
+  <g transform="translate(40,360)" font-family="ui-monospace, monospace" font-size="12" fill="#475569">
+    <text x="0" y="0">contrast vs Paper #f8fafc</text>
+    <text x="0" y="22">Peacock Blue #2563eb · 5.17:1 · AA</text>
+    <text x="0" y="40">Veridian Green #10b981 · 2.97:1 · AA-Large only</text>
+    <text x="0" y="58">Amber Reef #f59e0b · 2.69:1 · AA-Large only</text>
+    <text x="0" y="76">Ink Depths #0b1220 · 17.62:1 · AAA</text>
+    <text x="0" y="94">Sumi Black #0f172a · 16.10:1 · AAA</text>
+  </g>
+</svg>

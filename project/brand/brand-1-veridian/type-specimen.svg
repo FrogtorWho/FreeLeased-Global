@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="Inter, system-ui, sans-serif">
+  <rect width="1200" height="900" fill="#f8fafc"/>
+  <text x="40" y="56" font-size="32" font-weight="700" fill="#0f172a" font-family="'Source Serif 4', Georgia, serif">Type System</text>
+  <text x="40" y="84" font-size="14" fill="#475569">Display · UI · Body · Mono</text>
+
+  <g transform="translate(40,140)">
+    <text font-size="14" font-weight="600" fill="#2563eb">DISPLAY · Source Serif 4 Bold · -0.02em</text>
+    <text y="80" font-size="72" font-weight="700" fill="#0f172a" font-family="'Source Serif 4', Georgia, serif" letter-spacing="-1.4">Read your lease</text>
+    <text y="160" font-size="48" font-weight="700" fill="#0f172a" font-family="'Source Serif 4', Georgia, serif" letter-spacing="-1">like a lawyer</text>
+  </g>
+
+  <line x1="40" y1="340" x2="1160" y2="340" stroke="#cbd5e1" stroke-width="1"/>
+
+  <g transform="translate(40,380)">
+    <text font-size="14" font-weight="600" fill="#2563eb">UI · Inter 600 · -0.01em</text>
+    <text y="40" font-size="24" font-weight="600" fill="#0f172a">Heading 24</text>
+    <text y="80" font-size="20" font-weight="600" fill="#0f172a">Heading 20</text>
+    <text y="116" font-size="18" font-weight="600" fill="#0f172a">Heading 18</text>
+  </g>
+
+  <g transform="translate(380,380)">
+    <text font-size="14" font-weight="600" fill="#2563eb">BODY · Inter 400/500 · 1.55</text>
+    <text y="40" font-size="18" font-weight="400" fill="#0f172a">Body 18 — Your landlord must give</text>
+    <text y="64" font-size="18" font-weight="400" fill="#0f172a">24 hours' notice before entry.</text>
+    <text y="104" font-size="16" font-weight="400" fill="#475569">Body 16 — used for product body copy.</text>
+    <text y="124" font-size="14" font-weight="400" fill="#64748b">Body 14 — captions, helper text, metadata.</text>
+  </g>
+
+  <g transform="translate(820,380)">
+    <text font-size="14" font-weight="600" fill="#2563eb">MONO · JetBrains Mono · 14/13</text>
+    <text y="40" font-size="14" font-family="ui-monospace, monospace" fill="#0f172a">s.27(3)(a) LTA 1985</text>
+    <text y="64" font-size="14" font-family="ui-monospace, monospace" fill="#0f172a">BSA 2022 remediation</text>
+    <text y="88" font-size="13" font-family="ui-monospace, monospace" fill="#475569">doc_id: abc-123-def</text>
+    <text y="108" font-size="13" font-family="ui-monospace, monospace" fill="#475569">evidence: verified (3)</text>
+  </g>
+
+  <line x1="40" y1="600" x2="1160" y2="600" stroke="#cbd5e1" stroke-width="1"/>
+
+  <g transform="translate(40,640)">
+    <text font-size="14" font-weight="600" fill="#2563eb">SCALE</text>
+    <text y="40" font-size="48" font-weight="700" fill="#0f172a" font-family="'Source Serif 4', Georgia, serif">56 / 40 / 32</text>
+    <text y="76" font-size="32" font-weight="700" fill="#0f172a" font-family="'Source Serif 4', Georgia, serif">24 / 20 / 18 / 16 / 14</text>
+    <text y="108" font-size="14" fill="#475569">display: 56, 40, 32 (3 sizes) · UI: 24, 20, 18 (3 sizes) · body: 18, 16, 14 (3 sizes) · mono: 14, 13</text>
+  </g>
+</svg>

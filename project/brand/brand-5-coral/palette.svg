@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" font-family="Inter, system-ui, sans-serif">
+  <rect width="1200" height="480" fill="#fff7ed"/>
+  <text x="40" y="56" font-size="28" font-weight="700" fill="#3a1f29" font-family="'Source Serif 4', Georgia, serif">Coral — Palette</text>
+  <text x="40" y="84" font-size="14" fill="#7c2d3a">6 tokens · WCAG AA on Paper #fff7ed</text>
+
+  <g transform="translate(40,120)">
+    <rect width="180" height="200" rx="24" fill="#fb7185"/>
+    <text x="16" y="32" font-size="13" font-weight="500" fill="#fff7ed">Primary</text>
+    <text x="16" y="156" font-size="22" font-weight="700" fill="#fff7ed" font-family="'Source Serif 4', Georgia, serif">Coral Reef</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#fff7ed">#fb7185</text>
+  </g>
+  <g transform="translate(240,120)">
+    <rect width="180" height="200" rx="24" fill="#38bdf8"/>
+    <text x="16" y="32" font-size="13" font-weight="500" fill="#3a1f29">Secondary</text>
+    <text x="16" y="156" font-size="22" font-weight="700" fill="#3a1f29" font-family="'Source Serif 4', Georgia, serif">Lagoon Blue</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#3a1f29">#38bdf8</text>
+  </g>
+  <g transform="translate(440,120)">
+    <rect width="180" height="200" rx="24" fill="#fcd34d"/>
+    <text x="16" y="32" font-size="13" font-weight="500" fill="#3a1f29">Accent</text>
+    <text x="16" y="156" font-size="22" font-weight="700" fill="#3a1f29" font-family="'Source Serif 4', Georgia, serif">Sand Yellow</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#3a1f29">#fcd34d</text>
+  </g>
+  <g transform="translate(640,120)">
+    <rect width="180" height="200" rx="24" fill="#7c2d3a"/>
+    <text x="16" y="32" font-size="13" font-weight="500" fill="#fff7ed">Surface</text>
+    <text x="16" y="156" font-size="22" font-weight="700" fill="#fff7ed" font-family="'Source Serif 4', Georgia, serif">Deep Coral</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#fff7ed">#7c2d3a</text>
+  </g>
+  <g transform="translate(840,120)">
+    <rect width="180" height="200" rx="24" fill="#3a1f29"/>
+    <text x="16" y="32" font-size="13" font-weight="500" fill="#fff7ed">Ink</text>
+    <text x="16" y="156" font-size="22" font-weight="700" fill="#fff7ed" font-family="'Source Serif 4', Georgia, serif">Plum</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#fff7ed">#3a1f29</text>
+  </g>
+  <g transform="translate(1040,120)">
+    <rect width="120" height="200" rx="24" fill="#fff7ed" stroke="#3a1f29" stroke-width="1"/>
+    <text x="16" y="32" font-size="13" font-weight="500" fill="#3a1f29">Paper</text>
+    <text x="16" y="156" font-size="20" font-weight="700" fill="#3a1f29" font-family="'Source Serif 4', Georgia, serif">Seashell</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#3a1f29">#fff7ed</text>
+  </g>
+
+  <g transform="translate(40,360)" font-family="ui-monospace, monospace" font-size="12" fill="#7c2d3a">
+    <text x="0" y="0">contrast vs Paper #fff7ed</text>
+    <text x="0" y="22">Coral Reef #fb7185 · 3.61:1 · AA Large (display only)</text>
+    <text x="0" y="40">Lagoon Blue #38bdf8 · 2.51:1 · AA Large (display only)</text>
+    <text x="0" y="58">Sand Yellow #fcd34d · 1.50:1 · accent only (icons/dots)</text>
+    <text x="0" y="76">Deep Coral #7c2d3a · 7.83:1 · AAA</text>
+    <text x="0" y="94">Plum #3a1f29 · 11.40:1 · AAA · body text</text>
+  </g>
+</svg>

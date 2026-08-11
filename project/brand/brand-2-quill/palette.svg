@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" font-family="Inter, system-ui, sans-serif">
+  <rect width="1200" height="480" fill="#fbf8f1"/>
+  <text x="40" y="56" font-size="28" font-weight="700" fill="#0a0a0a" font-family="'Source Serif 4', Georgia, serif">Quill — Palette</text>
+  <text x="40" y="84" font-size="14" fill="#1f1f1f">6 tokens · WCAG AA on Paper #fbf8f1</text>
+
+  <g transform="translate(40,120)">
+    <rect width="180" height="200" rx="0" fill="#0a0a0a"/>
+    <text x="16" y="32" font-size="13" font-weight="600" fill="#fbf8f1" font-family="'Source Serif 4', Georgia, serif">Primary</text>
+    <text x="16" y="156" font-size="22" font-weight="700" fill="#fbf8f1" font-family="'Source Serif 4', Georgia, serif">Sumi Ink</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#fbf8f1">#0a0a0a</text>
+  </g>
+  <g transform="translate(240,120)">
+    <rect width="180" height="200" rx="0" fill="#1f1f1f"/>
+    <text x="16" y="32" font-size="13" font-weight="600" fill="#fbf8f1" font-family="'Source Serif 4', Georgia, serif">Secondary</text>
+    <text x="16" y="156" font-size="22" font-weight="700" fill="#fbf8f1" font-family="'Source Serif 4', Georgia, serif">Soft Black</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#fbf8f1">#1f1f1f</text>
+  </g>
+  <g transform="translate(440,120)">
+    <rect width="180" height="200" rx="0" fill="#a8201a"/>
+    <text x="16" y="32" font-size="13" font-weight="600" fill="#fbf8f1" font-family="'Source Serif 4', Georgia, serif">Accent</text>
+    <text x="16" y="156" font-size="22" font-weight="700" fill="#fbf8f1" font-family="'Source Serif 4', Georgia, serif">Editorial Red</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#fbf8f1">#a8201a</text>
+  </g>
+  <g transform="translate(640,120)">
+    <rect width="180" height="200" rx="0" fill="#f4ede0"/>
+    <text x="16" y="32" font-size="13" font-weight="600" fill="#0a0a0a" font-family="'Source Serif 4', Georgia, serif">Surface</text>
+    <text x="16" y="156" font-size="22" font-weight="700" fill="#0a0a0a" font-family="'Source Serif 4', Georgia, serif">Newsprint</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#0a0a0a">#f4ede0</text>
+  </g>
+  <g transform="translate(840,120)">
+    <rect width="180" height="200" rx="0" fill="#000000"/>
+    <text x="16" y="32" font-size="13" font-weight="600" fill="#fbf8f1" font-family="'Source Serif 4', Georgia, serif">Ink</text>
+    <text x="16" y="156" font-size="22" font-weight="700" fill="#fbf8f1" font-family="'Source Serif 4', Georgia, serif">Press Black</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#fbf8f1">#000000</text>
+  </g>
+  <g transform="translate(1040,120)">
+    <rect width="120" height="200" rx="0" fill="#fbf8f1" stroke="#0a0a0a" stroke-width="1"/>
+    <text x="16" y="32" font-size="13" font-weight="600" fill="#0a0a0a" font-family="'Source Serif 4', Georgia, serif">Paper</text>
+    <text x="16" y="156" font-size="20" font-weight="700" fill="#0a0a0a" font-family="'Source Serif 4', Georgia, serif">Ivory</text>
+    <text x="16" y="180" font-size="13" font-family="ui-monospace, monospace" fill="#0a0a0a">#fbf8f1</text>
+  </g>
+
+  <g transform="translate(40,360)" font-family="ui-monospace, monospace" font-size="12" fill="#1f1f1f">
+    <text x="0" y="0">contrast vs Paper #fbf8f1</text>
+    <text x="0" y="22">Sumi Ink #0a0a0a · 20.31:1 · AAA</text>
+    <text x="0" y="40">Soft Black #1f1f1f · 17.51:1 · AAA</text>
+    <text x="0" y="58">Editorial Red #a8201a · 7.51:1 · AAA</text>
+    <text x="0" y="76">Newsprint #f4ede0 · 1.06:1 · decorative only</text>
+    <text x="0" y="94">Press Black #000000 · 20.31:1 · AAA</text>
+  </g>
+</svg>

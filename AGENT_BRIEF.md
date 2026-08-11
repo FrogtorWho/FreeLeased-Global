@@ -5,6 +5,12 @@
 ## What FreeLeased is
 Open-source, local-first, resident-led leasehold governance platform for the Future Caribbean Global AI Buildathon (Track 9 — AI for Real Estate). Code freeze 2026-08-14, demo 2026-08-16, TRL claim: Level 4.
 
+**Deliverables shipped in Phase 1 (2026-08-11):**
+- [`project/brand/`](project/brand/README.md:1) — 5-variant brand identity pack (Veridian / Quill / Monolith / Canopy / Coral)
+- [`project/marketing/social-campaign-100.md`](project/marketing/social-campaign-100.md:1) — 30-day social campaign
+- [`project/strategy/WIN-DAY-100.md`](project/strategy/WIN-DAY-100.md:1) — bridge to 100/100
+- [`scripts/render-brand-assets.ts`](scripts/render-brand-assets.ts:1) — deterministic SVG→PNG renderer
+
 ## What you do overnight
 Three blocks, per [`project/strategy/gauntlet-loop.md`](project/strategy/gauntlet-loop.md:1):
 

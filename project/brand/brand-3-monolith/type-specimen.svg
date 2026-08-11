@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="Inter, system-ui, sans-serif">
+  <rect width="1200" height="900" fill="#ffffff"/>
+  <rect x="0" y="0" width="1200" height="64" fill="#000000"/>
+  <text x="32" y="42" font-size="18" font-weight="800" fill="#ffffff" letter-spacing="-0.4">MONOLITH · TYPE</text>
+
+  <g transform="translate(40,120)">
+    <text font-size="11" font-weight="600" fill="#1a1a1a">DISPLAY · INTER 800 · -0.04em</text>
+    <text y="80" font-size="96" font-weight="800" fill="#000000" letter-spacing="-3.8">freeleased.</text>
+    <text y="160" font-size="64" font-weight="800" fill="#000000" letter-spacing="-2.4">$0 compute. 9 jurisdictions.</text>
+  </g>
+
+  <line x1="40" y1="340" x2="1160" y2="340" stroke="#000000" stroke-width="1"/>
+
+  <g transform="translate(40,380)">
+    <text font-size="11" font-weight="600" fill="#1a1a1a">UI · INTER 600 · -0.02em</text>
+    <text y="40" font-size="24" font-weight="600" fill="#000000" letter-spacing="-0.4">Heading 24</text>
+    <text y="80" font-size="20" font-weight="600" fill="#000000" letter-spacing="-0.3">Heading 20</text>
+    <text y="116" font-size="16" font-weight="600" fill="#000000" letter-spacing="-0.2">Heading 16</text>
+  </g>
+
+  <g transform="translate(380,380)">
+    <text font-size="11" font-weight="600" fill="#1a1a1a">BODY · INTER 400 · 1.50</text>
+    <text y="40" font-size="16" font-weight="400" fill="#000000">Body 16 — Your landlord must give</text>
+    <text y="62" font-size="16" font-weight="400" fill="#000000">24 hours' notice before entry.</text>
+    <text y="96" font-size="14" font-weight="400" fill="#1a1a1a">Body 14 — product body copy, default UI text.</text>
+  </g>
+
+  <g transform="translate(820,380)">
+    <text font-size="11" font-weight="600" fill="#1a1a1a">MONO · JETBRAINS · 14/13</text>
+    <text y="40" font-size="14" font-family="ui-monospace, monospace" fill="#000000">s.27(3)(a) LTA 1985</text>
+    <text y="62" font-size="14" font-family="ui-monospace, monospace" fill="#000000">BSA 2022 remediation</text>
+    <text y="84" font-size="13" font-family="ui-monospace, monospace" fill="#1a1a1a">doc_id: abc-123-def</text>
+    <text y="104" font-size="13" font-family="ui-monospace, monospace" fill="#1a1a1a">evidence: verified (3)</text>
+  </g>
+
+  <line x1="40" y1="600" x2="1160" y2="600" stroke="#000000" stroke-width="1"/>
+
+  <g transform="translate(40,640)">
+    <text font-size="11" font-weight="600" fill="#1a1a1a">SCALE</text>
+    <text y="40" font-size="48" font-weight="800" fill="#000000" letter-spacing="-2">96 / 64 / 48 / 32</text>
+    <text y="76" font-size="32" font-weight="800" fill="#000000" letter-spacing="-1.2">24 / 20 / 16 / 14</text>
+    <text y="108" font-size="14" fill="#1a1a1a">display: 96, 64, 48, 32 (4 sizes) · UI: 24, 20, 16 (3 sizes) · body: 16, 14 (2 sizes) · mono: 14, 13</text>
+  </g>
+
+  <g transform="translate(800,640)">
+    <rect width="48" height="48" fill="#facc15"/>
+    <text y="76" font-size="11" fill="#1a1a1a" font-family="ui-monospace, monospace">signal yellow · accent only</text>
+  </g>
+</svg>

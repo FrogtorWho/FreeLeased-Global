@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="Inter, system-ui, sans-serif">
+  <rect width="1200" height="900" fill="#faf6ee"/>
+  <text x="40" y="56" font-size="32" font-weight="600" fill="#0e3b2e" font-family="'Source Serif 4', Georgia, serif">Type System</text>
+  <text x="40" y="84" font-size="14" font-style="italic" fill="#4a5d52">Fraunces · Inter · JetBrains Mono</text>
+
+  <g transform="translate(40,140)">
+    <text font-size="14" font-weight="600" fill="#c2410c">DISPLAY · FRAUNCES 600 · -0.02em</text>
+    <text y="80" font-size="72" font-weight="600" fill="#0e3b2e" font-family="'Source Serif 4', Georgia, serif" letter-spacing="-1.4">Built for the place</text>
+    <text y="160" font-size="48" font-weight="600" fill="#0e3b2e" font-family="'Source Serif 4', Georgia, serif" letter-spacing="-1">it lives.</text>
+  </g>
+
+  <line x1="40" y1="340" x2="1160" y2="340" stroke="#4a5d52" stroke-width="1" stroke-opacity="0.4"/>
+
+  <g transform="translate(40,380)">
+    <text font-size="14" font-weight="600" fill="#c2410c">SUBHEAD · FRAUNCES 500</text>
+    <text y="40" font-size="24" font-weight="500" fill="#0e3b2e" font-family="'Source Serif 4', Georgia, serif">A note on provenance, and why we cite.</text>
+    <text y="80" font-size="20" font-weight="500" fill="#0e3b2e" font-family="'Source Serif 4', Georgia, serif">A short letter to a leaseholder.</text>
+  </g>
+
+  <g transform="translate(580,380)">
+    <text font-size="14" font-weight="600" fill="#c2410c">BODY · INTER · 1.60</text>
+    <text y="40" font-size="18" fill="#0e3b2e">Your landlord must give 24 hours'</text>
+    <text y="64" font-size="18" fill="#0e3b2e">written notice before entering the</text>
+    <text y="88" font-size="18" fill="#0e3b2e">demised premises. We cite the source</text>
+    <text y="112" font-size="18" fill="#0e3b2e">so you can verify.</text>
+    <text y="148" font-size="14" fill="#4a5d52">— s.27(3)(a) LTA 1985, as amended.</text>
+  </g>
+
+  <line x1="40" y1="600" x2="1160" y2="600" stroke="#4a5d52" stroke-width="1" stroke-opacity="0.4"/>
+
+  <g transform="translate(40,640)">
+    <text font-size="14" font-weight="600" fill="#c2410c">UI · INTER · 18/16/14</text>
+    <text y="40" font-size="18" font-weight="500" fill="#0e3b2e">Heading 18</text>
+    <text y="68" font-size="16" font-weight="500" fill="#0e3b2e">Heading 16</text>
+    <text y="96" font-size="14" font-weight="400" fill="#4a5d52">Body 14 — captions, helper, metadata</text>
+  </g>
+
+  <g transform="translate(700,640)">
+    <text font-size="14" font-weight="600" fill="#c2410c">MONO · JETBRAINS · 14</text>
+    <text y="40" font-size="14" font-family="ui-monospace, monospace" fill="#0e3b2e">s.27(3)(a) LTA 1985</text>
+    <text y="64" font-size="14" font-family="ui-monospace, monospace" fill="#0e3b2e">doc_id: abc-123-def</text>
+    <text y="88" font-size="14" font-family="ui-monospace, monospace" fill="#4a5d52">evidence: verified (3)</text>
+  </g>
+</svg>

@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="Inter, system-ui, sans-serif">
+  <rect width="1200" height="900" fill="#0b1220"/>
+  <rect x="0" y="0" width="240" height="900" fill="#000000"/>
+  <text x="24" y="40" font-size="16" font-weight="700" fill="#f8fafc" font-family="'Source Serif 4', Georgia, serif">FreeLeased</text>
+
+  <g transform="translate(16,80)" font-size="13" fill="#94a3b8">
+    <rect x="0" y="0" width="208" height="36" rx="6" fill="#0b1220"/>
+    <text x="16" y="22" fill="#f8fafc" font-weight="600">Overview</text>
+    <text x="16" y="60">Document Hub</text>
+    <text x="16" y="84">Dossiers</text>
+    <text x="16" y="108">Sign-off Queue</text>
+    <text x="16" y="132">Reconciliation</text>
+    <text x="16" y="156">Knowledge Graph</text>
+    <text x="16" y="180">Fairness Engine</text>
+    <text x="16" y="204">Compliance</text>
+  </g>
+
+  <g transform="translate(272,32)">
+    <text font-size="24" font-weight="700" fill="#f8fafc" font-family="'Source Serif 4', Georgia, serif">Overview</text>
+    <text y="28" font-size="13" fill="#94a3b8">3 pending sign-offs · 12 dossiers · 1 reconciliation cycle</text>
+  </g>
+
+  <g transform="translate(272,96)">
+    <rect width="280" height="140" rx="12" fill="#0f172a"/>
+    <text x="20" y="32" font-size="11" font-weight="600" fill="#10b981">VERIFIED DOSSIERS</text>
+    <text x="20" y="84" font-size="44" font-weight="700" fill="#f8fafc">142</text>
+    <text x="20" y="112" font-size="12" fill="#94a3b8">+12 in last 24h</text>
+  </g>
+
+  <g transform="translate(572,96)">
+    <rect width="280" height="140" rx="12" fill="#0f172a"/>
+    <text x="20" y="32" font-size="11" font-weight="600" fill="#f59e0b">PENDING SIGN-OFF</text>
+    <text x="20" y="84" font-size="44" font-weight="700" fill="#f8fafc">3</text>
+    <text x="20" y="112" font-size="12" fill="#94a3b8">2 urgent · 1 routine</text>
+  </g>
+
+  <g transform="translate(872,96)">
+    <rect width="280" height="140" rx="12" fill="#0f172a"/>
+    <text x="20" y="32" font-size="11" font-weight="600" fill="#2563eb">STATUTES CITED</text>
+    <text x="20" y="84" font-size="44" font-weight="700" fill="#f8fafc">40+</text>
+    <text x="20" y="112" font-size="12" fill="#94a3b8">9 jurisdictions</text>
+  </g>
+
+  <g transform="translate(272,264)">
+    <rect width="880" height="280" rx="12" fill="#0f172a"/>
+    <text x="20" y="32" font-size="14" font-weight="600" fill="#f8fafc">Recent activity</text>
+    <line x1="20" y1="48" x2="860" y2="48" stroke="#1e293b"/>
+    <g transform="translate(20,68)" font-size="12" fill="#cbd5e1">
+      <text font-family="ui-monospace, monospace" fill="#10b981">02:14</text>
+      <text x="60">Dossier #abc123 verified by 3 sources</text>
+      <text x="600" fill="#64748b">UK · s.20 LTA 1985</text>
+      <text y="32" font-family="ui-monospace, monospace" fill="#f59e0b">02:09</text>
+      <text x="60" y="32">Sign-off: lease clause v2 approved</text>
+      <text x="600" y="32" fill="#64748b">Human · 2m 14s</text>
+      <text y="64" font-family="ui-monospace, monospace" fill="#2563eb">01:58</text>
+      <text x="60" y="64">Reconciliation cycle 10/10 PASS</text>
+      <text x="600" y="64" fill="#64748b">doc-vs-code · 0 drift</text>
+      <text y="96" font-family="ui-monospace, monospace" fill="#10b981">01:44</text>
+      <text x="60" y="96">Knowledge graph: 12 patterns resolved</text>
+      <text x="600" y="96" fill="#64748b">multi-agent · 4 dossiers</text>
+      <text y="128" font-family="ui-monospace, monospace" fill="#f59e0b">01:31</text>
+      <text x="60" y="128">Sign-off: 2 clauses rejected</text>
+      <text x="600" y="128" fill="#64748b">Human · statute mis-cited</text>
+    </g>
+  </g>
+
+  <g transform="translate(272,576)">
+    <rect width="430" height="280" rx="12" fill="#0f172a"/>
+    <text x="20" y="32" font-size="14" font-weight="600" fill="#f8fafc">Sign-off queue</text>
+    <g transform="translate(20,52)" font-size="12" fill="#cbd5e1">
+      <rect width="390" height="56" rx="6" fill="#1e293b"/>
+      <text x="12" y="22" fill="#f8fafc">URGENT · clause 4.b · entry-without-notice</text>
+      <text x="12" y="42" fill="#94a3b8">s.27(3)(a) LTA 1985 · evidence: verified (3)</text>
+      <rect y="68" width="390" height="56" rx="6" fill="#1e293b"/>
+      <text x="12" y="90" fill="#f8fafc">URGENT · clause 11 · forfeiture broad</text>
+      <text x="12" y="110" fill="#94a3b8">s.167 CLRA 2002 · evidence: verified (2)</text>
+      <rect y="136" width="390" height="56" rx="6" fill="#1e293b"/>
+      <text x="12" y="158" fill="#f8fafc">ROUTINE · clause 7 · deposit cap</text>
+      <text x="12" y="178" fill="#94a3b8">s.21 HTA 1988 · evidence: weak (1)</text>
+    </g>
+  </g>
+
+  <g transform="translate(722,576)">
+    <rect width="430" height="280" rx="12" fill="#0f172a"/>
+    <text x="20" y="32" font-size="14" font-weight="600" fill="#f8fafc">Statute coverage</text>
+    <g transform="translate(20,52)" font-size="12" fill="#cbd5e1">
+      <text x="0" y="14">UK</text>
+      <rect x="40" y="2" width="280" height="14" rx="3" fill="#1e293b"/>
+      <rect x="40" y="2" width="240" height="14" rx="3" fill="#10b981"/>
+      <text x="330" fill="#94a3b8">22</text>
+      <text x="0" y="42">BB</text>
+      <rect x="40" y="30" width="280" height="14" rx="3" fill="#1e293b"/>
+      <rect x="40" y="30" width="100" height="14" rx="3" fill="#10b981"/>
+      <text x="330" y="42" fill="#94a3b8">9</text>
+      <text x="0" y="70">JM</text>
+      <rect x="40" y="58" width="280" height="14" rx="3" fill="#1e293b"/>
+      <rect x="40" y="58" width="80" height="14" rx="3" fill="#10b981"/>
+      <text x="330" y="70" fill="#94a3b8">6</text>
+      <text x="0" y="98">KY</text>
+      <rect x="40" y="86" width="280" height="14" rx="3" fill="#1e293b"/>
+      <rect x="40" y="86" width="60" height="14" rx="3" fill="#10b981"/>
+      <text x="330" y="98" fill="#94a3b8">4</text>
+      <text x="0" y="126" fill="#94a3b8">+ TT · GY · BZ · BS · BVI · roadmap</text>
+    </g>
+  </g>
+</svg>

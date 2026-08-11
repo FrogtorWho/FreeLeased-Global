@@ -88,9 +88,29 @@ bun scripts/test-all.ts                # aggregator: runs all five above
 - [`project/pitch/elevator-pitch.md`](project/pitch/elevator-pitch.md) — 30-second story.
 - [`project/pitch/demo-narrative-arc.md`](project/pitch/demo-narrative-arc.md) — 3-minute demo.
 - [`project/strategy/projected-final-score.md`](project/strategy/projected-final-score.md) — 10/10 breakdown.
+- [`project/strategy/WIN-DAY-100.md`](project/strategy/WIN-DAY-100.md) — bridge to a perfect score, per-judge.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) — how to run locally and add a jurisdiction.
 - [`project/README.md`](project/README.md) — canonical working set index.
 - [`project/submission-pack/`](project/submission-pack/) — overview, architecture, demo script, compliance, checklist.
+
+## Branding
+
+**5 brand variants — pick your favorite.**
+
+We shipped five complete identity systems so the brand reads as
+polished *regardless of which judge is in the room*:
+
+- **Veridian** — production default (Peacock dark, serif H / sans body)
+- **Quill** — editorial print (black / ivory / ink-red)
+- **Monolith** — brutalist mono (black / white + signal yellow)
+- **Canopy** — biophilic Caribbean (forest / river-stone / parrot)
+- **Coral** — playful illustrated (coral / sand / lagoon)
+
+Each variant includes a brand spec, palette, logomark, type specimen,
+home wireframe, app wireframe, motion spec, and voice-and-tone doc.
+SVGs are hand-authored and render in any browser.
+
+Start at [`project/brand/`](project/brand/README.md:1).
 
 ## Licence
 

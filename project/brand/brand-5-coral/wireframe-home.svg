@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="Inter, system-ui, sans-serif">
+  <rect width="1200" height="900" fill="#fff7ed"/>
+
+  <rect x="0" y="0" width="1200" height="64" fill="#fb7185"/>
+  <circle cx="40" cy="32" r="20" fill="#fff7ed"/>
+  <ellipse cx="38" cy="34" rx="11" ry="8" fill="#fb7185"/>
+  <path d="M49 30 L56 26 L56 40 L49 38 Z" fill="#fb7185"/>
+  <circle cx="34" cy="32" r="2" fill="#3a1f29"/>
+  <text x="80" y="40" font-size="18" font-weight="700" fill="#fff7ed" font-family="'Source Serif 4', Georgia, serif">FreeLeased</text>
+  <text x="220" y="40" font-size="14" fill="#fff7ed">Product</text>
+  <text x="280" y="40" font-size="14" fill="#fff7ed">Docs</text>
+  <text x="330" y="40" font-size="14" fill="#fff7ed">Pitch</text>
+  <text x="380" y="40" font-size="14" fill="#fff7ed">Brand</text>
+  <rect x="1040" y="20" width="120" height="32" rx="16" fill="#fff7ed"/>
+  <text x="1100" y="40" font-size="13" font-weight="600" fill="#3a1f29" text-anchor="middle">Try the demo</text>
+
+  <g transform="translate(80,140)">
+    <text font-size="14" font-weight="600" fill="#fb7185">FRIENDLY · OPEN-SOURCE · FOR EVERYONE</text>
+    <text y="120" font-size="96" font-weight="700" fill="#3a1f29" font-family="'Source Serif 4', Georgia, serif" letter-spacing="-2.8">Reading your</text>
+    <text y="220" font-size="96" font-weight="700" fill="#3a1f29" font-family="'Source Serif 4', Georgia, serif" letter-spacing="-2.8">lease, together.</text>
+    <path d="M0 250 Q200 244 460 250 Q620 256 800 248" stroke="#fb7185" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <text y="300" font-size="20" fill="#7c2d3a">Provenance-tracked lease intelligence. $0 compute.</text>
+    <text y="328" font-size="20" fill="#7c2d3a">9 jurisdictions. 40+ statutes. Every claim cited.</text>
+
+    <rect x="0" y="360" width="200" height="56" rx="28" fill="#fb7185"/>
+    <text x="100" y="394" font-size="14" font-weight="600" fill="#fff7ed" text-anchor="middle">Try the demo</text>
+    <rect x="220" y="360" width="200" height="56" rx="28" fill="none" stroke="#38bdf8" stroke-width="2"/>
+    <text x="320" y="394" font-size="14" font-weight="600" fill="#38bdf8" text-anchor="middle">Read the pitch</text>
+  </g>
+
+  <g transform="translate(80,580)">
+    <rect width="320" height="240" rx="24" fill="#fff7ed" stroke="#3a1f29" stroke-width="1" stroke-opacity="0.12"/>
+    <circle cx="48" cy="48" r="20" fill="#fb7185"/>
+    <ellipse cx="46" cy="50" rx="11" ry="8" fill="#fff7ed"/>
+    <path d="M57 46 L64 42 L64 56 L57 54 Z" fill="#fff7ed"/>
+    <circle cx="42" cy="48" r="2" fill="#3a1f29"/>
+    <text x="84" y="56" font-size="20" font-weight="700" fill="#3a1f29" font-family="'Source Serif 4', Georgia, serif">Lease fairness</text>
+    <text x="20" y="120" font-size="14" fill="#3a1f29">Clauses flagged by statute,</text>
+    <text x="20" y="140" font-size="14" fill="#3a1f29">never by profile.</text>
+    <line x1="20" y1="170" x2="300" y2="170" stroke="#3a1f29" stroke-opacity="0.08"/>
+    <text x="20" y="196" font-size="12" font-family="ui-monospace, monospace" fill="#7c2d3a">s.27(3)(a) LTA 1985</text>
+    <text x="20" y="216" font-size="12" font-family="ui-monospace, monospace" fill="#7c2d3a">evidence: verified (3)</text>
+  </g>
+
+  <g transform="translate(440,580)">
+    <rect width="320" height="240" rx="24" fill="#fff7ed" stroke="#3a1f29" stroke-width="1" stroke-opacity="0.12"/>
+    <circle cx="48" cy="48" r="20" fill="#38bdf8"/>
+    <ellipse cx="46" cy="50" rx="11" ry="8" fill="#fff7ed"/>
+    <path d="M57 46 L64 42 L64 56 L57 54 Z" fill="#fff7ed"/>
+    <circle cx="42" cy="48" r="2" fill="#3a1f29"/>
+    <text x="84" y="56" font-size="20" font-weight="700" fill="#3a1f29" font-family="'Source Serif 4', Georgia, serif">HITL sign-off</text>
+    <text x="20" y="120" font-size="14" fill="#3a1f29">Every resident-facing claim</text>
+    <text x="20" y="140" font-size="14" fill="#3a1f29">approved by a human.</text>
+    <line x1="20" y1="170" x2="300" y2="170" stroke="#3a1f29" stroke-opacity="0.08"/>
+    <text x="20" y="196" font-size="12" font-family="ui-monospace, monospace" fill="#7c2d3a">urgency: 3 pending</text>
+    <text x="20" y="216" font-size="12" font-family="ui-monospace, monospace" fill="#7c2d3a">avg decision: 2m 14s</text>
+  </g>
+
+  <g transform="translate(800,580)">
+    <rect width="320" height="240" rx="24" fill="#fff7ed" stroke="#3a1f29" stroke-width="1" stroke-opacity="0.12"/>
+    <circle cx="48" cy="48" r="20" fill="#fcd34d"/>
+    <ellipse cx="46" cy="50" rx="11" ry="8" fill="#fff7ed"/>
+    <path d="M57 46 L64 42 L64 56 L57 54 Z" fill="#fff7ed"/>
+    <circle cx="42" cy="48" r="2" fill="#3a1f29"/>
+    <text x="84" y="56" font-size="20" font-weight="700" fill="#3a1f29" font-family="'Source Serif 4', Georgia, serif">Provenance native</text>
+    <text x="20" y="120" font-size="14" fill="#3a1f29">Every claim carries the source</text>
+    <text x="20" y="140" font-size="14" fill="#3a1f29">it came from. Always.</text>
+    <line x1="20" y1="170" x2="300" y2="170" stroke="#3a1f29" stroke-opacity="0.08"/>
+    <text x="20" y="196" font-size="12" font-family="ui-monospace, monospace" fill="#7c2d3a">40+ verified statutes</text>
+    <text x="20" y="216" font-size="12" font-family="ui-monospace, monospace" fill="#7c2d3a">9 jurisdictions</text>
+  </g>
+
+  <text x="600" y="876" font-size="11" font-style="italic" fill="#7c2d3a" text-anchor="middle">wireframe-home.svg · FreeLeased landing · Coral theme</text>
+</svg>

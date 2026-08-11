@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" font-family="'Source Serif 4', Georgia, serif">
+  <rect x="0" y="0" width="800" height="200" fill="#fff7ed"/>
+  <rect x="0" y="200" width="800" height="200" fill="#7c2d3a"/>
+
+  <g transform="translate(60,60)">
+    <circle cx="40" cy="40" r="40" fill="#fb7185"/>
+    <ellipse cx="36" cy="42" rx="22" ry="16" fill="#fff7ed"/>
+    <path d="M58 36 L72 30 L72 50 L58 46 Z" fill="#fff7ed"/>
+    <circle cx="28" cy="38" r="3" fill="#3a1f29"/>
+    <text x="100" y="58" font-size="56" font-weight="700" fill="#3a1f29">FreeLeased</text>
+    <path d="M100 70 Q200 64 320 70 Q420 76 540 68" stroke="#fb7185" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </g>
+  <text x="60" y="180" font-family="Inter, system-ui, sans-serif" font-size="13" font-style="italic" fill="#7c2d3a">light theme · Plum wordmark · Coral Reef clownfish mark</text>
+
+  <g transform="translate(60,260)">
+    <circle cx="40" cy="40" r="40" fill="#fb7185"/>
+    <ellipse cx="36" cy="42" rx="22" ry="16" fill="#7c2d3a"/>
+    <path d="M58 36 L72 30 L72 50 L58 46 Z" fill="#7c2d3a"/>
+    <circle cx="28" cy="38" r="3" fill="#fff7ed"/>
+    <text x="100" y="58" font-size="56" font-weight="700" fill="#fff7ed">FreeLeased</text>
+    <path d="M100 70 Q200 64 320 70 Q420 76 540 68" stroke="#fb7185" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </g>
+  <text x="60" y="380" font-family="Inter, system-ui, sans-serif" font-size="13" font-style="italic" fill="#fcd34d">dark theme · Seashell wordmark · Deep Coral fish outline</text>
+</svg>

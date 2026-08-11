@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" font-family="'Source Serif 4', Georgia, serif">
+  <rect x="0" y="0" width="800" height="200" fill="#faf6ee"/>
+  <rect x="0" y="200" width="800" height="200" fill="#1c2e25"/>
+
+  <g transform="translate(60,60)">
+    <circle cx="40" cy="40" r="40" fill="#0e3b2e"/>
+    <circle cx="56" cy="32" r="6" fill="#c2410c"/>
+    <path d="M40 64 C28 64 16 56 14 44 C16 50 24 56 32 54 C24 50 22 40 28 32 C32 38 38 42 44 42 C40 38 38 32 42 26 C46 30 50 36 52 42 C56 38 62 36 66 38 C62 44 56 48 50 48 C56 52 60 58 58 64 C52 64 46 60 42 56 C40 60 40 64 40 64 Z" fill="#faf6ee"/>
+    <text x="100" y="60" font-size="56" font-weight="600" fill="#1a2e25">FreeLeased</text>
+  </g>
+  <text x="60" y="180" font-family="Inter, system-ui, sans-serif" font-size="13" font-style="italic" fill="#4a5d52">light theme · Forest Floor wordmark · Deep Forest mark</text>
+
+  <g transform="translate(60,260)">
+    <circle cx="40" cy="40" r="40" fill="#0e3b2e"/>
+    <circle cx="56" cy="32" r="6" fill="#c2410c"/>
+    <path d="M40 64 C28 64 16 56 14 44 C16 50 24 56 32 54 C24 50 22 40 28 32 C32 38 38 42 44 42 C40 38 38 32 42 26 C46 30 50 36 52 42 C56 38 62 36 66 38 C62 44 56 48 50 48 C56 52 60 58 58 64 C52 64 46 60 42 56 C40 60 40 64 40 64 Z" fill="#faf6ee"/>
+    <text x="100" y="60" font-size="56" font-weight="600" fill="#faf6ee">FreeLeased</text>
+  </g>
+  <text x="60" y="380" font-family="Inter, system-ui, sans-serif" font-size="13" font-style="italic" fill="#94a3b8">dark theme · Linen wordmark · Moss Shadow mark</text>
+</svg>

@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="Inter, system-ui, sans-serif">
+  <rect width="1200" height="900" fill="#ffffff"/>
+
+  <rect x="0" y="0" width="240" height="900" fill="#000000"/>
+  <text x="24" y="40" font-size="16" font-weight="800" fill="#ffffff" letter-spacing="-0.4">freeleased</text>
+  <line x1="0" y1="64" x2="240" y2="64" stroke="#ffffff" stroke-width="1"/>
+
+  <g transform="translate(16,84)" font-size="13" fill="#ffffff">
+    <rect x="0" y="0" width="208" height="32" fill="#facc15"/>
+    <text x="12" y="20" fill="#000000" font-weight="700">▸ OVERVIEW</text>
+    <text x="12" y="64" fill="#ffffff">DOCUMENT HUB</text>
+    <text x="12" y="92" fill="#ffffff">DOSSIERS</text>
+    <text x="12" y="120" fill="#ffffff">SIGN-OFF QUEUE</text>
+    <text x="12" y="148" fill="#ffffff">RECONCILIATION</text>
+    <text x="12" y="176" fill="#ffffff">KNOWLEDGE GRAPH</text>
+    <text x="12" y="204" fill="#ffffff">FAIRNESS ENGINE</text>
+    <text x="12" y="232" fill="#ffffff">COMPLIANCE</text>
+  </g>
+
+  <rect x="240" y="0" width="960" height="64" fill="#ffffff" stroke="#000000" stroke-width="1"/>
+  <text x="264" y="40" font-size="14" font-weight="800" fill="#000000" letter-spacing="-0.4">OVERVIEW</text>
+  <text x="1176" y="40" font-size="12" font-family="ui-monospace, monospace" fill="#1a1a1a" text-anchor="end">02:14 UTC · v0.9</text>
+
+  <g transform="translate(264,96)">
+    <rect width="280" height="120" fill="none" stroke="#000000" stroke-width="2"/>
+    <text x="16" y="24" font-size="11" font-weight="700" fill="#000000">[01] DOSSIERS · VERIFIED</text>
+    <text x="16" y="76" font-size="48" font-weight="800" fill="#000000" letter-spacing="-2">142</text>
+    <text x="16" y="100" font-size="12" font-family="ui-monospace, monospace" fill="#1a1a1a">+12 / 24h</text>
+  </g>
+  <g transform="translate(560,96)">
+    <rect width="280" height="120" fill="none" stroke="#000000" stroke-width="2"/>
+    <rect x="252" y="12" width="16" height="16" fill="#facc15"/>
+    <text x="16" y="24" font-size="11" font-weight="700" fill="#000000">[02] SIGN-OFF · PENDING</text>
+    <text x="16" y="76" font-size="48" font-weight="800" fill="#000000" letter-spacing="-2">3</text>
+    <text x="16" y="100" font-size="12" font-family="ui-monospace, monospace" fill="#1a1a1a">2 urgent · 1 routine</text>
+  </g>
+  <g transform="translate(856,96)">
+    <rect width="280" height="120" fill="none" stroke="#000000" stroke-width="2"/>
+    <text x="16" y="24" font-size="11" font-weight="700" fill="#000000">[03] STATUTES</text>
+    <text x="16" y="76" font-size="48" font-weight="800" fill="#000000" letter-spacing="-2">40+</text>
+    <text x="16" y="100" font-size="12" font-family="ui-monospace, monospace" fill="#1a1a1a">9 jurisdictions</text>
+  </g>
+
+  <line x1="264" y1="240" x2="1176" y2="240" stroke="#000000" stroke-width="1"/>
+
+  <g transform="translate(264,272)">
+    <text font-size="11" font-weight="700" fill="#000000">RECENT ACTIVITY · STREAM</text>
+    <line x1="0" y1="14" x2="912" y2="14" stroke="#000000"/>
+
+    <g font-size="13" fill="#000000">
+      <text y="44" font-family="ui-monospace, monospace" font-size="12" fill="#1a1a1a">02:14</text>
+      <text x="60" y="44">DOSSIER #abc123 VERIFIED · 3 SOURCES</text>
+      <text x="800" y="44" text-anchor="end" font-family="ui-monospace, monospace" font-size="12" fill="#1a1a1a">UK · s.20 LTA 1985</text>
+      <line x1="0" y1="64" x2="912" y2="64" stroke="#e5e5e5"/>
+
+      <text y="92" font-family="ui-monospace, monospace" font-size="12" fill="#1a1a1a">02:09</text>
+      <text x="60" y="92">SIGN-OFF FILED · CLAUSE v2 APPROVED</text>
+      <text x="800" y="92" text-anchor="end" font-family="ui-monospace, monospace" font-size="12" fill="#1a1a1a">HUMAN · 2m 14s</text>
+      <line x1="0" y1="112" x2="912" y2="112" stroke="#e5e5e5"/>
+
+      <text y="140" font-family="ui-monospace, monospace" font-size="12" fill="#1a1a1a">01:58</text>
+      <text x="60" y="140">RECONCILIATION CYCLE · 10/10 PASS</text>
+      <text x="800" y="140" text-anchor="end" font-family="ui-monospace, monospace" font-size="12" fill="#1a1a1a">DOC-VS-CODE · 0 DRIFT</text>
+      <line x1="0" y1="160" x2="912" y2="160" stroke="#e5e5e5"/>
+
+      <text y="188" font-family="ui-monospace, monospace" font-size="12" fill="#1a1a1a">01:44</text>
+      <text x="60" y="188">KNOWLEDGE GRAPH · 12 PATTERNS RESOLVED</text>
+      <text x="800" y="188" text-anchor="end" font-family="ui-monospace, monospace" font-size="12" fill="#1a1a1a">MULTI-AGENT · 4</text>
+      <line x1="0" y1="208" x2="912" y2="208" stroke="#e5e5e5"/>
+
+      <text y="236" font-family="ui-monospace, monospace" font-size="12" fill="#1a1a1a">01:31</text>
+      <text x="60" y="236">SIGN-OFF FILED · 2 CLAUSES REJECTED</text>
+      <text x="800" y="236" text-anchor="end" font-family="ui-monospace, monospace" font-size="12" fill="#1a1a1a">STATUTE MIS-CITED</text>
+    </g>
+  </g>
+
+  <line x1="264" y1="560" x2="1176" y2="560" stroke="#000000" stroke-width="1"/>
+
+  <g transform="translate(264,592)">
+    <text font-size="11" font-weight="700" fill="#000000">SIGN-OFF QUEUE</text>
+    <line x1="0" y1="14" x2="912" y2="14" stroke="#000000"/>
+
+    <g font-size="13" fill="#000000">
+      <rect x="0" y="32" width="912" height="56" fill="none" stroke="#000000" stroke-width="1"/>
+      <rect x="892" y="44" width="16" height="16" fill="#facc15"/>
+      <text x="12" y="56" font-weight="700">URGENT · CLAUSE 4.b · ENTRY-WITHOUT-NOTICE</text>
+      <text x="12" y="76" font-family="ui-monospace, monospace" font-size="11" fill="#1a1a1a">s.27(3)(a) LTA 1985 · evidence: verified (3)</text>
+
+      <rect x="0" y="100" width="912" height="56" fill="none" stroke="#000000" stroke-width="1"/>
+      <rect x="892" y="112" width="16" height="16" fill="#facc15"/>
+      <text x="12" y="124" font-weight="700">URGENT · CLAUSE 11 · FORFEITURE BROAD</text>
+      <text x="12" y="144" font-family="ui-monospace, monospace" font-size="11" fill="#1a1a1a">s.167 CLRA 2002 · evidence: verified (2)</text>
+
+      <rect x="0" y="168" width="912" height="56" fill="none" stroke="#000000" stroke-width="1"/>
+      <text x="12" y="192" font-weight="700">ROUTINE · CLAUSE 7 · DEPOSIT CAP</text>
+      <text x="12" y="212" font-family="ui-monospace, monospace" font-size="11" fill="#1a1a1a">s.21 HTA 1988 · evidence: weak (1)</text>
+    </g>
+  </g>
+
+  <line x1="0" y1="876" x2="1200" y2="876" stroke="#000000"/>
+  <text x="32" y="894" font-size="11" font-family="ui-monospace, monospace" fill="#1a1a1a">freeleased · v0.9 · 02:14 UTC · queue 3 pending</text>
+  <text x="1168" y="894" font-size="11" font-family="ui-monospace, monospace" fill="#1a1a1a" text-anchor="end">$0 compute · 0 drift · 10/10 PASS</text>
+</svg>

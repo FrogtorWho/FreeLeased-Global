@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="Inter, system-ui, sans-serif">
+  <rect width="1200" height="900" fill="#1c2e25"/>
+
+  <rect x="0" y="0" width="240" height="900" fill="#0e3b2e"/>
+  <circle cx="40" cy="36" r="20" fill="#faf6ee"/>
+  <path d="M40 48 C32 48 24 42 22 34 C24 38 30 42 36 40 C30 38 28 30 32 24 C36 28 40 30 44 30 C42 26 42 22 46 18 C48 22 50 26 52 30 C54 28 58 28 60 28 C58 32 54 34 50 34 C54 36 56 40 54 44 C50 44 46 42 44 38 C42 42 40 48 40 48 Z" fill="#0e3b2e"/>
+  <text x="76" y="44" font-size="16" font-weight="600" fill="#faf6ee" font-family="'Source Serif 4', Georgia, serif">FreeLeased</text>
+
+  <g transform="translate(16,80)" font-size="13" fill="#c5d3c5">
+    <rect x="0" y="0" width="208" height="36" rx="18" fill="#c2410c"/>
+    <text x="16" y="22" fill="#faf6ee" font-weight="600">▸ Overview</text>
+    <text x="16" y="60">Document Hub</text>
+    <text x="16" y="84">Dossiers</text>
+    <text x="16" y="108">Sign-off Queue</text>
+    <text x="16" y="132">Reconciliation</text>
+    <text x="16" y="156">Knowledge Graph</text>
+    <text x="16" y="180">Fairness Engine</text>
+    <text x="16" y="204">Compliance</text>
+  </g>
+
+  <g transform="translate(272,32)">
+    <text font-size="11" font-weight="600" fill="#c2410c">OVERVIEW · THE GARDEN, TODAY</text>
+    <text y="48" font-size="32" font-weight="600" fill="#faf6ee" font-family="'Source Serif 4', Georgia, serif">A quiet morning.</text>
+    <text y="76" font-size="14" font-style="italic" fill="#c5d3c5">Three pending sign-offs · twelve dossiers · one reconciliation cycle.</text>
+  </g>
+
+  <g transform="translate(272,128)">
+    <rect width="280" height="140" rx="16" fill="#0e3b2e"/>
+    <text x="20" y="32" font-size="11" font-weight="600" fill="#c2410c">VERIFIED DOSSIERS</text>
+    <text x="20" y="84" font-size="48" font-weight="600" fill="#faf6ee" font-family="'Source Serif 4', Georgia, serif">142</text>
+    <text x="20" y="112" font-size="12" fill="#c5d3c5">+12 in last 24 hours</text>
+  </g>
+
+  <g transform="translate(572,128)">
+    <rect width="280" height="140" rx="16" fill="#0e3b2e"/>
+    <text x="20" y="32" font-size="11" font-weight="600" fill="#c2410c">PENDING SIGN-OFF</text>
+    <text x="20" y="84" font-size="48" font-weight="600" fill="#faf6ee" font-family="'Source Serif 4', Georgia, serif">3</text>
+    <text x="20" y="112" font-size="12" fill="#c5d3c5">two urgent · one routine</text>
+  </g>
+
+  <g transform="translate(872,128)">
+    <rect width="280" height="140" rx="16" fill="#0e3b2e"/>
+    <text x="20" y="32" font-size="11" font-weight="600" fill="#c2410c">STATUTES CITED</text>
+    <text x="20" y="84" font-size="48" font-weight="600" fill="#faf6ee" font-family="'Source Serif 4', Georgia, serif">40+</text>
+    <text x="20" y="112" font-size="12" fill="#c5d3c5">9 jurisdictions</text>
+  </g>
+
+  <g transform="translate(272,296)">
+    <rect width="880" height="280" rx="16" fill="#0e3b2e"/>
+    <text x="20" y="32" font-size="14" font-weight="600" fill="#faf6ee" font-family="'Source Serif 4', Georgia, serif">Recent activity</text>
+    <line x1="20" y1="48" x2="860" y2="48" stroke="#4a5d52" stroke-opacity="0.4"/>
+    <g transform="translate(20,68)" font-size="12" fill="#c5d3c5">
+      <text font-family="ui-monospace, monospace" fill="#c2410c">02:14</text>
+      <text x="60">Dossier #abc123 verified by three sources.</text>
+      <text x="600" fill="#94a3b8">UK · s.20 LTA 1985</text>
+      <text y="32" font-family="ui-monospace, monospace" fill="#c2410c">02:09</text>
+      <text x="60" y="32">Sign-off: lease clause v2 approved.</text>
+      <text x="600" y="32" fill="#94a3b8">Human · 2m 14s</text>
+      <text y="64" font-family="ui-monospace, monospace" fill="#c2410c">01:58</text>
+      <text x="60" y="64">Reconciliation cycle reports 10/10 PASS.</text>
+      <text x="600" y="64" fill="#94a3b8">doc-vs-code · 0 drift</text>
+      <text y="96" font-family="ui-monospace, monospace" fill="#c2410c">01:44</text>
+      <text x="60" y="96">Knowledge graph resolves twelve patterns.</text>
+      <text x="600" y="96" fill="#94a3b8">multi-agent · 4 dossiers</text>
+      <text y="128" font-family="ui-monospace, monospace" fill="#c2410c">01:31</text>
+      <text x="60" y="128">Sign-off: two clauses rejected.</text>
+      <text x="600" y="128" fill="#94a3b8">statute mis-cited</text>
+    </g>
+  </g>
+
+  <g transform="translate(272,608)">
+    <rect width="430" height="248" rx="16" fill="#0e3b2e"/>
+    <text x="20" y="32" font-size="14" font-weight="600" fill="#faf6ee" font-family="'Source Serif 4', Georgia, serif">Sign-off queue</text>
+    <g transform="translate(20,52)" font-size="12" fill="#c5d3c5">
+      <rect width="390" height="56" rx="12" fill="#1c2e25"/>
+      <circle cx="20" cy="28" r="6" fill="#c2410c"/>
+      <text x="40" y="22" fill="#faf6ee">URGENT · clause 4.b · entry-without-notice</text>
+      <text x="40" y="42" fill="#94a3b8">s.27(3)(a) LTA 1985 · evidence: verified (3)</text>
+      <rect y="68" width="390" height="56" rx="12" fill="#1c2e25"/>
+      <circle cx="20" cy="96" r="6" fill="#c2410c"/>
+      <text x="40" y="90" fill="#faf6ee">URGENT · clause 11 · forfeiture broad</text>
+      <text x="40" y="110" fill="#94a3b8">s.167 CLRA 2002 · evidence: verified (2)</text>
+      <rect y="136" width="390" height="56" rx="12" fill="#1c2e25"/>
+      <text x="40" y="158" fill="#faf6ee">ROUTINE · clause 7 · deposit cap</text>
+      <text x="40" y="178" fill="#94a3b8">s.21 HTA 1988 · evidence: weak (1)</text>
+    </g>
+  </g>
+
+  <g transform="translate(722,608)">
+    <rect width="430" height="248" rx="16" fill="#0e3b2e"/>
+    <text x="20" y="32" font-size="14" font-weight="600" fill="#faf6ee" font-family="'Source Serif 4', Georgia, serif">Statute coverage</text>
+    <g transform="translate(20,52)" font-size="12" fill="#c5d3c5">
+      <text x="0" y="14">UK</text>
+      <rect x="40" y="2" width="280" height="14" rx="7" fill="#1c2e25"/>
+      <rect x="40" y="2" width="240" height="14" rx="7" fill="#c2410c"/>
+      <text x="330" fill="#94a3b8">22</text>
+      <text x="0" y="42">BB</text>
+      <rect x="40" y="30" width="280" height="14" rx="7" fill="#1c2e25"/>
+      <rect x="40" y="30" width="100" height="14" rx="7" fill="#c2410c"/>
+      <text x="330" y="42" fill="#94a3b8">9</text>
+      <text x="0" y="70">JM</text>
+      <rect x="40" y="58" width="280" height="14" rx="7" fill="#1c2e25"/>
+      <rect x="40" y="58" width="80" height="14" rx="7" fill="#c2410c"/>
+      <text x="330" y="70" fill="#94a3b8">6</text>
+      <text x="0" y="98">KY</text>
+      <rect x="40" y="86" width="280" height="14" rx="7" fill="#1c2e25"/>
+      <rect x="40" y="86" width="60" height="14" rx="7" fill="#c2410c"/>
+      <text x="330" y="98" fill="#94a3b8">4</text>
+      <text x="0" y="126" fill="#94a3b8">+ TT · GY · BZ · BS · BVI · roadmap</text>
+    </g>
+  </g>
+</svg>
