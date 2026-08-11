@@ -3,7 +3,7 @@
 **The intelligence layer for a single Caribbean property market — provenance-tracked, deterministic, $0 compute, human-in-the-loop by design.**
 
 [![Build status](https://img.shields.io/badge/build-10%2F10%20PASS-34d399)](https://github.com)
-[![Tests](https://img.shields.io/badge/tests-649%2F649-34d399)](https://github.com)
+[![Tests](https://img.shields.io/badge/tests-766%2F766-34d399)](https://github.com)
 [![Reconcile](https://img.shields.io/badge/doc%E2%80%93code-0%20drift-34d399)](https://github.com)
 [![TRL](https://img.shields.io/badge/TRL-4%E2%86%925-blue)](https://github.com)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
