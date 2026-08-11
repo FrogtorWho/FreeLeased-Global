@@ -222,3 +222,14 @@ Post-sprint: weekly Sunday 18:00 UTC full audit rerun; per-PR tsc + tests + ruff
 - Critical finding: Data Room has 9 top-level dirs + 24 sub-dirs but **zero files** — folder structure is scaffolded but no evidence has been placed yet
 - Unclassified folder: `Shogo/` (likely agent-runtime scaffolding, not validation evidence — needs human decision)
 - Estimated ~7 hours of focused work to close TRL 1–4 evidence gaps before code freeze
+
+## 2026-08-11 — Data Room Populated
+- Copies made: 38 file copies + 7 originals = **45 files** in the Data Room (target was 40+)
+- Bytes copied: **279,811** (≈273 KB) total in the Data Room
+- Files skipped: 7 categories logged in `memory/data-room-copies.md` (auto-generated `src/generated/*` + `server.tsx`, secrets pattern, lockfile, agent audit outputs, orchestrator scripts + outputs, unclassified `Shogo/` folder)
+- TRL levels now evidenced in Data Room: **1, 2, 3, 4, 5 (plan), 6, 7, 9 (model), 10 (licence)**
+- TRL levels still missing real evidence: **5** (real leaseholder pack — see `05_User Testing and Pilot/test_notes/test_notes_README.md`), **9** (paying customers — `06_Business and Traction/revenue/` empty), **10** (press citations — `07_Legal and Permissions/releases/` empty)
+- Commit: `5a93c62` — "docs: populate data room with TRL evidence (40+ files, journaled)"
+- Reversibility: every copy is reversible by `Remove-Item` on the target file; full journal at `memory/data-room-copies.md` (45 rows + 7 SKIP categories + per-folder distribution + bulk-reversal one-liner)
+- Files copied span 21 of 24 sub-folders; the 3 empty sub-folders (`03_Product Evidence/screenshots/`, `05_User Testing and Pilot/pilot_feedback/`, `06_Business and Traction/revenue/`, `07_Legal and Permissions/releases/`) are honestly empty because their evidence does not yet exist
+- Total reverses performed: 0
