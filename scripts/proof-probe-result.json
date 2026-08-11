@@ -1,0 +1,87 @@
+{
+  "documentId": "proof_probe_1786453885883",
+  "startedAt": "2026-08-11T13:11:25.883096+00:00",
+  "ollygardenKeyMasked": "og_s***",
+  "minimaxKeyMasked": "sk-c***",
+  "ollyEndpoint": "https://in.ollygarden.cloud/v1/traces",
+  "probeCount": 5,
+  "probes": [
+    {
+      "probe": "ollygarden_x_key_header",
+      "contract": "src/core/ollygarden_observability.py:62 - verbatim X-OllyGarden-Key header",
+      "url": "https://in.ollygarden.cloud/v1/traces",
+      "headersSent": {
+        "Content-Type": "application/json",
+        "X-OllyGarden-Key": "<redacted>"
+      },
+      "method": "POST",
+      "httpStatus": 401,
+      "ok": false,
+      "elapsedMs": 171,
+      "error": "HTTPError: 401",
+      "responseBodyPreview": ""
+    },
+    {
+      "probe": "ollygarden_bearer_header",
+      "contract": "src/core/telemetry.py:91 + src/lib/ollygarden.ts:172 - Authorization: Bearer",
+      "url": "https://in.ollygarden.cloud/v1/traces",
+      "headersSent": {
+        "Content-Type": "application/json",
+        "Authorization": "<redacted>"
+      },
+      "method": "POST",
+      "httpStatus": 400,
+      "ok": false,
+      "elapsedMs": 243,
+      "error": "HTTPError: 400",
+      "responseBodyPreview": "failed to unmarshal request body\n"
+    },
+    {
+      "probe": "minimax_chat_text01",
+      "contract": ".env.example:12 + src/lib/llm.server.ts:34 - api.minimax.chat + MiniMax-Text-01",
+      "url": "https://api.minimax.chat/v1/chat/completions",
+      "headersSent": {
+        "Content-Type": "application/json",
+        "Authorization": "<redacted>"
+      },
+      "method": "POST",
+      "httpStatus": 401,
+      "ok": false,
+      "elapsedMs": 1125,
+      "error": "HTTPError: 401",
+      "responseBodyPreview": "{\"type\":\"error\",\"error\":{\"type\":\"authorized_error\",\"message\":\"invalid api key (2049)\",\"http_code\":\"401\"},\"request_id\":\"06ca528ae1120d43454cb8b9dde9edae\"}"
+    },
+    {
+      "probe": "minimax_io_text01",
+      "contract": "src/lib/llm.server.ts:29 default base URL - api.minimax.io + MiniMax-Text-01",
+      "url": "https://api.minimax.io/v1/chat/completions",
+      "headersSent": {
+        "Content-Type": "application/json",
+        "Authorization": "<redacted>"
+      },
+      "method": "POST",
+      "httpStatus": 401,
+      "ok": false,
+      "elapsedMs": 150,
+      "error": "HTTPError: 401",
+      "responseBodyPreview": "{\"type\":\"error\",\"error\":{\"type\":\"authorized_error\",\"message\":\"invalid api key (2049)\",\"http_code\":\"401\"},\"request_id\":\"06ca528b9c56d8f20d2ad93af0990755\"}"
+    },
+    {
+      "probe": "minimax_chat_default_model",
+      "contract": "src/lib/minimax.ts:21 default model - api.minimax.chat + minimax-default",
+      "url": "https://api.minimax.chat/v1/chat/completions",
+      "headersSent": {
+        "Content-Type": "application/json",
+        "Authorization": "<redacted>"
+      },
+      "method": "POST",
+      "httpStatus": 401,
+      "ok": false,
+      "elapsedMs": 1101,
+      "error": "HTTPError: 401",
+      "responseBodyPreview": "{\"type\":\"error\",\"error\":{\"type\":\"authorized_error\",\"message\":\"invalid api key (2049)\",\"http_code\":\"401\"},\"request_id\":\"06ca528c70dd253f40f740fb2c88348e\"}"
+    }
+  ],
+  "scriptSource": "scripts/proof-probe-endpoints.py",
+  "purpose": "Test H1 (OllyGarden header) + H2 (MiniMax host) + H3 (MiniMax model) to determine which combination the partner actually accepts."
+}
