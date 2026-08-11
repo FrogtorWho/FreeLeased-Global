@@ -83,3 +83,19 @@ export const GLOSSARY: Record<string, string> = {
 // Whitelist of jargon terms. Any new legal term used in copy must
 // appear here OR have a tooltip that pulls from GLOSSARY.
 export const JARGON_WHITELIST = new Set(Object.keys(GLOSSARY));
+
+/** Stable IDs for the surfaces (used by test-onboarding.ts). */
+export const SURFACE_IDS = {
+  myRights: "rights-check",
+  leaseScanner: "lease-scan",
+  signoffQueue: "signoff",
+  honesty: "about",
+} as const;
+
+/** A non-empty surface exists for every ID. */
+export function hasSurface(id: string): boolean {
+  return id in SURFACE_IDS;
+}
+
+/** The microcopy registry version. Bumped on every structural change. */
+export const COPY_VERSION = "1.0.0";
