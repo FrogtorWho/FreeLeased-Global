@@ -75,12 +75,21 @@ const ROOT = resolve(import.meta.dirname || process.cwd(), "..");
 }
 
 // ── Test 8: Data Room folders evidenced (22/24) ────────────────────────
+// Mirrors the canonical regex in [`scripts/reconcile-docs.ts`](scripts/reconcile-docs.ts:207)
+// which counts distinct topfolder (+optional subfolder) targets across COPY-NNN
+// rows whose result column contains "OK (". Workspace-only rows (COPY-046+)
+// reference `project/` or `src/` paths and are filtered out by the OK-status
+// check + the row-shape requirement (3 leading pipes after COPY-NNN).
 {
   const md = readFileSync(`${ROOT}/memory/data-room-copies.md`, "utf8");
   const folderSet = new Set<string>();
-  const re = /\|\s*COPY-\d+\s*\|[^|]*\|[^|]*\|\s*`([A-Za-z0-9_ -]+\/[A-Za-z0-9_ -]+)\//g;
+  const re = /\|\s*COPY-\d+\s*\|[^|]*\|[^|]*\|\s*`([A-Za-z0-9_ -]+(?:\/[A-Za-z0-9_ -]+)?)\/[^`]*`\s*\|[^|]*\|[^|]*\|[^|]*\|\s*OK\s*\(/g;
   let m;
-  while ((m = re.exec(md)) !== null) folderSet.add(m[1].trim());
+  while ((m = re.exec(md)) !== null) {
+    const folder = m[1].trim();
+    if (!folder) continue;
+    folderSet.add(folder);
+  }
   assert(folderSet.size === 22, `data-room has 22 sub-folders (got ${folderSet.size})`);
 }
 

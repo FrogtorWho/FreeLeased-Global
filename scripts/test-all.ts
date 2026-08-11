@@ -17,14 +17,26 @@ interface Suite {
   name: string;
   cmd: string[];
   required: boolean; // if true, the failure fails the whole aggregator
+  bunOnly?: boolean; // true if suite cannot run under node (uses bare-module TS imports)
 }
 
+// Detect runtime: prefer `bun` (faster), fall back to `node --experimental-strip-types`.
+import { execSync } from "node:child_process";
+
+function hasCmd(cmd: string): boolean {
+  try { execSync(`${cmd} --version`, { stdio: "ignore" }); return true; }
+  catch { return false; }
+}
+const USE_BUN = hasCmd("bun");
+const RUNTIME = USE_BUN ? "bun" : "node";
+const RUNTIME_ARGS = USE_BUN ? [] : ["--experimental-strip-types"];
+
 const suites: Suite[] = [
-  { name: "test-suite (core 159)",       cmd: ["bun", "scripts/test-suite.ts"],        required: true },
-  { name: "test-signoff-queue (Batch 3)", cmd: ["bun", "scripts/test-signoff-queue.ts"], required: true },
-  { name: "test-truth-diff",              cmd: ["bun", "scripts/test-truth-diff.ts"],     required: false },
-  { name: "test-health-check",            cmd: ["bun", "scripts/test-health-check.ts"],   required: false },
-  { name: "test-reconcile-docs",          cmd: ["bun", "scripts/test-reconcile-docs.ts"], required: false },
+  { name: "test-suite (core 159)",        cmd: [RUNTIME, ...RUNTIME_ARGS, "scripts/test-suite.ts"],        required: true,  bunOnly: true  },
+  { name: "test-signoff-queue (Batch 3)", cmd: [RUNTIME, ...RUNTIME_ARGS, "scripts/test-signoff-queue.ts"], required: true,  bunOnly: true  },
+  { name: "test-truth-diff",              cmd: [RUNTIME, ...RUNTIME_ARGS, "scripts/test-truth-diff.ts"],     required: false, bunOnly: false },
+  { name: "test-health-check",            cmd: [RUNTIME, ...RUNTIME_ARGS, "scripts/test-health-check.ts"],   required: false, bunOnly: false },
+  { name: "test-reconcile-docs",          cmd: [RUNTIME, ...RUNTIME_ARGS, "scripts/test-reconcile-docs.ts"], required: false, bunOnly: false },
 ];
 
 console.log("\n🧪 FreeLeased — full test aggregator\n");
@@ -36,13 +48,24 @@ const failures: string[] = [];
 
 for (const s of suites) {
   console.log(`\n── ${s.name} ──`);
+  if (s.bunOnly && RUNTIME !== "bun") {
+    console.log(`�️  ${s.name} SKIPPED — requires Bun (not on PATH). Suite uses bare-module TS imports.`);
+    failures.push(s.name);
+    totalFail++;
+    continue;
+  }
   const r = spawnSync(s.cmd[0], s.cmd.slice(1), {
     stdio: "inherit",
     env: { ...process.env, FORCE_COLOR: "1" },
+    cwd: process.cwd(),
   });
   const code = r.status ?? 1;
   if (code === 0) {
     console.log(`✅ ${s.name} exited 0`);
+  } else if (r.error) {
+    console.log(`❌ ${s.name} — spawn error: ${r.error.message}`);
+    failures.push(s.name);
+    totalFail++;
   } else {
     console.log(`❌ ${s.name} exited ${code}`);
     failures.push(s.name);
