@@ -1,0 +1,185 @@
+{
+  "meta": {
+    "generatedAt": "2026-08-11T06:26:54.505Z",
+    "generator": "scripts/generate-sample-dossier.ts",
+    "honestyDisclosure": "SYNTHETIC INPUT. The lease text at project/demo/sample-lease.txt is a demo fixture. The processing — fairness analysis, redaction, consensus gate — is real and reproducible. Ruleset is a verbatim copy of src/lib/fairness.ts to keep the script self-contained.",
+    "inputs": {
+      "sampleLeasePath": "project/demo/sample-lease.txt"
+    },
+    "jurisdiction": "UK",
+    "pipeline": [
+      "fairness.analyzeLease (verbatim copy of src/lib/fairness.ts)",
+      "engines.redactionProtocol (R1-R3)",
+      "consensus.reachConsensus (per-flag codified vs rag-agentic)"
+    ]
+  },
+  "redaction": {
+    "pass": true,
+    "ruleResults": [
+      {
+        "rule": "R1 pseudonym-only",
+        "pass": true,
+        "detail": "structured pseudonym, no real name"
+      },
+      {
+        "rule": "R2 no PII leakage",
+        "pass": true,
+        "detail": "no postcode/email in payload"
+      },
+      {
+        "rule": "R3 data-protection basis",
+        "pass": true,
+        "detail": "synthetic fixture; real deployment gates on subject request"
+      }
+    ],
+    "scrubbedId": "DEMO-R00"
+  },
+  "fairness": {
+    "jurisdiction": "UK",
+    "clauseCount": 18,
+    "flagCount": 5,
+    "flags": [
+      {
+        "ruleId": "entry-without-notice",
+        "topic": "Right to quiet enjoyment / notice of entry",
+        "clauseExcerpt": "The landlord may enter the premises at any time without notice to inspect or carry out works.",
+        "citation": "Rent Restriction / Landlord and Tenant Act (quiet enjoyment)",
+        "severity": "high",
+        "evidenceClass": "established",
+        "confidence": 0.9,
+        "explanation": "A clause allowing entry at any time without notice conflicts with the tenant's right to quiet enjoyment; reasonable prior notice is generally required."
+      },
+      {
+        "ruleId": "waive-repairs",
+        "topic": "Non-waivable repair duty",
+        "clauseExcerpt": "The tenant waives all rights to structural repair and accepts responsibility for all repairs including habitability.",
+        "citation": "Landlord and Tenant Act (implied covenant to repair)",
+        "severity": "high",
+        "evidenceClass": "established",
+        "confidence": 0.85,
+        "explanation": "A landlord's duty to keep the premises habitable and structurally sound is typically not waivable by contract."
+      },
+      {
+        "ruleId": "penalty-late-fee",
+        "topic": "Unenforceable penalty",
+        "clauseExcerpt": "A late fee of 50% per day applies to any rent not received by the due date.",
+        "citation": "Common law rule against penalties",
+        "severity": "medium",
+        "evidenceClass": "contested",
+        "confidence": 0.6,
+        "explanation": "A late fee that functions as a penalty rather than a genuine estimate of loss may be unenforceable. Interpretation varies."
+      },
+      {
+        "ruleId": "excessive-deposit",
+        "topic": "Security deposit limits",
+        "clauseExcerpt": "The tenant shall pay a security deposit equal to six months rent.",
+        "citation": "Rent Restriction Act (deposit provisions)",
+        "severity": "medium",
+        "evidenceClass": "heuristic",
+        "confidence": 0.7,
+        "explanation": "A deposit of several months' rent may exceed the statutory cap in some jurisdictions. Confirm the local limit."
+      },
+      {
+        "ruleId": "retaliatory-eviction",
+        "topic": "Retaliatory eviction",
+        "clauseExcerpt": "The landlord may terminate the tenancy if the tenant makes a complaint to any authority.",
+        "citation": "Rent Restriction Act (security of tenure)",
+        "severity": "high",
+        "evidenceClass": "heuristic",
+        "confidence": 0.7,
+        "explanation": "A clause permitting eviction in response to a tenant complaint may amount to unlawful retaliatory eviction."
+      }
+    ],
+    "disclaimer": "These flags are candidates for human review, not legal advice. Each cites the governing law and is capped by an evidence class."
+  },
+  "consensus": {
+    "results": [
+      {
+        "claim": "entry-without-notice",
+        "verdict": "review",
+        "agreement": "divergent",
+        "value": null,
+        "confidence": 0.6,
+        "evidenceClass": "contested",
+        "citations": [
+          "Rent Restriction / Landlord and Tenant Act (quiet enjoyment)",
+          "https://www.legislation.gov.uk/ukpga"
+        ],
+        "rationale": "disagreement; downgraded to contested + human review"
+      },
+      {
+        "claim": "waive-repairs",
+        "verdict": "surface",
+        "agreement": "aligned",
+        "value": true,
+        "confidence": 0.9,
+        "evidenceClass": "established",
+        "citations": [
+          "Landlord and Tenant Act (implied covenant to repair)",
+          "https://www.legislation.gov.uk/ukpga"
+        ],
+        "rationale": "codified and rag-agentic agree; surfaced at stronger basis"
+      },
+      {
+        "claim": "penalty-late-fee",
+        "verdict": "surface",
+        "agreement": "aligned",
+        "value": true,
+        "confidence": 0.6,
+        "evidenceClass": "contested",
+        "citations": [
+          "Common law rule against penalties",
+          "https://www.legislation.gov.uk/ukpga"
+        ],
+        "rationale": "codified and rag-agentic agree; surfaced at stronger basis"
+      },
+      {
+        "claim": "excessive-deposit",
+        "verdict": "surface",
+        "agreement": "aligned",
+        "value": true,
+        "confidence": 0.75,
+        "evidenceClass": "heuristic",
+        "citations": [
+          "Rent Restriction Act (deposit provisions)",
+          "https://www.legislation.gov.uk/ukpga"
+        ],
+        "rationale": "codified and rag-agentic agree; surfaced at stronger basis"
+      },
+      {
+        "claim": "retaliatory-eviction",
+        "verdict": "surface",
+        "agreement": "aligned",
+        "value": true,
+        "confidence": 0.75,
+        "evidenceClass": "heuristic",
+        "citations": [
+          "Rent Restriction Act (security of tenure)",
+          "https://www.legislation.gov.uk/ukpga"
+        ],
+        "rationale": "codified and rag-agentic agree; surfaced at stronger basis"
+      }
+    ],
+    "summary": {
+      "surface": 4,
+      "review": 1,
+      "abstain": 0,
+      "aligned": 4,
+      "divergent": 1,
+      "singleSource": 0
+    }
+  },
+  "signOff": "hitl-required",
+  "audit": {
+    "rowHash": "0x58d5d80d",
+    "pipelineCostUsd": 0,
+    "computeTier": "Tier-1 codified (deterministic, $0)"
+  },
+  "summary": {
+    "highSeverityFlags": 3,
+    "mediumSeverityFlags": 2,
+    "lowSeverityFlags": 0,
+    "totalCostUsd": 0,
+    "computeTier": "Tier-1 codified (deterministic, $0)"
+  }
+}
