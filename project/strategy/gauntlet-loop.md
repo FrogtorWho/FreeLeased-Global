@@ -37,7 +37,7 @@ Each sub-loop is owned by a specific code module; each emits a structured log ro
 
 ## Sub-Loop 1 — PROCESS (intake + normalise)
 
-**Owner:** `src/core/document_processor.py` + `src/lib/ocr-pipeline.ts` + `src/lib/offline.ts`
+**Owner:** `src/core/document_processor.py` + `src/lib/ocr-pipeline.ts` + `src/lib/offline.ts` + **Giotto.ai multimodal client** ([`src/core/giotto_client.py`](../../src/core/giotto_client.py))
 
 **Input:** Any of:
 - Photo of a lease / bill / letter / tribunal decision (via mobile capture)
@@ -46,9 +46,9 @@ Each sub-loop is owned by a specific code module; each emits a structured log ro
 - Voice note (future)
 
 **Behaviour:**
-1. Classify the document (`vlm-pipeline.ts: classifyDocument` — 7 types: lease, bill, letter, decision, correspondence, schedule, other)
-2. OCR if needed (`ocr-pipeline.ts` — Tesseract.js with Canvas preprocessing)
-3. Extract structured fields (`title_agent.py` via Nebius DeepSeek-R1, or deterministic regex fallback)
+1. Classify the document (`vlm-pipeline.ts: classifyDocument` — 7 types: lease, bill, letter, decision, correspondence, schedule, other). The **Giotto.ai** multimodal endpoint is the preferred VLM: compact reasoning model + image inputs in one call — see [`giotto-integration-research.md`](giotto-integration-research.md). When `GIOTTO_API_KEY` is the placeholder, the loop falls back deterministically (regex + `simulateLLMCall`).
+2. OCR if needed (`ocr-pipeline.ts` — Tesseract.js with Canvas preprocessing); Giotto also exposes OCR — kept as optional second pass for low-confidence scans.
+3. Extract structured fields (`title_agent.py` via Nebius DeepSeek-R1 *or* the Giotto client via [`get_giotto_client_or_none()`](../../src/core/giotto_client.py); deterministic regex fallback remains the final safety net).
 4. Score input quality on 4 axes:
    - **Completeness** (0–1): are required fields present?
    - **Legibility** (0–1): OCR confidence
@@ -71,6 +71,12 @@ interface ResidentIntake {
 **Exit criteria:** inputQuality.completeness ≥ 0.4 OR user explicitly opts in to proceed with acknowledged gaps.
 
 **Honesty rule:** Never fabricate missing fields. If `unit_entitlement` is missing, the dossier says "unit entitlement: UNKNOWN — request evidence" rather than guessing.
+
+---
+
+### Cross-link — Giotto.ai Integration
+
+The PROCESS sub-loop is the primary wiring point for **Giotto.ai** — the 7th sponsor added 2026-08-11. Giotto's compact reasoning model + multimodal inputs (text + image + OCR) replace the long-running `simulateLLMCall` for lease-intake classification. With the API key in place, [`src/core/giotto_client.py`](../../src/core/giotto_client.py) provides an OpenAI-compatible client that the dossier engines call directly; until the key is provisioned (claim email at [`06-giotto-claim-email.md`](06-giotto-claim-email.md)), the loop degrades to deterministic record/playback. Risk register and decision log live in [`giotto-integration-research.md`](giotto-integration-research.md).
 
 ---
 

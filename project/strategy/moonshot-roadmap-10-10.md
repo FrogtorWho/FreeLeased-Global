@@ -93,6 +93,7 @@ The rubric is 50/50 Business Strength × Agentic AI Excellence, 13 sub-criteria,
 | **Nebius / H200** | Serious compute utilised | Batch spine-refresh + embedding index build on H200; publish the job |
 | **Boardy** | Network activated | Validation quotes + intros sourced via Boardy (partner *and* judge) |
 | **OllyGarden** | Observability adopted | DSP-5 spans exported; live trace view in the demo |
+| **Giotto.ai** | Compact reasoning + multimodal adopted | Lease-intake classification + clause extraction via [`src/core/giotto_client.py`](../../src/core/giotto_client.py); OpenAI-compatible drop-in. 7th sponsor. See [`giotto-integration-research.md`](giotto-integration-research.md); claim email ready at [`06-giotto-claim-email.md`](06-giotto-claim-email.md). |
 
 ---
 

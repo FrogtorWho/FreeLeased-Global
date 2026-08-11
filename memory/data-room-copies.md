@@ -347,3 +347,23 @@ These are workspace-only entries added on 2026-08-11T06:15Z during the Phase 1 B
 **Reversibility:** N/A — nothing was copied to the Data Room in this batch. To reverse the workspace additions, revert the commit (see AI_JOURNAL for the commit hash).
 
 **Cross-reference:** See AI_JOURNAL.md section 2026-08-11 Phase 1 Brand Pack WIN for the full justification, replication steps, and verification output of these additions.
+
+
+---
+
+These are workspace-only entries added on 2026-08-11T10:14Z during the Phase 4 triple batch (Giotto.ai integration + git professionalization + working-folder hygiene).
+
+| discretion_id | timestamp (ISO 8601 UTC) | source | target | TRL | reason | reversibility | result |
+|---|---|---|---|---|---|---|---|
+| COPY-065 | 2026-08-11T10:14:00Z | (workspace-only â€” NOT copied to Data Room) | project/strategy/giotto-integration-research.md, src/core/giotto_client.py, .env.example (GIOTTO_API_KEY + GIOTTO_BASE_URL), scripts/test-giotto.ts, project/strategy/06-giotto-claim-email.md | n/a | Phase 4A Giotto.ai â€” sponsor #7 (compact reasoning, OpenAI-compatible SDK, multimodal). 6 new files (~400 lines). Mirrors src/core/nebius_client.py. Default base URL https://api.giotto.ai/v1/ (TBD pending confirmation from Daniel Alvarez). Deterministic fallback via get_giotto_client_or_none() means no live key is required for the 16 Aug demo. | revert commit | OK (6 new files) |
+| COPY-066 | 2026-08-11T10:14:00Z | (workspace-only â€” NOT copied to Data Room) | project/strategy/gauntlet-loop.md, project/strategy/moonshot-roadmap-10-10.md, AGENT_BRIEF.md, README.md | n/a | Phase 4A cross-links â€” gauntlet-loop PROCESS sub-loop names Giotto as the multimodal classification engine; moonshot-roadmap sponsor row added (7 sponsors); AGENT_BRIEF + README cross-link to research doc. | revert commit | OK (4 files edited) |
+| COPY-067 | 2026-08-11T10:14:00Z | (workspace-only â€” NOT copied to Data Room) | .gitmessage, .gitattributes, .editorconfig, .github/pull_request_template.md, HISTORY.md, CHANGELOG.md, CONTRIBUTING.md, .gitignore (edited) | n/a | Phase 4B git professionalization â€” Conventional Commit template, line-ending + binary-marker .gitattributes, .editorconfig (LF / 2-space / 4-space Python), PR template with the project checklist, narrative HISTORY.md (Phase 0 â†’ Phase 4), Keep-a-Changelog CHANGELOG.md starting at 1.0.0, CONTRIBUTING Git workflow section, expanded .gitignore (logs, pyc, caches, IDE state). 19 noise files untracked via git rm --cached. | revert commit | OK (8 files new/edited; 19 untracked) |
+| COPY-068 | 2026-08-11T10:14:00Z | (parent folder only â€” NOT in repo) | G:\My Drive\Development\Future Caribbean\Shogo\FreeLeased-Global\README.md, G:\My Drive\Development\Future Caribbean\Shogo\FreeLeased-Global\_archive\_archive-log.md | n/a | Phase 4C working-folder hygiene â€” parent README (~3.7KB) documents the 4 top-level folders (workspace/_archive/files/Resources), naming conventions, active sprint location, cross-links to data room; archive log (~2.3KB) records that NO moves were warranted this pass (Resources/Giotto/ stays, files/ stays, _archive/ is already archived). Both files are reversible single-file removes. | Remove-Item both files | OK (2 files at parent path) |
+
+**Why this section exists:** Phase 4 triple batch is a coherent set of (A) sponsor integration, (B) repo hygiene, (C) folder hygiene. All are reversible â€” Part A and B by git revert, Part C by Remove-Item. All 4 changes ship without modifying src/generated/*, server.tsx, or un.lock.
+
+**Reversibility:** see git revert <commit> (or git reset --hard HEAD~N for a sweep) for Parts A and B; for Part C use Remove-Item 'G:\My Drive\Development\Future Caribbean\Shogo\FreeLeased-Global\README.md' and Remove-Item 'G:\My Drive\Development\Future Caribbean\Shogo\FreeLeased-Global\_archive\_archive-log.md'.
+
+**Cross-reference:** See AI_JOURNAL.md section 2026-08-11 Phase 4 triple batch for full justification, replication steps, and verification output.
+
+**Why no moves to _archive/ this pass:** every entry already lives in its appropriate tier (active â†’ workspace/, live onboarding â†’ Resources/, reference â†’ files/, legacy â†’ _archive/). Moving files for the sake of moving them would be churn without information gain.

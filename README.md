@@ -114,6 +114,7 @@ FreeLeased performs **none** of the practices prohibited by the EU AI Act Articl
 - Inference (provider-aware, OpenAI-compatible): Impala gateway (`qwen3.6-27b`), MiniMax, or the Shogo pod gateway. Selected by environment at request time.
 - Compute: Nebius / NVIDIA H200 for batch embedding and geospatial indexing.
 - Observability: OllyGarden.
+- Multimodal lease intake: **Giotto.ai** (sponsor #7, OpenAI-compatible compact reasoning model — [`src/core/giotto_client.py`](src/core/giotto_client.py:1), research at [`project/strategy/giotto-integration-research.md`](project/strategy/giotto-integration-research.md:1)).
 
 ## Verify (one command)
 

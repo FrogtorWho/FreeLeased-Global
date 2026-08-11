@@ -34,6 +34,7 @@ Three blocks, per [`project/strategy/gauntlet-loop.md`](project/strategy/gauntle
 4. [`project/strategy/architecture-diagram.md`](project/strategy/architecture-diagram.md:1) — visual reference
 5. [`HEARTBEAT.md`](HEARTBEAT.md:1) — cadence rules + today's progress log
 6. [`AI_JOURNAL.md`](AI_JOURNAL.md:1) — append-only loop history
+7. [`project/strategy/giotto-integration-research.md`](project/strategy/giotto-integration-research.md:1) — Giotto.ai sponsor integration (added 2026-08-11, 7th sponsor); claim email at [`06-giotto-claim-email.md`](project/strategy/06-giotto-claim-email.md:1)
 
 ## Test signals (the truth)
 - **Test count**: 159/159 assertions in `bun scripts/test-suite.ts`

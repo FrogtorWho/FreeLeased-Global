@@ -1,4 +1,0 @@
-error: src refspec ; does not match any
-error: src refspec type does not match any
-error: src refspec git_push.log does not match any
-error: failed to push some refs to 'https://github.com/FrogtorWho/FreeLeased-Global.git'

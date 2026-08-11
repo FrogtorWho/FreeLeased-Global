@@ -644,3 +644,77 @@ judge-refinement-queue + 1 WIN-DAY-100 update).
 **Reconcile:** 10/10 PASS · 0 drift.
 
 Final commit: `eb56e69 feat(phase-2d): 5 next refinements — architecture swimlane, jurisdiction cost curve, eval harness, judge Q&A kill-list, 33-test expansion`
+
+
+---
+
+## 2026-08-11 â€” Giotto.ai integration + git/folder professionalization (Phase 4)
+
+**Type:** feat + chore (combined batch) â€” commits pending (local only; PAT blocker requires filter-branch if push).
+**Window:** 10:14 â†’ 10:20 UTC (6 minutes wall-clock).
+
+### Part A â€” Giotto.ai integration (the main ask)
+
+**Sponsor 7.** Added Giotto.ai alongside Shogo / Impala / MiniMax / Nebius / Boardy / OllyGarden. The compact reasoning model + OpenAI-compatible SDK + multimodal inputs make it a better fit than Nebius DeepSeek-R1 for per-resident lease extraction (smaller, faster, cheaper per call).
+
+**Files shipped:**
+- project/strategy/giotto-integration-research.md (new, ~120 lines) â€” what Giotto offers, claim channels, strategic fit, 3-step integration plan, risks, decision log.
+- src/core/giotto_client.py (new, ~80 lines) â€” OpenAI SDK pointed at https://api.giotto.ai/v1/ (TBD pending confirmation from Daniel Alvarez). Factory: get_giotto_client() + get_giotto_client_or_none() + giotto_configured().
+- .env.example â€” added GIOTTO_API_KEY + GIOTTO_BASE_URL.
+- scripts/test-giotto.ts (new) â€” 20-check integration suite mirroring scripts/test-agents.ts; skips live calls when key is the placeholder.
+- project/strategy/06-giotto-claim-email.md (new) â€” ready-to-send template for Daniel Alvarez.
+- project/strategy/gauntlet-loop.md â€” PROCESS sub-loop names Giotto as the multimodal classification engine; cross-link section added.
+- project/strategy/moonshot-roadmap-10-10.md â€” sponsor row added (7th sponsor); claim-email cross-link added.
+- AGENT_BRIEF.md, README.md â€” cross-link to research doc.
+
+**Strategic fit reasoning.** Our biggest gap (per Stage 7 idea #1) is wiring extractWithVLM to real Nebius. Giotto's compact reasoning + multimodal is a better fit: smaller model, faster p95, OpenAI SDK. Replaces simulateLLMCall in src/lib/agents.ts:302 cleanly. Parallel option to src/core/title_agent.py (Nebius DeepSeek-R1). Deterministic fallback path preserved (no key â†’ no crash, deterministic record/playback takes over).
+
+**Risk register.** Giotto base URL is a guess (https://api.giotto.ai/v1/) until Daniel confirms. Mitigated via env override + tests skip live calls until key is real.
+
+### Part B â€” Git professionalization (carryover from interrupted batch)
+
+**Files shipped:**
+- .gitmessage â€” Conventional Commits template.
+- .gitattributes â€” * text=auto eol=lf; linguist-generated on src/generated/**; binary markers on PNG/PDF/etc.
+- .editorconfig â€” UTF-8, LF, 2-space (4 for Python), CRLF for .bat + .ps1.
+- .github/pull_request_template.md â€” PR template with the existing project checklist + Conventional scope tag.
+- HISTORY.md â€” narrative history (Phase 0 â†’ Phase 4).
+- CHANGELOG.md â€” Keep-a-Changelog format starting at 1.0.0.
+- CONTRIBUTING.md â€” added Git workflow section (branching, conventional commits, PR template, env vars).
+- .gitignore â€” expanded to *.log, *.pyc, __pycache__/, .pytest_cache/, .ruff_cache/, , build/, dist/, node_modules/, .vscode/settings.json, .idea/, .DS_Store, Thumbs.db.
+
+**Untracked 19 noise files via git rm --cached:**
+- .shogo/logs/{build,console}.log
+- git_commit.log, git_push.log, pip_install.log
+- 15 __pycache__/*.pyc files
+- uvicorn.log, uvicorn_8001.log
+
+**Reversibility note:** git rm --cached only un-tracks; files remain on disk. To re-track: git add <file>.
+
+### Part C â€” Working folder professionalization
+
+**Audit findings:** Parent folder already tidy. 4 top-level entries: workspace/, _archive/ (pre-existing), files/ (49 Buildathon reference docs), Resources/Giotto/ (audio + transcript â€” added 2026-08-11 10:34 UTC for the Giotto integration). No scratch|draft|^old|v1|v2 patterns matched anywhere in files/ or Resources/.
+
+**Files shipped (reversibly):**
+- G:\My Drive\Development\Future Caribbean\Shogo\FreeLeased-Global\README.md (new, ~3.7KB) â€” parent-folder overview: project in one paragraph, folder map, naming conventions, active sprint location, cross-links to data room.
+- G:\My Drive\Development\Future Caribbean\Shogo\FreeLeased-Global\_archive\_archive-log.md (new, ~2.3KB) â€” reversible-move log (this pass made no moves; documented the audit + decision rationale).
+
+**No moves warranted this pass.** The _archive/ directory already holds all legacy content (.shogo-plans/, _handoff/, _sentinel_drop/, PROJECT-JOURNAL.md, a 2.8KB redundant .gitattributes superseded by the new workspace .gitattributes). Resources/Giotto/ is fresh sponsor onboarding â€” do not archive.
+
+### Verification
+
+- scripts/test-giotto.ts added; not yet executed in this pass (Python venv check + node-side test runner both required for full pass). Recorded as next-step in 06-giotto-claim-email.md.
+- All other changes are documentation / config; no regressions to bun scripts/test-suite.ts (159/159) or reconcile (10/10 PASS) expected.
+- Git status post-batch: 18 modifications / 19 untracked files (deletes pre-staged via git rm --cached).
+
+### Reversibility
+
+- Part A: git revert <commit> or git reset --hard HEAD~1 for the integration; the .env.example gain reverts cleanly.
+- Part B: git rm --cached is itself the reversal (git add <file> to re-track).
+- Part C: Remove-Item README.md for parent README; _archive-log.md removal is a single file too.
+
+### Cross-reference
+
+- HEARTBEAT.md 10:14 UTC bullet.
+- memory/data-room-copies.md will receive 3 new COPY-IDs (065, 066, 067) for the Giotto trio.
+- Phase 4 will appear in HISTORY.md (already added) + CHANGELOG.md (already added).
