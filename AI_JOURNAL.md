@@ -242,3 +242,4 @@ Post-sprint: weekly Sunday 18:00 UTC full audit rerun; per-PR tsc + tests + ruff
 - Updated HEARTBEAT.md Daily Progress Log with late entries
 - All docs now form a single navigable graph: MEMORY → AGENT_BRIEF → gauntlet → architecture-diagram → data-room
 - Loop integrity restored: docs ↔ code ↔ data-room mutually referenced
+- Doc pass complete; commit: 8aa2809; loop integrity restored
