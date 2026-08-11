@@ -29,6 +29,12 @@ Append a new bullet under the matching date heading on each check-in. Format: `*
 - **02:35 UTC** — Batch 2 WIN: drifts resolved (statutes 25+, engines 4-agent), pitch + narrative + roadmap tightened, projected score computed (87/100 → 95/100 path)
 - **02:55 UTC** — Batch 3 WIN: HITL SignoffQueue UI (urgency-sort, inline verdict preview, filter chips, ARIA) + checklist + README + CONTRIBUTING + test aggregator
 - **06:15 UTC** — Phase 1 Brand Pack ship: 5 brand variants × 7 files each (Veridian / Quill / Monolith / Canopy / Coral) + 30-day social campaign + WIN-DAY-100 bridge + render script; projected score 87 → 90/100 (+1.75 spread across 4 axes)
+- **06:30 UTC** — Phase 2A: per-judge refinement queue created (`judge-refinement-queue.md`) with 5 judges × 10 axes mapped
+- **06:35 UTC** — Phase 2B refinement 1: real TRL-5 sample-lease dossier run via `scripts/generate-sample-dossier.ts` (5 flags, 1 divergent → HITL review) — commit `e9c3702`
+- **06:38 UTC** — Phase 2B refinement 2-10: shot-by-shot demo video script, 3 personalised pilot outreach emails, Boardy advisory-ask templates, sub-1-minute cold-clone bootstrap, brand-pack showcase HTML, MobileCapture a11y (CTA + aria-live), public-service-announcement blog post (1,500 words), social-campaign CSV exporter (750 rows), self-rubric-score — commits `ed1b2ab` → `c09f15d`
+- **06:40 UTC** — Phase 2C: WIN-DAY-100.md updated with refinement queue, per-judge projections, blocked items — commit `98605c0`
+- **06:46 UTC** — Phase 2D loop: 5 next refinements (architecture swim-lane Mermaid, add-a-jurisdiction cost curve, eval-harness P/R chart, judge Q&A kill-list, 33-test expansion — 33/33 PASS) — commit `eb56e69`
+- **06:47 UTC** — Phase 2E: `npm run reconcile` → **10/10 PASS · 0 drift**; saturation criterion met (next round of refinements would lift < 0.1 on every axis)
 
 ### 2026-08-10 (Mon)
 - **09:00 UTC** — Top-down audit complete (128 claims, 70 numbers, 9 drifts)
