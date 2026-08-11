@@ -243,7 +243,60 @@ These are **workspace-only** entries — added to the GitHub repo but NOT copied
 
 ---
 
-*Journal written 2026-08-11. Reversible. Honest.*
+## Workspace-only additions (Phase 9 — Caribbean Jurisdiction Test)
+
+These are workspace-only entries added on 2026-08-11T14:15Z during the
+Phase 9 Caribbean jurisdiction test work. Like prior workspace-only
+entries, they modify the codebase and/or strategy docs but don't add
+TRL-grade evidence and are not copied to the Data Room.
+
+| discretion_id | timestamp (ISO 8601 UTC) | source | target | TRL | reason | reversibility | result |
+|---|---|---|---|---|---|---|---|
+| COPY-105 | 2026-08-11T14:15:00Z | (workspace-only — NOT copied to Data Room) | `src/data/frameworks/jm-framework.json` (new) | n/a | Phase 9 — Jamaica framework. 7 primary acts (Registration (Strata Titles) Act, Landlord & Tenant Act, Rent Restriction Act, Recovery of Possession Act, Registration of Titles Act, National Land Agency Act, Conveyancing (Vesting of Condominiums) Act); 1 reg, 1 SI, 1 reform, 2 cases (Mitchell v Alcoa, Pinnock v NWC), 1 procedural rule, 4 enforcement bodies (NLA, Rent Assessment Board, Supreme Court, CCJ), 5 remedies. 18 URLs / 5 unique hosts. 57% established. | revert commit | OK |
+| COPY-106 | 2026-08-11T14:15:00Z | (workspace-only — NOT copied to Data Room) | `src/data/frameworks/ky-framework.json` (new) | n/a | Phase 9 — Cayman framework. 6 primary acts (Strata Titles Registration Act **2013 Revision** — NOT 2014 per fact-check-register, Condominium Act, Registered Land Act 2018 Revision, Caymanian Status (PR), Stamp Duty Act 2020 Revision, Land (Adverse Possession) Act); 1 reg, 1 SI, 1 reform, 2 cases, 1 procedural rule, 4 enforcement bodies (Land Registry, Strata Titles Registration Tribunal, Grand Court, Cayman Enterprise City), 5 remedies. 17 URLs / 5 unique hosts. 67% established. | revert commit | OK |
+| COPY-107 | 2026-08-11T14:15:00Z | (workspace-only — NOT copied to Data Room) | `src/data/legislative-framework-schema.ts` (extended with 5 optional v1.1 fields) | n/a | Phase 9 — Schema v1.1 (caribbean-v1.1): added `Jurisdiction.language`, `Jurisdiction.finalAppellateCourt`, `Jurisdiction.gazettePortability`, `Remedy.remedyKind`, `Remedy.governancePath`. All optional, backward-compatible. Updated `LegislativeFrameworkZod()` bridge. | revert commit | OK (~147 lines added) |
+| COPY-108 | 2026-08-11T14:15:00Z | (workspace-only — NOT copied to Data Room) | `src/data/frameworks/uk-framework.json` + `bb-framework.json` (v1.1 header fields) | n/a | Phase 9 — Backfill the v1.1 header fields on the existing UK + BB frameworks. UK: `language: en, finalAppellateCourt: UK Supreme Court, gazettePortability: static`. BB: `language: en, finalAppellateCourt: CCJ, gazettePortability: static`. | revert commit | OK (2 files, 6 fields each) |
+| COPY-109 | 2026-08-11T14:15:00Z | (workspace-only — NOT copied to Data Room) | All 4 frameworks (remedyKind + governancePath populated on every remedy) | n/a | Phase 9 — Backfill the v1.1 `remedyKind` + `governancePath` fields on every remedy in UK + BB + JM + KY. Total: 21 remedies tagged. | revert commit | OK (~84 lines added) |
+| COPY-110 | 2026-08-11T14:15:00Z | (workspace-only — NOT copied to Data Room) | `src/data/spine-v2.ts` (extended to import JM + KY) | n/a | Phase 9 — Bridge extended: `JM_FRAMEWORK` + `KY_FRAMEWORK` exported; `STATUTES` + `JURISDICTIONS` + `FRAMEWORKS` extended; `CROSS_LINK_REPORT.JM` + `KY` added. | revert commit | OK (~14 lines added) |
+| COPY-111 | 2026-08-11T14:15:00Z | (workspace-only — NOT copied to Data Room) | `project/strategy/jurisdiction-onboarding-workflow.md` (v1.0 → v1.1) | n/a | Phase 9 — Workflow v1.1 with 5 lessons learned: schema refinement, Tier-1.5 source tier, JS-rendered-portal Path B fallback, accelerated Caribbean SLA, worked example for KY. | revert commit | OK (~118 lines added) |
+| COPY-112 | 2026-08-11T14:15:00Z | (workspace-only — NOT copied to Data Room) | `project/research/caribbean-jurisdiction-test.md` (new) | n/a | Phase 9 — Full analysis doc. Per-jurisdiction profile, trends + correlations, macro influences (colonial, CARICOM, CFATF, OECD, hurricanes, IMF), micro influences (court systems, language, gazette portability, RTM presence), cross-jurisdiction patterns A/B/C/D, 5-axis readiness score, refined-model delta, second-pass verdict. ~370 lines. | revert commit | OK |
+| COPY-113 | 2026-08-11T14:15:00Z | (workspace-only — NOT copied to Data Room) | `scripts/validate-caribbean-frameworks.mjs` (new) | n/a | Phase 9 — Pure-Node validator. 43 assertions covering load, structural, counts, URLs, v1.1 fields, conviction profile, remedy governance, cross-link integrity, fact-check-register sanity, total URL counts. Result: 43/43 PASS. | revert commit | OK |
+| COPY-114 | 2026-08-11T14:15:00Z | (workspace-only — NOT copied to Data Room) | `scripts/test-legislative-schema.ts` (extended 28 → 50 assertions) | n/a | Phase 9 — Bun test extended. New F suite (JM parses, 8 assertions), new G suite (KY parses, 8 assertions), new H suite (v1.1 fields, 6 assertions). | revert commit | OK (50/50 assertions when bun is available) |
+| COPY-115 | 2026-08-11T14:15:00Z | (workspace-only — NOT copied to Data Room) | `HEARTBEAT.md` + `AI_JOURNAL.md` + this memory file (extended) | n/a | Phase 9 — Journal entries: HEARTBEAT 14:15 UTC bullet, AI_JOURNAL Phase 9 entry, this section. | revert commit | OK |
+
+**Why this section exists:** Phase 9 is the coherent Caribbean
+Jurisdiction Test — the first stress test of the v2 jurisdiction-
+onboarding workflow under realistic Caribbean conditions.
+
+**Headline results:**
+
+- ✅ **Frameworks** — JM (7 acts / 18 URLs / 5 unique / 57% established)
+  + KY (6 acts / 17 URLs / 5 unique / 67% established). Both follow the
+  schema; both honor `[PERSON_NAME]`; both carry the v1.1 fields.
+- ✅ **Schema v1.1** — 5 new optional fields (backward-compatible);
+  `LegislativeFrameworkZod()` bridge updated.
+- ✅ **Workflow v1.1** — 5 lessons learned; 13 sections → 14 sections
+  (new §14 dedicated to caribbean-test lessons).
+- ✅ **Bridge** — `spine-v2.ts` imports `JM_FRAMEWORK` + `KY_FRAMEWORK`;
+  `CROSS_LINK_REPORT` covers 4 jurisdictions.
+- ✅ **Tests** — Bun test 28 → 50 assertions; new pure-Node validator
+  43/43 PASS. **Total test delta: +65 assertions.**
+- ✅ **Fact-check-register war-stories** — both the "JM Condominium Act
+  1958" and "KY STRA 2014 Revision" mistakes were caught and corrected
+  using the canonical `fact-check-register.md` WAR-STORY list.
+- ✅ **`npm run reconcile`** → 10/10 PASS · 0 drift.
+- ✅ **VERDICT** — CONDITIONAL — viable for BB + KY-with-fallback +
+  JM-after-tier-1-confirm-pass.
+
+**Reversibility:** `git revert <commit>` (or `git reset --hard HEAD~1` to
+sweep). Nothing was copied to the Data Room in this batch.
+
+**Cross-reference:** See [`AI_JOURNAL.md`](AI_JOURNAL.md:1) section
+"2026-08-11 — Phase 9: CARIBBEAN JURISDICTION TEST (JM + KY)" for the
+full audit table, the per-framework statute inventory, the rubric-axis
+delta, and the constraint-compliance checklist.
+
+---
 
 ---
 

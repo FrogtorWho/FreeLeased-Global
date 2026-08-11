@@ -33,6 +33,8 @@ import {
 } from "./legislative-framework-schema";
 import ukRaw from "./frameworks/uk-framework.json";
 import bbRaw from "./frameworks/bb-framework.json";
+import jmRaw from "./frameworks/jm-framework.json";
+import kyRaw from "./frameworks/ky-framework.json";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. Load + validate every framework JSON.
@@ -54,6 +56,8 @@ function loadFramework(raw: unknown, code: string): LegislativeFramework {
 
 export const UK_FRAMEWORK: LegislativeFramework = loadFramework(ukRaw, "UK");
 export const BB_FRAMEWORK: LegislativeFramework = loadFramework(bbRaw, "BB");
+export const JM_FRAMEWORK: LegislativeFramework = loadFramework(jmRaw, "JM");
+export const KY_FRAMEWORK: LegislativeFramework = loadFramework(kyRaw, "KY");
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. v2 → v1 conviction mapping (canonical 4-class set).
@@ -137,6 +141,8 @@ function flattenFramework(
 export const STATUTES: V1StatuteView[] = [
   ...flattenFramework(UK_FRAMEWORK, "src/data/frameworks/uk-framework.json"),
   ...flattenFramework(BB_FRAMEWORK, "src/data/frameworks/bb-framework.json"),
+  ...flattenFramework(JM_FRAMEWORK, "src/data/frameworks/jm-framework.json"),
+  ...flattenFramework(KY_FRAMEWORK, "src/data/frameworks/ky-framework.json"),
 ].sort((a, b) => {
   if (a.jurisdiction === b.jurisdiction) return a.id.localeCompare(b.id);
   return a.jurisdiction.localeCompare(b.jurisdiction);
@@ -176,6 +182,8 @@ function jurisdictionView(
 export const JURISDICTIONS: V1JurisdictionView[] = [
   jurisdictionView(UK_FRAMEWORK, "src/data/frameworks/uk-framework.json"),
   jurisdictionView(BB_FRAMEWORK, "src/data/frameworks/bb-framework.json"),
+  jurisdictionView(JM_FRAMEWORK, "src/data/frameworks/jm-framework.json"),
+  jurisdictionView(KY_FRAMEWORK, "src/data/frameworks/ky-framework.json"),
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -185,6 +193,8 @@ export const JURISDICTIONS: V1JurisdictionView[] = [
 export const FRAMEWORKS: Record<string, LegislativeFramework> = {
   UK: UK_FRAMEWORK,
   BB: BB_FRAMEWORK,
+  JM: JM_FRAMEWORK,
+  KY: KY_FRAMEWORK,
 };
 
 export interface SpineV2Summary {
@@ -330,8 +340,12 @@ function checkCrossLinks(fw: LegislativeFramework): {
 
 const ukLinkCheck = checkCrossLinks(UK_FRAMEWORK);
 const bbLinkCheck = checkCrossLinks(BB_FRAMEWORK);
+const jmLinkCheck = checkCrossLinks(JM_FRAMEWORK);
+const kyLinkCheck = checkCrossLinks(KY_FRAMEWORK);
 
 export const CROSS_LINK_REPORT = {
   UK: ukLinkCheck,
   BB: bbLinkCheck,
+  JM: jmLinkCheck,
+  KY: kyLinkCheck,
 };

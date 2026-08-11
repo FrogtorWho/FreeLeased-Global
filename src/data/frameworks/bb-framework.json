@@ -8,7 +8,10 @@
     "constitutionalFoundation": "Constitution of Barbados, 1966 (Chapter 1 of the Laws of Barbados). Westminster-style parliamentary democracy; legal system descends from English common law.",
     "officialGazette": "https://www.barbadoslawcourts.gov.bb/",
     "lastVerified": "2026-08-11T00:00:00Z",
-    "contributorPseudonym": "[PERSON_NAME]"
+    "contributorPseudonym": "[PERSON_NAME]",
+    "language": "en",
+    "finalAppellateCourt": "CCJ",
+    "gazettePortability": "static"
   },
   "primaryActs": [
     {
@@ -242,7 +245,9 @@
       "description": "Petition the body corporate to enforce by-laws; apply to the Supreme Court for injunctive relief where the body corporate fails to act under the Condominium Act.",
       "legalBasis": ["bb-condo-cap224a"],
       "applicableWhere": "Owner of a unit in a registered condominium; by-law breached or threatened breach.",
-      "formTemplateId": "bb-fm-bc-petition"
+      "formTemplateId": "bb-fm-bc-petition",
+      "remedyKind": "strata-corporation-action",
+      "governancePath": "unanimous-resolution"
     },
     {
       "id": "bb-remedy-unanimous-resolution",
@@ -250,7 +255,9 @@
       "description": "Apply to the Court for an order convening a meeting or directing a particular resolution where the body corporate is deadlocked under the Condominium Act.",
       "legalBasis": ["bb-condo-cap224a"],
       "applicableWhere": "Body corporate unable to obtain a quorum or pass a required resolution; dispute over a unanimous-resolution item.",
-      "formTemplateId": "bb-fm-bc-meeting"
+      "formTemplateId": "bb-fm-bc-meeting",
+      "remedyKind": "strata-corporation-action",
+      "governancePath": "unanimous-resolution"
     },
     {
       "id": "bb-remedy-land-tax-appeal",
@@ -258,21 +265,27 @@
       "description": "Object to an assessment within the prescribed period, then appeal to the Commissioner of Land Tax and, on a point of law, to the High Court.",
       "legalBasis": ["bb-landtax-cap78a"],
       "applicableWhere": "Person assessed to land tax; objection not resolved by the assessor.",
-      "formTemplateId": "bb-fm-lt-objection"
+      "formTemplateId": "bb-fm-lt-objection",
+      "remedyKind": "agency-complaint",
+      "governancePath": "agency-letter"
     },
     {
       "id": "bb-remedy-caveat",
       "label": "Lodge a caveat under the Land Registration Act",
       "description": "Lodge a caveat with the Barbados Land Registry to protect a claimed interest in land; the Registrar will not register a dealing that would affect the caveated interest without notice.",
       "legalBasis": ["bb-lra-cap229"],
-      "applicableWhere": "Person with a registrable interest in land; subject to a dealing that would defeat that interest."
+      "applicableWhere": "Person with a registrable interest in land; subject to a dealing that would defeat that interest.",
+      "remedyKind": "registration-action",
+      "governancePath": "registry-registration"
     },
     {
       "id": "bb-remedy-trespass-injunction",
       "label": "Injunction / damages for trespass",
       "description": "Apply to the Supreme Court for an injunction and/or damages for trespass to land or premises.",
       "legalBasis": ["bb-trespass-act"],
-      "applicableWhere": "Person in lawful possession of land; another has entered without consent or licence."
+      "applicableWhere": "Person in lawful possession of land; another has entered without consent or licence.",
+      "remedyKind": "court-petition",
+      "governancePath": "court-application"
     }
   ]
 }

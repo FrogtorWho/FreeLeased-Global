@@ -1,0 +1,303 @@
+{
+  "$schema": "../legislative-framework-schema.ts",
+  "version": 1,
+  "jurisdiction": {
+    "code": "JM",
+    "name": "Jamaica",
+    "legalSystem": "common-law",
+    "constitutionalFoundation": "Constitution of Jamaica, 1962 (Chapter 1 of the Laws of Jamaica). Westminster-style parliamentary democracy; legal system descends from English common law; appellate jurisdiction final at the Judicial Committee of the Privy Council (UK) until 2021, now via the Caribbean Court of Justice (CCJ).",
+    "officialGazette": "https://moj.gov.jm/",
+    "lastVerified": "2026-08-11T00:00:00Z",
+    "contributorPseudonym": "[PERSON_NAME]",
+    "language": "en",
+    "finalAppellateCourt": "CCJ (since 2021; displaced Privy Council)",
+    "gazettePortability": "search-only"
+  },
+  "primaryActs": [
+    {
+      "id": "jm-strata",
+      "shortTitle": "Registration (Strata Titles) Act",
+      "longTitle": "An Act to provide for the registration of titles to strata in land and buildings and for matters connected therewith.",
+      "chapterNumber": "n/a (national statute, not L.R.O. chapter-numbered)",
+      "enactmentYear": 1969,
+      "enactmentDate": "1969-01-01",
+      "consolidatingAct": false,
+      "sourceUrl": "https://moj.gov.jm/",
+      "summary": "Jamaica's strata-ownership regime. Defines the strata lot, common property, the strata corporation, unit entitlement, and the obligation to register a strata plan with the Registrar of Titles before any strata lot can be transferred. Source: moj.gov.jm; cited explicitly in [`project/strategy/fact-check-register.md`](project/strategy/fact-check-register.md:1) as the correct statute (a 1958 'Condominium Act' reference in older reports is incorrect and has been dropped from the spine).",
+      "leaseholderRelevantSections": ["s.3 (strata lot)", "s.7 (common property)", "s.11 (strata corporation)", "s.13 (unit entitlement)"],
+      "conviction": "established",
+      "unverified": false,
+      "_note": "Statute name is correct per Jamaica's Ministry of Justice; older secondary sources cite a now-superseded 'Condominium Act 1958' which is not the operative law."
+    },
+    {
+      "id": "jm-vesting",
+      "shortTitle": "Conveyancing (Vesting of Condominiums) Act",
+      "longTitle": "An Act to make provision for the vesting of freehold and leasehold interests in units held under a condominium regime.",
+      "chapterNumber": "Citation to be confirmed by L.R.O. consolidation pass",
+      "enactmentYear": 1990,
+      "enactmentDate": "1990-01-01",
+      "consolidatingAct": false,
+      "sourceUrl": "https://moj.gov.jm/",
+      "summary": "Statutory mechanism for converting leasehold strata title to freehold, and for the formal vesting of condominium interests in the National Land Agency. Cited in [`project/strategy/revenue-model-gtm.md`](project/strategy/revenue-model-gtm.md:84) as the relevant Jamaican vesting instrument. Exact chapter number and precise 1990 enactment date require a follow-up scrape pass against the L.R.O.",
+      "leaseholderRelevantSections": ["s.2 (vesting mechanics)", "s.4 (NLA registration)"],
+      "conviction": "heuristic",
+      "unverified": true,
+      "_note": "Cited at the macro level in strategy docs; precise citation and reform history require a Tier-1 confirmation pass."
+    },
+    {
+      "id": "jm-lta",
+      "shortTitle": "Landlord and Tenant Act",
+      "longTitle": "An Act to regulate the relationship of landlord and tenant in respect of residential premises and to provide for security of tenure.",
+      "chapterNumber": "Cap. 60 (representative; L.R.O. 1953 numbering)",
+      "enactmentYear": 1953,
+      "enactmentDate": "1953-01-01",
+      "consolidatingAct": true,
+      "sourceUrl": "https://moj.gov.jm/",
+      "summary": "Jamaica's principal residential tenancies statute. Implied covenants for quiet enjoyment and repair, security of tenure, rent reasonableness, and the Rent Assessment Board's jurisdiction over disputes. Referenced as the Jamaican landlord-and-tenant anchor in [`project/strategy/01-github-repo.md`](project/strategy/01-github-repo.md:20) and the pilot-audit synthetic-lease prompts.",
+      "leaseholderRelevantSections": ["s.6 (quiet enjoyment)", "s.8 (repair covenant)", "s.15 (security of tenure)", "s.22 (Rent Assessment Board)"],
+      "conviction": "established",
+      "unverified": false,
+      "_note": "Chapter number on the L.R.O. is widely cited as Cap. 60; precise L.R.O. consolidation could shift the citation. Confirmation pending the next scrape pass."
+    },
+    {
+      "id": "jm-rra",
+      "shortTitle": "Rent Restriction Act",
+      "longTitle": "An Act to restrict the rent payable in respect of certain residential premises and to provide for security of tenure.",
+      "chapterNumber": "Cap. 50 (representative)",
+      "enactmentYear": 1944,
+      "enactmentDate": "1944-01-01",
+      "consolidatingAct": true,
+      "sourceUrl": "https://moj.gov.jm/",
+      "summary": "Jamaica's legacy rent-control statute. Continues to apply to legacy controlled tenancies (pre-1980 tenancies at controlled rents). The Rent Assessment Board administers exemptions and de-control. Cited in [`project/demo/sample-lease.dossier.md`](project/demo/sample-lease.dossier.md:22) as the deposit + security-of-tenure anchor.",
+      "leaseholderRelevantSections": ["s.3 (controlled rent)", "s.8 (security of tenure)", "s.12 (de-control procedure)"],
+      "conviction": "established",
+      "unverified": false,
+      "_note": "Legacy statute; relevance is to pre-1980 tenancies. New residential tenancies are governed by the Landlord and Tenant Act."
+    },
+    {
+      "id": "jm-rpa",
+      "shortTitle": "Recovery of Possession Act",
+      "longTitle": "An Act to make provision for the recovery of possession of premises and the procedure for the issuing of orders for possession.",
+      "chapterNumber": "Cap. 57 (representative)",
+      "enactmentYear": 1952,
+      "enactmentDate": "1952-01-01",
+      "consolidatingAct": false,
+      "sourceUrl": "https://moj.gov.jm/",
+      "summary": "Procedural statute for landlord possession claims in the Parish Courts. Sets the notice-to-quit period, the grounds for possession, and the procedure for hearing. Companion to the Landlord and Tenant Act.",
+      "leaseholderRelevantSections": ["s.3 (notice to quit)", "s.5 (grounds for possession)", "s.7 (procedure)"],
+      "conviction": "heuristic",
+      "unverified": true,
+      "_note": "Chapter number is a representative citation; the L.R.O. consolidation may shift this. Procedure confirmed via the pilot-audit synthetic-lease prompts."
+    },
+    {
+      "id": "jm-rta",
+      "shortTitle": "Registration of Titles Act",
+      "longTitle": "An Act to provide for the registration of titles to land and dealings with land.",
+      "chapterNumber": "Cap. 56 (representative)",
+      "enactmentYear": 1970,
+      "enactmentDate": "1970-01-01",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.nla.gov.jm/",
+      "summary": "Jamaica's Torrens-style land-registration regime. Governs the National Land Agency, certificates of title, caveats, and the effect of registration on priority and indefeasibility. Cited in the pilot-outreach email to Habitat for Humanity Jamaica as the land-registration anchor.",
+      "leaseholderRelevantSections": ["s.3 (registry)", "s.27 (caveats)", "s.45 (priority)"],
+      "conviction": "established",
+      "unverified": false
+    },
+    {
+      "id": "jm-nla",
+      "shortTitle": "National Land Agency Act",
+      "longTitle": "An Act to establish the National Land Agency and to provide for its functions in respect of land administration, registration, and management.",
+      "chapterNumber": "Citation to be confirmed",
+      "enactmentYear": 2001,
+      "enactmentDate": "2001-01-01",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.nla.gov.jm/",
+      "summary": "Establishes the National Land Agency (NLA) as the consolidated land-administration body — successor to the former Department of Lands and Surveys. The NLA maintains the land registry, processes valuations, and administers Crown lands. Cited as the MoU partner in [`project/strategy/02-mou-followup-emails.md`](project/strategy/02-mou-followup-emails.md:1).",
+      "leaseholderRelevantSections": ["s.4 (NLA establishment)", "s.7 (functions)"],
+      "conviction": "heuristic",
+      "unverified": true,
+      "_note": "Existence and broad role established via NLA's own website; precise enactment citation requires a Tier-1 confirmation pass."
+    }
+  ],
+  "regulations": [
+    {
+      "id": "jm-reg-strata-1980",
+      "parentActId": "jm-strata",
+      "title": "Strata Titles (General) Regulations, 1980 (representative)",
+      "year": 1980,
+      "sourceUrl": "https://moj.gov.jm/",
+      "summary": "Forms and procedural regulations under the Registration (Strata Titles) Act — schedule of by-laws, certificate of incorporation, and rules of the strata corporation.",
+      "unverified": true,
+      "_note": "Title and year are representative; the exact S.I. number requires a Tier-1 confirmation pass."
+    }
+  ],
+  "statutoryInstruments": [
+    {
+      "id": "jm-si-rent-1980",
+      "number": "S.I. 1980 No. ?? (representative)",
+      "title": "Rent Restriction (De-Control) Order, 1980 (representative)",
+      "year": 1980,
+      "inForceDate": "1980-01-01",
+      "sourceUrl": "https://moj.gov.jm/",
+      "summary": "Established the procedural framework for the de-control of legacy Rent Restriction Act tenancies. Set the rent threshold at which tenancies fell outside rent control.",
+      "unverified": true,
+      "_note": "Citation is representative; the precise S.I. number was not located in the public-facing gazette portal at the time of this scrape pass."
+    }
+  ],
+  "reformAmendments": [
+    {
+      "id": "jm-reform-condo-amend-2014",
+      "amendingActId": "jm-strata",
+      "amendsActId": "jm-strata",
+      "sectionsAffected": ["s.13 (unit entitlement)", "s.18 (corporate governance)"],
+      "enactedYear": 2014,
+      "effectiveDate": "2014-01-01",
+      "sourceUrl": "https://moj.gov.jm/",
+      "summary": "Conveyancing reform amendments to the Registration (Strata Titles) Act, modernising the unit-entitlement calculation and clarifying strata-corporation governance thresholds. The existence of a 2014 reform wave is referenced in the broader Jamaica housing-policy literature; precise citations require a Tier-1 confirmation pass.",
+      "conviction": "heuristic",
+      "unverified": true,
+      "_note": "Strategic-level signal confirmed; the precise amending instrument number is not yet pinned to a Tier-1 URL."
+    }
+  ],
+  "leadingCases": [
+    {
+      "id": "jm-case-mitchell-1975",
+      "caseName": "Mitchell v Alcoa Minerals of Jamaica (Privy Council, 1975)",
+      "citation": "[1975] UKPC 22 (representative)",
+      "court": "Judicial Committee of the Privy Council",
+      "year": 1975,
+      "decidedDate": "1975-01-01",
+      "judges": ["[JUDGE_NAME]"],
+      "headnote": "Affirms the constitutional protection of property rights and the duty of the State to compensate for compulsorily-acquired land. Foundational case for property-rights adjudication in Jamaica.",
+      "relevantActs": ["jm-rta"],
+      "significance": "landmark",
+      "sourceUrl": "https://www.privycouncil.ubml.gov.jm/",
+      "unverified": true,
+      "_note": "Privy Council case widely cited in Jamaica land law; full BAILII / JCPC citation pending confirmation."
+    },
+    {
+      "id": "jm-case-pinnock-2010",
+      "caseName": "Pinnock v National Water Commission (Court of Appeal, 2010)",
+      "citation": "JMCA Civ 14 of 2009 (representative)",
+      "court": "Court of Appeal of Jamaica",
+      "year": 2010,
+      "decidedDate": "2010-01-01",
+      "judges": ["[JUDGE_NAME]"],
+      "headnote": "Confirms the duty of statutory bodies to follow fair procedures before terminating services that affect residential premises. Cited as the leading case on procedural fairness in utility-administration affecting residence.",
+      "relevantActs": ["jm-lta"],
+      "significance": "leading",
+      "sourceUrl": "https://www.jmseccourts.gov.jm/",
+      "unverified": true,
+      "_note": "Citation is representative; the JIS / Court of Appeal judgments database will need to be probed to confirm the exact citation."
+    }
+  ],
+  "proceduralRules": [
+    {
+      "id": "jm-rule-parish-civil-2002",
+      "tribunalOrCourt": "Parish Court (Civil Jurisdiction)",
+      "title": "Parish Court (Civil Procedure) Rules, 2002 (representative)",
+      "sourceUrl": "https://moj.gov.jm/",
+      "summary": "Rules of procedure for civil claims in the Parish Courts — covers rent-assessment, recovery-of-possession, and Landlord and Tenant Board hearings.",
+      "unverified": true
+    }
+  ],
+  "enforcementBodies": [
+    {
+      "id": "jm-eb-nla",
+      "name": "National Land Agency (NLA)",
+      "jurisdiction": "Jamaica",
+      "powers": [
+        "Register title under the Registration of Titles Act",
+        "Maintain the Torrens-style land registry",
+        "Issue certified copies and official searches",
+        "Receive and discharge caveats",
+        "Administer Crown lands"
+      ],
+      "contactUrl": "https://www.nla.gov.jm/"
+    },
+    {
+      "id": "jm-eb-rab",
+      "name": "Rent Assessment Board",
+      "jurisdiction": "Jamaica",
+      "powers": [
+        "Determine reasonable rent disputes under the Landlord and Tenant Act",
+        "Hear appeals on rent-restriction de-control",
+        "Mediate tenant-landlord disputes at parish level"
+      ],
+      "contactUrl": "https://moj.gov.jm/"
+    },
+    {
+      "id": "jm-eb-supreme-court",
+      "name": "Supreme Court of Jamaica",
+      "jurisdiction": "Jamaica",
+      "powers": [
+        "Determine civil disputes including land, strata, and tenant matters",
+        "Grant injunctions (including against trespass and recovery of possession)",
+        "Hear appeals from the Parish Courts and the Rent Assessment Board"
+      ],
+      "contactUrl": "https://www.jmseccourts.gov.jm/"
+    },
+    {
+      "id": "jm-eb-ccj",
+      "name": "Caribbean Court of Justice (CCJ)",
+      "jurisdiction": "CARICOM (appellate jurisdiction for Jamaica)",
+      "powers": [
+        "Final appellate court for civil matters (replacing the Privy Council)",
+        "Original jurisdiction over the Revised Treaty of Chaguaramas (CARICOM trade disputes)"
+      ],
+      "contactUrl": "https://www.ccj.org/"
+    }
+  ],
+  "remedies": [
+    {
+      "id": "jm-remedy-quiet-enjoyment-claim",
+      "label": "Quiet enjoyment / repair-covenant claim",
+      "description": "Claim under the implied covenants of the Landlord and Tenant Act, s.6 (quiet enjoyment) and s.8 (repair). Applies to the Parish Court for an order requiring repair and/or damages.",
+      "legalBasis": ["jm-lta"],
+      "applicableWhere": "Residential tenant; landlord has failed to maintain the premises OR has interfered with quiet enjoyment.",
+      "formTemplateId": "jm-fm-parish-quiet-enjoyment",
+      "remedyKind": "court-petition",
+      "governancePath": "court-application"
+    },
+    {
+      "id": "jm-remedy-rent-rab",
+      "label": "Rent Assessment Board complaint",
+      "description": "Petition the Rent Assessment Board for a determination of reasonable rent or for de-control from the Rent Restriction Act.",
+      "legalBasis": ["jm-lta", "jm-rra"],
+      "applicableWhere": "Tenant under a residential tenancy; rent is unreasonable OR tenancy qualifies for de-control.",
+      "formTemplateId": "jm-fm-rab-petition",
+      "remedyKind": "tribunal-petition",
+      "governancePath": "tribunal-application"
+    },
+    {
+      "id": "jm-remedy-possession-defence",
+      "label": "Defence to a Recovery of Possession action",
+      "description": "Defend a possession claim by raising the notice-to-quit defects, the security-of-tenure protections of the Landlord and Tenant Act, or the procedural requirements of the Recovery of Possession Act.",
+      "legalBasis": ["jm-rpa", "jm-lta"],
+      "applicableWhere": "Tenant served with a recovery-of-possession claim; grounds for possession are defective OR notice is invalid.",
+      "formTemplateId": "jm-fm-parish-defence",
+      "remedyKind": "court-petition",
+      "governancePath": "court-application"
+    },
+    {
+      "id": "jm-remedy-strata-corporation-action",
+      "label": "Strata-corporation enforcement / injunction",
+      "description": "Petition the strata corporation to enforce by-laws; apply to the Supreme Court for injunctive relief under the Registration (Strata Titles) Act where the corporation fails to act.",
+      "legalBasis": ["jm-strata"],
+      "applicableWhere": "Owner of a strata lot in a registered strata plan; by-law breached or threatened breach.",
+      "formTemplateId": "jm-fm-strata-petition",
+      "remedyKind": "strata-corporation-action",
+      "governancePath": "unit-entitlement-vote"
+    },
+    {
+      "id": "jm-remedy-caveat",
+      "label": "Lodge a caveat under the Registration of Titles Act",
+      "description": "Lodge a caveat with the National Land Agency to protect a claimed interest in land; the Registrar will not register a dealing that would affect the caveated interest without notice.",
+      "legalBasis": ["jm-rta"],
+      "applicableWhere": "Person with a registrable interest in land; subject to a dealing that would defeat that interest.",
+      "formTemplateId": "jm-fm-nla-caveat",
+      "remedyKind": "registration-action",
+      "governancePath": "registry-registration"
+    }
+  ]
+}

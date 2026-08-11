@@ -6,12 +6,15 @@
 //
 // RUN:   bun scripts/test-legislative-schema.ts
 //
-// Coverage (≥ 20 assertions):
+// Coverage (≥ 28 assertions):
 //   A. UK framework parses
 //   B. BB framework parses
 //   C. Required fields are populated
 //   D. Intentional bad inputs fail
 //   E. Bridge returns expected v1-compatible fields
+//   F. JM framework parses (Caribbean test v1.1)
+//   G. KY framework parses (Caribbean test v1.1)
+//   H. v1.1 schema fields (remedyKind, governancePath, gazettePortability, etc.)
 //
 // Exit code: 0 if every assertion passes; 1 otherwise.
 
@@ -28,9 +31,13 @@ import {
 } from "../src/data/legislative-framework-schema";
 import ukRaw from "../src/data/frameworks/uk-framework.json";
 import bbRaw from "../src/data/frameworks/bb-framework.json";
+import jmRaw from "../src/data/frameworks/jm-framework.json";
+import kyRaw from "../src/data/frameworks/ky-framework.json";
 import {
   UK_FRAMEWORK,
   BB_FRAMEWORK,
+  JM_FRAMEWORK,
+  KY_FRAMEWORK,
   STATUTES,
   JURISDICTIONS,
   FRAMEWORKS,
@@ -232,10 +239,12 @@ async function run() {
   });
 
   console.log("\n[E] Migration bridge returns expected fields");
-  await test("E1 — bridge exposes JURISDICTIONS with at least UK + BB", () => {
+  await test("E1 — bridge exposes JURISDICTIONS with at least UK + BB + JM + KY", () => {
     const codes = new Set(JURISDICTIONS.map((j) => j.code));
     assert(codes.has("UK"), "UK missing");
     assert(codes.has("BB"), "BB missing");
+    assert(codes.has("JM"), "JM missing");
+    assert(codes.has("KY"), "KY missing");
   });
   await test("E2 — bridge STATUTES contains UK LTA 1985 by id", () => {
     const s = STATUTES.find((x) => x.id === "uk-lta-1985");
@@ -254,11 +263,11 @@ async function run() {
     assert(s, "bb-condo-cap224a not in bridge STATUTES");
     assertEqual(s!.jurisdiction, "BB", "jurisdiction");
   });
-  await test("E4 — bridge summary reports ≥ 8 primary acts across both frameworks", () => {
+  await test("E4 — bridge summary reports ≥ 20 primary acts across all four frameworks", () => {
     const s = summarise();
-    assert(s.primaryActCount >= 8, `only ${s.primaryActCount} primary acts across UK+BB`);
-    assert(s.jurisdictionCount === 2, `jurisdictionCount ${s.jurisdictionCount}`);
-    assert(s.urlCount >= 20, `urlCount ${s.urlCount}`);
+    assert(s.primaryActCount >= 20, `only ${s.primaryActCount} primary acts across UK+BB+JM+KY`);
+    assert(s.jurisdictionCount === 4, `jurisdictionCount ${s.jurisdictionCount}`);
+    assert(s.urlCount >= 70, `urlCount ${s.urlCount}`);
   });
   await test("E5 — bridge cross-link report has no broken references in UK", () => {
     assertEqual(CROSS_LINK_REPORT.UK.broken.length, 0, `UK broken refs: ${JSON.stringify(CROSS_LINK_REPORT.UK.broken)}`);
@@ -287,9 +296,11 @@ async function run() {
     assert(r, "uk-remedy-rtm-acquisition not findable");
     assert(r!.legalBasis.includes("uk-clra-2002"), "missing uk-clra-2002 in legalBasis");
   });
-  await test("E11 — FRAMEWORKS exposes both jurisdictions by code", () => {
+  await test("E11 — FRAMEWORKS exposes all four jurisdictions by code", () => {
     assert(FRAMEWORKS["UK"], "FRAMEWORKS[UK] missing");
     assert(FRAMEWORKS["BB"], "FRAMEWORKS[BB] missing");
+    assert(FRAMEWORKS["JM"], "FRAMEWORKS[JM] missing");
+    assert(FRAMEWORKS["KY"], "FRAMEWORKS[KY] missing");
   });
   await test("E12 — bridge STATUTES are sorted by jurisdiction then id", () => {
     for (let i = 1; i < STATUTES.length; i++) {
@@ -301,6 +312,117 @@ async function run() {
         throw new Error(`out-of-order jurisdictions ${prev.jurisdiction} > ${cur.jurisdiction}`);
       }
     }
+  });
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // Caribbean test v1.1 — JM + KY + new schema fields
+  // ─────────────────────────────────────────────────────────────────────────────
+
+  console.log("\n[F] JM framework parses (Caribbean test v1.1)");
+  await test("F1 — JM framework JSON parses with no schema issues", () => {
+    const r = LegislativeFrameworkSchema.safeParse(jmRaw);
+    assert(r.success, `JM parse failed: ${JSON.stringify((r as { error: SchemaError }).error.issues)}`);
+  });
+  await test("F2 — JM framework has ≥ 6 primary acts", () => {
+    assert(JM_FRAMEWORK.primaryActs.length >= 6, `only ${JM_FRAMEWORK.primaryActs.length} primary acts`);
+  });
+  await test("F3 — JM primary acts include the named anchors (Strata, LTA, RTA)", () => {
+    const ids = new Set(JM_FRAMEWORK.primaryActs.map((a) => a.id));
+    assert(ids.has("jm-strata"), "jm-strata missing");
+    assert(ids.has("jm-lta"), "jm-lta missing");
+    assert(ids.has("jm-rta"), "jm-rta missing");
+  });
+  await test("F4 — JM exposes the v1.1 gassezine-portability field", () => {
+    assertEqual(JM_FRAMEWORK.jurisdiction.gazettePortability, "search-only", "gazettePortability");
+  });
+  await test("F5 — JM finalAppellateCourt reflects the CCJ (since 2021)", () => {
+    assert(JM_FRAMEWORK.jurisdiction.finalAppellateCourt?.includes("CCJ"), `finalAppellateCourt: ${JM_FRAMEWORK.jurisdiction.finalAppellateCourt}`);
+  });
+  await test("F6 — JM framework has ≥ 5 remedies", () => {
+    assert(JM_FRAMEWORK.remedies.length >= 5, `only ${JM_FRAMEWORK.remedies.length} remedies`);
+  });
+  await test("F7 — JM remedies include the strata-corporation-action remedyKind", () => {
+    const strata = JM_FRAMEWORK.remedies.find((r) => r.remedyKind === "strata-corporation-action");
+    assert(strata, "no strata-corporation-action remedy");
+  });
+  await test("F8 — JM bridge cross-link report has no broken references", () => {
+    assertEqual(CROSS_LINK_REPORT.JM.broken.length, 0, `JM broken refs: ${JSON.stringify(CROSS_LINK_REPORT.JM.broken)}`);
+  });
+
+  console.log("\n[G] KY framework parses (Caribbean test v1.1)");
+  await test("G1 — KY framework JSON parses with no schema issues", () => {
+    const r = LegislativeFrameworkSchema.safeParse(kyRaw);
+    assert(r.success, `KY parse failed: ${JSON.stringify((r as { error: SchemaError }).error.issues)}`);
+  });
+  await test("G2 — KY framework has ≥ 6 primary acts", () => {
+    assert(KY_FRAMEWORK.primaryActs.length >= 6, `only ${KY_FRAMEWORK.primaryActs.length} primary acts`);
+  });
+  await test("G3 — KY primary acts include the named anchors (STRA, RLA, SDA)", () => {
+    const ids = new Set(KY_FRAMEWORK.primaryActs.map((a) => a.id));
+    assert(ids.has("ky-stra"), "ky-stra missing");
+    assert(ids.has("ky-rla"), "ky-rla missing");
+    assert(ids.has("ky-sda"), "ky-sda missing");
+  });
+  await test("G4 — KY exposes the v1.1 gazettePortability field as `js-rendered`", () => {
+    assertEqual(KY_FRAMEWORK.jurisdiction.gazettePortability, "js-rendered", "gazettePortability");
+  });
+  await test("G5 — KY finalAppellateCourt reflects the Privy Council (BOT)", () => {
+    assert(KY_FRAMEWORK.jurisdiction.finalAppellateCourt?.includes("Privy Council"), `finalAppellateCourt: ${KY_FRAMEWORK.jurisdiction.finalAppellateCourt}`);
+  });
+  await test("G6 — KY framework has ≥ 5 remedies", () => {
+    assert(KY_FRAMEWORK.remedies.length >= 5, `only ${KY_FRAMEWORK.remedies.length} remedies`);
+  });
+  await test("G7 — KY remedies include the tribunal-petition remedyKind", () => {
+    const tribunal = KY_FRAMEWORK.remedies.find((r) => r.remedyKind === "tribunal-petition");
+    assert(tribunal, "no tribunal-petition remedy");
+  });
+  await test("G8 — KY bridge cross-link report has no broken references", () => {
+    assertEqual(CROSS_LINK_REPORT.KY.broken.length, 0, `KY broken refs: ${JSON.stringify(CROSS_LINK_REPORT.KY.broken)}`);
+  });
+
+  console.log("\n[H] v1.1 schema fields");
+  await test("H1 — every framework exposes language=en", () => {
+    for (const fw of [UK_FRAMEWORK, BB_FRAMEWORK, JM_FRAMEWORK, KY_FRAMEWORK]) {
+      assertEqual(fw.jurisdiction.language, "en", `${fw.jurisdiction.code} language`);
+    }
+  });
+  await test("H2 — UK + BB remedies with the right foundation carry a remedyKind", () => {
+    const ukRtm = UK_FRAMEWORK.remedies.find((r) => r.id === "uk-remedy-rtm-acquisition");
+    assert(ukRtm, "uk-remedy-rtm-acquisition missing");
+    assertEqual(ukRtm!.remedyKind, "rtm-equivalent", "UK RTM remedyKind");
+    assertEqual(ukRtm!.governancePath, "rtm-claim-notice", "UK RTM governancePath");
+  });
+  await test("H3 — UK + BB + JM + KY have distinct finalAppellateCourts", () => {
+    const courts = new Set([
+      UK_FRAMEWORK.jurisdiction.finalAppellateCourt,
+      BB_FRAMEWORK.jurisdiction.finalAppellateCourt,
+      JM_FRAMEWORK.jurisdiction.finalAppellateCourt,
+      KY_FRAMEWORK.jurisdiction.finalAppellateCourt,
+    ]);
+    assert(courts.size >= 2, "less than 2 distinct finalAppellateCourt values — CCJ/JCPC split not captured");
+  });
+  await test("H4 — every framework exposes a non-empty gazettePortability", () => {
+    for (const fw of [UK_FRAMEWORK, BB_FRAMEWORK, JM_FRAMEWORK, KY_FRAMEWORK]) {
+      assert(
+        typeof fw.jurisdiction.gazettePortability === "string" && fw.jurisdiction.gazettePortability.length > 0,
+        `${fw.jurisdiction.code} gazettePortability missing`,
+      );
+    }
+  });
+  await test("H5 — UK + BB only have `established` primary acts; JM + KY have a `heuristic` slice", () => {
+    for (const fw of [UK_FRAMEWORK, BB_FRAMEWORK]) {
+      const heuristic = fw.primaryActs.filter((a) => a.conviction === "heuristic");
+      assert(heuristic.length === 0, `${fw.jurisdiction.code} has ${heuristic.length} heuristic primary acts (expected 0)`);
+    }
+    for (const fw of [JM_FRAMEWORK, KY_FRAMEWORK]) {
+      const heuristic = fw.primaryActs.filter((a) => a.conviction === "heuristic");
+      assert(heuristic.length > 0, `${fw.jurisdiction.code} has 0 heuristic primary acts (expected ≥ 1)`);
+    }
+  });
+  await test("H6 — bad gazettePortability is rejected", () => {
+    const bad = JSON.parse(JSON.stringify(ukRaw));
+    bad.jurisdiction.gazettePortability = "magic";
+    assertThrows(() => LegislativeFrameworkSchema.parse(bad), "one of");
   });
 }
 

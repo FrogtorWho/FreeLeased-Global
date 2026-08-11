@@ -120,6 +120,26 @@ export interface Jurisdiction {
   officialGazette: string;
   lastVerified: string;
   contributorPseudonym: string;
+  /**
+   * Caribbean-jurisdiction-test v1.1: official language of the statute book.
+   * Defaults to "en" if absent. Used by the i18n roadmap.
+   */
+  language?: string;
+  /**
+   * Caribbean-jurisdiction-test v1.1: appellate court hierarchy. The string
+   * is human-readable (e.g. "CCJ", "Privy Council", "UK Supreme Court").
+   * Used by the knowledge graph to model precedent propagation.
+   */
+  finalAppellateCourt?: string;
+  /**
+   * Caribbean-jurisdiction-test v1.1: whether the gazette portal is
+   *   static       — curl-friendly, no JS rendering needed
+   *   search-only  — search box but no index page
+   *   js-rendered — requires a headless browser
+   *   unknown      — default; flagged for follow-up
+   * Drives the scrape-readiness classifier.
+   */
+  gazettePortability?: "static" | "search-only" | "js-rendered" | "unknown";
 }
 
 export interface PrimaryAct {
@@ -213,6 +233,45 @@ export interface Remedy {
   legalBasis: string[];
   applicableWhere: string;
   formTemplateId?: string;
+  /**
+   * Caribbean-jurisdiction-test v1.1: kind of remedy, used to distinguish
+   * RTM-equivalent / strata-corporation-action / tribunal-petition / court-petition.
+   *   rtm-equivalent          — UK Right to Manage (CLRA 2002 §72)
+   *   strata-corporation-action — body-corporate / strata-corporation enforcement
+   *   tribunal-petition       — specialist tribunal (FTT, Stars Tribunal, etc.)
+   *   court-petition          — Superior Court / High Court / Grand Court
+   *   agency-complaint        — regulatory body / ombudsman
+   *   registration-action     — caveat / registry action
+   *   other                   — anything else
+   */
+  remedyKind?:
+    | "rtm-equivalent"
+    | "strata-corporation-action"
+    | "tribunal-petition"
+    | "court-petition"
+    | "agency-complaint"
+    | "registration-action"
+    | "other";
+  /**
+   * Caribbean-jurisdiction-test v1.1: governance path used to obtain the remedy.
+   *   rtm-claim-notice         — UK RTM claim notice
+   *   unanimous-resolution    — body-corporate / strata-corporation unanimous vote
+   *   unit-entitlement-vote   — strata-corporation proportional vote
+   *   tribunal-application    — first-tier tribunal
+   *   court-application       — court petition
+   *   agency-letter           — written agency complaint
+   *   registry-registration   — caveat / registry action
+   *   other                   — anything else
+   */
+  governancePath?:
+    | "rtm-claim-notice"
+    | "unanimous-resolution"
+    | "unit-entitlement-vote"
+    | "tribunal-application"
+    | "court-application"
+    | "agency-letter"
+    | "registry-registration"
+    | "other";
 }
 
 export interface LegislativeFramework {
@@ -429,6 +488,11 @@ const JurisdictionSchema = objectSchema<Jurisdiction>({
   officialGazette: url(),
   lastVerified: isoDatetime(),
   contributorPseudonym: pseudonym(),
+  language: str({ optional: true }),
+  finalAppellateCourt: str({ optional: true }),
+  gazettePortability: enumeration(["static", "search-only", "js-rendered", "unknown"], {
+    optional: true,
+  }),
 });
 
 const PrimaryActSchema = objectSchema<PrimaryAct>({
@@ -626,6 +690,31 @@ const RemedySchema = objectSchema<Remedy>({
   }),
   applicableWhere: str(),
   formTemplateId: str({ optional: true }),
+  remedyKind: enumeration(
+    [
+      "rtm-equivalent",
+      "strata-corporation-action",
+      "tribunal-petition",
+      "court-petition",
+      "agency-complaint",
+      "registration-action",
+      "other",
+    ],
+    { optional: true },
+  ),
+  governancePath: enumeration(
+    [
+      "rtm-claim-notice",
+      "unanimous-resolution",
+      "unit-entitlement-vote",
+      "tribunal-application",
+      "court-application",
+      "agency-letter",
+      "registry-registration",
+      "other",
+    ],
+    { optional: true },
+  ),
 });
 
 export const LegislativeFrameworkSchema = objectSchema<LegislativeFramework>({

@@ -8,7 +8,10 @@
     "constitutionalFoundation": "Uncodified constitution; parliamentary sovereignty; the Bill of Rights 1689 and Human Rights Act 1998 are foundational statutes.",
     "officialGazette": "https://www.legislation.gov.uk/",
     "lastVerified": "2026-08-11T00:00:00Z",
-    "contributorPseudonym": "[PERSON_NAME]"
+    "contributorPseudonym": "[PERSON_NAME]",
+    "language": "en",
+    "finalAppellateCourt": "UK Supreme Court",
+    "gazettePortability": "static"
   },
   "primaryActs": [
     {
@@ -347,7 +350,9 @@
       "description": "Apply to the FTT (Property Chamber) for a determination of whether a service charge is payable and, if so, in what amount (s.27A LTA 1985).",
       "legalBasis": ["uk-lta-1985"],
       "applicableWhere": "Within 6 months of the demand or the conclusion of the accounting year, whichever is later.",
-      "formTemplateId": "uk-fm-ftt-sc1"
+      "formTemplateId": "uk-fm-ftt-sc1",
+      "remedyKind": "tribunal-petition",
+      "governancePath": "tribunal-application"
     },
     {
       "id": "uk-remedy-section-20c",
@@ -355,7 +360,9 @@
       "description": "Apply to the FTT for an order that the landlord's costs of major works be limited to £250 per leaseholder, where s.20 consultation requirements were not complied with.",
       "legalBasis": ["uk-lta-1985"],
       "applicableWhere": "Within 6 months of payment (or the demand) and where consultation was defective.",
-      "formTemplateId": "uk-fm-ftt-s20c"
+      "formTemplateId": "uk-fm-ftt-s20c",
+      "remedyKind": "tribunal-petition",
+      "governancePath": "tribunal-application"
     },
     {
       "id": "uk-remedy-rtm-acquisition",
@@ -363,7 +370,9 @@
       "description": "Form an RTM company; serve a claim notice on the freeholder; acquire the right to manage on the acquisition date (post-3 Mar 2025: no-fault route under LFRA 2024).",
       "legalBasis": ["uk-clra-2002", "uk-lfra-2024"],
       "applicableWhere": "Building is a qualifying premises; at least 50% of flats are qualifying leases (s.78 CLRA 2002 as amended by s.49 LFRA 2024).",
-      "formTemplateId": "uk-fm-rtm-notice"
+      "formTemplateId": "uk-fm-rtm-notice",
+      "remedyKind": "rtm-equivalent",
+      "governancePath": "rtm-claim-notice"
     },
     {
       "id": "uk-remedy-cladding-remediation",
@@ -371,21 +380,27 @@
       "description": "Apply to the FTT to reduce service charges where a landlord has not exhausted government remediation funding (BSA 2022 ss.116–125).",
       "legalBasis": ["uk-bsa-2022", "uk-lta-1985"],
       "applicableWhere": "High-risk residential building with unsafe cladding; landlord has not claimed from the Building Safety Fund.",
-      "formTemplateId": "uk-fm-ftt-bsa"
+      "formTemplateId": "uk-fm-ftt-bsa",
+      "remedyKind": "tribunal-petition",
+      "governancePath": "tribunal-application"
     },
     {
       "id": "uk-remedy-section-21-defence",
       "label": "Defence to a s.21 possession claim (Renters' Rights Act transitional)",
       "description": "Defend a s.21 'no-fault' possession claim under transitional provisions pending full commencement of the Renters' Rights Act 2025.",
       "legalBasis": ["uk-ha-1988"],
-      "applicableWhere": "Assured shorthold tenancy; claim served before full Renters' Rights Act commencement."
+      "applicableWhere": "Assured shorthold tenancy; claim served before full Renters' Rights Act commencement.",
+      "remedyKind": "court-petition",
+      "governancePath": "court-application"
     },
     {
       "id": "uk-remedy-unlawful-eviction",
       "label": "Harassment / unlawful eviction claim",
       "description": "Apply for an injunction and/or damages under the Protection from Eviction Act 1977 and Administration of Justice Act 1970 s.40.",
       "legalBasis": ["uk-pea-1977", "uk-aja-1970"],
-      "applicableWhere": "Residential occupier has been locked out, harassed, or otherwise unlawfully disturbed."
+      "applicableWhere": "Residential occupier has been locked out, harassed, or otherwise unlawfully disturbed.",
+      "remedyKind": "court-petition",
+      "governancePath": "court-application"
     }
   ]
 }

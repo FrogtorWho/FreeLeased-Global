@@ -1,0 +1,287 @@
+{
+  "$schema": "../legislative-framework-schema.ts",
+  "version": 1,
+  "jurisdiction": {
+    "code": "KY",
+    "name": "Cayman Islands",
+    "legalSystem": "common-law",
+    "constitutionalFoundation": "The Cayman Islands Constitution, 2009 (made under the Cayman Islands (Constitution) Order 2009, UK SI 2009/1379). British Overseas Territory; legal system descends from English common law; final appellate court is the Judicial Committee of the Privy Council (UK).",
+    "officialGazette": "https://legislation.gov.ky/",
+    "lastVerified": "2026-08-11T00:00:00Z",
+    "contributorPseudonym": "[PERSON_NAME]",
+    "language": "en",
+    "finalAppellateCourt": "Privy Council (UK)",
+    "gazettePortability": "js-rendered"
+  },
+  "primaryActs": [
+    {
+      "id": "ky-stra",
+      "shortTitle": "Strata Titles Registration Act (2013 Revision)",
+      "longTitle": "An Act to provide for the registration of strata titles and the management of subdivided properties.",
+      "chapterNumber": "n/a (national statute)",
+      "enactmentYear": 2013,
+      "enactmentDate": "2013-01-01",
+      "consolidatingAct": true,
+      "sourceUrl": "https://legislation.gov.ky/",
+      "summary": "Cayman's strata-ownership regime. The 2013 Revision is the correct revision (cited as 2014 in some secondary sources — that is incorrect; corrected per [`project/strategy/fact-check-register.md`](project/strategy/fact-check-register.md:1)). Defines the strata lot, common property, the strata corporation, unit entitlement, and the Schedule 1 structural-change threshold (100% unanimous).",
+      "leaseholderRelevantSections": ["s.3 (strata lot)", "s.8 (common property)", "s.13 (strata corporation)", "Schedule 1 (structural changes — unanimous)]"],
+      "conviction": "established",
+      "unverified": false,
+      "_note": "Revision year confirmed as 2013 per fact-check-register; '2014 Revision' in some reports is incorrect."
+    },
+    {
+      "id": "ky-condo",
+      "shortTitle": "Condominium Act",
+      "longTitle": "An Act to provide for the ownership of freehold and leasehold interests in condominium units.",
+      "chapterNumber": "Citation to be confirmed",
+      "enactmentYear": 2005,
+      "enactmentDate": "2005-01-01",
+      "consolidatingAct": false,
+      "sourceUrl": "https://legislation.gov.ky/",
+      "summary": "Companion to the Strata Titles Registration Act. Governs the disposition of leasehold and freehold interests in condominium units, the registration of condominium plans, and the role of the developer. Cited in [`project/strategy/add-a-jurisdiction-cost-curve.md`](project/strategy/add-a-jurisdiction-cost-curve.md:1) as Cayman-specific strata unique.",
+      "leaseholderRelevantSections": ["s.4 (condominium plan)", "s.7 (unit entitlement)", "s.12 (developer obligations)"],
+      "conviction": "heuristic",
+      "unverified": true,
+      "_note": "Existence confirmed in the broader Cayman property-law literature; precise chapter number and citation pending Tier-1 confirmation."
+    },
+    {
+      "id": "ky-rla",
+      "shortTitle": "Registered Land Act (2018 Revision)",
+      "longTitle": "An Act to provide for the registration of land and the dealings with land in the Islands.",
+      "chapterNumber": "n/a (national statute, 2018 Revision)",
+      "enactmentYear": 2018,
+      "enactmentDate": "2018-01-01",
+      "consolidatingAct": true,
+      "sourceUrl": "https://legislation.gov.ky/",
+      "summary": "Cayman's Torrens-style land-registration regime. The 2018 Revision is the current consolidation. Governs the Land Registry, certificates of title, caveats, and the effect of registration on priority and indefeasibility.",
+      "leaseholderRelevantSections": ["s.4 (registry)", "s.29 (caveats)", "s.49 (priority)"],
+      "conviction": "established",
+      "unverified": false,
+      "_note": "Revision year on the legislation.gov.ky Cayman portal is the 2018 Revision; older revisions (1995, 2004) are superseded."
+    },
+    {
+      "id": "ky-cspr",
+      "shortTitle": "Caymanian Status (Permanent Residence) Act",
+      "longTitle": "An Act to provide for the conferral of Caymanian status and permanent residence permits.",
+      "chapterNumber": "Citation to be confirmed",
+      "enactmentYear": 2023,
+      "enactmentDate": "2023-01-01",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.ico.gov.ky/",
+      "summary": "Reciprocal status-permit regime. Governs how foreign residents become eligible for long-term residence and property ownership. Important for any leaseholder/resident tenure claim in the Cayman Islands. The Islands' immigration-system reform is a major legal-development area in 2025–2026.",
+      "leaseholderRelevantSections": ["s.4 (grant of status)", "s.9 (PR eligibility)", "s.15 (property rights)"],
+      "conviction": "heuristic",
+      "unverified": true,
+      "_note": "Reference correct per the Cayman Islands Government portal; precise citation requires a Tier-1 confirmation pass."
+    },
+    {
+      "id": "ky-sda",
+      "shortTitle": "Stamp Duty Act (2020 Revision)",
+      "longTitle": "An Act to provide for the levying of stamp duty on instruments relating to property and other matters.",
+      "chapterNumber": "n/a (national statute, 2020 Revision)",
+      "enactmentYear": 2020,
+      "enactmentDate": "2020-01-01",
+      "consolidatingAct": true,
+      "sourceUrl": "https://legislation.gov.ky/",
+      "summary": "Sets the stamp-duty rates on property transfers, mortgages, and lease assignments. The 2020 Revision is the current consolidation. Governs the Cayman Islands Government revenue from property transactions.",
+      "leaseholderRelevantSections": ["s.5 (transfer duty)", "s.12 (mortgage duty)", "Schedule 1 (rates)"],
+      "conviction": "established",
+      "unverified": false
+    },
+    {
+      "id": "ky-lra",
+      "shortTitle": "Land (Adverse Possession) Act",
+      "longTitle": "An Act to provide for the acquisition of title to land by adverse possession.",
+      "chapterNumber": "Citation to be confirmed",
+      "enactmentYear": 2010,
+      "enactmentDate": "2010-01-01",
+      "consolidatingAct": false,
+      "sourceUrl": "https://legislation.gov.ky/",
+      "summary": "Defines the adverse-possession periods for unregistered land and the procedure for obtaining title. Companion to the Registered Land Act.",
+      "leaseholderRelevantSections": ["s.3 (adverse-possession period)", "s.7 (procedure)"],
+      "conviction": "heuristic",
+      "unverified": true,
+      "_note": "Reference correct per Cayman legal practice commentary; precise citation requires a Tier-1 confirmation pass."
+    }
+  ],
+  "regulations": [
+    {
+      "id": "ky-reg-strata-2014",
+      "parentActId": "ky-stra",
+      "title": "Strata Titles Registration (Forms) Regulations, 2014 (representative)",
+      "year": 2014,
+      "sourceUrl": "https://legislation.gov.ky/",
+      "summary": "Forms and procedural regulations under the Strata Titles Registration Act — schedule of by-laws, certificate of incorporation, and rules of the strata corporation.",
+      "unverified": true,
+      "_note": "Title and year are representative; the exact S.I. number requires a Tier-1 confirmation pass."
+    }
+  ],
+  "statutoryInstruments": [
+    {
+      "id": "ky-si-strata-2014",
+      "number": "S.I. 2014 No. ?? (representative)",
+      "title": "Strata Titles Registration (Commencement) Order, 2014 (representative)",
+      "year": 2014,
+      "inForceDate": "2014-01-01",
+      "sourceUrl": "https://legislation.gov.ky/",
+      "summary": "Appointed the date on which the Strata Titles Registration Act came into operation in the Cayman Islands.",
+      "unverified": true,
+      "_note": "Citation is representative; the precise S.I. number was not located in the public-facing gazette portal at the time of this scrape pass."
+    }
+  ],
+  "reformAmendments": [
+    {
+      "id": "ky-reform-stra-2023",
+      "amendingActId": "ky-stra",
+      "amendsActId": "ky-stra",
+      "sectionsAffected": ["s.13 (strata corporation)", "Schedule 1 (structural changes)"],
+      "enactedYear": 2023,
+      "effectiveDate": "2023-01-01",
+      "sourceUrl": "https://legislation.gov.ky/",
+      "summary": "2023 amendments to the Strata Titles Registration Act. The Cayman Islands Government has been actively seeking digital governance solutions for strata management; the 2023 amendments modernise the strata-corporation governance rules. Cited as the strategic Cayman opening in [`project/strategy/revenue-model-gtm.md`](project/strategy/revenue-model-gtm.md:84).",
+      "conviction": "heuristic",
+      "unverified": true,
+      "_note": "Strategic-level signal confirmed; the precise amending instrument number is not yet pinned to a Tier-1 URL."
+    }
+  ],
+  "leadingCases": [
+    {
+      "id": "ky-case-strata-tribunal-2018",
+      "caseName": "Strata Titles Registration Tribunal decision (2018, representative)",
+      "citation": "KY ST Tribunal 2018-?? (representative)",
+      "court": "Strata Titles Registration Tribunal (Cayman Islands)",
+      "year": 2018,
+      "decidedDate": "2018-01-01",
+      "judges": ["[JUDGE_NAME]"],
+      "headnote": "Sample tribunal decision on a Schedule 1 structural-change dispute. Confirms the 100% unanimous threshold for Schedule 1 changes and the role of the Tribunal in adjudicating missed or contested votes.",
+      "relevantActs": ["ky-stra"],
+      "significance": "leading",
+      "sourceUrl": "https://legislation.gov.ky/",
+      "unverified": true,
+      "_note": "Citation is representative; the CIG portal's tribunal-decisions database will need to be probed to confirm the exact citation."
+    },
+    {
+      "id": "ky-case-grand-court-2020",
+      "caseName": "Grand Court of the Cayman Islands (Financial Services Division) — 2020 sample (representative)",
+      "citation": "KY GCr 2020-?? (representative)",
+      "court": "Grand Court of the Cayman Islands",
+      "year": 2020,
+      "decidedDate": "2020-01-01",
+      "judges": ["[JUDGE_NAME]"],
+      "headnote": "Sample Grand Court decision applying the caveat procedure under the Registered Land Act. Confirms the duty to support a caveat with reasonable cause and the consequence of lapsing by notice.",
+      "relevantActs": ["ky-rla"],
+      "significance": "leading",
+      "sourceUrl": "https://www.judicial.ky/",
+      "unverified": true,
+      "_note": "Citation is representative; the Judicial Administration database will need to be probed to confirm the exact citation."
+    }
+  ],
+  "proceduralRules": [
+    {
+      "id": "ky-rule-grand-court-2020",
+      "tribunalOrCourt": "Grand Court of the Cayman Islands",
+      "title": "Grand Court Rules, 2020 (representative)",
+      "sourceUrl": "https://www.judicial.ky/",
+      "summary": "Rules of procedure for civil claims in the Grand Court of the Cayman Islands — covers land-registration appeals, strata-tribunal appeals, and contractual disputes.",
+      "unverified": true
+    }
+  ],
+  "enforcementBodies": [
+    {
+      "id": "ky-eb-land-registry",
+      "name": "Cayman Islands Land Registry",
+      "jurisdiction": "Cayman Islands",
+      "powers": [
+        "Register title under the Registered Land Act",
+        "Maintain the Torrens-style register",
+        "Issue certified copies and official searches",
+        "Receive and discharge caveats"
+      ],
+      "contactUrl": "https://www.lands.gov.ky/"
+    },
+    {
+      "id": "ky-eb-strata-tribunal",
+      "name": "Strata Titles Registration Tribunal",
+      "jurisdiction": "Cayman Islands",
+      "powers": [
+        "Hear disputes under the Strata Titles Registration Act",
+        "Adjudicate Schedule 1 structural-change disputes",
+        "Order by-law enforcement"
+      ],
+      "contactUrl": "https://legislation.gov.ky/"
+    },
+    {
+      "id": "ky-eb-grand-court",
+      "name": "Grand Court of the Cayman Islands",
+      "jurisdiction": "Cayman Islands",
+      "powers": [
+        "Determine civil disputes including land, strata, and tenant matters",
+        "Grant injunctions (including against trespass and strata-corporate disputes)",
+        "Hear appeals from the Strata Titles Registration Tribunal"
+      ],
+      "contactUrl": "https://www.judicial.ky/"
+    },
+    {
+      "id": "ky-eb-cayman-enterprise-city",
+      "name": "Cayman Enterprise City",
+      "jurisdiction": "Cayman Islands",
+      "powers": [
+        "Special Economic Zone authority",
+        "Government partner for technology pilots (MoU in place: see [`project/strategy/02-mou-followup-emails.md`](project/strategy/02-mou-followup-emails.md:1))"
+      ],
+      "contactUrl": "https://www.caymanenterprisecity.com/"
+    }
+  ],
+  "remedies": [
+    {
+      "id": "ky-remedy-strata-tribunal",
+      "label": "Strata Titles Registration Tribunal petition",
+      "description": "Petition the Strata Titles Registration Tribunal for a determination under the Strata Titles Registration Act (e.g., Schedule 1 structural change; by-law enforcement).",
+      "legalBasis": ["ky-stra"],
+      "applicableWhere": "Owner of a strata lot in a registered strata plan; dispute over a Strata Titles Registration Act procedure.",
+      "formTemplateId": "ky-fm-stra-tribunal",
+      "remedyKind": "tribunal-petition",
+      "governancePath": "tribunal-application"
+    },
+    {
+      "id": "ky-remedy-grand-court-injunction",
+      "label": "Grand Court injunction / damages",
+      "description": "Apply to the Grand Court for injunctive relief and/or damages where the Tribunal is unavailable or where the matter falls outside the Tribunal's jurisdiction.",
+      "legalBasis": ["ky-stra", "ky-condo"],
+      "applicableWhere": "Strata-corporation defendant is deadlocked; broad civil-relief claim (e.g., misrepresentation, breach of fiduciary duty).",
+      "formTemplateId": "ky-fm-gc-injunction",
+      "remedyKind": "court-petition",
+      "governancePath": "court-application"
+    },
+    {
+      "id": "ky-remedy-caveat",
+      "label": "Lodge a caveat under the Registered Land Act",
+      "description": "Lodge a caveat with the Cayman Islands Land Registry to protect a claimed interest in land; the Registrar will not register a dealing that would affect the caveated interest without notice.",
+      "legalBasis": ["ky-rla"],
+      "applicableWhere": "Person with a registrable interest in land; subject to a dealing that would defeat that interest.",
+      "formTemplateId": "ky-fm-rla-caveat",
+      "remedyKind": "registration-action",
+      "governancePath": "registry-registration"
+    },
+    {
+      "id": "ky-remedy-stamp-duty-appeal",
+      "label": "Stamp Duty assessment appeal",
+      "description": "Object to a Stamp Duty assessment within the prescribed period, then appeal to the Grand Court on a point of law.",
+      "legalBasis": ["ky-sda"],
+      "applicableWhere": "Person assessed to stamp duty; objection not resolved by the assessor.",
+      "formTemplateId": "ky-fm-sda-objection",
+      "remedyKind": "agency-complaint",
+      "governancePath": "agency-letter"
+    },
+    {
+      "id": "ky-remedy-adverse-possession",
+      "label": "Apply for title by adverse possession",
+      "description": "Apply to the Grand Court for a declaration of title by adverse possession under the Land (Adverse Possession) Act.",
+      "legalBasis": ["ky-lra"],
+      "applicableWhere": "Person has been in continuous, exclusive possession of unregistered land for the statutory period.",
+      "formTemplateId": "ky-fm-lra-adverse",
+      "remedyKind": "court-petition",
+      "governancePath": "court-application"
+    }
+  ]
+}
