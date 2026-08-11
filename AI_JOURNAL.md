@@ -1095,3 +1095,118 @@ rubric-axis win.
 - `docs/tenki-activation.md`, `docs/tenki-workflow.md` (Tenki
   procedure now reflecting the present-day state).
 
+---
+
+## OllyGarden wire-format fix — closed the loop on the 401 (2026-08-11, 13:27 UTC)
+
+The Phase 7 LIVE ACTIVATION captured an HTTP 401 from the OllyGarden
+collector when `scripts/activate-ollygarden-live.py` POST'd an OTLP/HTTP
+span with `X-OllyGarden-Key: <key>` (verbatim). The TS reporter at
+`src/lib/ollygarden.ts:172` always sent `Authorization: Bearer <key>`
+instead. Two contracts in one codebase — the proof probe had to
+disambiguate which one the partner actually accepts.
+
+### What the proof probe showed
+
+| Probe | Header | Status | Body preview |
+|-------|--------|--------|--------------|
+| `ollygarden_x_key_header` | `X-OllyGarden-Key: <key>` (verbatim) | **401** | (empty) |
+| `ollygarden_bearer_header` | `Authorization: Bearer <key>` | **400** | `failed to unmarshal request body` |
+
+Conclusion: Bearer passes auth. The 400 is a body-shape problem — not an
+auth problem. Single-line wire-format fix was sufficient.
+
+### What I changed (3 live senders, same root cause)
+
+| File | Line(s) | Change |
+|------|---------|--------|
+| `src/core/ollygarden_observability.py` | 62-66 | `AUTH_HEADER_NAME = "X-OllyGarden-Key"` → `AUTH_HEADER_NAME = "Authorization"` + new `AUTH_HEADER_SCHEME = "Bearer"` |
+| `src/core/ollygarden_observability.py` | 160 | `headers={AUTH_HEADER_NAME: api_key}` → `headers={AUTH_HEADER_NAME: f"{AUTH_HEADER_SCHEME} {api_key}"}` |
+| `src/test_ollygarden.py` | 19 | `headers={"X-OllyGarden-Key": api_key}` → `headers={"Authorization": f"Bearer {api_key}"}` |
+| `scripts/activate-ollygarden-live.py` | 111 | `"X-OllyGarden-Key": api_key` → `"Authorization": f"Bearer {api_key}"` |
+
+### Re-probe after the wire-format fix (13:21 UTC)
+
+```
+[activate-ollygarden] configured=True endpoint=https://in.ollygarden.cloud/v1/traces
+                    attempt=True ok=False http=400 elapsed_ms=216
+```
+
+Auth now passes. Body shape needs further work — but the artefact
+(`memory/2026-08-11-ollygarden-sample.json`) was overwritten with the
+post-fix record.
+
+### Differential trace-id probe (`scripts/probe-ollygarden-traceid.py`)
+
+The 400 was suspicious. The OTLP envelope was well-formed JSON. I tried
+five trace-id lengths to bisect:
+
+| Variant | traceId | spanId | Status |
+|---------|---------|--------|--------|
+| `correct_32hex` | 32 hex | 16 hex | **200** ✅ |
+| `correct_16hex_each` | 32 hex | 16 hex | **200** ✅ |
+| `oversized_64hex` | 64 hex | 32 hex | **400** ❌ |
+| `oversized_64hex_full` | 64 hex | 16 hex | **400** ❌ |
+| `undersized_8hex` | 8 hex | 8 hex | **400** ❌ |
+
+The OllyGarden collector strictly enforces **32 / 16 hex chars** (16 / 8
+raw bytes). The activate script's `to_otlp()` had been doing
+`trace_id.rjust(32, "0")[:32].encode("ascii").hex()` — for the ascii
+input `"activation20260811"`, that produces 64 hex chars (32 bytes),
+twice the OTLP-spec length. Bug located.
+
+### Body-shape fix (`scripts/activate-ollygarden-live.py:54-69`)
+
+Replaced the rjust-then-hex-encode logic with hex-aware normalisation:
+if the input is already hex, pad with zeros; if it's ascii, sha256-truncate
+to a deterministic 32 / 16 hex id. Backward-compatible with all existing
+fixtures.
+
+### Re-re-probe after the body-shape fix (13:23 UTC)
+
+```
+[activate-ollygarden] configured=True endpoint=https://in.ollygarden.cloud/v1/traces
+                    attempt=True ok=True http=200 elapsed_ms=212
+                    -> memory\2026-08-11-ollygarden-sample.json
+```
+
+**HTTP 200 in 212 ms.** Response body: `{"partialSuccess":{}}` — the
+standard OTLP/HTTP success envelope. The span was accepted by the
+OllyGarden collector.
+
+### Verdict flips
+
+| Axis | Pre-fix | Post-fix |
+|------|---------|----------|
+| Auth layer | ❌ rejected (401) | ✅ accepted |
+| Body shape | ❌ rejected (400) | ✅ accepted |
+| End-to-end | ❌ PARTIAL | ✅ **LIVE** |
+
+### Lessons
+
+- **Single-source the wire format.** Two contracts (one in TS, one in
+  Python) cost ~30 minutes of activation debugging. Future partner
+  integrations should ship the wire format in *one* shared module
+  (e.g. `src/core/partner_auth_headers.py`) and import from there.
+- **Probe-don't-guess on body-shape problems.** When you advance past
+  one HTTP error class and land in another, run a *differential* probe
+  on the suspect field rather than re-engineering the whole payload.
+  Took 3 minutes to identify trace-id length; would have taken 30
+  minutes of guessing.
+- **The proof probe pays for itself.** Sam's earlier
+  `scripts/proof-probe-endpoints.py` was the *only* reason I knew which
+  fix to attempt first.
+
+### Cross-reference
+
+- HEARTBEAT.md 13:27 UTC bullet.
+- `docs/ollygarden-integration.md` — new "Wire format (auth header)"
+  section (§5).
+- `project/strategy/live-activation-proof.md` — verdict flipped
+  PARTIAL → LIVE in the summary table, "Conflict in source code"
+  block retitled "FIX APPLIED", verdict retitled "FIX APPLIED at
+  13:20 UTC", F1 retitled "FIX APPLIED at 13:20 UTC".
+- Replay artefacts: `memory/2026-08-11-ollygarden-{sample,body-probe,traceid-probe}.json`.
+- Commits: `e9fe464` (the fix) + `7bad14d` (chore: rm accidental
+  `commit-msg.txt` from the same `git add -A`).
+
