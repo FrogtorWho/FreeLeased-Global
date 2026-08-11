@@ -363,6 +363,21 @@ export function resolveConflict(
 // ── Network Detection ─────────────────────────────────────────────
 
 /**
+ * Subset of the Network Information API (Chromium-only, opt-in).
+ * We narrow the navigator with a typed accessor instead of `any`.
+ */
+interface NetworkInformation {
+  readonly effectiveType?: "2g" | "3g" | "4g" | "slow-2g";
+  readonly downlink?: number;
+  readonly rtt?: number;
+  readonly saveData?: boolean;
+}
+
+interface NavigatorWithConnection extends Navigator {
+  readonly connection?: NetworkInformation;
+}
+
+/**
  * Detect network status and bandwidth.
  */
 export function detectNetworkStatus(): NetworkState {
@@ -377,7 +392,7 @@ export function detectNetworkStatus(): NetworkState {
   }
 
   const online = navigator.onLine;
-  const connection = (navigator as any).connection;
+  const connection = (navigator as NavigatorWithConnection).connection;
 
   let bandwidth: NetworkState["bandwidth"] = "unknown";
   if (connection) {

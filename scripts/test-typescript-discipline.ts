@@ -45,18 +45,14 @@ function listTsFiles(dir: string): string[] {
   assert(libFiles.length >= 20, `src/lib has ≥20 .ts files (got ${libFiles.length})`);
 }
 
-// ── Test 2: zero `any` types in NEW Phase 11 src/lib files ───────────
+// ── Test 2: zero `any` types in src/lib files (Phase 12 G9 closed) ───
 //
-// We assert the discipline on NEW files we ship in Phase 11. Legacy
-// files (offline.ts, ocr-pipeline.ts, giotto.ts, gauntlet-process.ts,
-// ollygarden.ts) are tracked in the panel's honest-gaps section and
-// will be migrated post-buildathon.
-const ANY_EXCEPTIONS = new Set([
-  // Phase 11 additions — they have explicit type-safe APIs; this test
-  // ensures they stay that way.
-  "src/lib/copy.ts",
-  "src/lib/citation.ts",
-  "src/lib/a11y.ts",
+// Phase 12 closes G9 by removing all 11 `any` uses across 5 legacy files
+// (offline.ts, ocr-pipeline.ts, giotto.ts, gauntlet-process.ts,
+// ollygarden.ts). The discipline is now enforced project-wide — there
+// are NO exception files. Every `any` is a test failure.
+const ANY_EXCEPTIONS = new Set<string>([
+  // Phase 12 closed G9 — exceptions removed.
 ]);
 
 let anyViolations = 0;
@@ -68,42 +64,63 @@ const anyReport: string[] = [];
     if (ANY_EXCEPTIONS.has(rel)) continue;
     const content = readFileSync(f, "utf8");
     // Match `: any` (type annotation), `<any>` (generic), `as any` (cast).
+    // Strip comments first to avoid false positives.
+    const stripped = content
+      .replace(/\/\*[\s\S]*?\*\//g, "")
+      .replace(/\/\/.*$/gm, "");
     const reAny = /:\s*any\b|<any>|as\s+any\b/g;
-    const m = content.match(reAny);
+    const m = stripped.match(reAny);
     if (m && m.length > 0) {
       anyViolations += m.length;
       anyReport.push(`${rel}: ${m.length} \`any\` use(s)`);
     }
   }
-  // We assert: Phase 11 additions have ZERO `any`. Legacy code is
-  // logged but does NOT fail the test (it would break Bucket 1).
   if (anyViolations > 0) {
-    console.log("  Note: legacy files with `any` (tracked in panel honest-gaps):");
+    console.log("  `any` violations (must be 0 after Phase 12 G9):");
     anyReport.forEach((r) => console.log(`    - ${r}`));
   }
-  // Run the assertion only on the new files: they MUST have zero any.
-  let phase11Violations = 0;
-  for (const rel of ANY_EXCEPTIONS) {
-    const content = readFileSync(`${ROOT}/${rel}`, "utf8");
-    const m = content.match(/:\s*any\b|<any>|as\s+any\b/g);
-    if (m) phase11Violations += m.length;
-  }
-  assert(phase11Violations === 0,
-    `Phase 11 src/lib files have zero \`any\` (got ${phase11Violations} in new files; ${anyViolations} total legacy tracked)`);
+  assert(anyViolations === 0, `Phase 12 src/lib has zero \`any\` (got ${anyViolations})`);
 }
 
-// ── Test 3: every file in ANY_EXCEPTIONS also has zero `any` ──────────
+// ── Test 3: every src/lib file has zero `any` (extension of Test 2) ──
 {
-  for (const rel of ANY_EXCEPTIONS) {
-    const f = `${ROOT}/${rel}`;
-    if (!existsSync(f)) {
-      assert(false, `exception file exists: ${rel}`);
-      continue;
-    }
+  const libFiles = listTsFiles(`${ROOT}/src/lib`);
+  let perFileAnyCount = 0;
+  for (const f of libFiles) {
+    const rel = f.replace(`${ROOT}/`, "").replace(/\\/g, "/");
     const content = readFileSync(f, "utf8");
-    const m = content.match(/:\s*any\b|<any>|as\s+any\b/g);
-    assert(!m || m.length === 0, `exception file ${rel} has zero \`any\``);
+    const stripped = content
+      .replace(/\/\*[\s\S]*?\*\//g, "")
+      .replace(/\/\/.*$/gm, "");
+    const m = stripped.match(/:\s*any\b|<any>|as\s+any\b/g);
+    if (m && m.length > 0) {
+      perFileAnyCount++;
+      console.log(`    per-file violation: ${rel} (${m.length})`);
+    }
   }
+  assert(perFileAnyCount === 0, `Every src/lib file individually has zero \`any\` (got ${perFileAnyCount} files)`);
+}
+
+// ── Test 3b: the 5 previously-legacy files specifically have zero `any`
+const PHASE12_G9_TARGETS = [
+  "src/lib/offline.ts",
+  "src/lib/ocr-pipeline.ts",
+  "src/lib/giotto.ts",
+  "src/lib/gauntlet-process.ts",
+  "src/lib/ollygarden.ts",
+];
+for (const rel of PHASE12_G9_TARGETS) {
+  const f = `${ROOT}/${rel}`;
+  if (!existsSync(f)) {
+    assert(false, `Phase 12 G9 target file exists: ${rel}`);
+    continue;
+  }
+  const content = readFileSync(f, "utf8");
+  const stripped = content
+    .replace(/\/\*[\s\S]*?\*\//g, "")
+    .replace(/\/\/.*$/gm, "");
+  const m = stripped.match(/:\s*any\b|<any>|as\s+any\b/g);
+  assert(!m || m.length === 0, `Phase 12 G9 closed — ${rel} has zero \`any\` (got ${m?.length ?? 0})`);
 }
 
 // ── Test 4: every public function has a typed signature ────────────────

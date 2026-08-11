@@ -220,6 +220,32 @@ function applyAdaptiveThreshold(ctx: CanvasRenderingContext2D, w: number, h: num
 
 // ── OCR Engine (Tesseract.js wrapper) ─────────────────────────
 
+/** Tesseract.js worker surface — narrow type for what we use. */
+interface TesseractWorker {
+  recognize(image: string | HTMLImageElement): Promise<TesseractResult>;
+  terminate(): Promise<unknown>;
+}
+
+interface TesseractWord {
+  text: string;
+  confidence: number;
+  bbox: { x0: number; y0: number; x1: number; y1: number };
+}
+
+interface TesseractLine {
+  text: string;
+  confidence: number;
+}
+
+interface TesseractResult {
+  data: {
+    text: string;
+    confidence: number;
+    words: TesseractWord[];
+    lines: TesseractLine[];
+  };
+}
+
 export interface OcrResult {
   text: string;
   confidence: number;
@@ -230,19 +256,21 @@ export interface OcrResult {
   durationMs: number;
 }
 
-let tesseractWorker: any = null;
+let tesseractWorker: TesseractWorker | null = null;
 
 /**
  * Initialize Tesseract.js worker (lazy, singleton).
  * Downloads language data on first call (~2MB for English).
  */
-async function getWorker(lang = "eng") {
+async function getWorker(lang = "eng"): Promise<TesseractWorker> {
   if (tesseractWorker) return tesseractWorker;
 
   const Tesseract = await import("tesseract.js");
-  tesseractWorker = await Tesseract.createWorker(lang, 1, {
+  // Tesseract.createWorker returns the full Worker type; we narrow it to
+  // the surface we use so the rest of the file is fully typed.
+  tesseractWorker = (await Tesseract.createWorker(lang, 1, {
     logger: () => {}, // suppress logs
-  });
+  })) as unknown as TesseractWorker;
   return tesseractWorker;
 }
 
@@ -279,12 +307,12 @@ export async function runOcr(
   const result: OcrResult = {
     text: data.text,
     confidence: data.confidence / 100, // Tesseract returns 0-100, we normalize to 0-1
-    words: data.words.map((w: any) => ({
+    words: data.words.map((w: TesseractWord) => ({
       text: w.text,
       confidence: w.confidence / 100,
       bbox: w.bbox,
     })),
-    lines: data.lines.map((l: any) => ({
+    lines: data.lines.map((l: TesseractLine) => ({
       text: l.text,
       confidence: l.confidence / 100,
     })),
@@ -306,12 +334,12 @@ export async function runOcr(
     if (retryConfidence > result.confidence) {
       result.text = retryData.data.text;
       result.confidence = retryConfidence;
-      result.words = retryData.data.words.map((w: any) => ({
+      result.words = retryData.data.words.map((w: TesseractWord) => ({
         text: w.text,
         confidence: w.confidence / 100,
         bbox: w.bbox,
       }));
-      result.lines = retryData.data.lines.map((l: any) => ({
+      result.lines = retryData.data.lines.map((l: TesseractLine) => ({
         text: l.text,
         confidence: l.confidence / 100,
       }));

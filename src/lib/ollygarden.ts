@@ -141,7 +141,10 @@ class HTTPReporter implements OllyGardenReporter {
       void this.flush();
     }, FLUSH_INTERVAL_MS);
     // Don't keep the process alive solely for telemetry.
-    if (typeof (this.timer as any).unref === "function") (this.timer as any).unref();
+    // Node's Timeout type has `.unref()` but `setInterval` returns a wider
+    // type; narrow it before calling.
+    const t = this.timer as ReturnType<typeof setInterval> & { unref?: () => void };
+    if (typeof t.unref === "function") t.unref();
   }
 
   report(span: Span): boolean {

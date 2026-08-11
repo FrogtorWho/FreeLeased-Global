@@ -214,7 +214,7 @@ export async function extractLease(args: {
       rentAnnual: typeof parsed.rentAnnual === "number" ? parsed.rentAnnual : null,
       deposit: typeof parsed.deposit === "string" ? parsed.deposit : null,
       clauses: Array.isArray(parsed.clauses)
-        ? parsed.clauses.slice(0, 30).map((c: any) => ({
+        ? parsed.clauses.slice(0, 30).map((c: Partial<{ excerpt: unknown; topic: unknown; risk: unknown }>) => ({
             excerpt: String(c.excerpt ?? "").slice(0, 240),
             topic: String(c.topic ?? "general"),
             risk: c.risk === "low" || c.risk === "medium" || c.risk === "high" ? c.risk : "low",

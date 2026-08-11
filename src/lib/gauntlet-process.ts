@@ -83,10 +83,19 @@ function parseIntakeJson(text: string, generatedAt: string): IntakeClassificatio
   const jsonStart = text.indexOf("{");
   const jsonEnd = text.lastIndexOf("}");
   if (jsonStart === -1 || jsonEnd === -1) return null;
-  let parsed: any;
-  try { parsed = JSON.parse(text.slice(jsonStart, jsonEnd + 1)); } catch { return null; }
-  const type = ALLOWED_INTAKE_TYPES.has(parsed?.type) ? (parsed.type as IntakeType) : "other";
-  const conf = typeof parsed.confidence === "number" ? Math.min(1, Math.max(0, parsed.confidence)) : 0.5;
+  let parsed: {
+    type?: unknown;
+    confidence?: unknown;
+    suggestedRules?: unknown;
+    suggestedFocus?: unknown;
+  } | null;
+  try {
+    parsed = JSON.parse(text.slice(jsonStart, jsonEnd + 1)) as typeof parsed;
+  } catch {
+    return null;
+  }
+  const type = ALLOWED_INTAKE_TYPES.has(parsed?.type as IntakeType) ? (parsed.type as IntakeType) : "other";
+  const conf = typeof parsed?.confidence === "number" ? Math.min(1, Math.max(0, parsed.confidence)) : 0.5;
   return {
     type,
     confidence: conf,
