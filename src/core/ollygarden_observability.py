@@ -88,7 +88,10 @@ def get_ollygarden_endpoint() -> str:
     Returns:
         The OTLP/HTTP endpoint URL.
     """
-    return _read_env("OLLYGARDEN_OTLP_ENDPOINT", DEFAULT_OTLP_ENDPOINT) or DEFAULT_OTLP_ENDPOINT
+    return (
+        _read_env("OLLYGARDEN_OTLP_ENDPOINT", DEFAULT_OTLP_ENDPOINT)
+        or DEFAULT_OTLP_ENDPOINT
+    )
 
 
 def get_ollygarden_api_key() -> str | None:

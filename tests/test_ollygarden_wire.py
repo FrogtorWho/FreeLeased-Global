@@ -113,7 +113,7 @@ class TestOllygardenEnvConfig(unittest.TestCase):
         self.assertFalse(is_ollygarden_configured())
 
     def test_06_api_key_present(self) -> None:
-        """When ``OLLYGARDEN_API_KEY`` is set, ``is_ollygarden_configured`` returns True."""
+        """When the API key is set, ``is_ollygarden_configured`` returns True."""
         with mock.patch.dict(os.environ, {"OLLYGARDEN_API_KEY": "test-sentinel-key"}):
             self.assertEqual(get_ollygarden_api_key(), "test-sentinel-key")
             self.assertTrue(is_ollygarden_configured())
