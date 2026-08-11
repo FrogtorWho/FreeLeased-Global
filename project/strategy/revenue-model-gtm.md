@@ -18,7 +18,12 @@
 - **Year 2**: 15,000 UK + 2,000 Caribbean × blended $100/yr = **$1.7M**
 - **Year 3**: 50,000 × blended $90/yr = **$4.5M**
 
-## Pricing Tiers
+## Pricing Tiers — see canonical pricing page
+
+The canonical, public pricing page is at
+[`pricing-page-v1.md`](pricing-page-v1.md:1). Three tiers, transparent,
+GDPR-residency-aware, no hidden fees. This GTM doc summarises the
+**rationale** behind the tiers; the pricing page is the contract.
 
 ### Free Tier (Individual Leaseholder)
 - 1 lease audit per month
