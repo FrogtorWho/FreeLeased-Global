@@ -10,19 +10,73 @@ datasource db {
 }
 // SHOGO:CUSTOM-END
 
+// ─── Multi-tenancy (Phase 12 G5) ──────────────────────────────────────
+// Every domain model carries a `tenantId` foreign key. The `Tenant` model
+// is the root. The default tenant for legacy single-tenant installs is
+// `tenant_default` (created by `scripts/migrate-multi-tenant.ts`).
+//
+// Slug-based routing:
+//   • Institution plan tenants get a stable slug (e.g. `housing-association-london`).
+//   • Free / Pro tenants get an auto-generated slug from `tenant_<8-char>`.
+//   • The middleware in `src/lib/tenancy.ts` resolves slug → tenantId per request.
+//
+// Indexes: every model with `tenantId` has `@@index([tenantId])` so
+// tenant-scoped queries are O(log n).
+
+model Tenant {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  plan      String   @default("free") // "free" | "pro" | "institution"
+  status    String   @default("active") // "active" | "suspended" | "deleted"
+  contactEmail String?  @map("contact_email")
+  dpaSignedAt   DateTime? @map("dpa_signed_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  users    User[]
+  signoffs Signoff[]
+  auditEntries AuditEntry[]
+  researchTasks ResearchTask[]
+  jurisdictionRecords JurisdictionRecord[]
+  statuteRecords StatuteRecord[]
+  competitionTasks CompetitionTask[]
+  contentDrafts ContentDraft[]
+  contractRecords ContractRecord[]
+  residentGroups ResidentGroup[]
+  groupMembers GroupMember[]
+  groupTasks GroupTask[]
+  groupVotes GroupVote[]
+  groupBallots GroupBallot[]
+  groupMessages GroupMessage[]
+  groupDocuments GroupDocument[]
+  groupMilestones GroupMilestone[]
+  captureSessions CaptureSession[]
+  correspondenceTemplates CorrespondenceTemplate[]
+  signedDocuments SignedDocument[]
+  documentSignatures DocumentSignature[]
+  reviewItems ReviewItem[]
+
+  @@map("tenants")
+}
+
 model User {
   id        String   @id @default(cuid())
+  tenantId  String   @default("tenant_default") @map("tenant_id")
   email     String   @unique
   name      String?
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
 
+  @@index([tenantId])
   @@map("users")
 }
 
 // Dossier sign-off ledger — the HITL / resident acceptance record (Redaction Protocol).
 model Signoff {
   id           String   @id @default(cuid())
+  tenantId     String   @default("tenant_default") @map("tenant_id")
   residentId   String   @map("resident_id")
   jurisdiction String
   decision     String   // "accepted" | "hitl-reviewed" | "rejected"
@@ -31,14 +85,17 @@ model Signoff {
   reviewer     String   @default("resident")
   note         String?
   createdAt    DateTime @default(now()) @map("created_at")
+  tenant       Tenant   @relation(fields: [tenantId], references: [id])
 
   @@index([residentId])
+  @@index([tenantId])
   @@map("signoffs")
 }
 
 // Per-query audit ledger — every dossier build logs its provenance summary.
 model AuditEntry {
   id           String   @id @default(cuid())
+  tenantId     String   @default("tenant_default") @map("tenant_id")
   residentId   String   @map("resident_id")
   jurisdiction String
   agent        String
@@ -47,8 +104,10 @@ model AuditEntry {
   abstain      Boolean  @default(false)
   rowHash      String   @map("row_hash")
   createdAt    DateTime @default(now()) @map("created_at")
+  tenant       Tenant   @relation(fields: [tenantId], references: [id])
 
   @@index([residentId])
+  @@index([tenantId])
   @@map("audit_entries")
 }
 
@@ -57,6 +116,7 @@ model AuditEntry {
 // A unit of research work: structure a new jurisdiction / statute / contract.
 model ResearchTask {
   id               String   @id @default(cuid())
+  tenantId         String   @default("tenant_default") @map("tenant_id")
   kind             String   // "jurisdiction" | "statute" | "contract"
   target           String
   jurisdictionCode String   @map("jurisdiction_code")
@@ -68,16 +128,19 @@ model ResearchTask {
   assignedAgent    String   @default("research-agent") @map("assigned_agent")
   createdAt        DateTime @default(now()) @map("created_at")
   updatedAt        DateTime @updatedAt @map("updated_at")
+  tenant           Tenant   @relation(fields: [tenantId], references: [id])
 
   @@index([jurisdictionCode])
   @@index([status])
+  @@index([tenantId])
   @@map("research_tasks")
 }
 
 // A researched jurisdiction record (grows as new jurisdictions are added).
 model JurisdictionRecord {
   id            String   @id @default(cuid())
-  code          String   @unique
+  tenantId      String   @default("tenant_default") @map("tenant_id")
+  code          String
   name          String
   tenureSystem  String?  @map("tenure_system")
   registryName  String?  @map("registry_name")
@@ -86,13 +149,17 @@ model JurisdictionRecord {
   conviction    String   @default("pending")
   lastReviewed  DateTime @default(now()) @map("last_reviewed")
   createdAt     DateTime @default(now()) @map("created_at")
+  tenant        Tenant   @relation(fields: [tenantId], references: [id])
 
+  @@unique([tenantId, code])
+  @@index([tenantId])
   @@map("jurisdiction_records")
 }
 
 // A researched statute record (per-jurisdiction, versioned by review date).
 model StatuteRecord {
   id               String   @id @default(cuid())
+  tenantId         String   @default("tenant_default") @map("tenant_id")
   jurisdictionCode String   @map("jurisdiction_code")
   shortTitle       String   @map("short_title")
   citation         String?
@@ -103,13 +170,16 @@ model StatuteRecord {
   provenance       String   @default("[]") // JSON OfficialSource[]
   lastReviewed     DateTime @default(now()) @map("last_reviewed")
   createdAt        DateTime @default(now()) @map("created_at")
+  tenant           Tenant   @relation(fields: [tenantId], references: [id])
 
   @@index([jurisdictionCode])
+  @@index([tenantId])
   @@map("statute_records")
 }
 
 model CompetitionTask {
   id          String   @id @default(cuid())
+  tenantId    String   @default("tenant_default") @map("tenant_id")
   title       String
   description String
   priority    Int      @default(0) // 0=low, 5=critical
@@ -121,14 +191,17 @@ model CompetitionTask {
   completedAt DateTime? @map("completed_at")
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
 
   @@index([status])
   @@index([priority(sort: Desc)])
+  @@index([tenantId])
   @@map("competition_tasks")
 }
 
 model ContentDraft {
   id          String   @id @default(cuid())
+  tenantId    String   @default("tenant_default") @map("tenant_id")
   kind        String   // "social" | "journal" | "compliance" | "demo-script" | "overview"
   title       String
   body        String
@@ -139,15 +212,18 @@ model ContentDraft {
   postedAt    DateTime? @map("posted_at")
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
 
   @@index([kind])
   @@index([status])
+  @@index([tenantId])
   @@map("content_drafts")
 }
 
 // Individual or collective contract records mapped clause-by-clause.
 model ContractRecord {
   id               String   @id @default(cuid())
+  tenantId         String   @default("tenant_default") @map("tenant_id")
   jurisdictionCode String   @map("jurisdiction_code")
   contractType     String   @map("contract_type") // lease | share-of-freehold | strata-bylaws | management-agreement
   scope            String   @default("individual") // individual | collective
@@ -157,8 +233,10 @@ model ContractRecord {
   status           String   @default("draft")
   lastReviewed     DateTime @default(now()) @map("last_reviewed")
   createdAt        DateTime @default(now()) @map("created_at")
+  tenant           Tenant   @relation(fields: [tenantId], references: [id])
 
   @@index([jurisdictionCode])
+  @@index([tenantId])
   @@map("contract_records")
 }
 
@@ -167,6 +245,7 @@ model ContractRecord {
 
 model ResidentGroup {
   id              String   @id @default(cuid())
+  tenantId        String   @default("tenant_default") @map("tenant_id")
   name            String                          // "12 Harbour Road RTM Group"
   buildingName    String?  @map("building_name")  // "12 Harbour Road, Apt Block"
   jurisdictionCode String @map("jurisdiction_code")
@@ -178,27 +257,33 @@ model ResidentGroup {
   qualifyingThreshold Int? @map("qualifying_threshold") // e.g. 50% for RTM
   createdAt       DateTime @default(now()) @map("created_at")
   updatedAt       DateTime @updatedAt @map("updated_at")
+  tenant          Tenant   @relation(fields: [tenantId], references: [id])
 
   @@index([jurisdictionCode])
   @@index([goal])
+  @@index([tenantId])
   @@map("resident_groups")
 }
 
 model GroupMember {
   id        String   @id @default(cuid())
+  tenantId  String   @default("tenant_default") @map("tenant_id")
   groupId   String   @map("group_id")
   userId    String   @map("user_id")
   role      String   @default("member")  // owner | admin | member
   displayName String @map("display_name")  // pseudonymised or real
   joinedAt  DateTime @default(now()) @map("joined_at")
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
 
   @@unique([groupId, userId])
   @@index([groupId])
+  @@index([tenantId])
   @@map("group_members")
 }
 
 model GroupTask {
   id          String   @id @default(cuid())
+  tenantId    String   @default("tenant_default") @map("tenant_id")
   groupId     String   @map("group_id")
   title       String
   description String?
@@ -209,14 +294,17 @@ model GroupTask {
   category    String   @default("general")  // legal | admin | outreach | documents | other
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
 
   @@index([groupId])
   @@index([status])
+  @@index([tenantId])
   @@map("group_tasks")
 }
 
 model GroupVote {
   id          String   @id @default(cuid())
+  tenantId    String   @default("tenant_default") @map("tenant_id")
   groupId     String   @map("group_id")
   title       String
   description String?
@@ -228,38 +316,47 @@ model GroupVote {
   result      String?  // "passed" | "failed" | null if open
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
 
   @@index([groupId])
   @@index([status])
+  @@index([tenantId])
   @@map("group_votes")
 }
 
 model GroupBallot {
   id       String   @id @default(cuid())
+  tenantId String   @default("tenant_default") @map("tenant_id")
   voteId   String   @map("vote_id")
   option   String   // free-text option label
   memberId String   @map("member_id")  // GroupMember.id
   castAt   DateTime @default(now()) @map("cast_at")
+  tenant   Tenant   @relation(fields: [tenantId], references: [id])
 
   @@unique([voteId, memberId])
   @@index([voteId])
+  @@index([tenantId])
   @@map("group_ballots")
 }
 
 model GroupMessage {
   id       String   @id @default(cuid())
+  tenantId String   @default("tenant_default") @map("tenant_id")
   groupId  String   @map("group_id")
   memberId String   @map("member_id")  // GroupMember.id
   content  String
   pinned   Boolean  @default(false)
   createdAt DateTime @default(now()) @map("created_at")
+  tenant   Tenant   @relation(fields: [tenantId], references: [id])
 
   @@index([groupId, createdAt(sort: Desc)])
+  @@index([tenantId])
   @@map("group_messages")
 }
 
 model GroupDocument {
   id          String   @id @default(cuid())
+  tenantId    String   @default("tenant_default") @map("tenant_id")
   groupId     String   @map("group_id")
   title       String
   docType     String   @map("doc_type")  // lease | correspondence | tribunal | notice | evidence | other
@@ -267,13 +364,16 @@ model GroupDocument {
   fileUrl     String?  @map("file_url")
   uploadedBy  String   @map("uploaded_by") // GroupMember.id
   createdAt   DateTime @default(now()) @map("created_at")
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
 
   @@index([groupId])
+  @@index([tenantId])
   @@map("group_documents")
 }
 
 model GroupMilestone {
   id          String   @id @default(cuid())
+  tenantId    String   @default("tenant_default") @map("tenant_id")
   groupId     String   @map("group_id")
   title       String
   description String?
@@ -281,8 +381,10 @@ model GroupMilestone {
   status      String   @default("pending")  // pending | achieved | missed | waived
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
 
   @@index([groupId])
+  @@index([tenantId])
   @@map("group_milestones")
 }
 
@@ -291,6 +393,7 @@ model GroupMilestone {
 
 model CaptureSession {
   id          String   @id @default(cuid())
+  tenantId    String   @default("tenant_default") @map("tenant_id")
   token       String   @unique                          // short-lived QR token
   status      String   @default("waiting")              // waiting | captured | processing | complete | expired
   deviceType  String?  @map("device_type")              // "desktop" | "mobile"
@@ -302,9 +405,11 @@ model CaptureSession {
   expiresAt   DateTime @map("expires_at")               // auto-expire after 15 min
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
 
   @@index([token])
   @@index([status])
+  @@index([tenantId])
   @@map("capture_sessions")
 }
 
@@ -312,6 +417,7 @@ model CaptureSession {
 
 model CorrespondenceTemplate {
   id              String   @id @default(cuid())
+  tenantId        String   @default("tenant_default") @map("tenant_id")
   name            String                                    // "Section 20 Consultation Notice"
   jurisdictionCode String @map("jurisdiction_code")         // "UK" | "KY" | "BB" | "JM"
   category        String                                    // "rtm" | "service_charge" | "building_safety" | "enfranchisement" | "general"
@@ -323,10 +429,12 @@ model CorrespondenceTemplate {
   isOss           Boolean  @default(true) @map("is_oss")   // open-source flag
   createdAt       DateTime @default(now()) @map("created_at")
   updatedAt       DateTime @updatedAt @map("updated_at")
+  tenant          Tenant   @relation(fields: [tenantId], references: [id])
 
   @@index([jurisdictionCode])
   @@index([category])
   @@index([tier])
+  @@index([tenantId])
   @@map("correspondence_templates")
 }
 
@@ -334,6 +442,7 @@ model CorrespondenceTemplate {
 
 model SignedDocument {
   id              String   @id @default(cuid())
+  tenantId        String   @default("tenant_default") @map("tenant_id")
   groupId         String   @map("group_id")                // links to ResidentGroup
   templateId      String?  @map("template_id")             // links to CorrespondenceTemplate
   title           String
@@ -345,23 +454,28 @@ model SignedDocument {
   sentAt          DateTime? @map("sent_at")
   createdAt       DateTime @default(now()) @map("created_at")
   updatedAt       DateTime @updatedAt @map("updated_at")
+  tenant          Tenant   @relation(fields: [tenantId], references: [id])
 
   @@index([groupId])
   @@index([status])
+  @@index([tenantId])
   @@map("signed_documents")
 }
 
 model DocumentSignature {
   id           String   @id @default(cuid())
+  tenantId     String   @default("tenant_default") @map("tenant_id")
   documentId   String   @map("document_id")               // links to SignedDocument
   memberId     String   @map("member_id")                 // links to GroupMember
   displayName  String   @map("display_name")              // pseudonymised at time of signing
   signedAt     DateTime @default(now()) @map("signed_at")
   ipAddress    String?  @map("ip_address")                // for audit trail (hashed)
   method       String   @default("click")                 // click | drawn | typed
+  tenant       Tenant   @relation(fields: [tenantId], references: [id])
 
   @@unique([documentId, memberId])
   @@index([documentId])
+  @@index([tenantId])
   @@map("document_signatures")
 }
 
@@ -372,6 +486,7 @@ model DocumentSignature {
 
 model ReviewItem {
   id            String   @id @default(cuid())
+  tenantId      String   @default("tenant_default") @map("tenant_id")
   kind          String                                     // "consensus_divergence" | "legal_claim" | "redaction" | "fairness_flag" | "rights_assertion"
   title         String                                     // short human-readable summary
   claim         String                                     // the actual claim/output awaiting sign-off
@@ -395,9 +510,11 @@ model ReviewItem {
   appealedAt    DateTime? @map("appealed_at")
   createdAt     DateTime @default(now()) @map("created_at")
   updatedAt     DateTime @updatedAt @map("updated_at")
+  tenant        Tenant   @relation(fields: [tenantId], references: [id])
 
   @@index([status])
   @@index([kind])
   @@index([residentId])
+  @@index([tenantId])
   @@map("review_items")
 }
