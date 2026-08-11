@@ -23,6 +23,7 @@ import { RTMWizard } from "@/components/auri/RTMWizard";
 import { CommunityHub } from "@/components/auri/CommunityHub";
 import { DocumentHub } from "@/components/auri/DocumentHub";
 import { SignoffQueue } from "@/components/auri/SignoffQueue";
+import { TruthDiff } from "@/components/auri/TruthDiff";
 import MobileCapture from "@/pages/MobileCapture";
 
 const PRIMARY_NAV = [

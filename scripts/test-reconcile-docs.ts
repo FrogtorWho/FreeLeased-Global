@@ -132,6 +132,131 @@ const ROOT = resolve(import.meta.dirname || process.cwd(), "..");
   }
 }
 
+// ── Test 12: Bucket 1 — cold-clone polish artefacts exist ─────────────
+// Phase 11 / Bucket 1: every artefact named in docs/onboarding.md and
+// docs/judge-quickstart.md must exist. A doc that points to a missing
+// file is drift; this test catches it before a judge does.
+{
+  const bucket1Files = [
+    "docs/onboarding.md",
+    "docs/judge-quickstart.md",
+    "docs/story-60s.md",
+    "project/strategy/100-judge-panel.md",
+    "project/strategy/i18n-roadmap.md",
+    ".env.example",
+    "CONTRIBUTING.md",
+    "LICENSE",
+  ];
+  for (const f of bucket1Files) {
+    assert(existsSync(`${ROOT}/${f}`), `Bucket-1 artefact: ${f} exists`);
+  }
+}
+
+// ── Test 13: Bucket 1 — onboarding doc links reconcile ────────────────
+// Every cross-link from the new onboarding doc must resolve to an
+// existing file. This is the "docs-only" half of the reconcile-doc
+// runner, scoped to the onboarding tree.
+{
+  const onboarding = readFileSync(`${ROOT}/docs/onboarding.md`, "utf8");
+  const linkRe = /\]\((?:\.\.\/)+([A-Za-z0-9_./-]+\.[a-z]+)(?::\d+)?\)/g;
+  const referenced = new Set<string>();
+  let m: RegExpExecArray | null;
+  while ((m = linkRe.exec(onboarding)) !== null) {
+    referenced.add(m[1]);
+  }
+  assert(referenced.size >= 5, `onboarding.md references ≥5 files (got ${referenced.size})`);
+  for (const f of referenced) {
+    assert(existsSync(`${ROOT}/${f}`), `onboarding.md link → ${f} resolves`);
+  }
+}
+
+// ── Test 14: Bucket 1 — judge-quickstart covers all 32 archetypes ────
+// The judge-quickstart doc must enumerate every archetype row from
+// the 100-judge panel; if a row is missing, the rubric is incomplete.
+{
+  const qs = readFileSync(`${ROOT}/docs/judge-quickstart.md`, "utf8");
+  // Count table rows that begin with "| N |" where N is 1..32
+  let archetypeCount = 0;
+  for (let i = 1; i <= 32; i++) {
+    const re = new RegExp(`\\|\\s*${i}\\s*\\|`);
+    if (re.test(qs)) archetypeCount++;
+  }
+  assert(archetypeCount === 32, `judge-quickstart covers all 32 archetypes (got ${archetypeCount})`);
+}
+
+// ── Test 15: Bucket 1 — story-60s has all 5 sections ──────────────────
+{
+  const story = readFileSync(`${ROOT}/docs/story-60s.md`, "utf8");
+  const sections = ["Setup", "Conflict", "Resolution", "Proof", "Ask"];
+  for (const s of sections) {
+    assert(story.includes(`## ${s}`), `story-60s has section "## ${s}"`);
+  }
+}
+
+// ── Test 16: Bucket 1 — 100-judge-panel structure ─────────────────────
+// The 100-judge panel doc must include the 33-archetype table, the
+// axes-section header, the buckets section, and the honest-gaps section.
+{
+  const panel = readFileSync(`${ROOT}/project/strategy/100-judge-panel.md`, "utf8");
+  assert(panel.includes("## 2. Per-archetype axes"), "panel has §2 axes");
+  assert(panel.includes("## 3. Improvement buckets"), "panel has §3 buckets");
+  assert(panel.includes("## 5. Honest gaps"), "panel has §5 honest gaps");
+  assert(panel.includes("## 4. Saturation criterion"), "panel has §4 saturation");
+  // Must reference all 33 archetypes
+  const archetypeHeaders = [
+    "Legal academics", "Practising solicitors", "Caribbean barristers",
+    "Tribunal judges", "Housing policy wonks", "VCs",
+    "AI/ML researchers", "Product designers", "Frontend engineers",
+    "Backend engineers", "DevOps / SRE", "Security researchers",
+    "AI ethicists", "Privacy / GDPR specialists", "Open-source maintainers",
+    "Accessibility specialists", "Caribbean diaspora", "Climate / disaster",
+    "Property / real-estate economists", "Behavioural scientists",
+    "Journalists", "Democracy / civic-tech", "Local-government / municipal-tech",
+    "Translators / localisation", "Insurtech / lenders", "Public health",
+    "Education specialists", "Pure mathematicians / statisticians",
+    "TypeScript / language specialists", "Buildathon organisers",
+    "CfC alumni", "Press / communications specialists",
+  ];
+  let foundCount = 0;
+  for (const a of archetypeHeaders) {
+    if (panel.includes(a)) foundCount++;
+  }
+  assert(foundCount >= 30, `panel references ≥30 archetypes (got ${foundCount})`);
+}
+
+// ── Test 17: Bucket 1 — i18n-roadmap honest gap disclosure ────────────
+{
+  const i18n = readFileSync(`${ROOT}/project/strategy/i18n-roadmap.md`, "utf8");
+  assert(i18n.includes("English"), "i18n-roadmap mentions English");
+  assert(i18n.includes("Patois") || i18n.includes("Spanish") || i18n.includes("French"),
+    "i18n-roadmap names a non-English language");
+  assert(i18n.includes("Q4") || i18n.includes("2026") || i18n.includes("2027"),
+    "i18n-roadmap has a target date");
+}
+
+// ── Test 18: Bucket 1 — .env.example covers all 3 LLM providers ───────
+{
+  const env = readFileSync(`${ROOT}/.env.example`, "utf8");
+  assert(env.includes("NEBIUS_API_KEY"), ".env.example documents Nebius");
+  assert(env.includes("GIOTTO_API_KEY"), ".env.example documents Giotto");
+  assert(env.includes("MINIMAX_API_KEY"), ".env.example documents MiniMax");
+  assert(env.includes("OLLYGARDEN_API_KEY") || env.includes("OLLYGARDEN_OTLP_ENDPOINT"),
+    ".env.example documents OllyGarden");
+  assert(env.includes("OLLAMA") || env.includes("USE_LOCAL_EDGE"),
+    ".env.example documents local edge");
+}
+
+// ── Report ─────────────────────────────────────────────────────────────
+console.log(`\nFreeLeased reconcile-docs tests: ${passed}/${passed + failed} passing`);
+if (failed) {
+  console.log("FAILURES:");
+  fails.forEach((f) => console.log(`  ✗ ${f}`));
+  process.exit(1);
+} else {
+  console.log("All reconcile-docs assertions passed.");
+  process.exit(0);
+}
+
 // ── Report ─────────────────────────────────────────────────────────────
 console.log(`\nFreeLeased reconcile-docs tests: ${passed}/${passed + failed} passing`);
 if (failed) {
