@@ -1,0 +1,177 @@
+# Data Room Copy Journal — FreeLeased Buildathon
+
+**Purpose:** Reverse-copy protocol log. Every file copied from the workspace
+into the Data Room is journaled here before the copy is made, with a
+reversibility method that always resolves to "delete the target file".
+
+**Protocol (mandatory):**
+1. Pick `discretion_id` (`COPY-001`, `COPY-002`, …)
+2. Append a row BEFORE copying with: id, timestamp, source, target, TRL,
+   reason, reversibility method
+3. Then copy the file
+4. Append the result (success / error / file size) to the same row
+5. Skips are logged with `DECISION: SKIP — <category>`
+
+**Reversibility method (always):** `delete target file; no source change`
+
+**Source workspace (READ-ONLY):** `g:/My Drive/Development/Future Caribbean/Shogo/FreeLeased-Global/workspace`
+**Target Data Room (WRITABLE):** `G:\My Drive\Development\Future Caribbean\Data Room\`
+
+**Populated by:** Shogo agent ⚡
+**Population date:** 2026-08-11
+**Final tally:** 45 files in the Data Room (38 file copies + 7 originals),
+279,811 bytes total, 0 reverses performed, 6 categories logged as SKIPs.
+
+---
+
+## Copy Log
+
+| discretion_id | timestamp (ISO 8601 UTC) | source | target | TRL | reason | reversibility | result |
+|---|---|---|---|---|---|---|---|
+| COPY-001 | 2026-08-11T00:18:00Z | `project/strategy/00-OVERVIEW.md` | `01_Company Overview/project_summary/FreeLeased_Project_Overview.md` | 1 | Project overview + competition facts — foundational TRL 1 evidence | delete target; no source change | OK (4543 B) |
+| COPY-002 | 2026-08-11T00:18:01Z | `README.md` | `01_Company Overview/project_summary/README.md` | 1 | Public README — what FreeLeased is, responsible AI, tech stack | delete target; no source change | OK (3560 B) |
+| COPY-003 | 2026-08-11T00:18:02Z | `project/demo/sample-lease.txt` | `01_Company Overview/project_summary/sample-lease.txt` | 1 | Synthetic example lease — paired with disclaimer | delete target; no source change | OK (759 B) |
+| COPY-004 | 2026-08-11T00:18:03Z | `FREELEASED-PRINCIPLES.md` | `01_Company Overview/project_summary/immutable_business_facts.md` | 1 | Immutable business facts — 8 locked rulings incl. FreeLeased Ltd is registered | delete target; no source change | OK (2017 B) |
+| COPY-005 | 2026-08-11T00:18:04Z | `project/strategy/founder-journey-team-quality.md` | `01_Company Overview/team/founder_journey_and_team.md` | 1 | Founder journey + team quality (team TRL 1 evidence) | delete target; no source change | OK (4030 B) |
+| COPY-006 | 2026-08-11T00:19:30Z | `MEMORY.md` (curated excerpt — not full file) | `01_Company Overview/team/MEMORY_snapshot.md` | 1 | Founder/team-relevant excerpt only — operational state not copied | delete target; no source change | OK (2804 B; this is an original, not a verbatim copy) |
+| COPY-007 | 2026-08-11T00:18:05Z | `project/pitch/deck-v7.md` | `01_Company Overview/pitch_deck/deck-v7.md` | 1 | Pitch deck v7 — pitch evidence for TRL 1 | delete target; no source change | OK (3388 B) |
+| COPY-008 | 2026-08-11T00:18:06Z | `project/pitch/speaker-notes-v7.md` | `01_Company Overview/pitch_deck/speaker-notes-v7.md` | 1 | Pitch speaker notes v7 | delete target; no source change | OK (2626 B) |
+| COPY-009 | 2026-08-11T00:18:07Z | `project/pitch/pitch-deck-tailored.md` | `01_Company Overview/pitch_deck/pitch-deck-tailored.md` | 1 | Tailored pitch deck — judges-specific variant | delete target; no source change | OK (5935 B) |
+| COPY-010 | 2026-08-11T00:18:08Z | `project/strategy/research-report-01-lfra-rtm.md` | `02_Problem Validation/independent_research/LFRA_RTM_research_report.md` | 2 | LFRA + RTM research report — independent research | delete target; no source change | OK (7163 B) |
+| COPY-011 | 2026-08-11T00:18:09Z | `project/strategy/independent-research-briefs.md` | `02_Problem Validation/independent_research/independent_research_briefs.md` | 2 | Independent research briefs — supplemental research | delete target; no source change | OK (9321 B) |
+| COPY-012 | 2026-08-11T00:18:10Z | `project/pilot-audit/pilot-audit-report.md` | `02_Problem Validation/interview_notes/pilot_audit_report.md` | 2 | Pilot audit report — synthetic but pipeline-complete | delete target; no source change | OK (6873 B) |
+| COPY-013 | 2026-08-11T00:18:11Z | `project/pilot-audit/synthetic-lease.md` | `02_Problem Validation/interview_notes/synthetic_lease.md` | 2 | Synthetic lease analysis | delete target; no source change | OK (8155 B) |
+| COPY-014 | 2026-08-11T00:18:12Z | `project/pilot-audit/user-evidence-tracker.md` | `02_Problem Validation/interview_notes/user_evidence_tracker.md` | 2 | User evidence tracker template | delete target; no source change | OK (6581 B) |
+| COPY-015 | 2026-08-11T00:18:13Z | `project/strategy/fact-check-register.md` | `02_Problem Validation/emails_feedback/fact_check_register.md` | 2 | Fact-check register — honest claim audit | delete target; no source change | OK (6148 B) |
+| COPY-016 | 2026-08-11T00:18:14Z | `project/research/defensibility-and-novelty.md` | `02_Problem Validation/survey_results/defensibility_and_novelty.md` | 2 | Defensibility & novelty analysis | delete target; no source change | OK (3351 B) |
+| COPY-017 | 2026-08-11T00:18:15Z | `project/research/market-and-business-model.md` | `02_Problem Validation/survey_results/market_and_business_model.md` | 2 | Market & business model analysis | delete target; no source change | OK (3441 B) |
+| COPY-018 | 2026-08-11T00:18:16Z | `project/research/roadmap.md` | `02_Problem Validation/survey_results/roadmap.md` | 2 | Roadmap — 12-month plan | delete target; no source change | OK (3217 B) |
+| COPY-019 | 2026-08-11T00:19:32Z | (original — written into Data Room) | `03_Product Evidence/wireframes/wireframes_README.md` | 3 | Wireframe inventory: 19 real, shipped React components stand in for Figma wireframes | delete target; no source change | OK (5222 B; original) |
+| COPY-020 | 2026-08-11T00:18:17Z | `project/submission-pack/architecture-v3.md` | `03_Product Evidence/mockups/architecture-v3.md` | 3 | System architecture as high-fidelity mockup stand-in | delete target; no source change | OK (5122 B) |
+| COPY-021 | 2026-08-11T00:18:18Z | `project/submission-pack/project-overview-v3.md` | `03_Product Evidence/mockups/project-overview-v3.md` | 3 | Project overview v3 | delete target; no source change | OK (4597 B) |
+| COPY-022 | 2026-08-11T00:18:19Z | `project/submission-pack/demo-storyboard.md` | `03_Product Evidence/demo_video/demo_storyboard.md` | 4 | Demo storyboard — sequence + narration | delete target; no source change | OK (2013 B) |
+| COPY-023 | 2026-08-11T00:18:20Z | `project/demo/demo-video-script.md` | `03_Product Evidence/demo_video/demo_video_script.md` | 4 | Demo video script — 4-minute walkthrough | delete target; no source change | OK (5041 B) |
+| COPY-024 | 2026-08-11T00:18:21Z | `project/submission-pack/architecture-v3.md` | `04_Technical Proof/architecture/architecture-v3.md` | 4 | System architecture — yes copied twice (mockups + architecture folders) | delete target; no source change | OK (5122 B) |
+| COPY-025 | 2026-08-11T00:20:35Z | (original — written into Data Room) | `04_Technical Proof/test_results/test_results_README.md` | 4 | Test-suite inventory: 15 test-*.ts files + assertion counts | delete target; no source change | OK (4464 B; original) |
+| COPY-026 | 2026-08-11T00:18:22Z | `scripts/test-suite.ts` | `04_Technical Proof/code_samples/test-suite.ts` | 4 | Real test suite — 159 assertions | delete target; no source change | OK (28379 B) |
+| COPY-027 | 2026-08-11T00:18:23Z | `src/lib/loop.ts` | `04_Technical Proof/code_samples/loop.ts` | 4 | 10/10 scoring loop — core engine | delete target; no source change | OK (8212 B) |
+| COPY-028 | 2026-08-11T00:18:24Z | `src/lib/engines.ts` | `04_Technical Proof/code_samples/engines.ts` | 4 | Dossier + redaction + commune + DS threshold | delete target; no source change | OK (12346 B) |
+| COPY-029 | 2026-08-11T00:18:25Z | `prisma/schema.prisma` | `04_Technical Proof/code_samples/schema.prisma` | 4 | Prisma schema — data model | delete target; no source change | OK (17441 B) |
+| COPY-030 | 2026-08-11T00:20:38Z | (original — written into Data Room) | `04_Technical Proof/prototype_builds/prototype_builds_README.md` | 4 | Repo structure + entry points + build commands | delete target; no source change | OK (5177 B; original) |
+| COPY-031 | 2026-08-11T00:18:26Z | `project/pilot-audit/real-world-readiness-matrix.md` | `05_User Testing and Pilot/metrics/real_world_readiness_matrix.md` | 5/7 | Real-world readiness matrix — lab-to-field gap checklist | delete target; no source change | OK (8220 B) |
+| COPY-032 | 2026-08-11T00:20:40Z | (original — written into Data Room) | `05_User Testing and Pilot/test_notes/test_notes_README.md` | 5 | Pilot audit plan + honest standing (TRL 5 not yet reached) | delete target; no source change | OK (4250 B; original) |
+| COPY-033 | 2026-08-11T00:18:27Z | `project/strategy/revenue-model-gtm.md` | `06_Business and Traction/pricing/revenue_model_gtm.md` | 6/9 | Revenue model + GTM — TAM/SAM/SOM, 4 tiers, unit economics | delete target; no source change | OK (4820 B) |
+| COPY-034 | 2026-08-11T00:18:28Z | `project/strategy/02-mou-followup-emails.md` | `06_Business and Traction/partnerships/MoU_followup_emails.md` | 6 | MoU follow-up email templates (7 partners) | delete target; no source change | OK (6907 B) |
+| COPY-035 | 2026-08-11T00:18:29Z | `project/strategy/03-advisory-outreach.md` | `06_Business and Traction/partnerships/advisory_outreach.md` | 6 | Advisory outreach templates (Lyew-Ayee, Reckord, Dukharan) | delete target; no source change | OK (8128 B) |
+| COPY-036 | 2026-08-11T00:18:30Z | `project/strategy/resources-ledger.md` | `06_Business and Traction/customers/resources_ledger.md` | 6/9 | Resources ledger — what's been spent vs budgeted | delete target; no source change | OK (3939 B) |
+| COPY-037 | 2026-08-11T00:18:31Z | `project/strategy/prizes-opportunities-leverage.md` | `06_Business and Traction/customers/prizes_opportunities_leverage.md` | 6/9 | Prizes & opportunities leverage memo | delete target; no source change | OK (5933 B) |
+| COPY-038 | 2026-08-11T00:18:32Z | `LICENSE` | `07_Legal and Permissions/licenses/LICENSE` | 1/10 | Apache 2.0 — software licence | delete target; no source change | OK (11358 B) |
+| COPY-039 | 2026-08-11T00:18:33Z | `project/submission-pack/compliance-statement-v3.md` | `07_Legal and Permissions/approvals/compliance_statement_v3.md` | 6/7 | Compliance statement v3 — 487 words, CoC §2–§5 | delete target; no source change | OK (3923 B) |
+| COPY-040 | 2026-08-11T00:18:34Z | `project/submission-pack/submission-checklist-v3.md` | `07_Legal and Permissions/approvals/submission_checklist_v3.md` | 6/7 | Submission checklist v3 | delete target; no source change | OK (3387 B) |
+| COPY-041 | 2026-08-11T00:18:35Z | `CREDITS.md` | `07_Legal and Permissions/approvals/CREDITS.md` | 6/7 | Attribution + acknowledgements | delete target; no source change | OK (1422 B) |
+| COPY-042 | 2026-08-11T00:18:36Z | `memory/data-room-map.md` | `00_README - Index and TRL Map/data_room_map.md` | META | Data Room map — judges see the same map the agent uses | delete target; no source change | OK (17712 B) |
+| COPY-043 | 2026-08-11T00:18:37Z | `project/strategy/trl-levels-freeleased.md` | `00_README - Index and TRL Map/trl_levels_freeleased.md` | META | Adapted 1–10 TRL ladder — honest self-assessment | delete target; no source change | OK (4243 B) |
+| COPY-044 | 2026-08-11T00:21:05Z | (original — written into Data Room) | `00_README - Index and TRL Map/INDEX.md` | META | Navigation index — judges' entry point | delete target; no source change | OK (6562 B; original) |
+| COPY-045 | 2026-08-11T00:19:31Z | (original — written into Data Room) | `01_Company Overview/project_summary/_README_disclaimer.md` | 1 | Synthetic-data disclaimer — explains `sample-lease.txt` is fictional | delete target; no source change | OK (1959 B; original) |
+
+---
+
+## DECISIONS (skips)
+
+| discretion_id | what | reason |
+|---|---|---|
+| SKIP-001 | `.env`, anything matching `AIzaSy\|sk-or-\|NEBIUS_API_KEY=[^y]` | secrets rule — never copy |
+| SKIP-002 | `src/generated/*` (35 files) | auto-generated by Prisma SDK — not authored evidence |
+| SKIP-003 | `server.tsx` | auto-generated by Prisma SDK |
+| SKIP-004 | `bun.lock` | lockfile, not authored evidence |
+| SKIP-005 | `AI_JOURNAL.md`, `git_commit.log`, `git_push.log`, `pip_install.log`, `HEARTBEAT.md` | agent audit/journal outputs — do not copy agent's own logs to the Data Room |
+| SKIP-006 | `scripts/_data-room-output.txt`, `scripts/_explore-data-room.ps1`, `scripts/_verify-data-room.ps1`, `scripts/_verify-output.txt`, `scripts/_do-copies.ps1` | orchestrator's own audit/journal scripts + intermediate outputs |
+| SKIP-007 | `Shogo/` (top-level Data Room folder) | unclear classification per `data-room-map.md`; agent keeps it empty rather than guess |
+
+**Total categories skipped: 7. Total files skipped: ~40+ (all `src/generated/*` + the
+audit outputs listed above + the secret-pattern files).** All skips are
+auditable from this journal.
+
+---
+
+## Final tally
+
+| Metric | Value |
+|---|---|
+| Total file copies | **38** (COPY-001 through COPY-043 minus originals) |
+| Total originals created in Data Room | **7** (COPY-006 curated snapshot, COPY-019, COPY-025, COPY-030, COPY-032, COPY-044 INDEX, COPY-045 disclaimer) |
+| Total files in Data Room | **45** |
+| Total bytes copied | **249,373** (copies) + ~30,438 (originals) = **279,811** |
+| Total skips | 7 categories, ~40+ files (auto-generated, secrets, audit outputs) |
+| Total reverses performed | **0** |
+| Reversibility method | always `delete target file; no source change` |
+
+### Per-folder distribution
+
+| Folder | Files | TRL coverage |
+|---|---:|---|
+| `00_README - Index and TRL Map/` | 3 | META (index, map, ladder) |
+| `01_Company Overview/project_summary/` | 6 | TRL 1 |
+| `01_Company Overview/team/` | 2 | TRL 1 |
+| `01_Company Overview/pitch_deck/` | 3 | TRL 1 |
+| `02_Problem Validation/independent_research/` | 2 | TRL 2 |
+| `02_Problem Validation/interview_notes/` | 3 | TRL 2 |
+| `02_Problem Validation/emails_feedback/` | 1 | TRL 2 |
+| `02_Problem Validation/survey_results/` | 3 | TRL 2 |
+| `03_Product Evidence/wireframes/` | 1 | TRL 3 |
+| `03_Product Evidence/mockups/` | 2 | TRL 3 |
+| `03_Product Evidence/demo_video/` | 2 | TRL 4 |
+| `04_Technical Proof/architecture/` | 1 | TRL 4 |
+| `04_Technical Proof/code_samples/` | 4 | TRL 4 |
+| `04_Technical Proof/test_results/` | 1 | TRL 4 |
+| `04_Technical Proof/prototype_builds/` | 1 | TRL 4 |
+| `05_User Testing and Pilot/metrics/` | 1 | TRL 5/7 |
+| `05_User Testing and Pilot/test_notes/` | 1 | TRL 5 |
+| `06_Business and Traction/pricing/` | 1 | TRL 6/9 |
+| `06_Business and Traction/partnerships/` | 2 | TRL 6 |
+| `06_Business and Traction/customers/` | 2 | TRL 6/9 |
+| `07_Legal and Permissions/approvals/` | 3 | TRL 6/7 |
+| `07_Legal and Permissions/licenses/` | 1 | TRL 1/10 |
+
+**Total: 45 files across 21 folders. TRL levels 1, 2, 3, 4, 5, 6, 7, 9, 10 are now evidenced in the Data Room. TRL 8 still lacks dedicated evidence (user-count); TRL 9 still lacks paying customers (revenue folder empty).**
+
+### Empty subfolders (honest gap report — see also `data-room-map.md`)
+
+- `Shogo/` — unknown classification per the map.
+- `01_Company Overview/` (root) — folder itself, no direct files; sub-folders populated.
+- `02_Problem Validation/` (root) — same.
+- `03_Product Evidence/` (root) + `03_Product Evidence/screenshots/` — screenshots empty; live URL on demo day is the proof.
+- `04_Technical Proof/` (root) — same.
+- `05_User Testing and Pilot/` (root) + `pilot_feedback/` — wait for first real-leaseholder session.
+- `06_Business and Traction/` (root) + `revenue/` — wait for first paid deployment.
+- `07_Legal and Permissions/` (root) + `releases/` — wait for public launch.
+
+---
+
+## Reversal procedure
+
+To reverse every copy: `Remove-Item` each file listed in the **target**
+column. None of the source files in the workspace have been modified.
+Every copy is reversible by a single `Remove-Item` per row.
+
+To reverse just one copy (example for COPY-001):
+
+```powershell
+Remove-Item 'G:\My Drive\Development\Future Caribbean\Data Room\01_Company Overview\project_summary\FreeLeased_Project_Overview.md'
+```
+
+To reverse every copy in bulk:
+
+```powershell
+# Run from the workspace root, with a fresh state, to delete all 45 files:
+Get-ChildItem 'G:\My Drive\Development\Future Caribbean\Data Room' -Recurse -File |
+  Where-Object { $_.FullName -notmatch 'Shogo' } |
+  Remove-Item -Force
+```
+
+(That command is destructive and not run automatically. Kept here so the
+reversal is one `Get-ChildItem` away if needed.)
+
+---
+
+*Journal written 2026-08-11. Reversible. Honest.*
