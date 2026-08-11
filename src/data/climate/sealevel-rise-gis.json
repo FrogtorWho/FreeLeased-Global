@@ -1,0 +1,153 @@
+{
+  "$meta": {
+    "title": "Caribbean Sea-Level-Rise Risk Scores — Coastal Jurisdictions",
+    "version": "1.0-phase12",
+    "lastReviewed": "2026-08-11",
+    "sources": [
+      "NOAA Tides & Currents — https://tidesandcurrents.noaa.gov/ (sea-level trends)",
+      "NOAA Climate.gov — https://www.climate.gov/ (state of the climate)",
+      "Climate Central — https://www.climatecentral.org/ (coastal risk screening tool)",
+      "Caribbean Community Climate Change Centre (CCCCC) — https://www.caribbeanclimate.bz/",
+      "IPCC AR6 WG1 Chapter 9 (Ocean, cryosphere, sea-level change)"
+    ],
+    "caveats": [
+      "ALL risk scores in this file are APPROXIMATED from publicly available regional summaries and IPCC AR6 WG1 regional projections.",
+      "Every numeric value carries `unverified: true` UNLESS a specific dataset URL is cited in the record's `sourceDataset` field.",
+      "These scores are screening-level indicators only — they DO NOT replace a licensed surveyor, an insurer's valuation, or an official flood map.",
+      "Local variation within a jurisdiction can be orders of magnitude greater than the national average (e.g. the south coast of Barbados vs. the west coast).",
+      "Climate models diverge substantially by 2100; this file uses the IPCC AR6 SSP2-4.5 'intermediate' scenario as the central case."
+    ],
+    "scoringScale": {
+      "0": "Negligible — <10% of coastline exposed to 1m SLR by 2100",
+      "1": "Low — 10-25% exposed",
+      "2": "Moderate — 25-50% exposed",
+      "3": "High — 50-75% exposed",
+      "4": "Severe — ≥75% exposed"
+    }
+  },
+
+  "BS": {
+    "jurisdictionName": "The Bahamas",
+    "iso2": "BS",
+    "regionalContext": "Low-lying carbonate archipelago; ~80% of land within 1m of mean sea level. Hurricane Dorian (2019) demonstrated catastrophic storm-surge vulnerability.",
+    "riskScore": 4,
+    "riskLabel": "Severe",
+    "exposedPopulationPct": 80,
+    "exposedCoastlinePct": 88,
+    "primaryHazard": "storm-surge + chronic inundation",
+    "horizonYears": [2030, 2050, 2100],
+    "projectedSLRMetres": {
+      "2030": 0.18,
+      "2050": 0.38,
+      "2100": 1.10
+    },
+    "sourceDataset": "IPCC AR6 WG1 Figure 9.27 (Caribbean region SSP2-4.5); Climate Central CoastalDEM 2022",
+    "url": "https://www.climatecentral.org/",
+    "unverified": true,
+    "leaseholderImplication": "Many Bahamian leaseholds (condominiums on New Providence / Paradise Island) are within 50m of high-tide line; service charges for insurance + remediation should be audited annually."
+  },
+
+  "BB": {
+    "jurisdictionName": "Barbados",
+    "iso2": "BB",
+    "regionalContext": "Single coral island, ~430 km², southernmost Caribbean. South coast (Christ Church, St. Philip) is flat and exposed; west coast (St. James, St. Peter) is limestone cliff-backed.",
+    "riskScore": 3,
+    "riskLabel": "High",
+    "exposedPopulationPct": 35,
+    "exposedCoastlinePct": 42,
+    "primaryHazard": "chronic coastal erosion + storm-surge",
+    "horizonYears": [2030, 2050, 2100],
+    "projectedSLRMetres": {
+      "2030": 0.17,
+      "2050": 0.36,
+      "2100": 1.05
+    },
+    "sourceDataset": "CCCCC Caribbean Climate Change Profile (Barbados); IPCC AR6 WG1 Caribbean region",
+    "url": "https://www.caribbeanclimate.bz/",
+    "unverified": true,
+    "leaseholderImplication": "Condominiums on the south coast (e.g. Rockley, Worthing) carry measurable insurance premium escalation risk. Leaseholders should verify that the strata insurance policy has a flood sub-limit and a climate-change exclusion review clause."
+  },
+
+  "JM": {
+    "jurisdictionName": "Jamaica",
+    "iso2": "JM",
+    "regionalContext": "Mountainous island (~2,200m peaks) with narrow coastal plains. Kingston waterfront and Port Antonio are the most exposed. Hurricane Irma/Maria (2017) demonstrated surge vulnerability on the north coast.",
+    "riskScore": 2,
+    "riskLabel": "Moderate",
+    "exposedPopulationPct": 22,
+    "exposedCoastlinePct": 28,
+    "primaryHazard": "storm-surge + coastal squeeze",
+    "horizonYears": [2030, 2050, 2100],
+    "projectedSLRMetres": {
+      "2030": 0.16,
+      "2050": 0.34,
+      "2100": 0.98
+    },
+    "sourceDataset": "Climate Studies Division, Mona (UWI) — Caribbean Climate Change Profile (Jamaica); IPCC AR6 WG1",
+    "url": "https://www.mona.uwi.edu/",
+    "unverified": true,
+    "leaseholderImplication": "Kingston harbour condominiums + Port Antonio villas carry the highest risk. Strata insurance for Montego Bay should be reviewed for flood sub-limits; inland St. Andrew properties are largely unaffected."
+  },
+
+  "KY": {
+    "jurisdictionName": "Cayman Islands",
+    "iso2": "KY",
+    "regionalContext": "Low-lying limestone islands; Seven Mile Beach (Grand Cayman) is the tourism + luxury-condo centre and lies <2m above MSL for most of its length.",
+    "riskScore": 4,
+    "riskLabel": "Severe",
+    "exposedPopulationPct": 65,
+    "exposedCoastlinePct": 75,
+    "primaryHazard": "chronic inundation + storm-surge",
+    "horizonYears": [2030, 2050, 2100],
+    "projectedSLRMetres": {
+      "2030": 0.18,
+      "2050": 0.39,
+      "2100": 1.12
+    },
+    "sourceDataset": "Cayman Islands National Climate Change Office (NCCO); Climate Central CoastalDEM 2022",
+    "url": "https://www.climatecentral.org/",
+    "unverified": true,
+    "leaseholderImplication": "Seven Mile Beach strata-titled condominiums (the bulk of Caymanian leasehold value) carry severe risk by 2100 under SSP2-4.5. FreeLeased recommends leaseholders in KY verify the strata insurance has a 100-year flood return-period endorsement and a 1m SLR exclusion review by 2030."
+  },
+
+  "TT": {
+    "jurisdictionName": "Trinidad and Tobago",
+    "iso2": "TT",
+    "regionalContext": "Two main islands; Trinidad is mountainous with narrow coastal plains; Tobago has flatter south-coast (Crown Point, Store Bay) that is tourism-critical and low-elevation.",
+    "riskScore": 2,
+    "riskLabel": "Moderate",
+    "exposedPopulationPct": 18,
+    "exposedCoastlinePct": 24,
+    "primaryHazard": "storm-surge + coastal erosion",
+    "horizonYears": [2030, 2050, 2100],
+    "projectedSLRMetres": {
+      "2030": 0.16,
+      "2050": 0.34,
+      "2100": 0.98
+    },
+    "sourceDataset": "Trinidad & Tobago Meteorological Service — Caribbean Climate Change Profile",
+    "url": "https://www.metoffice.gov.tt/",
+    "unverified": true,
+    "leaseholderImplication": "Tobago south-coast condominiums (Crown Point area) carry meaningful risk; Trinidad's Port of Spain waterfront is exposed but most high-rise condominium stock is on elevated ground. Verify the strata-insurance flood sub-limit every 3 years."
+  },
+
+  "VG": {
+    "jurisdictionName": "British Virgin Islands",
+    "iso2": "VG",
+    "regionalContext": "60+ islands; Tortola + Virgin Gorda host the bulk of leasehold stock. Low-elevation Road Town harbour is the commercial centre.",
+    "riskScore": 3,
+    "riskLabel": "High",
+    "exposedPopulationPct": 40,
+    "exposedCoastlinePct": 52,
+    "primaryHazard": "storm-surge + chronic inundation",
+    "horizonYears": [2030, 2050, 2100],
+    "projectedSLRMetres": {
+      "2030": 0.17,
+      "2050": 0.37,
+      "2100": 1.07
+    },
+    "sourceDataset": "BVI Climate Change Trust Fund; ECLAC Caribbean Climate Change Profile (BVI)",
+    "unverified": true,
+    "leaseholderImplication": "Road Town harbourside strata properties carry high risk. Hurricane Irma (2017) demonstrated the storm-surge component. Leaseholders should verify (a) hurricane deductible ≤ 2% of insured value and (b) flood sub-limit ≥ 50% of building value."
+  }
+}

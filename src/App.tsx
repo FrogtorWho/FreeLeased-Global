@@ -24,6 +24,7 @@ import { CommunityHub } from "@/components/auri/CommunityHub";
 import { DocumentHub } from "@/components/auri/DocumentHub";
 import { SignoffQueue } from "@/components/auri/SignoffQueue";
 import { TruthDiff } from "@/components/auri/TruthDiff";
+import { ClimateOverlay } from "@/components/auri/ClimateOverlay";
 import MobileCapture from "@/pages/MobileCapture";
 
 const PRIMARY_NAV = [
@@ -40,6 +41,7 @@ const REFERENCE_NAV = [
   { id: "rights", label: "Rights Catalogue", icon: ListChecks },
   { id: "dossier", label: "Dossier Explorer", icon: FileSearch },
   { id: "research", label: "Research", icon: FlaskConical },
+  { id: "climate", label: "Climate Overlay", icon: Activity },
   { id: "about", label: "Honesty", icon: BookOpenCheck },
   { id: "signoff", label: "Sign-off Queue", icon: Gavel },
 ];
@@ -151,6 +153,7 @@ export default function App() {
         {tab === "rights" && <RightsCatalogue />}
         {tab === "dossier" && <DossierExplorer />}
         {tab === "research" && <ResearchDesk />}
+        {tab === "climate" && <ClimateTab />}
         {tab === "about" && <About />}
         {/* Admin */}
         {tab === "command" && <CommandPost />}
@@ -164,6 +167,32 @@ export default function App() {
       <footer className="max-w-6xl mx-auto px-4 py-6 text-xs text-slate-600 border-t border-white/[0.04] mt-8">
         <Wordmark className="text-xs" /> · AI for Real Estate &amp; Development · leasehold governance &amp; RTM · synthetic pilot fixtures, real statutes + sources · $0 compute · see the Honesty tab.
       </footer>
+    </div>
+  );
+}
+
+/** Climate Overlay tab — renders the risk overlay for every Caribbean jurisdiction. */
+function ClimateTab() {
+  const jurisdictions = ["BS", "BB", "JM", "KY", "TT", "VG"];
+  return (
+    <div className="space-y-6">
+      <div>
+        <h2 className="text-2xl font-semibold text-slate-100 mb-2">
+          Climate Risk Overlay — Caribbean
+        </h2>
+        <p className="text-sm text-slate-400 max-w-3xl">
+          Sea-level-rise risk scores for every Caribbean jurisdiction FreeLeased supports.
+          All numbers are approximated from public regional sources (NOAA, Climate Central,
+          IPCC AR6 WG1); click any card for the source citation. The overlay is a
+          screening indicator — verify against a licensed surveyor before relying on it
+          for insurance or transaction decisions.
+        </p>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {jurisdictions.map((j) => (
+          <ClimateOverlay key={j} jurisdictionCode={j} />
+        ))}
+      </div>
     </div>
   );
 }
