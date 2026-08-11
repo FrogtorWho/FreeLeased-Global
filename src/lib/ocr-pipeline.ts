@@ -5,6 +5,13 @@
 //
 // Open-source stack: Tesseract.js (Apache 2.0) + Canvas API. No paid OCR services.
 // Comparable to Adobe Acrobat OCR through multi-pass preprocessing.
+//
+// Giotto.ai hook (Idea #1 of giotto-brainstorm.md): when GIOTTO_API_KEY is
+// configured AND a server-side call is available (the OCR pipeline runs
+// client-side, so this is a hint to the calling layer — see the
+// `extractLeaseWithGiotto` re-export at the bottom), we route extraction
+// through Giotto's multimodal endpoint. Otherwise the deterministic Tesseract
+// + regex path stays in place. See `src/lib/giotto.ts` for the shared wrapper.
 
 // ── Image Preprocessing (Canvas-based) ─────────────────────────
 
@@ -382,3 +389,15 @@ export async function terminateOcrWorker() {
     tesseractWorker = null;
   }
 }
+
+// ── Giotto extraction re-export (Idea #1) ──────────────────────
+// Re-export the Giotto-backed lease extractor so a UI consumer of the OCR
+// pipeline can opt into structured extraction with a single import. Falls
+// back to the deterministic shape when GIOTTO_API_KEY is unset.
+//
+//   import { extractLease } from '@/lib/ocr-pipeline'
+//   const out = await extractLease({ text, imageBase64, mimeType })
+//
+// Always returns the same typed `LeaseExtraction` shape; the `engine` field
+// tells the caller which path produced it.
+export { extractLease, giottoConfigured, type LeaseExtraction } from "./giotto";

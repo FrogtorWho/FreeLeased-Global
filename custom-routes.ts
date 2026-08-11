@@ -102,6 +102,10 @@ import { FederationEngine, type JurisdictionInstance, type SharedPattern } from 
 import { TEMPLATES, type TemplateVariable } from './src/lib/templates'
 import { findSimilarCases, findBridgingFramework, type TribunalDecision, type JurisdictionFramework } from './src/lib/enrichment'
 import { UK_FRAMEWORK, UK_ADVISORY_SOURCES, UK_SAMPLE_DECISIONS } from './src/data/uk-framework'
+import { extractLease, giottoConfigured, draftMemoWithGiotto, classifyIntake } from './src/lib/giotto'
+import { classifyGauntletIntake, intakeToResidentIntake } from './src/lib/gauntlet-process'
+import { readFileSync, existsSync } from 'node:fs'
+import { join } from 'node:path'
 
 const app = new Hono()
 
@@ -2372,6 +2376,277 @@ app.post('/review-queue/seed', async (c) => {
     }
   }
   return c.json({ ok: true, created, total: demoItems.length })
+})
+
+// ─── Giotto.ai integrations (Ideas #27, #16, #36, #33) ───────────────────────
+// Five brainstorm picks wired into the API surface. Each route has a
+// deterministic no-key fallback so the UI never branches on whether
+// GIOTTO_API_KEY is set. See project/strategy/giotto-brainstorm.md.
+
+// Idea #27 — POST /demo/scan-lease. 30-second judge demo: upload a photo
+// or text + get a structured verdict JSON back. Same shape whether Giotto
+// (multimodal extraction) or the deterministic fallback produced it.
+app.post('/demo/scan-lease', async (c) => {
+  const body = await c.req.json().catch(() => ({} as Record<string, unknown>))
+  const text = typeof body?.text === 'string' ? body.text : undefined
+  const imageBase64 = typeof body?.imageBase64 === 'string' ? body.imageBase64 : undefined
+  const mimeType = typeof body?.mimeType === 'string' ? body.mimeType : undefined
+
+  if (!text && !imageBase64) {
+    return c.json({ error: 'provide "text" or "imageBase64" — scan-lease needs an input' }, 400)
+  }
+
+  // Step 1: extract structured fields via Giotto (or fallback)
+  const extraction = await extractLease({ text, imageBase64, mimeType })
+
+  // Step 2: route the extracted text through the fairness engine so the
+  // demo shows: extraction + clause flags + statute citations.
+  let fairnessResult: ReturnType<typeof analyzeLease> | null = null
+  const textForFairness = text ?? extraction.summary ?? ''
+  if (textForFairness.trim()) {
+    fairnessResult = analyzeLease(textForFairness, 'UK')
+  }
+
+  return c.json({
+    ok: true,
+    endpoint: 'demo/scan-lease',
+    engine: extraction.engine,
+    giottoConfigured: giottoConfigured(),
+    extraction,
+    fairness: fairnessResult
+      ? {
+          clauseCount: fairnessResult.clauseCount,
+          flagCount: fairnessResult.flags.length,
+          flags: fairnessResult.flags.slice(0, 5).map((f) => ({
+            topic: f.topic,
+            severity: f.severity,
+            evidenceClass: f.evidenceClass,
+            confidence: f.confidence,
+            citation: f.citation,
+          })),
+        }
+      : null,
+    generatedAt: new Date().toISOString(),
+  })
+})
+
+// Idea #36 — POST /gauntlet/process. Replaces the regex-only classifier
+// when GIOTTO_API_KEY is set. Returns the same ResidentIntake shape
+// regardless of which path produced it.
+app.post('/gauntlet/process', async (c) => {
+  const body = await c.req.json().catch(() => ({} as Record<string, unknown>))
+  const text = typeof body?.text === 'string' ? body.text : undefined
+  const imageBase64 = typeof body?.imageBase64 === 'string' ? body.imageBase64 : undefined
+  const mimeType = typeof body?.mimeType === 'string' ? body.mimeType : undefined
+  const jurisdictionHint = typeof body?.jurisdiction === 'string' ? body.jurisdiction : 'UK'
+
+  if (!text && !imageBase64) {
+    return c.json({ error: 'provide "text" or "imageBase64"' }, 400)
+  }
+
+  const cls = await classifyGauntletIntake({ text, imageBase64, mimeType })
+  const intake = intakeToResidentIntake(cls, text ?? '', jurisdictionHint)
+
+  return c.json({
+    ok: true,
+    endpoint: 'gauntlet/process',
+    giottoConfigured: giottoConfigured(),
+    classification: cls,
+    intake,
+    generatedAt: new Date().toISOString(),
+  })
+})
+
+// GET /gauntlet/process/status — surfaces which path the loop will take.
+app.get('/gauntlet/process/status', (c) => {
+  return c.json({
+    ok: true,
+    giottoConfigured: giottoConfigured(),
+    activePath: giottoConfigured() ? 'giotto' : 'regex',
+    fallbackModule: 'src/lib/ocr-pipeline.ts:classifyDocument',
+    giottoModule: 'src/lib/giotto.ts:classifyIntake',
+    owner: 'src/lib/gauntlet-process.ts:classifyGauntletIntake',
+    brainstormRef: 'project/strategy/giotto-brainstorm.md#idea-36',
+    generatedAt: new Date().toISOString(),
+  })
+})
+
+// Idea #16 — POST /dossier/:id/memo + GET /dossier/:id/memo. Draft-only
+// advisor-grade memo. Always marked DRAFT — REQUIRES REVIEWER SIGN-OFF.
+// Persists to contentDraft so the existing approval queue surfaces it.
+app.post('/dossier/:id/memo', async (c) => {
+  const id = c.req.param('id')
+  const r = RESIDENTS.find((x) => x.id === id)
+  if (!r) return c.json({ error: `resident ${id} not found` }, 404)
+
+  const dossier = buildDossier(r)
+  const memo = await draftMemoWithGiotto({
+    dossier: {
+      residentId: dossier.residentId,
+      jurisdiction: dossier.jurisdiction,
+      verdicts: dossier.verdicts.map((v) => ({
+        agent: v.agent,
+        matchedRightIds: v.matchedRightIds,
+        abstain: v.abstain,
+      })),
+      citedStatutes: dossier.citedStatutes ?? [],
+      signOff: dossier.signOff,
+    },
+  })
+
+  // Persist to the existing contentDraft approval queue so HITL gates it.
+  try {
+    await prisma.contentDraft.create({
+      data: {
+        kind: 'memo',
+        title: `Legal Memo — ${dossier.residentId} (${dossier.jurisdiction}) — DRAFT`,
+        channel: null,
+        body: JSON.stringify(memo, null, 2),
+        metadata: JSON.stringify({
+          residentId: dossier.residentId,
+          jurisdiction: dossier.jurisdiction,
+          engine: memo.engine,
+          status: memo.status,
+        }),
+      },
+    })
+  } catch (e) {
+    // Persist is best-effort; the memo is still returned.
+  }
+
+  return c.json({
+    ok: true,
+    endpoint: 'dossier/:id/memo',
+    giottoConfigured: giottoConfigured(),
+    memo,
+    generatedAt: new Date().toISOString(),
+  })
+})
+
+app.get('/dossier/:id/memo', async (c) => {
+  const id = c.req.param('id')
+  const r = RESIDENTS.find((x) => x.id === id)
+  if (!r) return c.json({ error: `resident ${id} not found` }, 404)
+
+  const dossier = buildDossier(r)
+  const memo = await draftMemoWithGiotto({
+    dossier: {
+      residentId: dossier.residentId,
+      jurisdiction: dossier.jurisdiction,
+      verdicts: dossier.verdicts.map((v) => ({
+        agent: v.agent,
+        matchedRightIds: v.matchedRightIds,
+        abstain: v.abstain,
+      })),
+      citedStatutes: dossier.citedStatutes ?? [],
+      signOff: dossier.signOff,
+    },
+  })
+  return c.json({ ok: true, memo })
+})
+
+// Idea #33 — POST /qa/prep. Reads judge-qa-kill-list.md (if reachable) and
+// drafts a Giotto answer for each question. Without Giotto: returns a
+// deterministic "see kill-list" answer that points the speaker at the
+// existing manual answer.
+app.post('/qa/prep', async (c) => {
+  const body = await c.req.json().catch(() => ({} as Record<string, unknown>))
+  const overrideQuestions: string[] = Array.isArray(body?.questions)
+    ? body.questions.filter((q): q is string => typeof q === 'string')
+    : []
+
+  // Try to read the kill-list from disk; fall back to the 10 canonical
+  // question stems hard-coded below so the endpoint never 500s in a
+  // serverless environment.
+  const KILL_LIST_QUESTIONS: string[] = [
+    'Why is this not a chatbot?',
+    'Has anyone actually used this?',
+    "What's your moat?",
+    'Why should we believe the $0-compute claim?',
+    "What's your team?",
+    'What if a clause is in a language the system does not support?',
+    'How do you handle conflicting statutes across jurisdictions?',
+    'What happens when the consensus gate diverges?',
+    'What is your pricing model?',
+    'If this wins, what happens next?',
+  ]
+  let questions = overrideQuestions
+  if (questions.length === 0) {
+    const killListPath = join(process.cwd(), 'project', 'strategy', 'judge-qa-kill-list.md')
+    if (existsSync(killListPath)) {
+      const txt = readFileSync(killListPath, 'utf8')
+      const matches = [...txt.matchAll(/^## (\d+\.\s*"[^"]+")/gm)]
+      if (matches.length > 0) {
+        questions = matches.map((m) => m[1])
+      }
+    }
+    if (questions.length === 0) questions = KILL_LIST_QUESTIONS
+  }
+
+  // Import the giotto helper lazily to avoid loading it during route
+  // discovery on cold starts.
+  const { draftJudgeAnswer } = await import('./src/lib/giotto')
+  const drafts = await Promise.all(
+    questions.map((q) => draftJudgeAnswer({ question: q })),
+  )
+
+  return c.json({
+    ok: true,
+    endpoint: 'qa/prep',
+    giottoConfigured: giottoConfigured(),
+    questionCount: drafts.length,
+    drafts,
+    killListRef: 'project/strategy/judge-qa-kill-list.md',
+    generatedAt: new Date().toISOString(),
+  })
+})
+
+// Single-call health endpoint to confirm all 5 integrations are wired
+// without making a live LLM call.
+app.get('/giotto/integrations', (c) => {
+  return c.json({
+    ok: true,
+    giottoConfigured: giottoConfigured(),
+    integrations: [
+      {
+        idea: 1,
+        title: 'Lease OCR + extraction',
+        surface: 'src/lib/ocr-pipeline.ts:extractLease re-export',
+        endpoint: 'POST /demo/scan-lease (shared)',
+        noKeyFallback: true,
+      },
+      {
+        idea: 27,
+        title: 'Multi-modal demo scan-lease',
+        surface: 'POST /demo/scan-lease',
+        endpoint: '/api/demo/scan-lease',
+        noKeyFallback: true,
+      },
+      {
+        idea: 36,
+        title: 'Gauntlet PROCESS sub-loop',
+        surface: 'src/lib/gauntlet-process.ts + POST /gauntlet/process',
+        endpoint: '/api/gauntlet/process',
+        noKeyFallback: true,
+      },
+      {
+        idea: 16,
+        title: 'HITL-drafted legal memo',
+        surface: 'src/lib/giotto.ts:draftMemoWithGiotto + POST /dossier/:id/memo',
+        endpoint: '/api/dossier/:id/memo',
+        noKeyFallback: true,
+      },
+      {
+        idea: 33,
+        title: 'Auto-generated Q&A prep',
+        surface: 'src/lib/giotto.ts:draftJudgeAnswer + POST /qa/prep',
+        endpoint: '/api/qa/prep',
+        noKeyFallback: true,
+      },
+    ],
+    brainstormRef: 'project/strategy/giotto-brainstorm.md',
+    generatedAt: new Date().toISOString(),
+  })
 })
 
 export default app

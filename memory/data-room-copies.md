@@ -367,3 +367,33 @@ These are workspace-only entries added on 2026-08-11T10:14Z during the Phase 4 t
 **Cross-reference:** See AI_JOURNAL.md section 2026-08-11 Phase 4 triple batch for full justification, replication steps, and verification output.
 
 **Why no moves to _archive/ this pass:** every entry already lives in its appropriate tier (active â†’ workspace/, live onboarding â†’ Resources/, reference â†’ files/, legacy â†’ _archive/). Moving files for the sake of moving them would be churn without information gain.
+
+---
+
+## Workspace-only additions (Phase 5 — Giotto brainstorm + top-5 implementations)
+
+These are workspace-only entries added on 2026-08-11T10:30Z during the Phase 5 Giotto.ai brainstorm work. Like prior workspace-only entries, they modify the codebase and/or strategy docs but don't add TRL-grade evidence and are not copied to the Data Room.
+
+| discretion_id | timestamp (ISO 8601 UTC) | source | target | TRL | reason | reversibility | result |
+|---|---|---|---|---|---|---|---|
+| COPY-069 | 2026-08-11T10:30:00Z | (workspace-only — NOT copied to Data Room) | `project/strategy/giotto-brainstorm.md` (new) | n/a | Phase 5 — Giotto.ai brainstorm: 57 ideas across 6 categories (Resident / Advisor / Demo / Gauntlet / Architecture / Distribution), top-10 ranking, top-5 detailed implementations with code shapes + risks + commit messages. ~370 lines. | revert commit | OK (1 file) |
+| COPY-070 | 2026-08-11T10:30:00Z | (workspace-only — NOT copied to Data Room) | `src/lib/giotto.ts` (new) | n/a | Phase 5 Idea #1 + #16 + #33 — shared TS wrapper. Exports `giottoConfigured()`, `callGiotto()`, `extractLease()`, `classifyIntake()`, `draftMemoWithGiotto()`, `draftJudgeAnswer()`, `sanitiseCitations()`. Every helper has identical typed shape with or without GIOTTO_API_KEY. ~370 lines. | revert commit | OK (1 file) |
+| COPY-071 | 2026-08-11T10:30:00Z | (workspace-only — NOT copied to Data Room) | `src/lib/gauntlet-process.ts` (new) | n/a | Phase 5 Idea #36 — gauntlet PROCESS sub-loop. Exports `classifyGauntletIntake()` (Giotto when key set, regex fallback) + `intakeToResidentIntake()` mapping to the gauntlet's documented shape. ~135 lines. | revert commit | OK (1 file) |
+| COPY-072 | 2026-08-11T10:30:00Z | (workspace-only — NOT copied to Data Room) | `custom-routes.ts` (extended) | n/a | Phase 5 — 6 new API endpoints: POST /demo/scan-lease, POST /gauntlet/process, GET /gauntlet/process/status, POST /dossier/:id/memo, GET /dossier/:id/memo, POST /qa/prep, GET /giotto/integrations. All with no-key fallback paths. ~270 lines added. | revert commit | OK (~270 lines added) |
+| COPY-073 | 2026-08-11T10:30:00Z | (workspace-only — NOT copied to Data Room) | `src/lib/ocr-pipeline.ts` (edited) | n/a | Phase 5 Idea #1 — re-exports `extractLease`, `giottoConfigured`, `LeaseExtraction` from `src/lib/giotto.ts`. Adds a doc comment pointing at the brainstorm hook. ~15 lines. | revert commit | OK (~15 lines added) |
+| COPY-074 | 2026-08-11T10:30:00Z | (workspace-only — NOT copied to Data Room) | `scripts/test-giotto-integration.ts` (new) | n/a | Phase 5 — 12 test groups × 48 individual assertions covering brainstorm doc, wrappers, endpoints, fallback paths, citation safety, cross-links. Run: `node --experimental-strip-types scripts/test-giotto-integration.ts`. Result: 48/48 PASS. ~165 lines. | revert commit | OK (1 file, 48/48 assertions PASS) |
+| COPY-075 | 2026-08-11T10:30:00Z | (workspace-only — NOT copied to Data Room) | `AI_JOURNAL.md`, `HEARTBEAT.md` (edited) | n/a | Phase 5 — AI_JOURNAL gets the brainstorm summary + top-5 implementations section; HEARTBEAT gets the 10:30 UTC bullet summarising the batch. | revert commit | OK (~50 lines added) |
+
+**Why this section exists:** Phase 5 is a coherent set of Giotto.ai integrations that:
+
+1. **Brainstorms 57 ideas** with feasibility, impact, and rubric-axis tags — the largest single brainstorm doc in the project.
+2. **Ranks top-10 by combined impact × feasibility × rubric-axis lift** and ships the top 5.
+3. **Wires Giotto into the gauntlet PROCESS sub-loop** — the highest-leverage nightly agent touch point.
+4. **Exposes 6 new API endpoints** with deterministic no-key fallbacks so the 16 Aug demo never depends on a live key.
+5. **Adds a citation safety filter** (`sanitiseCitations`) so any hallucinated Act reference is dropped before persisting.
+6. **48/48 test assertions PASS** — the largest single new test file in Phase 2/5.
+7. **No edits to `src/generated/*`, `server.tsx`, or `bun.lock`** — preserves the invariant.
+
+**Reversibility:** N/A — nothing was copied to the Data Room in this batch. To reverse the workspace additions, revert the commit (see AI_JOURNAL for the commit hash).
+
+**Cross-reference:** See AI_JOURNAL.md section 2026-08-11 Phase 5 GIOTTO BRAINSTORM for full justification, replication steps, and verification output.
