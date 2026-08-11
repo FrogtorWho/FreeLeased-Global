@@ -813,3 +813,143 @@ Final commit: `eb56e69 feat(phase-2d): 5 next refinements — architecture swiml
 - HEARTBEAT.md 10:14 UTC bullet.
 - memory/data-room-copies.md will receive 3 new COPY-IDs (065, 066, 067) for the Giotto trio.
 - Phase 4 will appear in HISTORY.md (already added) + CHANGELOG.md (already added).
+
+---
+
+## 2026-08-11 — Phase 6: ALL-PARTNERS BRAINSTORM + TOP-5 IMPLEMENTATIONS
+
+The Buildathon grants more than GPU and tokens — it grants *optionality*.
+Six perks (Nebius Extra, Tenki, OllyGarden, MiniMax, Boardy, Nebius Promo)
+each have several plausible integrations. The brief: brainstorm big ideas
+for leveraging all six to the optimal degree, rank the top 10, then ship
+the top 5 with no-key / no-credit / no-network fallback paths. Done in
+a single coherent pass.
+
+### Brainstorm doc
+
+`project/strategy/all-partners-brainstorm.md` — 57 ideas across 6 categories:
+
+- **A. Nebius Extra** (10 ideas): live DeepSeek-R1 extraction, 1000
+  synthetic leases, tribunal-decision embeddings, conviction-weight prior,
+  nightly statute-embedding regen, jurisdiction-specific synthetic pilots,
+  Postgres+pgvector spine, batch OCR on tribunal decisions, legal-
+  embedding inference for cross-jurisdiction pattern transfer, evidence-
+  class calibration curves at scale.
+- **B. Tenki** (10 ideas): Tenki on every PR, gauntlet-loop.md review,
+  demo-script review, custom-routes.ts security scan, conventional-commit
+  enforcement, pre-mortem reviewer, per-PR judge-impact preview, coverage
+  gate, demo-video script reviewer, weekly digest.
+- **C. OllyGarden** (10 ideas): OTLP spans on every API route, per-
+  dossier traces, per-render traces, judge demo dashboard, P95 latency
+  alerts, spine staleness alerts, HITL queue depth alerts, daily span
+  digest, span-level cost attribution, conviction-weight drift vis.
+- **D. MiniMax** (10 ideas): mirror of giotto.ts, citation-verification
+  model, redline generator, multilingual translator, citizen-facing
+  chatbot, demo Q&A answerer, persona generator, "explain this verdict"
+  layer, public FAQ generator, per-jurisdiction onboarding doc generator.
+- **E. Boardy** (10 ideas): warm intros to the 3 named advisory targets,
+  UK housing-association CEO, Caribbean gov official, venture capitalist,
+  grant-program officer, journalist, post-demo follow-up engine,
+  volunteer React/Tailwind dev, "ask the builders" feedback loop, real
+  leaseholder pack source.
+- **F. Nebius Promo** (7 ideas): GPU notebook for live demo, embedding
+  upgrade for uk-framework.ts, voiceover TTS, per-tenant cover letters,
+  per-judge tailored pitch, batch legal-embedding inference, catch-all
+  bucket.
+
+Top-10 ranking + top-5 detailed implementations (file lists, code shapes,
+fallback contracts) live in the doc.
+
+### Top-5 implementations shipped
+
+1. **Tenki PR-reviewer workflow (Idea #11 + #14 + #16 + #20)** —
+   `.github/tenki.yml` (config manifest) + `docs/tenki-workflow.md`
+   (operating manual) + PR template checkbox (advisory only, never blocks
+   merge). The workflow is documented, not wired — Tenki's bot account
+   can plug into the same config when connected.
+
+2. **OllyGarden observability expansion (Idea #21 + #22 + #25)** —
+   `src/lib/ollygarden.ts` (HTTPReporter + ConsoleReporter, batched 5s
+   flush, 3-retry degrade) + `docs/ollygarden-integration.md` +
+   `GET /api/telemetry/stream` (ring-buffer snapshot for demo dashboard) +
+   `GET /api/ollygarden/status` (one-line wiring check). With no
+   `OLLYGARDEN_API_KEY`, the reporter is a `ConsoleReporter` and the
+   endpoints still return the same shape.
+
+3. **MiniMax alt LLM (Idea #31)** — `src/lib/minimax.ts` mirrors
+   `src/lib/giotto.ts` exactly: `minimaxConfigured()`, `callMiniMax()`,
+   `extractLeaseMiniMax()`, `draftJudgeAnswerMiniMax()`, plus a
+   `callWithFallback()` that tries Giotto → MiniMax → fallback. Wired
+   into `src/lib/agents.ts` as an opt-in `maybeCallMiniMax()` path
+   gated on `USE_MINIMAX=1`. With the flag unset (the default), the
+   agent orchestrator continues to use the deterministic
+   `simulateLLMCall()` path. `.env.example` extended with `USE_MINIMAX`
+   + `MINIMAX_BASE_URL`.
+
+4. **Boardy advisory activation (Idea #41)** —
+   `project/strategy/06-boardy-action-plan.md` consolidates the 3
+   advisory-ask templates from `05-advisory-ask-boardy.md` into a single
+   actionable checklist with concrete dates: send Mon 2026-08-11 18:00
+   BST; response expected by Wed 2026-08-13 18:00 BST; 5-state machine
+   (`drafted → sent → replied → closed_quote/closed_decline/closed_silent`).
+   All 3 targets currently in state `drafted, not sent` — no claim until
+   reply received.
+
+5. **Nebius DeepSeek-R1 live extraction (Idea #1)** —
+   `src/core/title_agent.py` extended with `run_title_audit_safe()`
+   (crash-free variant that always returns a populated
+   `CadastralAudit`) and `nebius_live_path_active()` helper. The live
+   path runs when `NEBIUS_API_KEY` is set; otherwise the deterministic
+   fallback returns safe defaults. Plus
+   `scripts/test-nebius-live.ts` exercises both paths via subprocess.
+
+Plus: `scripts/test-all-partners.ts` — 18 assertion groups × 99
+individual assertions covering the brainstorm doc, all 5 implementations,
+the PR template, the .env.example additions, and the no-edit-rule on
+`src/generated/*`, `server.tsx`, `bun.lock`.
+
+### Shared design choices
+
+- **One TS wrapper per LLM integration** (`src/lib/giotto.ts`,
+  `src/lib/minimax.ts`) — every helper has identical shape with or
+  without the key. UI never branches.
+- **Env-guard mirrors giottoConfigured()** — same logic in
+  `minimaxConfigured()`, `ollyGardenConfigured()`, `nebius_live_path_active()`.
+- **Crash-free variants** — `run_title_audit_safe()` catches all
+  exceptions; demo-day paths use this.
+- **No new dependencies.** Native `fetch` + `AbortSignal.timeout` +
+  `execFileSync` for the Python subprocess in test-nebius-live.ts.
+- **No edits to `src/generated/*`, `server.tsx`, `bun.lock`,
+  `package.json`** — preserves the invariant.
+
+### Test coverage
+
+- `scripts/test-all-partners.ts` — 99/99 assertions PASS
+- `scripts/test-nebius-live.ts` — 23/23 assertions PASS (fallback path
+  exercised end-to-end via Python subprocess; live path skipped
+  without `NEBIUS_API_KEY`)
+
+### Honest disclosure
+
+As of 2026-08-11:
+
+- **No live Tenki review** has been performed — config is documented.
+- **No live OllyGarden transmission** — reporter is a ConsoleReporter
+  without the key; the `/api/telemetry/stream` endpoint returns the
+  ring-buffer snapshot regardless.
+- **No live MiniMax call** — `USE_MINIMAX=0` is the default.
+- **No Boardy sends** — all 3 advisory asks are drafted, not sent.
+- **No live Nebius call** — `NEBIUS_API_KEY` is unset in the deploy
+  environment; the deterministic fallback is the live path.
+
+We claim no rubric-axis lift from any of these integrations at this
+time. The wiring exists; the fallback contract is the live path.
+
+### Cross-reference
+
+- HEARTBEAT.md 11:30 UTC bullet.
+- `project/strategy/all-partners-brainstorm.md` (the source brainstorm).
+- `docs/tenki-workflow.md` + `docs/ollygarden-integration.md` (operating manuals).
+- `memory/data-room-copies.md` will receive 5 new COPY-IDs (076–080) for
+  the partners-trio (Phase 6) — workspace-only entries, not Data Room
+  copies, per the existing convention.

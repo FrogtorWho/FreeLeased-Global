@@ -1,0 +1,140 @@
+# Tenki PR-reviewer workflow (advisory / non-blocking).
+#
+# This file documents the Buildathon Tenki perk wiring.
+# It is NOT a GitHub Actions workflow — Tenki is its own AI code-review
+# service, not a CI step. The presence of this file signals to Tenki's
+# connectors that the repository is configured for review.
+#
+# Tenki is invoked manually per-PR or on a schedule; failures never block
+# the existing `required_checks` rules or Sam's approval. The merge gate
+# is unchanged.
+#
+# Honest disclosure: as of 2026-08-11, no live Tenki review has been
+# performed in this repo. The configuration below documents the contract
+# so that wiring can be enabled without further code changes when the
+# Tenki bot account is connected.
+
+version: 1
+
+repository: FrogtorWho/FreeLeased-Global
+
+# Triggers: Tenki runs on every PR but does NOT block merge.
+triggers:
+  pull_request:
+    - opened
+    - synchronize
+    - reopened
+  schedule:
+    # Weekly digest of top 10 velocity-moving PRs.
+    - cron: "0 9 * * MON"
+  manual:
+    - command: "/tenki review"
+
+# Reviewer scope: the user-editable + user-facing surface gets the most
+# scrutiny. Auto-generated files are explicitly excluded.
+review:
+  include:
+    - custom-routes.ts
+    - src/lib/*.ts
+    - src/lib/**/*.ts
+    - src/core/*.py
+    - src/core/**/*.py
+    - project/strategy/gauntlet-loop.md
+    - project/strategy/judge-qa-kill-list.md
+    - project/strategy/all-partners-brainstorm.md
+    - scripts/*.ts
+  exclude:
+    - "src/generated/**"
+    - "**/*.lock"
+    - "**/bun.lock"
+    - "**/package-lock.json"
+
+# Rubric-axis pre-mortem (per-PR). Each PR gets a "what could go wrong"
+# pass that maps changes to Buildathon rubric axes (Team Quality B1,
+# Innovation B2, PMF B3, Tech Depth B4, AI Capability C1, Responsible
+# AI C2).
+pre_mortem:
+  enabled: true
+  rubric_axes:
+    - B1_team_quality
+    - B2_innovation
+    - B3_product_market_fit
+    - B4_tech_depth
+    - C1_ai_capability
+    - C2_responsible_ai
+
+# Conventional Commit enforcement — advisory only. Failed commits are
+# surfaced in the PR comment; the merge is not blocked.
+commit_lint:
+  enabled: true
+  conventional_commits: true
+  types:
+    - feat
+    - fix
+    - docs
+    - refactor
+    - test
+    - chore
+    - perf
+    - ci
+  # Allow the buildathon-specific "ship" / "win" / "triple" tags.
+  extra_tags:
+    - ship
+    - win
+    - triple
+
+# Security lens: every PR touching custom-routes.ts gets an explicit
+# PII / secret-leak scan. This is the file users can edit and is the
+# only file that hits the public internet.
+security:
+  pii_scan:
+    enabled: true
+    paths:
+      - custom-routes.ts
+      - src/lib/*.ts
+  secret_scan:
+    enabled: true
+    patterns:
+      - "sk-or-"
+      - "AIzaSy"
+      - "xoxb-"
+      - "ghp_"
+      - "github_pat_"
+
+# Tone guidance for the reviewer. The reviewer should never introduce
+# AI tells in its PR comments.
+tone:
+  uk_english: true
+  forbid_phrases:
+    - leveraging
+    - cutting-edge
+    - seamless
+    - game-changing
+    - delve into
+    - "in today's"
+    - "it's important to note"
+  max_comment_words: 200
+
+# Reporting: every review emits a structured JSON line to the agent's
+# audit log. With no Tenki connection, this is a no-op.
+reporting:
+  json_to_stdout: true
+  weekly_digest: true
+  digest_target: "memory/tenki-weekly-digest.md"
+
+# Fallback contract (mandatory). If Tenki is absent / failing / not
+# configured, the workflow MUST NOT block any merge. The existing
+# required_checks rules + Sam's approval are the only gates.
+fallback:
+  on_absent: "no-op — PRs merge on existing rules"
+  on_failure: "no-op — review comment is advisory only"
+  on_timeout: "no-op — review comment is advisory only"
+  merge_gate: "never"
+
+# Cross-reference: the brainstorm doc that justifies every choice above
+# lives at `project/strategy/all-partners-brainstorm.md` (Idea #11 +
+# #14 + #16 + #20).
+cross_reference:
+  brainstorm: "project/strategy/all-partners-brainstorm.md"
+  fallback_contract: "project/strategy/automation-doctrine.md"
+  truth_protocol: "project/strategy/truth-protocol.md"

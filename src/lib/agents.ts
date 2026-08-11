@@ -300,7 +300,11 @@ export class AgentOrchestrator {
     }
 
     // For other agents, simulate LLM call (in production, this calls OpenRouter)
-    const result = this.simulateLLMCall(role, input);
+    // Partners brainstorm pick #3: when USE_MINIMAX=1 and MINIMAX_API_KEY are
+    // both set, route the call through the MiniMax alt-LLM as a drop-in
+    // alternative. Falls back to simulateLLMCall on any failure so the
+    // agent contract is preserved.
+    const result = await this.maybeCallMiniMax(role, input);
     task.cost += agent.costPerQuery;
     this.totalCost += agent.costPerQuery;
 
@@ -318,6 +322,54 @@ export class AgentOrchestrator {
     });
 
     return result;
+  }
+
+  /**
+   * Optional MiniMax path (Partners brainstorm pick #3). When
+   * `USE_MINIMAX=1` and `MINIMAX_API_KEY` are both set, this calls the
+   * MiniMax wrapper with a system+user prompt derived from the role.
+   * On any failure (no key, network error, parse error) it falls back
+   * to the deterministic `simulateLLMCall()` so the agent contract is
+   * unchanged.
+   *
+   * The default code path stays deterministic — MiniMax is opt-in via
+   * the env flag. Nothing about the agent's return shape changes with
+   * or without the key.
+   */
+  private async maybeCallMiniMax(
+    role: AgentRole,
+    input: Record<string, unknown>,
+  ): Promise<Record<string, unknown>> {
+    const useMiniMax = process.env.USE_MINIMAX === "1";
+    const keySet = (process.env.MINIMAX_API_KEY ?? "").trim() !== "" &&
+      (process.env.MINIMAX_API_KEY ?? "").trim() !== "your_minimax_api_key_here";
+    if (!useMiniMax || !keySet) {
+      return this.simulateLLMCall(role, input);
+    }
+    try {
+      // Lazy import so agents.ts stays usable in environments that never
+      // enable MiniMax.
+      const { callMiniMax } = await import("./minimax");
+      const system = `You are a ${role} agent in the FreeLeased multi-agent system. Respond in compact JSON with at least { confidence: number, evidenceClass: string }.`;
+      const user = JSON.stringify(input).slice(0, 6000);
+      const r = await callMiniMax({ system, user, maxTokens: 600 });
+      if (!r.ok) return this.simulateLLMCall(role, input);
+      const jsonStart = r.text.indexOf("{");
+      const jsonEnd = r.text.lastIndexOf("}");
+      if (jsonStart === -1 || jsonEnd === -1) return this.simulateLLMCall(role, input);
+      const parsed = JSON.parse(r.text.slice(jsonStart, jsonEnd + 1)) as Record<string, unknown>;
+      // Mirror the agent's confidence / evidenceClass fields.
+      return {
+        ...parsed,
+        confidence: typeof parsed.confidence === "number" ? parsed.confidence : 0.7,
+        evidenceClass:
+          typeof parsed.evidenceClass === "string" ? parsed.evidenceClass : "heuristic",
+        engine: "minimax",
+      };
+    } catch {
+      // Any failure → fallback to deterministic path.
+      return this.simulateLLMCall(role, input);
+    }
   }
 
   /**

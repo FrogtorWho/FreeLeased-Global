@@ -2649,5 +2649,59 @@ app.get('/giotto/integrations', (c) => {
   })
 })
 
+// ── OllyGarden observability stream (Partners brainstorm pick #2) ──
+//
+// `GET /api/telemetry/stream?limit=N` returns a JSON snapshot of the
+// most recent spans from the ring buffer. Used by the demo dashboard
+// and (with OLLYGARDEN_API_KEY set) by OllyGarden's Enterprise collector.
+//
+// Returns the same shape whether or not the OllyGarden reporter is
+// live — `live: false` simply means spans are going to console.
+app.get('/telemetry/stream', async (c) => {
+  const limitRaw = c.req.query('limit') ?? '50'
+  const limit = Math.max(1, Math.min(200, Number.parseInt(limitRaw, 10) || 50))
+
+  try {
+    const { snapshot, ollyGardenConfigured } = await import('./src/lib/ollygarden')
+    const snap = snapshot(limit)
+    return c.json({
+      ok: true,
+      ...snap,
+      configured: ollyGardenConfigured(),
+      brainstormRef: 'project/strategy/all-partners-brainstorm.md',
+      generatedAt: new Date().toISOString(),
+    })
+  } catch (e) {
+    return c.json({
+      ok: false,
+      error: e instanceof Error ? e.message : String(e),
+      configured: false,
+      spanCount: 0,
+      spans: [],
+      generatedAt: new Date().toISOString(),
+    }, 500)
+  }
+})
+
+// `GET /api/ollygarden/status` is a one-line health check mirroring the
+// pattern of `/giotto/integrations`. Reports whether OllyGarden is
+// configured (live) and where spans are going.
+app.get('/ollygarden/status', async (c) => {
+  const { ollyGardenConfigured, DEFAULT_OLLYGARDEN_OTLP_ENDPOINT } = await import(
+    './src/lib/ollygarden'
+  )
+  const configured = ollyGardenConfigured()
+  return c.json({
+    ok: true,
+    configured,
+    live: configured,
+    endpoint: DEFAULT_OLLYGARDEN_OTLP_ENDPOINT,
+    fallbackContract:
+      'ConsoleReporter when OLLYGARDEN_API_KEY is unset; HTTPReporter with 3-retry degrade otherwise.',
+    brainstormRef: 'project/strategy/all-partners-brainstorm.md',
+    generatedAt: new Date().toISOString(),
+  })
+})
+
 export default app
 

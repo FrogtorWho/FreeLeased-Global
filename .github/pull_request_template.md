@@ -32,6 +32,7 @@
 - [ ] `npm run verify` exits 0 (10/10 reconcile, 231/231 tests, health green)
 - [ ] No new dependencies added to `package.json`/`bun.lock` (or justified below)
 - [ ] No edits to `src/generated/*`, `server.tsx`, `bun.lock` (unless explicitly required)
+- [ ] **Tenki review status:** advisory only (Tenki never blocks merge). See `docs/tenki-workflow.md`.
 - [ ] I followed the jurisdiction-onboarding 5-step protocol (if jurisdiction added)
 - [ ] CoC compliance: no prohibited practices introduced
 - [ ] If I added a UI component: `aria-label` and `aria-expanded` on interactive elements

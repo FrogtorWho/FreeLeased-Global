@@ -1,4 +1,5 @@
 ﻿import json
+import os
 from typing import Any
 
 from pydantic import BaseModel, Field
@@ -73,6 +74,12 @@ def run_title_audit(cadastral_text: str) -> CadastralAudit:
 
     Uses Nebius DeepSeek-R1 to extract the values needed for the CadastralAudit
     schema from the provided description.
+
+    Partners brainstorm pick #5: when ``NEBIUS_API_KEY`` is set, this
+    hits the live DeepSeek-R1 endpoint. Otherwise it returns the
+    deterministic fallback (zeroed fields + "not configured" note).
+    Live calls may raise — callers that want to remain crash-free
+    should use :func:`run_title_audit_safe` instead.
     """
 
     client = get_nebius_client_or_none()
@@ -120,3 +127,58 @@ def run_title_audit(cadastral_text: str) -> CadastralAudit:
         )
 
     return CadastralAudit.parse_obj(parsed)
+
+
+def run_title_audit_safe(cadastral_text: str) -> CadastralAudit:
+    """Crash-free variant of :func:`run_title_audit`.
+
+    Always returns a populated :class:`CadastralAudit`. When ``NEBIUS_API_KEY``
+    is unset, OR the live call fails for any reason (network, JSON parse,
+    schema mismatch), the returned audit reflects the failure mode in
+    ``compliance_notes`` and uses safe defaults for the numeric fields.
+
+    This is the variant the demo-day paths should use — it never raises.
+    The non-safe ``run_title_audit`` is for code paths that *want* to
+    surface the failure (e.g. the test harness).
+    """
+
+    key_set = bool((os.getenv("NEBIUS_API_KEY") or "").strip())
+    try:
+        result = run_title_audit(cadastral_text)
+        if not key_set:
+            # The deterministic fallback already populated
+            # compliance_notes with "not configured" — leave as-is.
+            return result
+        # Live call succeeded — annotate the audit so callers can tell.
+        if "compliance_notes" in result.dict():
+            note = result.compliance_notes or ""
+            if "deepseek-r1" not in note.lower():
+                result.compliance_notes = f"[engine: deepseek-r1] {note}".strip()
+        return result
+    except Exception as exc:  # noqa: BLE001 — we deliberately swallow all errors
+        return CadastralAudit(
+            unit_entitlement_percentage=0.0,
+            statutory_vulnerabilities=[],
+            voting_threshold_met=False,
+            compliance_notes=(
+                f"Nebius DeepSeek-R1 call failed: {exc}. "
+                "Falling back to deterministic placeholder."
+            ),
+        )
+
+
+def nebius_live_path_active() -> bool:
+    """Return True when :func:`run_title_audit` will hit the live endpoint.
+
+    This is the env-guard used by the demo script and the test harness
+    to decide whether to record the run as a "live" extraction or a
+    "fallback" extraction. It is the single source of truth for the
+    Partners brainstorm pick #5 wiring.
+    """
+
+    key = (os.getenv("NEBIUS_API_KEY") or "").strip()
+    if not key:
+        return False
+    if key == "your_nebius_api_key_here":
+        return False
+    return True

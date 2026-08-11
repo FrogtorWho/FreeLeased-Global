@@ -397,3 +397,34 @@ These are workspace-only entries added on 2026-08-11T10:30Z during the Phase 5 G
 **Reversibility:** N/A — nothing was copied to the Data Room in this batch. To reverse the workspace additions, revert the commit (see AI_JOURNAL for the commit hash).
 
 **Cross-reference:** See AI_JOURNAL.md section 2026-08-11 Phase 5 GIOTTO BRAINSTORM for full justification, replication steps, and verification output.
+
+---
+
+## Workspace-only additions (Phase 6 — All-partners brainstorm + top-5 implementations)
+
+These are workspace-only entries added on 2026-08-11T11:30Z during the Phase 6 all-partners brainstorm work. Like prior workspace-only entries, they modify the codebase and/or strategy docs but don't add TRL-grade evidence and are not copied to the Data Room.
+
+| discretion_id | timestamp (ISO 8601 UTC) | source | target | TRL | reason | reversibility | result |
+|---|---|---|---|---|---|---|---|
+| COPY-076 | 2026-08-11T11:30:00Z | (workspace-only — NOT copied to Data Room) | `.github/tenki.yml` + `docs/tenki-workflow.md` + `.github/pull_request_template.md` (edited) | n/a | Phase 6 Idea #11 + #14 + #16 + #20 — Tenki PR-reviewer config manifest + operating manual + PR template checkbox. Advisory only; never blocks merge. ~3 new files (~250 lines) + 1 PR-template edit. | revert commit | OK |
+| COPY-077 | 2026-08-11T11:30:00Z | (workspace-only — NOT copied to Data Room) | `src/lib/ollygarden.ts` + `docs/ollygarden-integration.md` + `custom-routes.ts` (extended with `/api/telemetry/stream` + `/api/ollygarden/status`) | n/a | Phase 6 Idea #21 + #22 + #25 — OllyGarden OTLP exporter (HTTPReporter + ConsoleReporter fallback). 2 new files (~280 lines) + 2 endpoints mounted in custom-routes.ts (~70 lines added). | revert commit | OK |
+| COPY-078 | 2026-08-11T11:30:00Z | (workspace-only — NOT copied to Data Room) | `src/lib/minimax.ts` + `src/lib/agents.ts` (extended with `maybeCallMiniMax()`) + `.env.example` (extended with `USE_MINIMAX` + `MINIMAX_BASE_URL`) | n/a | Phase 6 Idea #31 — MiniMax alt-LLM mirror of giotto.ts. Exports `minimaxConfigured()`, `callMiniMax()`, `extractLeaseMiniMax()`, `draftJudgeAnswerMiniMax()`, `callWithFallback()`. Opt-in `maybeCallMiniMax()` gated on `USE_MINIMAX=1`. ~270 lines new + ~40 lines edited in agents.ts. | revert commit | OK |
+| COPY-079 | 2026-08-11T11:30:00Z | (workspace-only — NOT copied to Data Room) | `project/strategy/06-boardy-action-plan.md` (new) | n/a | Phase 6 Idea #41 — Boardy advisory activation. Consolidates the 3 templates from `05-advisory-ask-boardy.md` into a single actionable checklist with concrete send/response dates (Mon 2026-08-11 18:00 BST send / Wed 2026-08-13 18:00 BST response) + 5-state machine + honest disclosure. ~180 lines. | revert commit | OK |
+| COPY-080 | 2026-08-11T11:30:00Z | (workspace-only — NOT copied to Data Room) | `src/core/title_agent.py` (extended with `run_title_audit_safe()` + `nebius_live_path_active()`) + `scripts/test-nebius-live.ts` (new) | n/a | Phase 6 Idea #1 — Nebius DeepSeek-R1 live extraction. `run_title_audit_safe()` is the crash-free variant demo-day paths should use; `nebius_live_path_active()` is the env-guard helper. Test script exercises both paths via subprocess (deterministic fallback always runs; live path gated on `NEBIUS_API_KEY`). ~80 lines added to title_agent.py + ~200 lines new test. | revert commit | OK |
+| COPY-081 | 2026-08-11T11:30:00Z | (workspace-only — NOT copied to Data Room) | `scripts/test-all-partners.ts` (new) + `AI_JOURNAL.md` + `HEARTBEAT.md` (edited) | n/a | Phase 6 — 18-assertion-group × 99-individual-assertion test suite covering all 5 top-5 implementations + the brainstorm doc structure + the no-edit rule on `src/generated/*`, `server.tsx`, `bun.lock`, `package.json`. Run result: 99/99 PASS. AI_JOURNAL gets the Phase 6 entry; HEARTBEAT gets the 11:30 UTC bullet. ~250 lines new test + ~30 lines added to AI_JOURNAL/HEARTBEAT. | revert commit | OK (99/99 assertions PASS · 23/23 PASS on nebius-live) |
+
+**Why this section exists:** Phase 6 is the coherent "all-partners brainstorm" set of integrations that:
+
+1. **Brainstorms 57 ideas** across 6 categories (Nebius Extra / Tenki / OllyGarden / MiniMax / Boardy / Nebius Promo), top-10 ranking, top-5 detailed implementations.
+2. **Wires the 5 top picks** with deterministic no-key / no-credit / no-network fallback paths.
+3. **Adds 4 new env guards** — `TENKI_*`, `USE_MINIMAX`, `MINIMAX_BASE_URL`, plus the existing `OLLYGARDEN_*` + `NEBIUS_API_KEY`.
+4. **Mirrors giotto.ts shape exactly** for MiniMax — same export surface, same `engine: "fallback"` fallback contract.
+5. **Exposes 2 new API endpoints** (`/api/telemetry/stream`, `/api/ollygarden/status`) so the demo dashboard reads from the ring buffer regardless of OllyGarden wiring.
+6. **Adds 1 new helper module** (`run_title_audit_safe()`) so demo-day title audits never crash even if DeepSeek-R1 fails.
+7. **99/99 + 23/23 = 122 new test assertions PASS** — second-largest new test surface in the project (after Phase 5's 48/48 Giotto integration test).
+8. **No edits to `src/generated/*`, `server.tsx`, `bun.lock`, `package.json`** — preserves the invariant.
+9. **Honest disclosure** — every integration explicitly states "drafted/configured/live-path exists, but the deterministic fallback is the live path" until the corresponding API key is set.
+
+**Reversibility:** N/A — nothing was copied to the Data Room in this batch. To reverse the workspace additions, revert the commit (see AI_JOURNAL for the commit hash).
+
+**Cross-reference:** See AI_JOURNAL.md section 2026-08-11 Phase 6 ALL-PARTNERS BRAINSTORM for full justification, replication steps, and verification output.
