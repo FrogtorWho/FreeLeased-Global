@@ -43,6 +43,7 @@ const suites: Suite[] = [
   { name: "test-rubric-coverage (B2)",     cmd: [RUNTIME, ...RUNTIME_ARGS, "scripts/test-rubric-coverage.ts"], required: false, bunOnly: false },
   { name: "test-a11y (Phase 11 B3)",       cmd: [RUNTIME, ...RUNTIME_ARGS, "scripts/test-a11y.ts"],         required: false, bunOnly: false },
   { name: "test-typescript-discipline (B3)", cmd: [RUNTIME, ...RUNTIME_ARGS, "scripts/test-typescript-discipline.ts"], required: false, bunOnly: false },
+  { name: "test-truth (Phase 11 B4)",      cmd: [RUNTIME, ...RUNTIME_ARGS, "scripts/test-truth.ts"],         required: false, bunOnly: false },
 ];
 
 console.log("\n🧪 FreeLeased — full test aggregator\n");
