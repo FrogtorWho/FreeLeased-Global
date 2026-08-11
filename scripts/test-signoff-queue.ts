@@ -78,44 +78,44 @@ async function run() {
     console.log("  ⚠️  API offline — skipping live API assertions");
     check("API offline — skipping live tests", true);
   } else {
-    check("seed returns ok", seedProbe.body.ok === true);
-    check("seed populates demo queue", typeof seedProbe.body.total === "number");
+    check("seed returns ok", seedProbe.body?.ok === true);
+    check("seed populates demo queue", typeof seedProbe.body?.total === "number");
 
     const list = await j("/review-queue");
-    check("list returns items", Array.isArray(list.body.items));
-    check("list returns counts", typeof list.body.counts?.pending === "number");
+    check("list returns items", Array.isArray(list.body?.items));
+    check("list returns counts", typeof list.body?.counts?.pending === "number");
 
-    const pending = (await j("/review-queue?status=pending")).body.items as any[];
-    check("has pending items to exercise actions on", pending.length >= 1);
+    const pending = ((await j("/review-queue?status=pending")).body?.items ?? []) as any[];
+    check("has pending items to exercise actions on", Array.isArray(pending) && pending.length >= 1);
 
     // Approve (Sign off)
     if (pending.length >= 1) {
       const approve = await post(`/review-queue/${pending[0].id}/decide`,
         { decision: "approve", annotation: "Batch 3 sign-off test", reviewer: "test-runner" });
-      check("Sign off → approve returns ok", approve.body.ok === true);
-      check("Sign off sets status=approved", approve.body.item.status === "approved");
+      check("Sign off → approve returns ok", approve.body?.ok === true);
+      check("Sign off sets status=approved", approve.body?.item?.status === "approved");
     }
 
     // Reject (Override)
-    const pending2 = (await j("/review-queue?status=pending")).body.items as any[];
+    const pending2 = ((await j("/review-queue?status=pending")).body?.items ?? []) as any[];
     if (pending2.length >= 1) {
       const reject = await post(`/review-queue/${pending2[0].id}/decide`,
         { decision: "reject", annotation: "Batch 3 override test" });
-      check("Override → reject returns ok", reject.body.ok === true);
-      check("Override sets status=rejected", reject.body.item.status === "rejected");
+      check("Override → reject returns ok", reject.body?.ok === true);
+      check("Override sets status=rejected", reject.body?.item?.status === "rejected");
     }
 
     // Annotate (Request more evidence) — keeps status pending
-    const pending3 = (await j("/review-queue?status=pending")).body.items as any[];
+    const pending3 = ((await j("/review-queue?status=pending")).body?.items ?? []) as any[];
     if (pending3.length >= 1) {
       const ann = await post(`/review-queue/${pending3[0].id}/decide`,
         { decision: "annotate", annotation: "Need more evidence — please re-run VLM" });
-      check("Request more evidence → annotate returns ok", ann.body.ok === true);
-      check("Annotate keeps status pending", ann.body.item.status === "pending");
+      check("Request more evidence → annotate returns ok", ann.body?.ok === true);
+      check("Annotate keeps status pending", ann.body?.item?.status === "pending");
     }
 
     // Invalid decision rejected
-    const bad = await post(`/review-queue/${pending[0].id}/decide`, { decision: "banana" });
+    const bad = await post(`/review-queue/${pending[0]?.id ?? "none"}/decide`, { decision: "banana" });
     check("invalid decision returns 400", bad.status === 400);
 
     // Missing item returns 404
