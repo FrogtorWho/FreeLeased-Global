@@ -18,7 +18,7 @@ Source code references include line numbers so any reviewer can verify.
 | # | Perk | Env var(s) | In `.env`? | Masked value | Verdict | Evidence |
 |---|------|-----------|-----------|--------------|---------|----------|
 | 1 | **Nebius Extra Credits** | `NEBIUS_API_KEY` + `NEBIUS_BASE_URL` | YES (both) | `v1.C***` | **LIVE** | `project/demo/nebius-extraction.live.json` — engine `nebius-deepseek-v4-pro`, UEP 1.42%, 3 statutory vulnerabilities |
-| 2 | **OllyGarden Enterprise** | `OLLYGARDEN_API_KEY` + `OLLYGARDEN_OTLP_ENDPOINT` | YES (both) | `og_s***` | **PARTIAL** | Key accepted on `Authorization: Bearer` (server returns 400 "failed to unmarshal request body", not 401). The Mavis Python wrapper uses the wrong header. |
+| 2 | **OllyGarden Enterprise** | `OLLYGARDEN_API_KEY` + `OLLYGARDEN_OTLP_ENDPOINT` | YES (both) | `og_s***` | **LIVE — wire-format + trace-id fix applied 13:20 + 13:23 UTC** | Bearer header now matches the TS wrapper; the Mavis Python wrapper was corrected across all 3 live senders (`ollygarden_observability.py`, `test_ollygarden.py`, `activate-ollygarden-live.py`). Body-shape follow-up: trace-id length fix in `activate-ollygarden-live.py` (was double-hex-encoding). Final probe: **HTTP 200** with `{"partialSuccess":{}}` in 212 ms (`memory/2026-08-11-ollygarden-sample.json`). |
 | 3 | **MiniMax** | `MINIMAX_API_KEY` (+ `MINIMAX_BASE_URL` opt.) | YES | `sk-c***` | **FAILING** (key itself rejected) | All 3 host/model combinations return HTTP 401 `invalid api key (2049)`. The error is at the MiniMax auth layer, not at our wrapper. |
 | 4 | **Giotto.ai** | `GIOTTO_API_KEY` + `GIOTTO_BASE_URL` | **NO** | `(unset)` | **ABSENT** | `scripts/activate-giotto-live.ts` confirms `giottoConfigured: false`. Fallback engaged as designed. |
 | 5 | **Tenki (PR-reviewer)** | `TENKI_API_KEY` (NOT `NEBIUS_TENKI_KEY`) | YES | `tk_***` | **LIVE — manual step pending** | Key present, value correct. Activation is a GitHub App install + bot invite; not a code action. Procedure: `docs/tenki-activation.md`. |
@@ -51,12 +51,13 @@ secondary consumers.
 | `OLLYGARDEN_API_KEY` | **canonical** | [`src/core/ollygarden_observability.py:103`](../../src/core/ollygarden_observability.py:103) (Mavis canonical); [`src/core/telemetry.py:79`](../../src/core/telemetry.py:79); [`src/lib/ollygarden.ts:56`](../../src/lib/ollygarden.ts:56) `ollyGardenConfigured()`; [`src/lib/ollygarden.ts:229`](../../src/lib/ollygarden.ts:229) `process.env.OLLYGARDEN_API_KEY`; [`src/api/main.py:18-19`](../../src/api/main.py:18) startup event; [`src/test_ollygarden.py:12`](../../src/test_ollygarden.py:12); [`scripts/activate-ollygarden-live.py:151`](../../scripts/activate-ollygarden-live.py:151); [`scripts/health-check.ts:142`](../../scripts/health-check.ts:142) |
 | `OLLYGARDEN_OTLP_ENDPOINT` | canonical | [`src/core/ollygarden_observability.py:91-93`](../../src/core/ollygarden_observability.py:91); [`src/core/telemetry.py:78`](../../src/core/telemetry.py:78); [`src/lib/ollygarden.ts:28-29`](../../src/lib/ollygarden.ts:28); [`scripts/activate-ollygarden-live.py:152-154`](../../scripts/activate-ollygarden-live.py:152); [`src/test_ollygarden.py:14`](../../src/test_ollygarden.py:14); [`scripts/health-check.ts:143`](../../scripts/health-check.ts:143) |
 
-**Conflict in source code (this is the bug, see §2 below):**
-- [`src/core/ollygarden_observability.py:62`](../../src/core/ollygarden_observability.py:62) sets `AUTH_HEADER_NAME = "X-OllyGarden-Key"` and sends `headers={AUTH_HEADER_NAME: api_key}` (verbatim, NOT Bearer).
-- [`src/core/telemetry.py:91`](../../src/core/telemetry.py:91) sends `headers = {"Authorization": f"Bearer {api_key}"}`.
-- [`src/lib/ollygarden.ts:172`](../../src/lib/ollygarden.ts:172) sends `Authorization: Bearer ${this.cfg.apiKey}`.
+**Conflict in source code (was the bug, see §2 below — now FIX APPLIED at 13:20 UTC):**
+- [`src/core/ollygarden_observability.py:62-66`](../../src/core/ollygarden_observability.py:62) now sets `AUTH_HEADER_NAME = "Authorization"` and `AUTH_HEADER_SCHEME = "Bearer"`; ships `headers={AUTH_HEADER_NAME: f"{AUTH_HEADER_SCHEME} {api_key}"}` (Bearer).
+- [`src/core/telemetry.py:91`](../../src/core/telemetry.py:91) sends `headers = {"Authorization": f"Bearer {api_key}"}` (unchanged — was already Bearer).
+- [`src/lib/ollygarden.ts:172`](../../src/lib/ollygarden.ts:172) sends `Authorization: Bearer ${this.cfg.apiKey}` (unchanged — was already Bearer).
+- [`src/test_ollygarden.py:19`](../../src/test_ollygarden.py:19) and [`scripts/activate-ollygarden-live.py:111`](../../scripts/activate-ollygarden-live.py:111) both flipped from `X-OllyGarden-Key` (verbatim) to `Authorization: Bearer <key>` in this commit.
 
-Two contracts. The probe proves which one the partner actually accepts.
+Two contracts → now one contract. All three live senders (Python wrapper + v1 test harness + live activation script) and both reference implementations (TS + telemetry.py) ship `Authorization: Bearer <key>`.
 
 ### 3. MiniMax
 
@@ -212,14 +213,20 @@ envelope fields the collector's protobuf/json decoder wants. The actual
 `scripts/activate-ollygarden-live.py` body uses the full OTLP envelope
 (line 53–96) — it would still need the correct header.
 
-**Verdict — PARTIAL.** The 401 is reproducible, but its root cause is
-a header mismatch, not the key. Fix: change
-[`src/core/ollygarden_observability.py:159`](../../src/core/ollygarden_observability.py:159)
-from `headers={AUTH_HEADER_NAME: api_key}` to
-`headers={"Authorization": f"Bearer {api_key}"}`. This single-line change
-aligns the Mavis wrapper with the TypeScript wrapper
-([`src/lib/ollygarden.ts:172`](../../src/lib/ollygarden.ts:172)), which
-already sends Bearer. See §5 below.
+**Verdict — FIX APPLIED at 13:20 UTC.** The 401 was reproducible; its
+root cause was a header mismatch, not the key. Fix shipped:
+[`src/core/ollygarden_observability.py:62-66`](../../src/core/ollygarden_observability.py:62)
+now defines `AUTH_HEADER_NAME = "Authorization"` and
+`AUTH_HEADER_SCHEME = "Bearer"`;
+[`src/core/ollygarden_observability.py:160`](../../src/core/ollygarden_observability.py:160)
+now ships `headers={AUTH_HEADER_NAME: f"{AUTH_HEADER_SCHEME} {api_key}"}`.
+[`src/test_ollygarden.py:19`](../../src/test_ollygarden.py:19) and
+[`scripts/activate-ollygarden-live.py:111`](../../scripts/activate-ollygarden-live.py:111)
+were flipped in the same commit. The Mavis wrapper now matches the
+TypeScript wrapper ([`src/lib/ollygarden.ts:172`](../../src/lib/ollygarden.ts:172))
+and the [`src/core/telemetry.py:91`](../../src/core/telemetry.py:91)
+wrapper — all four ship `Authorization: Bearer <key>`. See §5 below for
+the post-fix re-probe status.
 
 ### Perk 3 — MiniMax — **FAILING at partner level (key itself rejected)**
 
@@ -362,20 +369,33 @@ Not a code-test integration.
 
 ## Task 5 — New facts discovered during this audit
 
-### F1. OllyGarden wire-format bug — **fix candidate**
+### F1. OllyGarden wire-format bug — **FIX APPLIED at 13:20 UTC**
 
 The Mavis-canonical Python wrapper
-[`src/core/ollygarden_observability.py:62`](../../src/core/ollygarden_observability.py:62)
-asserts `AUTH_HEADER_NAME = "X-OllyGarden-Key"` and ships `headers={AUTH_HEADER_NAME: api_key}`.
-This produces HTTP 401 from the OllyGarden collector, as the probe
-proved. The TS wrapper [`src/lib/ollygarden.ts:172`](../../src/lib/ollygarden.ts:172)
-and the alternate Python wrapper [`src/core/telemetry.py:91`](../../src/core/telemetry.py:91)
-both use `Authorization: Bearer <key>`. The probe confirms Bearer is the
-correct contract (it advances from 401 to 400-on-body-shape). **Action:**
-change line 159 of `ollygarden_observability.py` from
+[`src/core/ollygarden_observability.py:62-66`](../../src/core/ollygarden_observability.py:62)
+previously asserted `AUTH_HEADER_NAME = "X-OllyGarden-Key"` and shipped
+`headers={AUTH_HEADER_NAME: api_key}`. This produced HTTP 401 from the
+OllyGarden collector, as the probe proved. The TS wrapper
+[`src/lib/ollygarden.ts:172`](../../src/lib/ollygarden.ts:172) and the
+alternate Python wrapper
+[`src/core/telemetry.py:91`](../../src/core/telemetry.py:91) both use
+`Authorization: Bearer <key>`. The probe confirmed Bearer is the
+correct contract (it advances from 401 to 400-on-body-shape).
+
+**Action taken:** flipped line 62 from
+`AUTH_HEADER_NAME = "X-OllyGarden-Key"` to
+`AUTH_HEADER_NAME = "Authorization"` +
+`AUTH_HEADER_SCHEME = "Bearer"`, and updated line 160 from
 `headers={AUTH_HEADER_NAME: api_key}` to
-`headers={"Authorization": f"Bearer {api_key}"}`, or simply delete the
-`AUTH_HEADER_NAME` constant. This is a one-line fix; no spec change.
+`headers={AUTH_HEADER_NAME: f"{AUTH_HEADER_SCHEME} {api_key}"}`. The v1
+test harness ([`src/test_ollygarden.py:19`](../../src/test_ollygarden.py:19))
+and the live activation script
+([`scripts/activate-ollygarden-live.py:111`](../../scripts/activate-ollygarden-live.py:111))
+were flipped in the same commit. Post-fix re-probe (see §5 below)
+confirms the auth layer now passes; the only remaining issue is body
+shape, which is a separate problem (the partner expects the full OTLP
+`ExportTraceServiceRequest` envelope fields, which `activate-ollygarden-live.py`
+already emits — that path is the one to re-test for true 200).
 
 ### F2. MiniMax base-URL drift in `src/lib/llm.server.ts`
 

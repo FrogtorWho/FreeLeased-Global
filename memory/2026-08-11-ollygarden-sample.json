@@ -1,7 +1,7 @@
 {
-  "documentId": "ollygarden_live_1786453660441",
-  "startedAt": "2026-08-11T13:07:40.441099+00:00",
-  "finishedAt": "2026-08-11T13:07:40.441133+00:00",
+  "documentId": "ollygarden_live_1786454593058",
+  "startedAt": "2026-08-11T13:23:13.058829+00:00",
+  "finishedAt": "2026-08-11T13:23:13.058858+00:00",
   "engine": "ollygarden-otlp",
   "ollygardenConfigured": true,
   "apiKeyMasked": "og_s***",
@@ -39,12 +39,12 @@
             },
             "spans": [
               {
-                "traceId": "303030303030303030303030303061637469766174696f6e3230323630383131",
-                "spanId": "303030303030303030306f6c6c793031",
+                "traceId": "821913fa0c1085d98c1806995c891ab3",
+                "spanId": "2762f19ed092fd1b",
                 "name": "freeleased.partner_activation_test",
                 "kind": 1,
-                "startTimeUnixNano": "1786453660291055400",
-                "endTimeUnixNano": "1786453660303555400",
+                "startTimeUnixNano": "1786454592846277500",
+                "endTimeUnixNano": "1786454592858777500",
                 "attributes": [
                   {
                     "key": "activation.run",
@@ -94,13 +94,13 @@
     ]
   },
   "postResult": {
-    "attemptedAt": "2026-08-11T13:07:40.291507+00:00",
+    "attemptedAt": "2026-08-11T13:23:12.847157+00:00",
     "endpoint": "https://in.ollygarden.cloud/v1/traces",
-    "elapsedMs": 149,
-    "httpStatus": 401,
-    "ok": false,
-    "error": "HTTPError: 401",
-    "responseBodyPreview": ""
+    "elapsedMs": 212,
+    "httpStatus": 200,
+    "ok": true,
+    "error": null,
+    "responseBodyPreview": "{\"partialSuccess\":{}}"
   },
   "span": {
     "name": "freeleased.partner_activation_test",

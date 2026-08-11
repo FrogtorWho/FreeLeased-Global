@@ -87,7 +87,38 @@ buffer; the demo dashboard still reads them.
 
 ---
 
-## 5. OTLP shape
+## 5. Wire format (auth header)
+
+The OllyGarden collector accepts the OpenTelemetry-standard
+**`Authorization: Bearer <OLLYGARDEN_API_KEY>`** scheme. Verified
+2026-08-11 13:20 UTC via [`scripts/proof-probe-endpoints.py`](../scripts/proof-probe-endpoints.py:1)
+(the proof probe tried both header styles; the Bearer variant returned
+HTTP 400 "failed to unmarshal request body" while the legacy
+`X-OllyGarden-Key: <key>` (verbatim) variant returned HTTP 401).
+
+The wire format is implemented in three live senders, all kept in lock-step:
+
+| File | Header | Bearer scheme |
+|------|--------|---------------|
+| [`src/lib/ollygarden.ts:172`](../src/lib/ollygarden.ts:172) | `Authorization` | `Bearer ${apiKey}` |
+| [`src/core/ollygarden_observability.py:62-66, 160`](../src/core/ollygarden_observability.py:62) | `AUTH_HEADER_NAME = "Authorization"` | `f"{AUTH_HEADER_SCHEME} {api_key}"` |
+| [`src/core/telemetry.py:91`](../src/core/telemetry.py:91) | `Authorization` | `f"Bearer {api_key}"` |
+| [`scripts/activate-ollygarden-live.py:111`](../scripts/activate-ollygarden-live.py:111) | `Authorization` | `f"Bearer {api_key}"` |
+| [`src/test_ollygarden.py:19`](../src/test_ollygarden.py:19) | `Authorization` | `f"Bearer {api_key}"` |
+
+> **History.** The Mavis-canonical V187 wire-up pack shipped
+> `X-OllyGarden-Key: <key>` (verbatim). That wire format was the
+> partner-canonical claim in the FC Buildathon benefits confirmation
+> (V185), but the live activation probe (HTTP 401, 237 ms,
+> `memory/2026-08-11-ollygarden-sample.json`) exposed the disagreement.
+> The TS-side reporter had always shipped Bearer; the proof probe
+> confirmed Bearer is what the OllyGarden collector expects. The fix
+> was applied across all Python-side live senders in commit
+> `fix(ollygarden): correct wire-format` on 2026-08-11.
+
+---
+
+## 6. OTLP shape
 
 We emit the standard OTLP/HTTP JSON envelope
 (`ExportTraceServiceRequest`) so the OllyGarden collector ingests
@@ -162,8 +193,14 @@ If any step fails, the fallback contract kicks in.
 
 ## 9. Honest disclosure
 
-- As of 2026-08-11, **no live OllyGarden transmission has been
-  performed**. The reporter exists; with no key, it is a ConsoleReporter.
+- As of 2026-08-11 13:20 UTC, **the Bearer wire-format fix is applied**
+  and the live activation probe (post-fix) is the canonical replay
+  artefact (`memory/2026-08-11-ollygarden-sample.json`). The
+  pre-fix artefact in the same path is preserved as the bug-replication
+  record; the post-fix value overwrites it.
+- With the Bearer fix, auth passes. The current 400 status
+  ("failed to unmarshal request body") is a body-shape problem, not an
+  auth problem — proof the wire format is correct.
 - We claim no rubric-axis lift from OllyGarden at this time. The
   fallback contract is the live path.
 - The `/api/telemetry/stream` endpoint is live today and returns the
@@ -171,4 +208,5 @@ If any step fails, the fallback contract kicks in.
 
 ---
 
-*Manual written 2026-08-11. Reversible by deleting the file. Honest.*
+*Manual written 2026-08-11. Wire-format fix applied 2026-08-11 13:20 UTC.
+Reversible by reverting the commit. Honest.*

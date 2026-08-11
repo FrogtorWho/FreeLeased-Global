@@ -11,9 +11,11 @@ Design contract (Mavis canonical, V187):
       host application never crashes because observability is offline).
     * Reads ``OLLYGARDEN_OTLP_ENDPOINT`` from the environment; defaults
       to the canonical OllyGarden OTLP/HTTP endpoint.
-    * The ``X-OllyGarden-Key`` auth header is the partner-specified wire
-      format; the ``OLLYGARDEN_API_KEY`` value is sent as the header
-      value verbatim (not wrapped in a ``Bearer`` prefix).
+    * The OllyGarden collector accepts the ``Authorization: Bearer``
+      auth scheme; the ``OLLYGARDEN_API_KEY`` value is sent as the
+      bearer token. The previous ``X-OllyGarden-Key`` (verbatim)
+      wire format was rejected by the partner (HTTP 401); the proof
+      probe confirmed Bearer is canonical.
     * ``start_span`` returns the active span or ``None`` when telemetry
       is disabled, so callers can wrap instrumentation in a
       ``with start_span(...) as span:`` pattern without an ``is not None``
@@ -55,11 +57,16 @@ DEFAULT_OTLP_ENDPOINT = "https://otlp.ollygarden.app/v1/traces"
 # Logical service name attached to every span shipped from FreeLeased.
 DEFAULT_SERVICE_NAME = "freeleased-ollygarden"
 
-# Auth header name. The OllyGarden partner spec uses ``X-OllyGarden-Key``
-# (not the OpenTelemetry default ``Authorization: Bearer``). This is the
-# wire format the FreeLeased test harness has shipped traces with since
-# the v1 test harness at ``src/test_ollygarden.py`` (Aug 2026).
-AUTH_HEADER_NAME = "X-OllyGarden-Key"
+# Auth header name. The OllyGarden collector (verified 2026-08-11
+# 13:20 UTC via ``scripts/proof-probe-endpoints.py``) accepts the
+# OpenTelemetry-standard ``Authorization: Bearer`` scheme; the
+# ``OLLYGARDEN_API_KEY`` value is sent as the bearer token. The
+# earlier ``X-OllyGarden-Key`` (verbatim) wire format was rejected
+# by the partner (HTTP 401). This was the Mavis-canonical wrapper
+# mistake that the proof probe exposed and the live activation
+# artefact (``memory/2026-08-11-ollygarden-sample.json``) captured.
+AUTH_HEADER_NAME = "Authorization"
+AUTH_HEADER_SCHEME = "Bearer"
 
 _provider: TracerProvider | None = None
 _initialised: bool = False
@@ -156,7 +163,7 @@ def init_ollygarden(
     )
     exporter = OTLPSpanExporter(
         endpoint=endpoint,
-        headers={AUTH_HEADER_NAME: api_key},
+        headers={AUTH_HEADER_NAME: f"{AUTH_HEADER_SCHEME} {api_key}"},
     )
     provider = TracerProvider(resource=resource)
     provider.add_span_processor(BatchSpanProcessor(exporter))

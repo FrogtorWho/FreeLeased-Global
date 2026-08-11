@@ -53,8 +53,29 @@ def to_otlp(span: dict) -> dict:
     """Build a minimal OTLP/HTTP JSON envelope around an in-memory span."""
     start_ns = str(int(span["start_unix_nano"]))
     end_ns = str(int(span["end_unix_nano"]))
-    trace_id = span["trace_id"].rjust(32, "0")[:32].encode("ascii").hex()
-    span_id = span["span_id"].rjust(16, "0")[:16].encode("ascii").hex()
+    # OTLP/HTTP trace_id and span_id are 32 / 16 lowercase hex chars
+    # representing 16 / 8 raw bytes. The probe on 2026-08-11 13:22 UTC
+    # confirmed that the OllyGarden collector rejects anything other
+    # than exactly 32 / 16 hex chars ("failed to unmarshal request body"
+    # for 64-char, 8-char, etc.). The previous implementation rjust'd
+    # the ascii representation then hex-encoded it, which produced 64 /
+    # 32 hex chars (twice the OTLP-spec length). Fix: assume the input
+    # is already hex-shaped; pad with zeros to the right length.
+    raw_trace = span["trace_id"].lower().strip()
+    if not all(c in "0123456789abcdef" for c in raw_trace):
+        # Non-hex input (e.g. ASCII like "activation20260811") — derive
+        # a deterministic 16-byte id by sha256-truncating. This keeps
+        # backward-compat with existing fixtures.
+        import hashlib
+
+        raw_trace = hashlib.sha256(raw_trace.encode("utf-8")).hexdigest()[:32]
+    trace_id = raw_trace.rjust(32, "0")[:32]
+    raw_span = span["span_id"].lower().strip()
+    if not all(c in "0123456789abcdef" for c in raw_span):
+        import hashlib
+
+        raw_span = hashlib.sha256(raw_span.encode("utf-8")).hexdigest()[:16]
+    span_id = raw_span.rjust(16, "0")[:16]
     return {
         "resourceSpans": [
             {
@@ -108,7 +129,7 @@ def post_otlp(
         method="POST",
         headers={
             "Content-Type": "application/json",
-            "X-OllyGarden-Key": api_key,
+            "Authorization": f"Bearer {api_key}",
         },
     )
     result: dict = {

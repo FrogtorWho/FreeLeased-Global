@@ -1,0 +1,54 @@
+fix(ollygarden): correct wire-format from X-OllyGarden-Key to Bearer (advances 401 to 200; auth + body now pass)
+
+The Mavis-canonical wrapper asserted the partner accepts X-OllyGarden-Key
+as a verbatim header. It does not. scripts/proof-probe-endpoints.py
+proved the OllyGarden collector only accepts Authorization: Bearer <key>.
+
+Wire-format fix (advances 401 -> 400):
+
+  * src/core/ollygarden_observability.py:62-66  AUTH_HEADER_NAME = Authorization,
+                                                   AUTH_HEADER_SCHEME = Bearer
+  * src/core/ollygarden_observability.py:160     headers = {AUTH_HEADER_NAME: f"{AUTH_HEADER_SCHEME} {api_key}"}
+  * src/test_ollygarden.py:19                   headers = {"Authorization": f"Bearer {api_key}"}
+  * scripts/activate-ollygarden-live.py:111     "Authorization": f"Bearer {api_key}"
+
+Body-shape follow-up (advances 400 -> 200):
+
+  * scripts/activate-ollygarden-live.py:54-69   trace_id / span_id hex-length fix;
+    previous rjust + hex-encode produced 64 / 32 hex chars (twice OTLP spec).
+    New code treats input as already hex-shaped, pads with zeros, or
+    sha256-truncates non-hex input. Probe with 32-hex + 16-hex returns
+    HTTP 200; 64-hex + 8-hex return HTTP 400.
+
+Live verification (memory/2026-08-11-ollygarden-sample.json):
+
+  * Pre-fix:  HTTP 401 in 237 ms (auth rejected)
+  * Post-fix: HTTP 200 in 212 ms with response body {"partialSuccess":{}}
+
+Docs + proof:
+
+  * docs/ollygarden-integration.md:5              new "Wire format (auth header)"
+                                                   section + updated section 9
+                                                   disclosure
+  * project/strategy/live-activation-proof.md:21  verdict flipped from PARTIAL
+                                                   to LIVE
+  * project/strategy/live-activation-proof.md:54  "conflict" block retitled
+                                                   "FIX APPLIED"
+  * project/strategy/live-activation-proof.md:215 verdict retitled
+                                                   "FIX APPLIED at 13:20 UTC"
+  * project/strategy/live-activation-proof.md:367 F1 retitled
+                                                   "FIX APPLIED at 13:20 UTC"
+
+New diagnostic probes (replay record):
+
+  * scripts/probe-ollygarden-body-shape.py        variant probe; both JSON
+                                                   variants return 200
+  * scripts/probe-ollygarden-traceid.py           differential trace-id length
+                                                   probe
+  * memory/2026-08-11-ollygarden-body-probe.json  full probe artefact
+  * memory/2026-08-11-ollygarden-traceid-probe.json differential trace-id
+                                                   artefact
+
+No keys leaked. All output masked (og_s***). No spec changes; only
+implementation alignment with the OTLP/HTTP standard the partner
+actually accepts.

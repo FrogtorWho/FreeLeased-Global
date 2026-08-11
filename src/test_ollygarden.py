@@ -16,7 +16,9 @@ endpoint = os.getenv("OLLYGARDEN_OTLP_ENDPOINT", default_ollygarden_endpoint)
 # Initialize Provider
 resource = Resource.create({"service.name": "freeleased-ollygarden-test"})
 provider = TracerProvider(resource=resource)
-exporter = OTLPSpanExporter(endpoint=endpoint, headers={"X-OllyGarden-Key": api_key})
+exporter = OTLPSpanExporter(
+    endpoint=endpoint, headers={"Authorization": f"Bearer {api_key}"}
+)
 provider.add_span_processor(BatchSpanProcessor(exporter))
 trace.set_tracer_provider(provider)
 
