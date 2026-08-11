@@ -1,7 +1,51 @@
+# Build artefacts
 .env
 .env.*
 !.env.example
+
+# Databases
 *.db
 *.sqlite
 *.sqlite3
+
+# Documents
 *.pdf
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/settings.json
+
+# Logs (explicit + catch-all)
+*.log
+pip_install.log
+uvicorn.log
+uvicorn_*.log
+git_commit.log
+git_push.log
+git_push2.log
+filter-branch.log
+.shogo/logs/*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# PowerShell backtick artefact
+`$null
+$null
+
+# Build outputs
+build/
+dist/
+node_modules/
+
+# Local artifacts
+207
+{

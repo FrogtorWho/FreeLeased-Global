@@ -70,6 +70,41 @@ After these 5 steps, the new jurisdiction appears in:
 - The Knowledge Graph
 - The Sign-off Queue (if you add residents)
 
+## Git workflow
+
+### Branching
+- `main` — protected. Only fast-forward or filter-branch merges from release branches.
+- `feat/<scope>-<one-word-summary>` — for new features.
+- `fix/<scope>-<one-word-summary>` — for bugfixes.
+- `docs/<scope>-<one-word-summary>` — for docs-only.
+- `chore/<scope>-<one-word-summary>` — for tooling / config.
+
+### Commit messages (conventional)
+We use [Conventional Commits](https://www.conventionalcommits.org/) via the template at [`.gitmessage`](.gitmessage):
+
+```
+<type>(<scope>): <short imperative summary>
+
+<body — what and why, not how>
+
+<footer — breaking changes, issue refs, co-authors>
+```
+
+Types: `feat | fix | docs | style | refactor | test | chore | perf | build | ci`
+
+Example scope values: `giotto | gauntlet | spine | engines | consensus | docs | tests | deploy`.
+
+### Pull requests
+- Use the template at [`.github/pull_request_template.md`](.github/pull_request_template.md).
+- Every PR must show `npm run verify` green.
+- Aim for one logical change per PR.
+
+### Line endings + binary markers
+Handled automatically by [`.gitattributes`](.gitattributes). Don't fight it.
+
+### Editor whitespace
+Handled by [`.editorconfig`](.editorconfig). LF everywhere except Windows shell scripts.
+
 ## Pull request checklist
 
 - [ ] `npm run verify` exits 0

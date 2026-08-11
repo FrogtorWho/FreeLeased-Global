@@ -1,0 +1,15 @@
+# <type>(<scope>): <short imperative summary>  (max 72 chars)
+#
+# <body — wrap at 72 chars; explain what & why, not how>
+#
+# <footer — list breaking changes, issue refs, co-authors>
+#
+# Types: feat | fix | docs | style | refactor | test | chore | perf | build | ci
+# Scope examples: giotto | gauntlet | spine | engines | docs | tests | deploy
+#
+# Examples:
+#   feat(giotto): integrate Giotto.ai sponsor (client, env, claim email)
+#   fix(consensus): cap HITL when conviction >= established
+#   chore(git): professionalize repo — commit template, PR template, .gitattributes
+#
+

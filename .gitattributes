@@ -1,0 +1,43 @@
+# Auto-detect text files, force LF line endings everywhere
+*               text=auto eol=lf
+
+# Explicitly mark common types
+*.ts            text eol=lf
+*.tsx           text eol=lf
+*.js            text eol=lf
+*.jsx           text eol=lf
+*.json          text eol=lf
+*.md            text eol=lf
+*.py            text eol=lf
+*.yml           text eol=lf
+*.yaml          text eol=lf
+*.toml          text eol=lf
+*.css           text eol=lf
+*.html          text eol=lf
+*.svg           text eol=lf
+*.sh            text eol=lf
+
+# Windows shell scripts must keep CRLF
+*.bat           text eol=crlf
+*.ps1           text eol=crlf
+
+# Binary (don't diff)
+*.png           binary
+*.jpg           binary
+*.jpeg          binary
+*.gif           binary
+*.webp          binary
+*.ico           binary
+*.pdf           binary
+*.zip           binary
+*.tar           binary
+*.gz            binary
+*.lockb         binary
+
+# Exclude generated dirs from language stats
+src/generated/** linguist-generated=true
+src/generated/** linguist-vendored=true
+
+# Sample artifacts that should not be diffed but should still be tracked
+project/demo/sample-lease.txt          -diff
+project/pilot-audit/synthetic-lease.md -diff
