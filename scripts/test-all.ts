@@ -37,6 +37,10 @@ const suites: Suite[] = [
   { name: "test-truth-diff",              cmd: [RUNTIME, ...RUNTIME_ARGS, "scripts/test-truth-diff.ts"],     required: false, bunOnly: false },
   { name: "test-health-check",            cmd: [RUNTIME, ...RUNTIME_ARGS, "scripts/test-health-check.ts"],   required: false, bunOnly: false },
   { name: "test-reconcile-docs",          cmd: [RUNTIME, ...RUNTIME_ARGS, "scripts/test-reconcile-docs.ts"], required: false, bunOnly: false },
+  { name: "test-onboarding (Phase 11 B1)", cmd: [RUNTIME, ...RUNTIME_ARGS, "scripts/test-onboarding.ts"],   required: false, bunOnly: false },
+  { name: "test-citation (Phase 11 B2)",   cmd: [RUNTIME, ...RUNTIME_ARGS, "scripts/test-citation.ts"],     required: false, bunOnly: false },
+  { name: "test-copy (Phase 11 B2)",       cmd: [RUNTIME, ...RUNTIME_ARGS, "scripts/test-copy.ts"],         required: false, bunOnly: false },
+  { name: "test-rubric-coverage (B2)",     cmd: [RUNTIME, ...RUNTIME_ARGS, "scripts/test-rubric-coverage.ts"], required: false, bunOnly: false },
 ];
 
 console.log("\n🧪 FreeLeased — full test aggregator\n");
@@ -62,6 +66,7 @@ for (const s of suites) {
   const code = r.status ?? 1;
   if (code === 0) {
     console.log(`✅ ${s.name} exited 0`);
+    totalPass++;
   } else if (r.error) {
     console.log(`❌ ${s.name} — spawn error: ${r.error.message}`);
     failures.push(s.name);
@@ -69,8 +74,7 @@ for (const s of suites) {
   } else {
     console.log(`❌ ${s.name} exited ${code}`);
     failures.push(s.name);
-    if (s.required) totalFail++;
-    else totalFail++;
+    totalFail++;
   }
 }
 
