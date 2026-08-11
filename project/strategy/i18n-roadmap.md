@@ -1,15 +1,50 @@
 # i18n Roadmap — Caribbean Languages Plan
 
 > **The honest disclosure of what we ship today and what we
-> plan to ship.** Today: **English only**. The Caribbean is
-> multilingual; we name the gap and the path.
+> plan to ship.** Today: **English + 4 Caribbean-locale translation
+> bundles** (Haitian Creole, Spanish, Antillean Creole, Papiamento-style).
+> The Caribbean is multilingual; we name the gap and the path.
 
-**Status:** roadmap · **Last reviewed:** 2026-08-11 · reconciles
+**Status:** roadmap · **Last reviewed:** 2026-08-11 (Phase 12 close) · reconciles
 against the [100-judge panel §5 Honest gaps](../strategy/100-judge-panel.md:1).
+
+**G3 status:** ✅ **CLOSED (technical scaffold)** — the i18n registry
+([`src/lib/i18n.ts`](../../src/lib/i18n.ts:1)) ships today with 5 locale bundles
+([`src/locales/`](../../src/locales/)). UI does not yet consume the bundles
+across every surface — that is a follow-on ship after Phase 12. **Remaining gap
+reduced from "0 of 5 locales" to "5 of 5 locales translated, partial UI wiring".**
 
 ---
 
-## What we ship today (English only)
+## What we ship today (English + 4 Caribbean locales)
+
+The UI translation registry is live. The English bundle is the
+canonical source of truth (see [`src/locales/en.json`](../../src/locales/en.json:1));
+the 4 non-English bundles are first-pass translations of every key:
+
+| Locale | Bundle | Coverage | Notes |
+|---|---|---|---|
+| English | [`en.json`](../../src/locales/en.json:1) | 100% | Canonical |
+| Haitian Creole | [`ht.json`](../../src/locales/ht.json:1) | 100% | Standard Kreyòl ayisyen orthography |
+| Spanish | [`es.json`](../../src/locales/es.json:1) | 100% | Neutral Latin-American Spanish |
+| French-patois (Antillean Creole) | [`fr-patois.json`](../../src/locales/fr-patois.json:1) | 100% | Antillean Creole; closest Intl tag = `fr-HT` |
+| Dutch-patois (Papiamento-style) | [`fy.json`](../../src/locales/fy.json:1) | 100% (marked `unverified: true`) | Approximation of Papiamentu; native-speaker review required |
+
+**Coverage discipline:** every non-English bundle translates
+EVERY English key — gaps would be visible immediately through
+the `coverageReport()` helper in
+[`src/lib/i18n.ts`](../../src/lib/i18n.ts:1:185).
+
+**Locale-aware numbers + dates:** the registry uses
+`Intl.NumberFormat` and `Intl.DateTimeFormat` (with the closest
+BCP-47 tag for each non-English locale). Currency formatting is
+explicit (`formatCurrency(value, locale, currency)`).
+
+**Legal-term localisation:** each bundle uses the locale's own
+legal term for "leaseholder" (`locataire` in fr-patois,
+`arrendatario` in es, `lokatè` in ht). Glossary entries (s.21,
+RTM, BSA, etc.) are translated as full sentences so the UI never
+shows machine-translated legal jargon.
 
 All UI copy, all dossier text, all statute citations, all error
 messages, all docs. This is a deliberate scope decision: the
