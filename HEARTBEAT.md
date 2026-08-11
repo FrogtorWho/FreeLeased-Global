@@ -36,6 +36,7 @@ Append a new bullet under the matching date heading on each check-in. Format: `*
 - **23:30 UTC** — Data Room populated with 45 files (38 copies + 7 originals); reverse-copy journal created (`5a93c62`, `839a8d2`)
 - **01:00 UTC (Tue crossover)** — Doc pass: architecture-diagram.md, AGENT_BRIEF.md, cross-links updated
 - **01:14 UTC** — public/sw.js + scripts/health-check.ts shipped
+- **01:25 UTC** — WCAG-AA quick-wins + TruthDiff.tsx component
 - **End-of-day TRL:** Level 4 → reaching into 5; Data Room 21/24 folders evidenced
 
 ### Cadence rules (carry forward)

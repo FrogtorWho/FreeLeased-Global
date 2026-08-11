@@ -203,6 +203,21 @@ Per task brief, two artefacts added to the workspace on 2026-08-11T01:14Z are **
 
 **Cross-reference:** See `AI_JOURNAL.md` section "2026-08-11 — Stage 7 picks #2 + #8 shipped" for the full justification, replication steps, and verification output of these additions.
 
+### Workspace-only additions (Stage 7 #14 + #6)
+
+These are **workspace-only** entries — added to the GitHub repo but NOT copied into the Data Room. They are pure UI/incremental code changes that don't constitute evidence in the TRL sense. The journal records them so the invariant "this file only logs copy/skip decisions" is preserved, with a clear opt-out flag.
+
+| discretion_id | timestamp (ISO 8601 UTC) | source | target | TRL | reason | reversibility | result |
+|---|---|---|---|---|---|---|---|
+| COPY-046 | 2026-08-11T01:25:00Z | (workspace-only — NOT copied to Data Room) | `src/index.css` + `src/App.tsx` + `src/components/auri/CommandPost.tsx` + `src/components/auri/CommunityHub.tsx` | n/a | WCAG-AA quick-wins: focus-visible ring on buttons/links, skip-to-content link, aria-labels on 2 icon-only buttons. Pure UI; no Data Room evidence value. | revert commit | OK (4 files, ~50 lines) |
+| COPY-047 | 2026-08-11T01:25:00Z | (workspace-only — NOT copied to Data Room) | `src/components/auri/TruthDiff.tsx` (new) | n/a | Stage 7 #6: doc-claims-vs-code-reality verifier component. Imports source files via Vite `?raw`; runs regex counts at build time. Imports code/data, not evidence. | revert commit | OK (1 file, 358 lines) |
+
+**Why this section exists (extended):** Stage 7 picks #14 (WCAG-AA) and #6 (TruthDiff) modify the codebase but don't add TRL-grade evidence. The WCAG-AA changes are operational polish; TruthDiff is a meta-verifier that reads other files but doesn't itself prove TRL claims. Copying these into the Data Room would be noise. The journal preserves the discipline "every `discretion_id` row is either a copy or a deliberate skip" — both routes are logged.
+
+**Reversibility:** N/A — nothing was copied to the Data Room in this batch. To reverse the workspace additions, revert the commit (see AI_JOURNAL for the commit hash).
+
+**Cross-reference:** See `AI_JOURNAL.md` section "2026-08-11 — Stage 7 #14 + #6 (WCAG-AA, TruthDiff)" for the full justification, replication steps, and verification output of these additions.
+
 ---
 
 *Journal written 2026-08-11. Reversible. Honest.*

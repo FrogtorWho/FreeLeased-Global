@@ -200,6 +200,8 @@ export function CommandPost() {
         return (
           <div key={section} className={cn(CARD, "overflow-hidden")}>
             <button onClick={() => setOpenSection(isOpen ? null : section)}
+              aria-label={isOpen ? `Collapse ${section} deliverables` : `Expand ${section} deliverables`}
+              aria-expanded={isOpen}
               className="w-full flex items-center justify-between gap-3 px-5 py-3.5 text-left hover:bg-white/[0.03] transition-colors">
               <div className="flex items-center gap-3">
                 <span className="text-sm font-semibold text-slate-100">{section}</span>
@@ -207,7 +209,7 @@ export function CommandPost() {
                   {items.filter((d) => d.status === "done").length}/{items.length}
                 </span>
               </div>
-              <ChevronDown className={cn("h-4 w-4 text-slate-500 transition-transform", isOpen && "rotate-180")} />
+              <ChevronDown className={cn("h-4 w-4 text-slate-500 transition-transform", isOpen && "rotate-180")} aria-hidden="true" />
             </button>
             {isOpen && (
               <div className="border-t border-teal-900/30 divide-y divide-teal-900/20">

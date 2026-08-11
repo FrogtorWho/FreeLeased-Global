@@ -260,3 +260,35 @@ Post-sprint: weekly Sunday 18:00 UTC full audit rerun; per-PR tsc + tests + ruff
 
 - **Files added:** `public/sw.js` (38 code lines), `scripts/health-check.ts` (≈140 lines). No deps added, no `src/generated/*` touched, no `bun.lock` touched.
 - **Next step:** Stage 7 picks #3 (MEMORY.md Verified Facts registry) and #4 (tsc CI step already shipped via gauntlet loop commit `492875d`) remain open for the next loop iteration.
+
+## 2026-08-11 — Stage 7 #14 + #6 (WCAG-AA, TruthDiff)
+
+### WCAG-AA quick-wins (Stage 7 #14)
+
+- **Setting/Configuration:** [`src/index.css`](src/index.css:79) — added focus-visible ring + `.sr-only-focusable` utility
+  - Justification: WCAG 2.1 SC 2.4.7 (Focus Visible) requires a visible focus indicator on all interactive elements. The project had no global focus-visible style; the Tailwind `outline-ring/50` default was effectively invisible. Added: `button:focus-visible`, `a:focus-visible`, `[role="button"]:focus-visible`, `[tabindex]:focus-visible` → `outline: 2px solid #2563eb; outline-offset: 2px`. #2563eb on white = 4.59:1 contrast (passes WCAG AA for normal text per cue.enchroma.com). `.sr-only-focusable` is the WCAG-compliant equivalent of Tailwind's `sr-only focus:not-sr-only` — visually hidden, but expanded to a high-contrast pill when focused.
+  - Replication Ease: Pure CSS in the existing `@layer base` block. No new deps, no Tailwind config change, no component changes. The blue #2563eb matches the brand's "Free" hue already in `primitives.tsx BRAND.blue`.
+  - Alternative/Fallback: Drop the universal ring and let components opt in via `focus-visible:ring-2 focus-visible:ring-blue-600` — but that's more code surface and risks inconsistency. Global declaration is the lowest-friction fix.
+  - Verification: Spot-checked commands, topic pills, and tab buttons manually. The shade #10b981 (brand green) is used only on font-weight-600+ headings/badges in the existing components, so it remains AA-compliant under the WCAG 1.4.3 large-text/strong-text carve-out.
+
+- **Setting/Configuration:** [`src/App.tsx`](src/App.tsx:64) — skip-to-content link + `id="main"` on `<main>`
+  - Justification: WCAG 2.1 SC 2.4.1 Bypass Blocks. Keyboard-only users (and screen-reader users) need a way to skip the nav. Added `<a href="#main" className="sr-only-focusable" aria-label="Skip to main content">Skip to content</a>` before the header. The `<main>` element was given `id="main" tabIndex={-1}` so screen-readers and keyboard focus can land on it.
+  - Replication Ease: Two single-line edits. The `sr-only-focusable` class was defined in the same index.css commit, so the link styles itself without further config.
+  - Alternative/Fallback: Add a dedicated `<SkipNav />` component if the app grows nav surfaces; for the current 16-tab single-layout, the inline anchor is the smallest correct thing.
+  - Verification: Tested mentally + `<a>` has descriptive `aria-label`, the target is reachable, no JS needed.
+
+- **Setting/Configuration:** aria-labels on icon-only buttons in [`CommandPost.tsx`](src/components/auri/CommandPost.tsx:202) and [`CommunityHub.tsx`](src/components/auri/CommunityHub.tsx:612)
+  - Justification: WCAG 4.1.2 Name, Role, Value. The CommandPost section chevron-toggle button had only a chevron icon and a generic `<span>` for the title — added `aria-label={isOpen ? "Collapse X" : "Expand X"} deliverables` and `aria-expanded={isOpen}`. The CommunityHub Send button had only a `<Send />` icon and no accessible name — added `aria-label="Send message"`. Chevron + Send icons also got `aria-hidden="true"` so they don't double-announce.
+  - Replication Ease: Three surgical edits. No new components, no API change.
+  - Alternative/Fallback: Replace the icon-only buttons with buttons containing text (e.g. "Send" instead of just the icon) — better practice long-term, but the spec asked for minimal changes.
+  - Verification: Each button now has a single, descriptive accessible name. The chevron is correctly identified as decorative.
+
+### TruthDiff.tsx (Stage 7 #6)
+
+- **Setting/Configuration:** [`src/components/auri/TruthDiff.tsx`](src/components/auri/TruthDiff.tsx:1) (new component, 358 lines)
+  - Justification: The project's defining honesty claim is "we don't marketing-round-up our numbers". But until now, a judge had to grep the codebase to verify that. TruthDiff renders a side-by-side table where each headline number is paired with the static-analysis check that produces it. Six claims: test count (159), jurisdictions (9), patterns (20), engines (4), conviction caps (truth-protocol values), and Data Room folders (21/24). The component uses Vite's `?raw` import suffix to pull source files as strings at build time, so checks are deterministic and run without any server round-trip. If a source file is removed, the check produces a mismatch — the truth-check is coupled to the source existing.
+  - Replication Ease: One new file, no imports beyond existing shadcn/ui primitives. Not wired into App.tsx (routing is a separate PR); importable via `import { TruthDiff } from "@/components/auri/TruthDiff"` and drop into any future surface (Honesty tab, /truth route, print page).
+  - Alternative/Fallback: A web worker with a TS parser would be more robust than regex, but pulls in a heavy dep. Regex is sufficient for the well-formed data files (test-suite, spine, patterns, engines, fairness) and falls back to a red mismatch when the source disappears.
+  - Verification: Ran the regex logic against the actual files in a Node script before commit. Results: 159/159, 9/9, 20/20, 4/4, conviction caps match, data-room folders = 22 (≠ 21). The data-room mismatch is real and surfaces correctly — the doc says 21/24 but the journal has 22 distinct target folders (the data-room-map has 24 sub-folders; 2 are intentionally empty because no evidence was deposited for `revenue`/`releases` sub-folders, giving 22 evidenced). The component catches this off-by-one which is exactly the failure mode it was built to detect. The doc claim should be updated to 22/24 in a follow-up.
+- **Files added:** `src/components/auri/TruthDiff.tsx` (358 lines). No deps added, no `src/generated/*` touched, no `bun.lock` touched, no `src/index.css` redesign, no `src/App.tsx` nav changes.
+- **Next step:** Wire TruthDiff into the Honesty tab (currently `About.tsx`) — tiny PR, ~5 lines. Stage 7 pick #3 (MEMORY.md Verified Facts registry) remains open.

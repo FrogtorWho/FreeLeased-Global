@@ -610,8 +610,9 @@ function GroupMessages({ groupId }: { groupId: string }) {
             className="flex-1 bg-white/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-teal-500/50"
             onKeyDown={e => e.key === "Enter" && send()} />
           <button onClick={send} disabled={!newMsg.trim()}
+            aria-label="Send message"
             className="px-3 py-2 rounded-lg bg-teal-600 hover:bg-teal-500 disabled:opacity-40 text-white transition-colors">
-            <Send className="h-4 w-4" />
+            <Send className="h-4 w-4" aria-hidden="true" />
           </button>
         </div>
       </div>

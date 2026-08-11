@@ -62,6 +62,14 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#04141a] text-slate-200 relative">
+      {/* WCAG-AA 2.4.1 Bypass Blocks — skip-to-content link for keyboard users */}
+      <a
+        href="#main"
+        className="sr-only-focusable"
+        aria-label="Skip to main content"
+      >
+        Skip to content
+      </a>
       {/* Subtle gradient blobs behind content — glassmorphism needs something to blur through */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
         <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-teal-900/20 blur-[120px]" />
@@ -128,7 +136,7 @@ export default function App() {
         </nav>
       </header>
 
-      <main className="max-w-6xl mx-auto px-6 py-9">
+      <main id="main" tabIndex={-1} className="max-w-6xl mx-auto px-6 py-9">
         {/* Primary: Resident tools */}
         {tab === "rights-check" && <RightsChecker />}
         {tab === "lease-scan" && <LeaseScanner />}
