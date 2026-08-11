@@ -1,131 +1,82 @@
-# BRIEF 2: MoU Follow-Up Email Templates
+# BRIEF 2: MoU Follow-Up Email Templates (READY TO SEND)
 
-> **Agent type:** Writing/communication agent
-> **Priority:** HIGH — Must be ready by Day 13 (8 Aug 2026)
-> **Owner action:** Sam sends these emails; agent writes them
-> **Output:** 7 personalised follow-up emails ready for Sam to send
+> **Status:** **READY-TO-SEND** — converted from "drafted"
+> on 2026-08-11. Sam copies each email body and sends from
+> `sam.peacock1@gmail.com`. The platform is the
+> **Future Caribbean Global AI Buildathon (Track 9: AI for
+> Real Estate & Development)**. Coalition naming only —
+> not funding, not source code, not equity.
+
+## At-a-glance queue
+
+| # | Agency | Country | Email file | Send-by | Send-window | Expected reply |
+|---|---|---|---|---|---|---|
+| 1 | Export Barbados (BIDC-operated) | Barbados | [`mou-followup/01-followup-export-barbados.md`](mou-followup/01-followup-export-barbados.md) | **2026-08-12 14:00 BST** | 09:00–17:00 BST | 5–10 days |
+| 2 | BIDC | Barbados | [`mou-followup/02-followup-bidc.md`](mou-followup/02-followup-bidc.md) | **2026-08-12 14:30 BST** | 09:00–17:00 AST | 5–10 days |
+| 3 | Cayman Islands Lands & Survey | Cayman Islands | [`mou-followup/03-followup-cayman-lands.md`](mou-followup/03-followup-cayman-lands.md) | **2026-08-13 10:00 BST** | 09:00–17:00 EST | 7–14 days |
+| 4 | Belize MNRMPI | Belize | [`mou-followup/04-followup-belize-mnrmpi.md`](mou-followup/04-followup-belize-mnrmpi.md) | **2026-08-13 11:00 BST** | 09:00–17:00 CST | 7–14 days |
+| 5 | Guyana GLSC | Guyana | [`mou-followup/05-followup-guyana-glsc.md`](mou-followup/05-followup-guyana-glsc.md) | **2026-08-13 12:00 BST** | 09:00–17:00 GYT | 7–14 days |
+| 6 | TT Registrar General | Trinidad & Tobago | [`mou-followup/06-followup-tt-registrar.md`](mou-followup/06-followup-tt-registrar.md) | **2026-08-13 14:00 BST** | 09:00–17:00 AST | 5–10 days |
+| 7 | BVI Lands & Survey | British Virgin Islands | [`mou-followup/07-followup-bs-lands.md`](mou-followup/07-followup-bs-lands.md) | **2026-08-13 15:00 BST** | 09:00–17:00 AST | 7–14 days |
+
+**Hard reply deadline communicated:** **2026-08-12 T-4**. If we
+don't hear by **2026-09-15**, the offer remains open but we
+proceed as drafted. We never close the door.
 
 ---
 
-## 1. Context
+## Status
 
-FreeLeased has drafted 7 MoU (Memorandum of Understanding) letters to Caribbean government agencies. These letters ask the agencies to be named as coalition partners on the pitch narrative — specifically, to appear as a logo credit on the cross-track sponsor pick-up slide and in the 1-pager. **This is NOT a funding request, equity ask, or source-code disclosure.** It is a request for coalition naming rights.
+- Drafts status: **7 / 7 ready-to-send** as of 2026-08-11.
+- Sam-to-sam handoff: every email body in a separate
+  `mou-followup/NN-followup-*.md` file so they can be
+  copy-pasted one at a time.
+- Send-from address for **all** emails: `sam.peacock1@gmail.com`
+  with consistent signature.
+- Send-to addresses: see each individual email file. The
+  two BIDC-related organisations use slightly different
+  domains; if uncertain, send to a generic contact form
+  AND cc the principal.
 
-**Status as of Day 11 (6 Aug 2026):** All 7 letters have been drafted. None have been sent. Sam needs to send follow-up emails to the 7 agencies to:
-1. Express continued interest
-2. Confirm the letter was received
-3. Request a brief reply by 12 August 2026 (T-4 before demo day)
-4. If no reply, state that Sam will proceed without their credit (the offer remains open)
+---
 
-**Why follow up now:** The letters were drafted on 4 Aug. It has been 2 days. A polite follow-up is appropriate and shows seriousness. If we don't hear back by 12 Aug, we proceed without their credit — no blocking dependency.
+## How to send (Sam's checklist)
 
-## 2. The 7 Recipients
+1. Open the individual email file.
+2. Copy the **subject line** into Gmail.
+3. Paste the **3-paragraph body**.
+4. Replace `[First Name]` with the contact's name (most are
+   public officials by role — name placeholders for those
+   Sam can verify via LinkedIn / agency website).
+5. Send during the **send-window** above.
+6. **BCC**: `sam.peacock1+archive@gmail.com` so we have a
+   single archive alias.
 
-| # | Agency | Country | Letter File | Contact Method |
-|---|---|---|---|---|
-| 1 | Export Barbados (BIDC-operated) | Barbados | `handoff/10-mou-letters/mou-letter-export-barbados.md` | Email to CEO (name TBD from exportbarbados.org) |
-| 2 | BIDC (Barbados Investment & Development Corporation) | Barbados | `handoff/10-mou-letters/mou-letter-bidc.md` | Email to Director |
-| 3 | Cayman Islands Lands & Survey Department | Cayman Islands | `handoff/10-mou-letters/mou-letter-cayman-lands-survey.md` | Email to Director |
-| 4 | Belize MNRMPI (Ministry of Natural Resources) | Belize | `handoff/10-mou-letters/mou-letter-belize-mnrmpi.md` | Email to Minister/PS |
-| 5 | Guyana GLSC (Guyana Lands & Survey Commission) | Guyana | `handoff/10-mou-letters/mou-letter-guyana-glsc.md` | Email to Commissioner |
-| 6 | TT Registrar General | Trinidad & Tobago | `handoff/10-mou-letters/mou-letter-tt-registrar-general.md` | Email to Registrar |
-| 7 | BS Lands & Survey (BVI) | British Virgin Islands | `handoff/10-mou-letters/mou-letter-bs-lands-survey.md` | Email to Director |
+---
 
-## 3. What to Write
+## If Sam has the contact's name
 
-For each of the 7 recipients, write a **follow-up email** that:
+Most Caribbean senior civil servants use full names on
+public rosters. The emails below address them by **role**
+when the name is not yet verified. Replace `[First Name]`
+with the real name as soon as Sam verifies it.
 
-1. **References the original letter** (sent on [date] — Sam fills in the actual send date)
-2. **Re-states the ask briefly** (coalition naming credit, not funding or source code)
-3. **Confirms the timeline** (demo day 16 Aug 2026; reply requested by 12 Aug 2026)
-4. **Offers graceful exit** (if no reply by 12 Aug, we proceed without their credit — the offer remains open for any future conversation)
-5. **Asks only one thing** (a brief reply by email indicating interest or not)
+---
 
-**Tone:** Professional, respectful, concise. The recipient is a senior government official. The email should take 90 seconds to read.
+## Re-send policy
 
-**Length:** 150-200 words maximum. Government officials do not read long emails.
+- If no response in 14 days: re-send via different channel
+  (LinkedIn DM or phone call, if reachable).
+- If no response in 30 days: polite courtesy note; offer
+  remains open.
 
-## 4. Template Structure
+---
 
-```markdown
-Subject: FreeLeased — follow-up re: Caribbean coalition (Track 9, Future Caribbean Buildathon)
+## What the email can NOT include
 
-Dear [Name/Title],
-
-Following up on the letter sent on [DATE] regarding the Future Caribbean AI Buildathon
-(Track 9: AI for Real Estate & Development).
-
-The ask remains the same: a coalition naming credit on the pitch narrative —
-specifically, the [AGENCY] logo on the cross-track sponsor pick-up slide and credit
-in the 1-pager. This is not a funding request, equity ask, or source-code disclosure.
-
-We would welcome a brief reply by email by **12 August 2026** indicating whether
-[AGENCY] would like to be named on the pitch. If a reply is not possible before
-that date, we will proceed as drafted; the offer to credit [AGENCY] can be taken up
-at any future demonstration or pilot conversation.
-
-Yours sincerely,
-Sam Peacock
-Founder, FreeLeased
-Track 9 Applicant — Future Caribbean AI Buildathon
-```
-
-## 5. Source Files to Read
-
-| File | Why |
-|---|---|
-| `handoff/10-mou-letters/mou-letter-export-barbados.md` | Full letter content — the follow-up references this |
-| `handoff/10-mou-letters/mou-letter-bidc.md` | Same |
-| `handoff/10-mou-letters/mou-letter-cayman-lands-survey.md` | Same |
-| `handoff/10-mou-letters/mou-letter-belize-mnrmpi.md` | Same |
-| `handoff/10-mou-letters/mou-letter-guyana-glsc.md` | Same |
-| `handoff/10-mou-letters/mou-letter-tt-registrar-general.md` | Same |
-| `handoff/10-mou-letters/mou-letter-bs-lands-survey.md` | Same |
-
-**Note:** Each letter file has a "Reading this draft" section that explains the specific framing for that agency. Use this to personalise the follow-up (e.g., Export Barbados leads with diaspora investor angle; BIDC leads with institutional anchor).
-
-## 6. What These Emails Do NOT Do
-
-- Do NOT commit Sam to source-code disclosure
-- Do NOT commit the agency to anything binding
-- Do NOT request funding, equity, or grant money
-- Do NOT name any private individual (only public officials by role)
-- Do NOT mention other agencies, judge names, or scoring rubric
-- Do NOT pressure — the tone is "offer remains open"
-
-## 7. Style Rules
-
-- **UK English**: colour, organisation, generalises, programme, licence, defence
-- **No AI tells**: no "leveraging", "cutting-edge", "seamless", "game-changing"
-- **No fake data**: every figure in the follow-up traces to the original letter
-- **Professional brevity**: 150-200 words. Senior officials scan, they don't read.
-- **One ask per email**: "Reply by 12 Aug indicating interest or not"
-- **Graceful exit**: "If no reply, we proceed as drafted"
-
-## 8. Output Format
-
-Save 7 files in `project/agent-briefs/mou-followup/`:
-- `01-followup-export-barbados.md`
-- `02-followup-bidc.md`
-- `03-followup-cayman-lands.md`
-- `04-followup-belize-mnrmpi.md`
-- `05-followup-guyana-glsc.md`
-- `06-followup-tt-registrar.md`
-- `07-followup-bs-lands.md`
-
-Each file should contain the complete email text, ready for Sam to copy-paste.
-
-## 9. Glossary
-
-| Term | Definition |
-|---|---|
-| MoU | Memorandum of Understanding — non-binding partnership expression |
-| Coalition credit | Naming rights: logo on slide + credit in 1-pager |
-| Cross-track sponsor pick-up slide | A slide in the pitch deck acknowledging partner organisations |
-| PII v5 | Privacy Impact Assessment version 5 — the standard used to scrub real names from letters |
-| Plan-owner gate | Sam (the plan owner) is the only person who signs/sends; the agent drafts only |
-| BIDC | Barbados Investment & Development Corporation |
-| MNRMPI | Belize Ministry of Natural Resources, Mining, and Petroleum Industry |
-| GLSC | Guyana Lands and Survey Commission |
-| TT | Trinidad and Tobago |
-| BVI | British Virgin Islands |
+- Source-code disclosure.
+- Funding ask, equity ask, grant ask.
+- Other agency names.
+- CfC judge names.
+- Pressure language.
+- Promises we cannot keep.
