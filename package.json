@@ -17,7 +17,14 @@
     "db:migrate:deploy": "bun x --bun prisma migrate deploy",
     "db:push": "bun x --bun prisma db push",
     "db:reset": "bun x --bun prisma db push --force-reset --accept-data-loss",
-    "db:studio": "bun x --bun prisma studio"
+    "db:studio": "bun x --bun prisma studio",
+    "health": "node --experimental-strip-types scripts/health-check.ts",
+    "reconcile": "node --experimental-strip-types scripts/reconcile-docs.ts",
+    "extract-sample": "node --experimental-strip-types scripts/extract-sample.ts",
+    "test:truth-diff": "node --experimental-strip-types scripts/test-truth-diff.ts",
+    "test:health-check": "node --experimental-strip-types scripts/test-health-check.ts",
+    "test:reconcile-docs": "node --experimental-strip-types scripts/test-reconcile-docs.ts",
+    "verify": "npm run reconcile && npm run health && npm run test:truth-diff && npm run test:health-check && npm run test:reconcile-docs"
   },
   "dependencies": {
     "@prisma/adapter-libsql": "^7.3.0",

@@ -252,3 +252,23 @@ an `OK (` status) returned **22**, not 21.
 **Why this matters:** TruthDiff renders the data-room row as ✅ only when `actual === expected`. With the
 correction, both are 22. The drift is closed and the project's headline numbers now match the static-analysis
 verifier on every claim.
+### Workspace-only additions (Stage 7 #1 + #13 + #8 wire-up — Batch 1 win-mode)
+
+These are workspace-only entries added on 2026-08-11T02:10Z alongside the Batch 1 win-mode work. Like the WCAG-AA + TruthDiff entries above, they modify the codebase but don't add TRL-grade evidence and are not copied to the Data Room.
+
+| discretion_id | timestamp (ISO 8601 UTC) | source | target | TRL | reason | reversibility | result |
+|---|---|---|---|---|---|---|---|
+| COPY-048 | 2026-08-11T02:10:00Z | (workspace-only — NOT copied to Data Room) | scripts/extract-sample.ts (new) + src/api/main.py (lint fix) + project/demo/nebius-extraction.json (new) | n/a | Stage 7 #1 — wire extractWithVLM to local deterministic extraction (no API key). Calls extractWithVLM() on project/demo/sample-lease.txt, writes structured JSON. Also Task 1.1 — Python lint pass on src/api/. | revert commit | OK (3 files: 1 new script, 1 new JSON, 1 patched) |
+| COPY-049 | 2026-08-11T02:10:00Z | (workspace-only — NOT copied to Data Room) | scripts/reconcile-docs.ts (new) | n/a | Stage 7 #13 — top-down/bottom-up numerical-claim reconciler. Reads 00-OVERVIEW/loop-protocol/maturity-ladder/trl-levels/fairness/data-room-copies and surfaces drift. Current run: 8/10 PASS, 2 DRIFT (statutes 25 vs 40+; engines 1 vs 4 — both real doc/code gaps). | revert commit | OK (1 file, ~180 lines) |
+| COPY-050 | 2026-08-11T02:10:00Z | (workspace-only — NOT copied to Data Room) | scripts/health-check.ts (extended) + scripts/test-truth-diff.ts + scripts/test-health-check.ts + scripts/test-reconcile-docs.ts (3 new test files) + package.json (7 new scripts) | n/a | Stage 7 #8 wire-up — health-check now runs reconcile-docs and surfaces drift count. Plus 72/72 unit-test coverage. npm run verify end-to-end exit 0. | revert commit | OK (5 files: 1 extended + 3 new + package.json) |
+
+**Why this section exists (extended further):** Batch 1 win-mode is a coherent set of code/test/tooling changes that:
+1. Re-establishes Python lint discipline (Task 1.1, scoped to src/api/).
+2. Closes the Stage 7 #1 + #13 gaps from the original brainstorm (Tasks 1.3 + 1.4).
+3. Wires the reconciler into the daily health-check so the drift scorecard is automated (Task 1.5).
+4. Adds 72/72 unit-test coverage (Task 1.6).
+5. Adds 7 npm run scripts so the entire chain is one command (Task 1.7).
+
+**Reversibility:** N/A — nothing was copied to the Data Room in this batch. To reverse the workspace additions, revert the commit (see AI_JOURNAL for the commit hash).
+
+**Cross-reference:** See AI_JOURNAL.md section 2026-08-11 Batch 1 WIN: 8 changes shipped for the full justification, replication steps, and verification output of these additions.

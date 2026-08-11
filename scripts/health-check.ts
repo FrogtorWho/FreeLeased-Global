@@ -46,17 +46,42 @@ guarded("Workspace files", () => {
   return `${out} TS files`;
 }, "could not run");
 
-// 2. Ruff (Python lint)
-guarded("Lint (ruff)", () => {
-  execSync("ruff check src/", { cwd: ROOT, stdio: "pipe" });
-  return "clean";
-}, "could not run (no .venv activated or ruff missing)");
+// 2. Ruff (Python lint) — uses .venv\Scripts\python.exe on Windows.
+function tryLint(tool: "ruff" | "black"): "ok" | "warn" | "fail" {
+  const pythonExe = process.platform === "win32" ? ".venv\\Scripts\\python.exe" : ".venv/bin/python";
+  try {
+    if (tool === "ruff") execSync(`${pythonExe} -m ruff check src/`, { cwd: ROOT, stdio: "pipe" });
+    else execSync(`${pythonExe} -m black --check src/`, { cwd: ROOT, stdio: "pipe" });
+    return "ok";
+  } catch (e: any) {
+    // execSync throws on non-zero exit. Surface the stderr first line.
+    const stderr = (e?.stderr?.toString?.() ?? "") as string;
+    const first = stderr.split(/\r?\n/).find((l) => l.trim().length > 0) ?? (e?.message ?? "failed");
+    return first.length > 80 ? first.slice(0, 77) + "..." : first;
+  }
+}
 
-// 3. Black (Python format)
-guarded("Lint (black)", () => {
-  execSync("black --check src/", { cwd: ROOT, stdio: "pipe" });
-  return "clean";
-}, "could not run");
+try {
+  const ruffResult = tryLint("ruff");
+  row(
+    "Lint (ruff)",
+    ruffResult === "ok" ? "ok" : "fail",
+    ruffResult === "ok" ? "clean" : String(ruffResult),
+  );
+} catch {
+  row("Lint (ruff)", "warn", "could not run");
+}
+
+try {
+  const blackResult = tryLint("black");
+  row(
+    "Lint (black)",
+    blackResult === "ok" ? "ok" : "fail",
+    blackResult === "ok" ? "clean" : String(blackResult),
+  );
+} catch {
+  row("Lint (black)", "warn", "could not run");
+}
 
 // 4. tsc
 guarded("TypeScript (tsc)", () => {
@@ -138,6 +163,30 @@ guarded("Git status", () => {
 
 // 11. TRL standing
 row("TRL standing", "ok", "Level 4 (Working prototype in the lab)");
+
+// 12. Doc-vs-code reconciliation (Stage 7 #13 — drift scorecard)
+// Reads scripts/reconcile-docs.ts output. We invoke the script via a
+// sub-process (Node strip-types) and surface its drift count. This catches
+// the kind of doc/code drift that Stage 5 introduced (`testsPassing: 40`
+// when reality is 159) and Stage 7's reconcile-docs loop exists to detect.
+try {
+  const out = execSync(
+    `node --experimental-strip-types scripts/reconcile-docs.ts`,
+    { cwd: ROOT, encoding: "utf8" },
+  );
+  // The drift count appears on the final "Drift count: N" line.
+  const m = out.match(/Drift count:\s*(\d+)/i);
+  const drift = m ? parseInt(m[1], 10) : -1;
+  const passLine = out.match(/\*\*(\d+)\/(\d+)\s+claims\s+pass\*\*/i);
+  const pass = passLine ? `${passLine[1]}/${passLine[2]}` : "?";
+  row(
+    "Doc-vs-code reconciliation",
+    drift === 0 ? "ok" : "warn",
+    `${pass} pass, ${drift} drift (re-run scripts/reconcile-docs.ts for full table)`,
+  );
+} catch (e) {
+  row("Doc-vs-code reconciliation", "warn", `could not run: ${(e as Error).message}`);
+}
 
 // ── Render ────────────────────────────────────────────────────────────
 const ts = new Date().toISOString().replace(/\.\d+Z$/, "Z");

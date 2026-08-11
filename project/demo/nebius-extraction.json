@@ -1,0 +1,111 @@
+{
+  "documentId": "local_extract_1786414308297",
+  "filename": "sample-lease.txt",
+  "type": "lease",
+  "extractedAt": "2026-08-11T02:11:48.298Z",
+  "confidence": 0.85,
+  "extractionMethod": "vlm",
+  "validation": {
+    "valid": false,
+    "score": 0.5,
+    "errors": [
+      "Required field is empty: parties",
+      "Required field is empty: dates"
+    ],
+    "warnings": [
+      "Field parties has 0 items, minimum is 2",
+      "Field dates has 0 items, minimum is 1"
+    ]
+  },
+  "counts": {
+    "parties": 0,
+    "clauses": 10,
+    "dates": 0,
+    "amounts": 0,
+    "references": 0
+  },
+  "parties": [],
+  "clauses": [
+    {
+      "id": "clause_0",
+      "text": "RESIDENTIAL TENANCY AGREEMENT (SAMPLE — for demo only)",
+      "topic": "General",
+      "riskLevel": "low",
+      "statuteReferences": []
+    },
+    {
+      "id": "clause_1",
+      "text": "The landlord may enter the premises at any time without notice to inspect or carry out works",
+      "topic": "Notice & Termination",
+      "riskLevel": "high",
+      "statuteReferences": []
+    },
+    {
+      "id": "clause_2",
+      "text": "The tenant waives all rights to structural repair and accepts responsibility for all repairs including habitability",
+      "topic": "Repairs & Maintenance",
+      "riskLevel": "high",
+      "statuteReferences": []
+    },
+    {
+      "id": "clause_3",
+      "text": "A late fee of 50% per day applies to any rent not received by the due date",
+      "topic": "Rent & Payment",
+      "riskLevel": "low",
+      "statuteReferences": []
+    },
+    {
+      "id": "clause_4",
+      "text": "The landlord may terminate this tenancy on 24 hours notice",
+      "topic": "Notice & Termination",
+      "riskLevel": "medium",
+      "statuteReferences": []
+    },
+    {
+      "id": "clause_5",
+      "text": "The rent may be increased at any time at the landlord's sole discretion",
+      "topic": "Rent & Payment",
+      "riskLevel": "high",
+      "statuteReferences": []
+    },
+    {
+      "id": "clause_6",
+      "text": "The tenant shall pay a security deposit equal to six months rent",
+      "topic": "Rent & Payment",
+      "riskLevel": "low",
+      "statuteReferences": []
+    },
+    {
+      "id": "clause_7",
+      "text": "The landlord may terminate the tenancy if the tenant makes a complaint to any authority",
+      "topic": "General",
+      "riskLevel": "medium",
+      "statuteReferences": []
+    },
+    {
+      "id": "clause_8",
+      "text": "Rent is due on the first day of each month",
+      "topic": "Rent & Payment",
+      "riskLevel": "low",
+      "statuteReferences": []
+    },
+    {
+      "id": "clause_9",
+      "text": "(This clause is lawful and should NOT be flagged.)",
+      "topic": "General",
+      "riskLevel": "low",
+      "statuteReferences": []
+    }
+  ],
+  "dates": [],
+  "amounts": [],
+  "references": [],
+  "rawTextLength": 757,
+  "metadata": {
+    "extractedBy": "vlm-pipeline (deterministic fallback — no API key)",
+    "model": "meta-llama/llama-3.2-11b-vision-instruct",
+    "cost": 0.001,
+    "sourceFile": "project/demo/sample-lease.txt",
+    "scriptSource": "scripts/extract-sample.ts"
+  }
+}
