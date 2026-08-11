@@ -61,7 +61,7 @@ The Team Quality score on the competition rubric is currently 9.25/10. The struc
 |---|---|
 | `project/strategy/founder-journey-team-quality.md` | Team narrative — what to position FreeLeased as |
 | `project/strategy/revenue-model-gtm.md` | Business model — what the platform does and why |
-| `project/strategy/multi-jurisdiction-legal-spine.md` | The technical achievement — 9 jurisdictions, 40+ statutes |
+| `project/strategy/multi-jurisdiction-legal-spine.md` | The technical achievement — 9 jurisdictions, 25+ statutes |
 | `_handoff/09-briefs/brief-02-caribbean-jurisdictions-and-statutes.md` | Caribbean jurisdiction context |
 | `_handoff/07-judges/median-score-summary.md` | Why Team Quality matters (judge scoring) |
 

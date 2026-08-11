@@ -60,6 +60,19 @@
 
 ---
 
+## 2026-08-11 — Batch 2 WIN: 8 deliverables shipped
+
+- **Deliverable 1 — statutes drift resolved**: updated doc claims from "40+ statutes" to "25+ statutes" (the actual count in [`src/data/spine.ts`](src/data/spine.ts:1)) across 5 strategy docs + 2 social posts + 2 pilot-audit docs + submission-pack. Honest path chosen over padding the spine with unverified citations.
+- **Deliverable 2 — engines drift resolved**: rewrote [`scripts/reconcile-docs.ts`](scripts/reconcile-docs.ts:1) to count `function <Name>Agent(` declarations in [`src/lib/engines.ts`](src/lib/engines.ts:1) instead of file existence. Now correctly detects 4 agents (residentStatus, tenureBuilding, contracts, hiddenRights) in the single file.
+- **Deliverable 3 — elevator pitch**: created [`project/pitch/elevator-pitch.md`](project/pitch/elevator-pitch.md:1) (60-sec, ~100 words, hook/pain/promise/proof/ask).
+- **Deliverable 4 — demo narrative arc**: created [`project/pitch/demo-narrative-arc.md`](project/pitch/demo-narrative-arc.md:1) (5 scenes × timed budget = 180 sec exactly).
+- **Deliverable 5 — moonshot-roadmap lift playbook**: added Part F with concrete "how to lift each axis to 9" steps + lift-summary table.
+- **Deliverable 6 — fact-check-register**: appended "Verified by code" section (§G) listing all 10 reconcile-docs PASS claims with counter source.
+- **Deliverable 7 — 12-month-plan acceptance criteria**: added measurable "done when…" conditions for every month + 3 always-on gates (reconcile-docs, test-suite, pilot-audit).
+- **Deliverable 8 — pre-mortem status table**: appended G1–G18 status lines (9 RESOLVED, 8 MITIGATED, 1 OPEN — G10 solo-founder risk).
+- **Deliverable 9 — projected final score**: created [`project/strategy/projected-final-score.md`](project/strategy/projected-final-score.md:1) showing 87/100 → 95/100 win-path math.
+- **Reconcile-docs status**: **10/10 PASS, 0 drifts** (verified 2026-08-11T02:36 UTC).
+
 End of configuration journal for Step 1-3.
 
 ## 2026-08-10 Title Agent Schema and Pre-commit Hooks

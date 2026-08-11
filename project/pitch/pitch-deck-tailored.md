@@ -108,7 +108,7 @@ Source code: [GitHub URL]
 
 We're raising to go from TRL 5 to TRL 7 — production pilot with a Caribbean government agency.
 
-> **For Spencer (DRW):** The data spine is the moat. 9 jurisdictions × 40+ statutes × 40+ sources with provenance. No one else has this.
+> **For Spencer (DRW):** The data spine is the moat. 9 jurisdictions × 25+ statutes × 25+ sources with provenance. No one else has this.
 
 ---
 

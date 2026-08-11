@@ -132,7 +132,7 @@ This audit used a **synthetic** lease document, not a real leaseholder's data. L
 | `src/lib/consensus.ts` | Consensus gate (18/18 tests) |
 | `src/lib/veracity.ts` | Evidence class assignment (22/22 tests) |
 | `src/lib/engines.ts` | Dossier builder + redaction protocol |
-| `src/data/spine.ts` | 9 jurisdictions, 40+ statutes, 20 patterns |
+| `src/data/spine.ts` | 9 jurisdictions, 25+ statutes, 20 patterns |
 | `src/data/fixtures.ts` | 50 synthetic pilot residents |
 | `custom-routes.ts` | Live API endpoints |
 | `project/pilot-audit/synthetic-lease.md` | Input document |

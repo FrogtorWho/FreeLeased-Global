@@ -30,7 +30,7 @@
 
 ### Defensibility Layers (ranked by strength)
 
-1. **Data Spine** (strongest): 9 jurisdictions × 40+ statutes × 40+ sources with provenance. This is the single hardest thing to replicate — it requires domain expertise + legal research + source verification.
+1. **Data Spine** (strongest): 9 jurisdictions × 25+ statutes × 25+ sources with provenance. This is the single hardest thing to replicate — it requires domain expertise + legal research + source verification.
 
 2. **Codified-First Architecture** (strong): Deterministic code that handles 90%+ of cases means we can run at $0 compute. Competitors using LLM-first approaches can't match this cost structure.
 

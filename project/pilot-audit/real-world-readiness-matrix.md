@@ -37,8 +37,8 @@ Evidence type key:
 | # | Claim | Evidence Type | Verification Source | Notes |
 |---|-------|---------------|--------------------|----|
 | 13 | 9 jurisdictions in data spine | `code-verified` | src/data/spine.ts — JURISDICTIONS array | BB, JM, KY, TT, GY, BZ, VG, BS, UK |
-| 14 | 40+ statutes catalogued | `code-verified` | src/data/spine.ts — STATUTES array | Count verified in source |
-| 15 | 40+ verified sources with provenance | `code-verified` | src/data/spine.ts — SOURCES array | Source tier and URL per entry |
+| 14 | 25+ statutes catalogued | `code-verified` | src/data/spine.ts — STATUTES array | 25 statute records (count verified 2026-08-11) |
+| 15 | 25+ verified sources with provenance | `code-verified` | src/data/spine.ts — SOURCES array | Source tier and URL per entry (count verified 2026-08-11) |
 | 16 | 20 hidden-rights patterns | `code-verified` | src/data/patterns.ts — HIDDEN_RIGHTS array | Pattern text + statute mapping per entry |
 | 17 | Source tiers enforced (Tier 1→3) | `code-verified` | src/data/spine.ts — tier field on each source | |
 | 18 | Evidence classes cap displayed confidence | `code-verified` | src/lib/veracity.ts — CONFIDENCE_CAPS | established≤0.95, heuristic≤0.75, contested≤0.50 |

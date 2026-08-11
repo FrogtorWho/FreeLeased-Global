@@ -147,6 +147,130 @@ architecture axes at once.
 
 ---
 
+## Part F — How to lift every criterion to 9 (the "9 is the new 10" playbook)
+
+> Goal: move from current scores to **9 on every axis** by submission close.
+> 9 is the realistic ceiling in 21 days; 10 is the long-game thesis.
+> Numbers cited below are reconciled by [`scripts/reconcile-docs.ts`](scripts/reconcile-docs.ts:1) (10/10 PASS, generated 2026-08-11).
+
+### A1 · Architecture (8 → 9)
+- **Add a live architecture view** to the dashboard: a horizontal swim-lane of the
+  4 dossier agents ([`src/lib/engines.ts`](src/lib/engines.ts:97)) firing in
+  sequence, with confidence gauges lit up as data flows through.
+- **Cite the 4 CONFIDENCE_CAP entries** ([`src/lib/fairness.ts`](src/lib/fairness.ts:13))
+  as the visible honesty contract on each node — already in code.
+- **Evidence cross-link**: the tier ladder (codified → RAG → consensus → HITL) is
+  the same one judges will see in [`ux-nextgen-vision.md`](project/strategy/ux-nextgen-vision.md:1).
+
+### A2 · Multi-agent design (8 → 9)
+- **Rename + document each agent** with its input/output contract. The 4 agents
+  (`residentStatusAgent`, `tenureBuildingAgent`, `contractsAgent`,
+  `hiddenRightsAgent`) already emit DSP-6 estimates — make that visible in a
+  per-agent doc-block in the UI.
+- **Add a 5th specialist** (optional): an "Advocate" agent that drafts the
+  resident-facing letter, capped at `heuristic` — would push the rubric from 8
+  to 9 cleanly because it demonstrates *role specialisation*, not just *agent count*.
+- **Evidence cross-link**: [`project/pitch/demo-narrative-arc.md`](project/pitch/demo-narrative-arc.md:1) Scene 4
+  walks the judge through all 4 agents in 30 seconds.
+
+### A3 · Orchestration (8 → 9)
+- **Surface the consensus routing** as a live decision trace in the UI:
+  surface / review / abstain (already coded in [`src/lib/consensus.ts`](src/lib/consensus.ts:1)).
+- **Show escalation**: low retrieval confidence → escalate model tier
+  → still low → human. This is the orchestration story.
+- **Cite the 27/50 hitl-required dossiers** (from the pilot) as the visible
+  escalation rate — honesty is the orchestration story.
+
+### A4 · Human-in-the-loop (7.5 → 9) — *Vince Fong's lowest score, biggest lift*
+- **Ship the Sign-off Queue UI**: every `review` / `inference` claim lands here
+  with provenance + approve/reject/annotate + audit trail (the
+  [`signoff.routes.ts`](src/generated/signoff.routes.ts:1) and
+  [`audit-entry.routes.ts`](src/generated/audit-entry.routes.ts:1) routes already exist).
+- **Add the resident appeal button** — visible, first-class, not a toast.
+  Compliance requirement (CoC §4) and a legislator's hot button.
+- **Demo it live** in [`demo-narrative-arc.md`](project/pitch/demo-narrative-arc.md:1) Scene 4
+  (sign-off queue, 27/50 hitl-required, 0 rejected). The honest numbers win.
+
+### A5 · Efficiency (7.5 → 9) — *Michele Romanow's axis*
+- **Add an efficiency panel**: tokens/task, % Tier-1 codified (free), cost per
+  lease analysed, cache hit rate. The $0 compute claim is already provable;
+  surface the receipt.
+- **Wire in a model-tier router**: small → large on low confidence only.
+  Currently all inference is deterministic; the router would let Tier-2
+  inference actually *show up* in the panel.
+- **Evidence cross-link**: [`project/pitch/elevator-pitch.md`](project/pitch/elevator-pitch.md:1)
+  names "$0 compute" as a proof line — make sure the panel backs it up.
+
+### A6 · Real-world impact (7.5 → 9) — *Moses / IDB-World Bank axis*
+- **Run the 50-resident pilot end-to-end** and publish the aggregate: unlawful
+  clauses caught, $ of rent overcharge flagged, rights surfaced. Already in
+  [`project/pilot-audit/pilot-audit-report.md`](project/pilot-audit/pilot-audit-report.md:1).
+- **Write one deep before/after case study**: pick a Cayman or Barbados
+  resident from [`src/data/fixtures.ts`](src/data/fixtures.ts:1) and walk
+  the dossier through what changed because of FreeLeased.
+- **Land a named letter of support** from one of the 7 MoU partner agencies —
+  this lifts the rubric from 7.5 to 9 by anchoring "real-world" in a name.
+
+### A7 · Scalability (8 → 9) — *Bill Tai's axis*
+- **Publish the add-a-jurisdiction cost curve**: a new jurisdiction = data pack
+  + statute rules, no re-architecture. Already the spine design ([`src/data/spine.ts`](src/data/spine.ts:1)).
+- **Show the curve trending to near-zero** with two roadmap jurisdictions
+  (BZ, GY) in the data-room-copies; one already at 22 of 24 folders evidenced
+  ([`memory/data-room-copies.md`](memory/data-room-copies.md:136)).
+- **Tie to the moonshot thesis**: "category-defining" requires a path to
+  global. The cost curve *is* that path.
+
+### B1 · Team Quality (7 → 9) — *solo-founder risk*
+- **Reframe** solo + agent-swarm as the *product thesis*: "one advocate
+  operating a system that does the work of a firm." Already in the deck-v7.
+- **Land Boardy validation quotes** (partner + judge — using Boardy *is* the
+  optic). Aim for 2 named advisors from the 7 MoU partner agencies.
+- **Show velocity**: 21 days, 159 tests, 22/24 data-room folders, 10/10
+  reconcile — execution evidence *is* the team-quality answer.
+
+### B2 · Innovation / Uniqueness / Defensibility (8 → 9)
+- **Name the category**: "provenance-native land & housing intelligence." This
+  is the moat statement — no incumbent ships honesty as a feature.
+- **Cite the 3 moats together**: (1) the growing verified spine (data network
+  effect), (2) registry / MoU relationships (defensive moat), (3) the
+  honesty-engine IP (evidence-class caps + consensus gate — [`src/lib/fairness.ts`](src/lib/fairness.ts:1)
+  + [`src/lib/consensus.ts`](src/lib/consensus.ts:1)).
+- **Show the eval harness**: precision/recall on labelled leases tracked over
+  time ([`scripts/test-truth-diff.ts`](scripts/test-truth-diff.ts:1)).
+
+### B3 · Product-Market Fit (7.5 → 9)
+- **Three named buyers with willingness-to-pay**: (1) residents/advocates
+  (freemium → pro), (2) institutions (govt housing agencies, DFIs), (3)
+  insurers/lenders (climate + title risk). All three named in
+  [`project/strategy/revenue-model-gtm.md`](project/strategy/revenue-model-gtm.md:1).
+- **Convert one Boardy intro into a letter of intent** before submission
+  closes. Even a 1-page LOI from a Caribbean housing agency lifts this to 9.
+- **Show pilot engagement**: 50 synthetic residents + 7 MoU partners +
+  1 named government pilot = the demand side.
+
+---
+
+### Lift Summary — what ships for each +0.5 / +1.0
+
+| Axis | Current | Target | Biggest lift | Ships in |
+|---|---|---|---|---|
+| A1 | 8 | 9 | Live architecture view | 1 day |
+| A2 | 8 | 9 | Agent contracts documented in UI | 2 days |
+| A3 | 8 | 9 | Decision trace surfaced | 1 day |
+| A4 | 7.5 | 9 | Sign-off Queue + appeal button | 3 days |
+| A5 | 7.5 | 9 | Efficiency panel with $0 receipts | 1 day |
+| A6 | 7.5 | 9 | Named pilot outcome + MoU LOI | 4 days |
+| A7 | 8 | 9 | Add-a-jurisdiction cost curve | 2 days |
+| B1 | 7 | 9 | Boardy quote + MoU LOI | 5 days |
+| B2 | 8 | 9 | Category name + 3 moats in deck | 1 day |
+| B3 | 7.5 | 9 | LOI + 3 buyer personas | 5 days |
+
+**Total estimate**: ~10 dev-days, ~3 outreach-days. Within 21-day sprint budget
+if started now. The two highest-leverage moves are A4 (HITL Sign-off Queue) and
+B1 (Boardy quote) — together they account for ~3 points of lift.
+
+---
+
 ## Sequencing (what lifts the most, soonest)
 1. **UX next-gen** (see companion doc) — perception multiplier on *everything*.
 2. **HITL Sign-off Queue + appeal** — fixes the lowest sub-score, satisfies §4.

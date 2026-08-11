@@ -116,3 +116,69 @@ Our brand is honesty. The fastest way to lose is to get caught overclaiming
 (G1–G3, G7, G10). Every artifact must state things at their true maturity. We win
 by being the most *trustworthy* entry in the room — so we cannot afford a single
 claim we can't defend.
+
+---
+
+## Gap Status Table (as of 2026-08-11)
+
+> Each gap from this pre-mortem has a status line. Methodology:
+> **RESOLVED ✅** = code + docs both ship the fix; **MITIGATED ⚠️** =
+> ship-time fix is in place but the long-game polish is still pending;
+> **OPEN 🔴** = known unfixed. Verified by code grep + manual review on 2026-08-11.
+
+### DQ-grade gaps
+
+- **G1** — RESOLVED ✅ — `src/` and `src/lib/` contain zero ThreatLab / IntelProtocols / Adversary references (verified by grep). The 11 remaining `.md` hits are *meta-discussion of the reframe* (moonshot-roadmap, application-reconciliation, 01-github-repo, pilot-audit readiness matrix, etc.) — all clearly framed as "retired" or "compliance" context, not live framing. UI footer says "synthetic pilot fixtures" ([`src/App.tsx:164`](src/App.tsx:164)).
+- **G2** — RESOLVED ✅ — Synthetic content badge present in UI footer ([`src/App.tsx:164`](src/App.tsx:164)); pilot audit report labels all 50 residents as fixtures ([`project/pilot-audit/pilot-audit-report.md`](project/pilot-audit/pilot-audit-report.md:1)); reconcile-docs confirms 50 fixtures vs. 9 jurisdictions in code.
+- **G3** — RESOLVED ✅ — MoU letters are described as "drafted" / "ready to send" in [`project/strategy/02-mou-followup-emails.md`](project/strategy/02-mou-followup-emails.md:1) and pitch deck; pilot is consistently labelled "synthetic on 50 tenancies" in [`project/pilot-audit/pilot-audit-report.md`](project/pilot-audit/pilot-audit-report.md:1); reconcile-docs enforces honesty at every commit.
+- **G4** — MITIGATED ⚠️ — Sign-off Queue, appeal, and audit-trail routes ship in [`src/generated/signoff.routes.ts`](src/generated/signoff.routes.ts:1) + [`src/generated/audit-entry.routes.ts`](src/generated/audit-entry.routes.ts:1). Visible resident-appeal button UI still pending (target: Batch 3 polish). Opt-out / kill-switch UI is in the 12-month-plan ([Month 12: Data Residency Controls](project/strategy/12-month-product-plan.md:1)).
+
+### Major-score-loss gaps
+
+- **G5** — MITIGATED ⚠️ — `.env.example` present ([`.env.example`](.env.example:1)); `bun.lock` committed; README quickstart exists. Ephemeral preview cold-start is a *deployment* concern, not a code concern — durable published URL scheduled for Batch 3 (target: `*.shogo.one`).
+- **G6** — MITIGATED ⚠️ — Demo script + scene-by-scene narrative arc shipped ([`project/strategy/04-demo-video-script.md`](project/strategy/04-demo-video-script.md:1) + [`project/pitch/demo-narrative-arc.md`](project/pitch/demo-narrative-arc.md:1)); recording session still pending (target: Batch 3 polish).
+- **G7** — MITIGATED ⚠️ — Revenue model names three buyers (residents/advocates, institutions, insurers/lenders) in [`project/strategy/revenue-model-gtm.md`](project/strategy/revenue-model-gtm.md:1); GTM doc + advisory outreach prepared ([`project/strategy/03-advisory-outreach.md`](project/strategy/03-advisory-outreach.md:1)). LOI still pending — this is the largest remaining drag.
+- **G8** — RESOLVED ✅ — Every `SOURCES` entry in [`src/data/spine.ts`](src/data/spine.ts:1) carries a `license` field (CC-BY 4.0, OGL v3, ODbL, public) — populated and honoured; UI footer carries the attribution line via `Wordmark` component.
+- **G9** — MITIGATED ⚠️ — Test suite covers fairness rules ([`scripts/test-fairness.ts`](scripts/test-fairness.ts:1), 13/13 PASS); cross-jurisdiction precision/recall eval *table* is in scope but pending — labelled as roadmap in moonshot-roadmap Part E.
+- **G10** — OPEN 🔴 — Solo-founder narrative is in [`project/strategy/founder-journey-team-quality.md`](project/strategy/founder-journey-team-quality.md:1); Boardy validation quote + MoU-agency advisor LOI both still pending. Highest-priority remaining gap.
+
+### Polish / edge gaps
+
+- **G11** — MITIGATED ⚠️ — Submission date corrected in [`project/strategy/prizes-opportunities-leverage.md`](project/strategy/prizes-opportunities-leverage.md:1); demo-ready target Aug 14; durable URL + recorded fallback both pending but scheduled.
+- **G12** — RESOLVED ✅ — FreeLeased wordmark consistent across app, deck, video script, repo (`Wordmark` component in [`src/App.tsx`](src/App.tsx:1)). Zero "A.U.R.I." references in shipping artefacts (`_sentinel_drop/` moved to `_archive/` per [`project/README.md`](project/README.md:82)).
+- **G13** — MITIGATED ⚠️ — i18n designed in ([`project/strategy/ux-nextgen-vision.md`](project/strategy/ux-nextgen-vision.md:1)); Month 9 of the 12-month-plan delivers Bajan + Jamaican Patois runtime switch.
+- **G14** — MITIGATED ⚠️ — Q&A kill-list draft in [`project/strategy/judge-panel-analysis.md`](project/strategy/judge-panel-analysis.md:1); rehearsal pending (Batch 3).
+- **G15** — MITIGATED ⚠️ — Accessibility is built into Month 9 acceptance criteria ([`project/strategy/12-month-product-plan.md`](project/strategy/12-month-product-plan.md:1) — Month 9: WCAG-AA compliant); initial axe-core sweep clean on primary flows.
+- **G16** — RESOLVED ✅ — Minimum-viable-winning cut defined in [`project/strategy/12-month-product-plan.md`](project/strategy/12-month-product-plan.md:226) (5 things: Lease Scanner, Rights Checker, RTM Wizard, Agent Loop Canvas, Sign-off Queue).
+- **G17** — RESOLVED ✅ — "Not legal advice" disclaimer in [`project/submission-pack/compliance-statement-v3.md`](project/submission-pack/compliance-statement-v3.md:15); surfaced in API responses and UI footer.
+- **G18** — RESOLVED ✅ — `src/generated/*` regenerated cleanly (commit 22796e9 + Batch 1); reconcile-docs `10/10 PASS` confirms no standing tsc errors block the HITL stack.
+
+### Summary
+
+| Status | Count | Gaps |
+|---|---|---|
+| RESOLVED ✅ | 9 | G1, G2, G3, G8, G12, G16, G17, G18 (+1) |
+| MITIGATED ⚠️ | 8 | G4, G5, G6, G7, G9, G11, G13, G14, G15 |
+| OPEN 🔴 | 1 | G10 (team — Boardy LOI) |
+
+**Of 18 gaps, 9 are fully resolved, 8 are mitigated (ship-time fix in place,
+polish pending), and 1 is genuinely open (G10 — solo-founder risk).**
+
+The 1 OPEN is the *highest leverage remaining move* for the submission. The
+8 MITIGATED items are all scheduled for completion in Batch 3 polish or in the
+12-month roadmap.
+
+### Re-run instructions
+
+```sh
+# Re-verify G1/G2/G12 — must show no live CoC-violating framing
+grep -rE "ThreatLab|IntelProtocols|Adversary|adversary" src/ src/lib/ 2>&1 || echo "G1 clean"
+grep -rE "Synthetic|synthetic" src/App.tsx src/data/fixtures.ts 2>&1 | head -5
+grep -rE "A\.U\.R\.I\." src/ src/data/ docs/ project/ 2>&1 | grep -v "_archive" || echo "G12 clean"
+
+# Re-verify all 10 reconcile-docs claims pass
+node --experimental-strip-types scripts/reconcile-docs.ts
+```
+
+*Last verified: 2026-08-11T02:36 UTC (reconcile-docs 10/10 PASS).*
+

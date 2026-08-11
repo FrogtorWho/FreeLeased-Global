@@ -113,15 +113,23 @@ const stats: Record<string, number> = {};
   stats["statutes"] = n;
 }
 
-// ── engines: count .ts files under src/lib/ that export a primary engine ──
+// ── engines: count agent classes inside src/lib/engines.ts ───────────────────
+//
+// The doc claim is "4 dossier engines", referring to the 4-agent architecture
+// declared in src/lib/engines.ts (Resident Status, Tenure+Building, Contracts,
+// Hidden Rights). The reconcile-doc counter must therefore parse the file for
+// `function <Name>Agent(`` declarations, not file-existence counts, otherwise
+// a single-file multi-agent module would always under-report.
 {
-  // Per scripts/test-suite.ts:78, the metrics object declares `engines: 4`.
-  // The 4 engines are the deterministic modules referenced by buildDossier,
-  // sweep(), runLoop() and the reconciliation engine. We count by looking
-  // for files under src/lib/ whose names contain a known engine keyword.
   const file = join(ROOT, "src/lib/engines.ts");
-  const n = existsSync(file) ? 1 : 0;
-  stats["engines"] = n;
+  if (!existsSync(file)) {
+    stats["engines"] = -1;
+  } else {
+    const text = readFileSync(file, "utf8");
+    // Match `function <Name>Agent(...)` (export optional).
+    const agentDecls = text.match(/function\s+[A-Za-z0-9_]+Agent\s*\(/g);
+    stats["engines"] = agentDecls ? agentDecls.length : 0;
+  }
 }
 
 // ── loops: highest loop number explicitly declared as "Complete" ─────────
@@ -181,12 +189,22 @@ const stats: Record<string, number> = {};
   // Pull the parent folder (first segment) of each COPY-NNN target.
   // Format: `01_Company Overview/project_summary/README.md`
   // → "01_Company Overview" counts as one folder.
-  const folderSet = new Set<string>();
+  //
+  // To avoid false positives from workspace-only entries (COPY-046 onwards),
+  // we require the row to have an `OK (` status marker in the `result` column.
   // Per data-room-copies.md the canonical count is 22/24 evidenced sub-folders.
   // Sub-folder = first two segments of the target path (e.g. "01_Company Overview/project_summary").
   // The data-room-map has 24 sub-folders; revenue/ and releases/ are the only
   // genuinely-empty ones, giving 22.
-  const re = /\|\s*COPY-\d+\s*\|[^|]*\|[^|]*\|\s*`([A-Za-z0-9_ -]+\/[A-Za-z0-9_ -]+)\//g;
+  const folderSet = new Set<string>();
+  // Format: `| COPY-NNN | timestamp | `source` | `01_Folder/sub/path` | TRL | reason | reversibility | OK (...) |`
+  // 7 pipes after the COPY-NNN pipe. We require:
+  //   (a) value column starts with a backtick (filters out "(workspace-only..." rows)
+  //   (b) OK (` (`) in the last column (filters out n/a result rows)
+  // Together these prevent false positives from COPY-046+ workspace-only entries.
+  // The folder capture is `(topfolder)` or `(topfolder/subfolder)`; subfolder is
+  // optional so single-segment folders like `00_README - Index and TRL Map/` count.
+  const re = /\|\s*COPY-\d+\s*\|[^|]*\|[^|]*\|\s*`([A-Za-z0-9_ -]+(?:\/[A-Za-z0-9_ -]+)?)\/[^`]*`\s*\|[^|]*\|[^|]*\|[^|]*\|\s*OK\s*\(/g;
   let m;
   while ((m = re.exec(text)) !== null) {
     const folder = m[1].trim();
@@ -226,18 +244,18 @@ const claims: Claim[] = [
   makeClaim(
     "statutes",
     "codified statutes",
-    "project/strategy/00-OVERVIEW.md:44 ('40+ statutes')",
-    40,
+    "project/strategy/00-OVERVIEW.md:44 ('25+ statutes')",
+    25,
     stats["statutes"],
-    `counted via /shortTitle: "/ in src/data/spine.ts (target ≥ 40; '40+' in doc)`,
+    `counted via /shortTitle: "/ in src/data/spine.ts (target ≥ 25; '25+' in doc)`,
   ),
   makeClaim(
     "engines",
-    "deterministic engines",
-    "project/strategy/loop-protocol.md (engines metric)",
+    "deterministic dossier agents",
+    "project/strategy/loop-protocol.md (4-agent dossier engines)",
     4,
     stats["engines"],
-    `counted via file existence: src/lib/engines.ts present (= 1 base engine; the 4-engine claim is declared in test-suite.ts:78 metrics block)`,
+    `counted via /function <Name>Agent(/ in src/lib/engines.ts (4-agent orchestrator: Resident Status, Tenure+Building, Contracts, Hidden Rights)`,
   ),
   makeClaim(
     "loops",

@@ -29,7 +29,7 @@ A deterministic audit engine that runs on a laptop. No API keys. No GPU cluster.
 
 ## Key Features
 
-- **Multi-Jurisdiction Data Spine** — 9 jurisdictions, 40+ statutes, 40+ verified sources with provenance tracking
+- **Multi-Jurisdiction Data Spine** — 9 jurisdictions, 25+ statutes, 25+ verified sources with provenance tracking
 - **Hidden Rights Discovery** — 20 statutory protections mapped to trigger patterns
 - **Consensus Gate** — Deterministic cross-checks with 2/3 human validation
 - **Veracity Engine** — Admiralty/NATO evidence grading on every claim (established / heuristic / contested / unfalsifiable)

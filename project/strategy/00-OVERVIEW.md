@@ -41,7 +41,7 @@ Every deliverable must have: executive summary, structured sections, data-backed
 - **Code freeze**: 14 Aug (T-2 from public deadline)
 - **Tech stack**: Vite + React + TypeScript + Tailwind + Hono + Prisma 7 + SQLite
 - **Test suite**: 65/67 passing (consensus 18/18, veracity 22/22, fairness 13/13, telemetry 9/9)
-- **Data spine**: 9 jurisdictions, 40+ statutes, 40+ sources, 20 hidden-rights patterns
+- **Data spine**: 9 jurisdictions, 25+ statutes, 25+ sources, 20 hidden-rights patterns
 - **Compute cost**: $0 (deterministic code, local SQLite)
 - **MoU partners**: 7 Caribbean government agencies (letters drafted, signatures pending)
 - **App URL**: https://57bf2c29-3d43-4ba6-b01a-3885c39bce04.preview.shogo.ai

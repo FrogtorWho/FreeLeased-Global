@@ -65,3 +65,45 @@ unbacked would be self-defeating (pre-mortem G3).
 3. Logged the ⛔ do-not-repeat list so the deck/overview never inherit the
    trillion-pound / 2M-LOC / behavioral-framework claims.
 4. Reaffirmed Climate/Valuation as **roadmap**, per the honest cut.
+
+---
+
+## G. ✅ Verified by code (reconcile-docs, 2026-08-11)
+
+The following claims are not just anchored in primary sources — they are
+*mechanically reconciled against the codebase* by
+[`scripts/reconcile-docs.ts`](scripts/reconcile-docs.ts:1) on every commit.
+The 2026-08-11 run reports **10/10 PASS, 0 drifts**.
+
+| Claim | Reconciled value | Counter (file / pattern) |
+|---|---|---|
+| 159 test assertions | 159 | `scripts/test-suite.ts` — count of `^\s*check\(` invocations |
+| 9 jurisdictions in data spine | 9 | `src/data/spine.ts` — count of `code: "[A-Z]{2,3}"` declarations |
+| 20 hidden-rights patterns | 20 | `src/data/patterns.ts` — count of `id: \d+,` rows |
+| 25+ statutes catalogued | 25 | `src/data/spine.ts` — count of `shortTitle: "` entries |
+| 4 deterministic dossier agents | 4 | `src/lib/engines.ts` — count of `function <Name>Agent(` declarations |
+| 8 loops complete | 8 | `project/strategy/loop-protocol.md` — max `**Loop N:**` header |
+| 21 buildathon days | 21 | `project/strategy/00-OVERVIEW.md` — `Day N of M` parse |
+| 7 MoU partner agencies | 7 | `project/strategy/00-OVERVIEW.md` — `N Caribbean government agencies` |
+| 4 conviction caps | 4 | `src/lib/fairness.ts` — entries in `CONFIDENCE_CAP` table |
+| 22/24 data-room folders evidenced | 22 | `memory/data-room-copies.md` — distinct COPY-NNN target folders |
+
+**Run the reconciler before any submission**:
+```sh
+node --experimental-strip-types scripts/reconcile-docs.ts
+```
+
+**Why this section matters**: every figure in the deck and the pitch must
+either be on this list, or be labelled as roadmap / unverified. The do-not-
+repeat list in §E is the negative side; this list is the positive side.
+Together they define the *honest cut* of what we say about FreeLeased.
+
+**Cross-link**: the reconciler itself is part of the truth-protocol — see
+[`project/strategy/truth-protocol.md`](project/strategy/truth-protocol.md:1)
+for the broader commitment.
+
+---
+
+*Last reconciled: 2026-08-11T02:36 UTC (10/10 PASS).*
+*Register maintained by [`scripts/reconcile-docs.ts`](scripts/reconcile-docs.ts:1).*
+

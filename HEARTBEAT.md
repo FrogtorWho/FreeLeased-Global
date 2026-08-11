@@ -26,6 +26,7 @@ Append a new bullet under the matching date heading on each check-in. Format: `*
 
 ### 2026-08-11 (Tue)
 - **02:10 UTC** — Batch 1 win-mode: lint + regenerate + sample extraction + reconcile-docs + tests
+- **02:35 UTC** — Batch 2 WIN: drifts resolved (statutes 25+, engines 4-agent), pitch + narrative + roadmap tightened, projected score computed (87/100 → 95/100 path)
 
 ### 2026-08-10 (Mon)
 - **09:00 UTC** — Top-down audit complete (128 claims, 70 numbers, 9 drifts)

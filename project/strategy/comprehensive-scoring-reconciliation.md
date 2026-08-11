@@ -330,7 +330,7 @@ Jul 27 ──────── Aug 6 ──────── Aug 9 ───�
 │  FOUNDATION   │  PRODUCT     │  PROOF        │  POLISH       │  FREEZE  │ SUBMIT
 │               │              │               │               │          │
 │ Spine v1      │ Engines live │ Real pilot    │ Demo video    │ No new   │ LIVE
-│ 40+ statutes  │ 65/67 tests  │ MoU sent      │ GitHub public │ features │ DEMO
+│ 25+ statutes  │ 65/67 tests  │ MoU sent      │ GitHub public │ features │ DEMO
 │ Consensus     │ Live demo    │ Advisory out  │ i18n + a11y   │ QA pass  │
 │ Veracity      │ Fairness     │ Compliance    │ Dry run #1    │ Published│
 │ Fairness      │ GitHub prep  │ Agent coord   │ Pitch deck    │ URL warm │

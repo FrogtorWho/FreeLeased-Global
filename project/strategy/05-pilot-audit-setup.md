@@ -46,7 +46,7 @@ The FreeLeased audit pipeline is already built and tested. Here are the key file
 | `src/lib/engines.ts` | Core engines: `buildDossier()`, `redactionProtocol()`, `communeAggregate()`, `rowHash()`, `DS_THRESHOLD`. |
 | `src/lib/gates.ts` | `sweep()` function — runs all hidden-rights patterns against input text, returns pass/fail. |
 | `src/lib/research.ts` | Research desk — spine lookup, source verification. |
-| `src/data/spine.ts` | 9 jurisdictions, 40+ statutes, 40+ sources, 20 hidden-rights patterns. |
+| `src/data/spine.ts` | 9 jurisdictions, 25+ statutes, 25+ sources, 20 hidden-rights patterns. |
 | `src/data/fixtures.ts` | 50 synthetic pilot residents (20 BB + 15 JM + 15 KY). |
 | `scripts/test-suite.ts` | Master test runner — 65/67 passing. |
 

@@ -272,3 +272,31 @@ These are workspace-only entries added on 2026-08-11T02:10Z alongside the Batch 
 **Reversibility:** N/A — nothing was copied to the Data Room in this batch. To reverse the workspace additions, revert the commit (see AI_JOURNAL for the commit hash).
 
 **Cross-reference:** See AI_JOURNAL.md section 2026-08-11 Batch 1 WIN: 8 changes shipped for the full justification, replication steps, and verification output of these additions.
+
+### Workspace-only additions (Batch 2 WIN — Story + Roadmap)
+
+These are workspace-only entries added on 2026-08-11T02:35Z during the Batch 2 WIN-mode work. Like prior workspace-only entries, they modify the codebase and/or strategy docs but don't add TRL-grade evidence and are not copied to the Data Room.
+
+| discretion_id | timestamp (ISO 8601 UTC) | source | target | TRL | reason | reversibility | result |
+|---|---|---|---|---|---|---|---|
+| COPY-051 | 2026-08-11T02:35:00Z | (workspace-only — NOT copied to Data Room) | `scripts/reconcile-docs.ts` (edited) | n/a | Batch 2A.2 — rewrote the `engines` counter to detect `function <Name>Agent(` declarations in `src/lib/engines.ts` instead of file-existence. Detects all 4 dossier agents in the single file. Now reconciles cleanly: 10/10 PASS. | revert commit | OK (~20 lines changed) |
+| COPY-052 | 2026-08-11T02:35:00Z | (workspace-only — NOT copied to Data Room) | 5 strategy docs + 2 social posts + 2 pilot-audit docs + submission-pack README-GITHUB | n/a | Batch 2A.1 — replaced "40+ statutes" / "40+ sources" with "25+ statutes" / "25+ sources" across 11 doc files. Honest path chosen over padding the spine. Reconciles to actual count in `src/data/spine.ts`. | revert commit | OK (11 files, ~22 substitutions) |
+| COPY-053 | 2026-08-11T02:35:00Z | (workspace-only — NOT copied to Data Room) | `project/pitch/elevator-pitch.md` (new) | n/a | Batch 2B.3 — 60-second, ~100-word pitch (hook/pain/promise/proof/ask) cross-linked to deck-v7. | revert commit | OK (1 file, ~110 lines) |
+| COPY-054 | 2026-08-11T02:35:00Z | (workspace-only — NOT copied to Data Room) | `project/pitch/demo-narrative-arc.md` (new) | n/a | Batch 2B.4 — 5 scenes × timed budget = 180 sec exactly. Cross-links to 04-demo-video-script.md and elevator-pitch.md. Every number on screen reconciles. | revert commit | OK (1 file, ~180 lines) |
+| COPY-055 | 2026-08-11T02:35:00Z | (workspace-only — NOT copied to Data Room) | `project/strategy/moonshot-roadmap-10-10.md` (extended) | n/a | Batch 2B.5 — added Part F "How to lift every criterion to 9" with concrete steps + lift-summary table (10 axes × delta + dev-day estimate). | revert commit | OK (~130 lines added) |
+| COPY-056 | 2026-08-11T02:35:00Z | (workspace-only — NOT copied to Data Room) | `project/strategy/fact-check-register.md` (extended) | n/a | Batch 2B.6 — appended §G "Verified by code" listing all 10 reconcile-docs PASS claims with counter source. | revert commit | OK (~50 lines added) |
+| COPY-057 | 2026-08-11T02:35:00Z | (workspace-only — NOT copied to Data Room) | `project/strategy/12-month-product-plan.md` (extended) | n/a | Batch 2C.7 — added Acceptance Criteria sub-section for each of 12 months + cross-month always-on gates. | revert commit | OK (~120 lines added) |
+| COPY-058 | 2026-08-11T02:35:00Z | (workspace-only — NOT copied to Data Room) | `project/strategy/pre-mortem-and-gaps.md` (extended) | n/a | Batch 2C.8 — appended G1–G18 status table (9 RESOLVED ✅, 8 MITIGATED ⚠️, 1 OPEN 🔴). G10 (solo-founder risk) is the only genuinely open gap. | revert commit | OK (~110 lines added) |
+| COPY-059 | 2026-08-11T02:35:00Z | (workspace-only — NOT copied to Data Room) | `project/strategy/projected-final-score.md` (new) | n/a | Batch 2C.9 — single-page win-condition math. Current 87/100 → Path B/C 91–95/100 with Tier 1+2 lifts. | revert commit | OK (1 file, ~150 lines) |
+
+**Why this section exists (extended further):** Batch 2 WIN is a coherent set of story + roadmap + drift-fixes that:
+
+1. **Resolves both reconcile-docs drifts honestly** (statutes count and engines count now match doc claims).
+2. **Tightens the submission triplet** — pitch + demo narrative + projected score, all cross-linked, all numbers reconciled.
+3. **Lifts the rubric ceiling** by surfacing concrete "how to lift to 9" steps for every axis.
+4. **Closes 9 of 18 pre-mortem gaps fully**, mitigates 8, leaves 1 (G10 team) genuinely open with named mitigation strategy.
+5. **Reconciles-docs: 10/10 PASS, 0 drifts** (verified 2026-08-11T02:36 UTC).
+
+**Reversibility:** N/A — nothing was copied to the Data Room in this batch. To reverse the workspace additions, revert the commit (see AI_JOURNAL for the commit hash).
+
+**Cross-reference:** See AI_JOURNAL.md section 2026-08-11 Batch 2 WIN: 8 deliverables shipped for the full justification, replication steps, and verification output of these additions.

@@ -14,7 +14,7 @@ As a finance professional, I've spent a decade watching how information asymmetr
 ### What I Brought to Day 1
 - 6 weeks of pre-sprint research (Jurisdictions × Statutes × Sources)
 - 7 MoU letters drafted to Caribbean government agencies
-- A complete data spine: 9 jurisdictions, 40+ statutes, 40+ sources, all with provenance
+- A complete data spine: 9 jurisdictions, 25+ statutes, 25+ sources, all with provenance
 - The honesty doctrine: evidence-classed claims, consensus gating, codified-first automation
 - A clear product thesis: resident-led, not AI-led
 
@@ -32,7 +32,7 @@ I built an AI agent team to amplify my output:
 These aren't just labels — each agent has a system prompt, allowed tools, and a specific quality bar. The agent team pattern is itself an innovation: solo founder + AI agents = team of 6, not team of 1.
 
 ### What I Built (21 Days)
-1. **Data spine**: 9 jurisdictions, 40+ statutes, 40+ sources — all real, all verified
+1. **Data spine**: 9 jurisdictions, 25+ statutes, 25+ sources — all real, all verified
 2. **Consensus gate**: Deterministic code that cross-checks codified vs. RAG-agentic estimates (18/18 tests)
 3. **Veracity engine**: Admiralty/NATO source-grading for truth-scoring (22/22 tests)
 4. **Fairness layer**: Document-only analysis, no social scoring (13/13 tests)

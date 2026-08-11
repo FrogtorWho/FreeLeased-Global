@@ -100,7 +100,7 @@ source URL + fetch timestamp. Provenance-first architecture locked.
 
 **29 Jul — Data spine v1.**
 9 jurisdictions mapped: BB, JM, KY, TT, GY, BZ, VG, BS, UK.
-40+ statutes catalogued. 40+ sources tiered (primary → secondary).
+25+ statutes catalogued. 25+ sources tiered (primary → secondary).
 Source tiers enforced: Tier 1 (legislation), Tier 1.5 (open data),
 Tier 2 (institutional), Tier 3 (secondary). Every cell carries provenance.
 

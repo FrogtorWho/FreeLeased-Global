@@ -51,7 +51,7 @@ The demo must show the product working, not just slides. Judges want to see:
 
 ### Live Demo — End-to-End Flow (0:30 - 2:00)
 - **Screen:** Click through the actual app. Show the flow:
-  1. **Overview** (5 sec): "This is FreeLeased. 9 jurisdictions. 40+ statutes. $0 compute."
+  1. **Overview** (5 sec): "This is FreeLeased. 9 jurisdictions. 25+ statutes. $0 compute."
   2. **Rights Catalogue** (15 sec): Scroll through the statutory rights. Show the evidence classes (established/heuristic/contested).
   3. **Lease Audit** (30 sec): Run a sample audit. Show input → processing → output. "The fairness engine scores every clause against statute — not people against norms."
   4. **Consensus Gate** (20 sec): Show the 2/3 validation requirement. "No AI claim surfaces as verified without human sign-off."
@@ -59,7 +59,7 @@ The demo must show the product working, not just slides. Judges want to see:
 
 ### Technical Innovation (2:00 - 3:00)
 - **Screen:** Research Desk tab + Data Spine tab
-- **Narration:** "The data spine: 9 Caribbean jurisdictions mapped clause-by-clause. 40+ verified sources with provenance tracking. 20 hidden-rights patterns that residents don't know exist."
+- **Narration:** "The data spine: 9 Caribbean jurisdictions mapped clause-by-clause. 25+ verified sources with provenance tracking. 20 hidden-rights patterns that residents don't know exist."
 - **Screen:** Command Post tab (build status)
 - **Narration:** "4 engines. 65 tests. The entire platform runs on local SQLite — no cloud database, no API fees. The codebase is deterministic first: it handles 90% of cases without calling an LLM."
 
@@ -94,7 +94,7 @@ The demo must show the product working, not just slides. Judges want to see:
 ## 6. Narration Principles
 
 - **Show, don't tell:** "Here's the fairness engine scoring a clause" beats "We have a fairness engine that does advanced analysis"
-- **Specific numbers, not vague claims:** "9 jurisdictions, 40+ statutes, 65 tests" beats "comprehensive coverage"
+- **Specific numbers, not vague claims:** "9 jurisdictions, 25+ statutes, 65 tests" beats "comprehensive coverage"
 - **No dead air:** Every transition should have narration or a visual. Loading screens should be edited out.
 - **Energy, not hype:** Confident, direct, factual. No "revolutionary" or "game-changing".
 - **Target: 4 minutes.** Under 4 is fine. Over 5 is not.

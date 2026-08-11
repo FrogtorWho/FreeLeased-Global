@@ -16,7 +16,7 @@ The platform automates statutory diagnostics for leasehold governance — starti
 **Key stats:**
 - 14 functional UI tabs
 - 4 engine modules (consensus, veracity, fairness, research)
-- 9 jurisdictions in data spine, 40+ statutes, 40+ verified sources
+- 9 jurisdictions in data spine, 25+ statutes, 25+ verified sources
 - 20 hidden-rights patterns
 - 50 synthetic pilot residents (20 Barbados + 15 Jamaica + 15 Cayman Islands)
 - 65/67 tests passing (consensus 18/18, veracity 22/22, fairness 13/13, telemetry 9/9)
@@ -196,5 +196,5 @@ Use standard MIT with "FreeLeased Contributors" as copyright holder and year 202
 | Cryptographic Communes | k-anonymity (≥5) aggregation layer for community-level insights |
 | Adversary/ThreatLab | Retired intelligence layer — now scoped to defensive-only, HITL-gated |
 | MoU | Memorandum of Understanding — partnership letters to Caribbean government agencies |
-| Spine | The structured data layer: 9 jurisdictions × 40+ statutes × 40+ sources with provenance |
+| Spine | The structured data layer: 9 jurisdictions × 25+ statutes × 25+ sources with provenance |
 | Dossier | Per-resident advisory document built from spine + audit pipeline |
