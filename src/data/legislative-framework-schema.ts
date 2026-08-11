@@ -170,6 +170,31 @@ export interface Regulation {
   unverified?: boolean;
 }
 
+/**
+ * Phase 12 G6 — Building Safety Scheme regulation.
+ * Distinct from a `Regulation` because it sits under a specific
+ * primary act + remediation regime (e.g. BSA 2022 ss.116–125)
+ * and unlocks the EWS1-form remedy flow. Marked `buildingSafetyScheme`
+ * so the dossier builder can route EWS1 cases through the Building
+ * Safety Remedy path instead of the generic s.20 LTA 1985 path.
+ */
+export interface BuildingSafetyScheme {
+  id: string;
+  parentActId: string;
+  schemeName: string;
+  year: number;
+  sourceUrl: string;
+  summary: string;
+  /** Section references in the parent Act that establish the scheme. */
+  sectionsEstablished: string[];
+  /** Eligible building heights (metres). */
+  eligibleHeightMetres?: { min: number; max?: number };
+  /** Cap on recoverable leaseholder contribution (e.g. £0 for BSA 2022). */
+  leaseholderContributionCap?: string;
+  conviction: ConvictionClass;
+  unverified?: boolean;
+}
+
 export interface StatutoryInstrument {
   id: string;
   number: string;
@@ -278,6 +303,12 @@ export interface LegislativeFramework {
   jurisdiction: Jurisdiction;
   primaryActs: PrimaryAct[];
   regulations: Regulation[];
+  /**
+   * Phase 12 G6 — Building Safety Schemes (e.g. BSA 2022 ss.116–125
+   * remediation scheme). Distinct from `regulations` because they
+   * unlock a specific remedy path (the EWS1-form flow).
+   */
+  buildingSafetySchemes?: BuildingSafetyScheme[];
   statutoryInstruments: StatutoryInstrument[];
   reformAmendments: ReformAmendment[];
   leadingCases: LeadingCase[];
@@ -557,6 +588,55 @@ const RegulationSchema = objectSchema<Regulation>({
   },
 });
 
+const BuildingSafetySchemeSchema = objectSchema<BuildingSafetyScheme>({
+  id: str(),
+  parentActId: str(),
+  schemeName: str(),
+  year: int(),
+  sourceUrl: url(),
+  summary: str(),
+  sectionsEstablished: arrayOf<string>((x, path, issues) => {
+    if (!isString(x)) {
+      issues.push({ path, message: "expected section string" });
+      return false;
+    }
+    return true;
+  }),
+  eligibleHeightMetres: {
+    optional: true,
+    validate: (x, path, issues) => {
+      if (x === undefined) return true;
+      if (typeof x !== "object" || x === null) {
+        issues.push({ path, message: "expected object" });
+        return false;
+      }
+      const o = x as Record<string, unknown>;
+      if (typeof o.min !== "number") {
+        issues.push({ path: `${path}.min`, message: "expected number" });
+        return false;
+      }
+      if (o.max !== undefined && typeof o.max !== "number") {
+        issues.push({ path: `${path}.max`, message: "expected number or undefined" });
+        return false;
+      }
+      return true;
+    },
+  },
+  leaseholderContributionCap: str({ optional: true }),
+  conviction: enumeration(CONVICTION_CLASSES),
+  unverified: {
+    optional: true,
+    validate: (x, path, issues) => {
+      if (x === undefined) return true;
+      if (typeof x !== "boolean") {
+        issues.push({ path, message: "expected boolean" });
+        return false;
+      }
+      return true;
+    },
+  },
+});
+
 const StatutoryInstrumentSchema = objectSchema<StatutoryInstrument>({
   id: str(),
   number: str(),
@@ -725,6 +805,21 @@ export const LegislativeFrameworkSchema = objectSchema<LegislativeFramework>({
   regulations: arrayOf<Regulation>((x, path, issues) =>
     RegulationSchema._validate(x, path, issues),
   ),
+  buildingSafetySchemes: {
+    optional: true,
+    validate: (x, path, issues) => {
+      if (x === undefined) return true;
+      if (!Array.isArray(x)) {
+        issues.push({ path, message: "expected array" });
+        return false;
+      }
+      let ok = true;
+      (x as unknown[]).forEach((item, i) => {
+        if (!BuildingSafetySchemeSchema._validate(item, `${path}[${i}]`, issues)) ok = false;
+      });
+      return ok;
+    },
+  },
   statutoryInstruments: arrayOf<StatutoryInstrument>((x, path, issues) =>
     StatutoryInstrumentSchema._validate(x, path, issues),
   ),
@@ -890,6 +985,7 @@ export function extractUrls(fw: LegislativeFramework): string[] {
     if (a.officialPdfUrl) urls.push(a.officialPdfUrl);
   }
   for (const r of fw.regulations) urls.push(r.sourceUrl);
+  for (const bss of fw.buildingSafetySchemes ?? []) urls.push(bss.sourceUrl);
   for (const si of fw.statutoryInstruments) urls.push(si.sourceUrl);
   for (const ra of fw.reformAmendments) urls.push(ra.sourceUrl);
   for (const c of fw.leadingCases) urls.push(c.sourceUrl);
@@ -922,6 +1018,7 @@ export function frameworkCounts(fw: LegislativeFramework): Record<string, number
   return {
     primaryActs: fw.primaryActs.length,
     regulations: fw.regulations.length,
+    buildingSafetySchemes: fw.buildingSafetySchemes?.length ?? 0,
     statutoryInstruments: fw.statutoryInstruments.length,
     reformAmendments: fw.reformAmendments.length,
     leadingCases: fw.leadingCases.length,

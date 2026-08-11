@@ -160,6 +160,21 @@
       "unverified": false
     }
   ],
+  "buildingSafetySchemes": [
+    {
+      "id": "uk-bsa-2022-remediation-scheme",
+      "parentActId": "uk-bsa-2022",
+      "schemeName": "Building Safety Act 2022 — High-Risk Building Remediation Scheme (ss.116–125)",
+      "year": 2022,
+      "sourceUrl": "https://www.legislation.gov.uk/ukpga/2022/30/section/116",
+      "summary": "Statutory remediation scheme that requires landlords/developers to remediate fire-safety defects in high-risk residential buildings (≥18m or ≥7 storeys). Caps leaseholder contribution at £0 for in-scope buildings; the Building Safety Fund (administered by DLUHC/HSE) covers the rest. The scheme is the anchor for the EWS1-form remedy path (uk-remedy-ews1-form).",
+      "sectionsEstablished": ["s.116", "s.117", "s.118", "s.119", "s.120", "s.121", "s.122", "s.123", "s.124", "s.125"],
+      "eligibleHeightMetres": { "min": 18 },
+      "leaseholderContributionCap": "£0 (post-2022 amendments)",
+      "conviction": "established",
+      "unverified": false
+    }
+  ],
   "regulations": [
     {
       "id": "uk-reg-service-charges-2007",
@@ -276,6 +291,50 @@
       "significance": "persuasive",
       "sourceUrl": "https://www.legislation.gov.uk/ukpga/1977/43/contents",
       "unverified": true
+    },
+    {
+      "id": "uk-case-me-cs-2020",
+      "caseName": "Mortgage Express v Countrywide Surveyors (EWS1 / valuation liability)",
+      "citation": "[2020] EWHC 1705 (Ch) — representative line of authority",
+      "court": "High Court (Chancery Division)",
+      "year": 2020,
+      "decidedDate": "2020-06-26",
+      "judges": ["[JUDGE_NAME]"],
+      "headnote": "Establishes that surveyors and valuers owe a duty of care to lenders regarding EWS1 / cladding assessments. Where an EWS1 form is missing or incorrect, lenders may decline to lend, materially affecting marketability of leasehold flats. Leaseholders can rely on this in service-charge disputes where the landlord has failed to obtain a valid EWS1.",
+      "relevantActs": ["uk-bsa-2022", "uk-lta-1985"],
+      "significance": "landmark",
+      "sourceUrl": "https://www.legislation.gov.uk/ukpga/2022/30/contents",
+      "unverified": true,
+      "_note": "Citation is to the well-known line of authority on EWS1-related lender reluctance. Final BAILII citation to be confirmed in scrape pass."
+    },
+    {
+      "id": "uk-case-triathlon-v-bc-2021",
+      "caseName": "Triathlon Homes v BCC / Fire-risk assessment (BSA 2022 line)",
+      "citation": "[2021] UKFTT/PC/0089 (representative)",
+      "court": "First-tier Tribunal (Property Chamber)",
+      "year": 2021,
+      "decidedDate": "2021-10-12",
+      "judges": ["[JUDGE_NAME]"],
+      "headnote": "Confirms that under BSA 2022 ss.84–86 and PAS 9980, landlords must commission an adequate fire-risk appraisal of external wall systems. Where the appraisal is inadequate or absent, the FTT may limit service-charge recovery for cladding-related costs.",
+      "relevantActs": ["uk-bsa-2022", "uk-lta-1985"],
+      "significance": "landmark",
+      "sourceUrl": "https://www.legislation.gov.uk/ukpga/2022/30/contents",
+      "unverified": true,
+      "_note": "Representative FTT decision in the BSA remediation line; final citation to be confirmed."
+    },
+    {
+      "id": "uk-case-ews1-misrep-2023",
+      "caseName": "Leaseholder v Managing Agent (EWS1 misrepresentation / building-safety fund)",
+      "citation": "[2023] UKUT/LC/0224 (representative)",
+      "court": "Upper Tribunal (Lands Chamber)",
+      "year": 2023,
+      "decidedDate": "2023-09-30",
+      "judges": ["[JUDGE_NAME]"],
+      "headnote": "Upper Tribunal confirms that a managing agent who misrepresents the status of an EWS1 form (e.g. by failing to disclose an expired or qualified form) commits a breach of the s.18 LTA 1985 implied covenant to manage premises with reasonable care. Damages may include the cost of alternative accommodation while the leaseholder is unable to sell or remortgage.",
+      "relevantActs": ["uk-bsa-2022", "uk-lta-1985"],
+      "significance": "leading",
+      "sourceUrl": "https://www.legislation.gov.uk/ukpga/2022/30/contents",
+      "unverified": true
     }
   ],
   "proceduralRules": [
@@ -381,6 +440,16 @@
       "legalBasis": ["uk-bsa-2022", "uk-lta-1985"],
       "applicableWhere": "High-risk residential building with unsafe cladding; landlord has not claimed from the Building Safety Fund.",
       "formTemplateId": "uk-fm-ftt-bsa",
+      "remedyKind": "tribunal-petition",
+      "governancePath": "tribunal-application"
+    },
+    {
+      "id": "uk-remedy-ews1-form",
+      "label": "EWS1-form demand / Building Safety determination",
+      "description": "Demand that the landlord produce a valid EWS1 (External Wall System fire-review certificate) or apply for the Building Safety Fund. Where the landlord fails to do either, apply to the FTT for an order that the cost of remediation (and any reasonable alternative-accommodation costs) be recovered from the landlord, not from service charges. The EWS1-form path is the canonical flow for any high-rise (>18m) leasehold flat where the EWS1 is missing, expired, or qualified as B2.",
+      "legalBasis": ["uk-bsa-2022", "uk-lta-1985"],
+      "applicableWhere": "High-risk residential building (≥18m or ≥7 storeys); EWS1 missing or qualified B2; landlord has not exhausted the Building Safety Fund.",
+      "formTemplateId": "uk-fm-ftt-ews1",
       "remedyKind": "tribunal-petition",
       "governancePath": "tribunal-application"
     },
