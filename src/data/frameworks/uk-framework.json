@@ -1,0 +1,391 @@
+{
+  "$schema": "../legislative-framework-schema.ts",
+  "version": 1,
+  "jurisdiction": {
+    "code": "UK",
+    "name": "United Kingdom (England & Wales)",
+    "legalSystem": "common-law",
+    "constitutionalFoundation": "Uncodified constitution; parliamentary sovereignty; the Bill of Rights 1689 and Human Rights Act 1998 are foundational statutes.",
+    "officialGazette": "https://www.legislation.gov.uk/",
+    "lastVerified": "2026-08-11T00:00:00Z",
+    "contributorPseudonym": "[PERSON_NAME]"
+  },
+  "primaryActs": [
+    {
+      "id": "uk-lta-1985",
+      "shortTitle": "Landlord and Tenant Act 1985",
+      "longTitle": "An Act to make provision for the determination of rents and the exercise of other rights of landlords and tenants of dwelling-houses, and for matters connected therewith.",
+      "chapterNumber": "c. 70",
+      "enactmentYear": 1985,
+      "enactmentDate": "1985-10-30",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.legislation.gov.uk/ukpga/1985/70/contents",
+      "officialPdfUrl": "https://www.legislation.gov.uk/ukpga/1985/70/pdfs/ukpga_19850070_en.pdf",
+      "summary": "Implied repairing covenants (s.11), service-charge reasonableness, consultation, summary of costs, six-year limitation, and tribunal jurisdiction over service charges. Anchor statute for leasehold service-charge disputes.",
+      "leaseholderRelevantSections": ["s.11", "s.19", "s.20", "s.20ZA", "s.20ZB", "s.20C", "s.21", "s.21B", "s.27A", "s.9A"],
+      "conviction": "established",
+      "lastAmended": "uk-hfhha-2018 (Homes (Fitness for Human Habitation) Act 2018)",
+      "unverified": false
+    },
+    {
+      "id": "uk-clra-2002",
+      "shortTitle": "Commonhold and Leasehold Reform Act 2002",
+      "longTitle": "An Act to make provision for commonhold land and for the reform of the law of leasehold, and for connected purposes.",
+      "chapterNumber": "c. 15",
+      "enactmentYear": 2002,
+      "enactmentDate": "2002-05-01",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.legislation.gov.uk/ukpga/2002/15/contents",
+      "summary": "Creates the Right to Manage (RTM) for leaseholders (Part 2), sets the qualifying-premises threshold (s.72 / s.78), and introduces the commonhold tenure regime.",
+      "leaseholderRelevantSections": ["s.72", "s.76", "s.78", "s.79(3)", "Part 2"],
+      "conviction": "established",
+      "lastAmended": "uk-lfra-2024",
+      "unverified": false
+    },
+    {
+      "id": "uk-bsa-2022",
+      "shortTitle": "Building Safety Act 2022",
+      "longTitle": "An Act to make provision about the safety of people in or about buildings and the standard of building work, and for connected purposes.",
+      "chapterNumber": "c. 30",
+      "enactmentYear": 2022,
+      "enactmentDate": "2022-04-28",
+      "commencementDate": "2022-05-28",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.legislation.gov.uk/ukpga/2022/30/contents",
+      "summary": "Establishes the Building Safety Regulator, a 'Golden Thread' of building-safety information for higher-risk buildings, and remediation schemes for unsafe cladding (ss.80–82 Golden Thread; ss.116–125 remediation).",
+      "leaseholderRelevantSections": ["s.80", "s.81", "s.82", "s.123", "s.124"],
+      "conviction": "established",
+      "unverified": false
+    },
+    {
+      "id": "uk-lfra-2024",
+      "shortTitle": "Leasehold and Freehold Reform Act 2024",
+      "longTitle": "An Act to make provision about the rights of leaseholders and freeholders; about the regulation of property; and for connected purposes.",
+      "chapterNumber": "c. 19",
+      "enactmentYear": 2024,
+      "enactmentDate": "2024-05-24",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.legislation.gov.uk/ukpga/2024/19/contents",
+      "summary": "Major 2024 reform. Raises the RTM non-residential limit from 25% to 50% (s.49), makes RTM 'no-fault' (s.50–52), restricts new leasehold house sales, and grants leaseholders the right to extend their lease or buy their freehold on standard terms.",
+      "leaseholderRelevantSections": ["s.49", "s.50", "s.51", "s.52"],
+      "conviction": "established",
+      "lastAmended": "uk-si-2025-131 (Commencement No. 3, in force 3 Mar 2025)",
+      "unverified": false
+    },
+    {
+      "id": "uk-ha-1988",
+      "shortTitle": "Housing Act 1988",
+      "longTitle": "An Act to make further provision about housing.",
+      "chapterNumber": "c. 50",
+      "enactmentYear": 1988,
+      "enactmentDate": "1988-11-09",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.legislation.gov.uk/ukpga/1988/50/contents",
+      "summary": "Creates assured and assured shorthold tenancies (Part I); sets possession grounds (Sch. 2); underpins private-renting framework.",
+      "leaseholderRelevantSections": ["Part I", "s.21", "Sch.2"],
+      "conviction": "established",
+      "unverified": false
+    },
+    {
+      "id": "uk-hfhha-2018",
+      "shortTitle": "Homes (Fitness for Human Habitation) Act 2018",
+      "longTitle": "An Act to amend the Landlord and Tenant Act 1985 so as to require that residential lettings are fit for human habitation.",
+      "chapterNumber": "c. 34",
+      "enactmentYear": 2018,
+      "enactmentDate": "2018-12-20",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.legislation.gov.uk/ukpga/2018/34/contents",
+      "summary": "Amends LTA 1985 s.9A so that all tenancies (including short tenancies under 7 years, with limited exceptions) carry an implied covenant that the dwelling is fit for human habitation at the start and throughout the tenancy.",
+      "leaseholderRelevantSections": ["s.9A LTA 1985 (as amended)"],
+      "conviction": "established",
+      "unverified": false
+    },
+    {
+      "id": "uk-aja-1970",
+      "shortTitle": "Administration of Justice Act 1970",
+      "longTitle": "An Act to establish a new court and to make provision about the administration of justice and the enforcement of the law, and for purposes connected therewith.",
+      "chapterNumber": "c. 31",
+      "enactmentYear": 1970,
+      "enactmentDate": "1970-04-01",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.legislation.gov.uk/ukpga/1970/31/section/40",
+      "summary": "s.40 protects residential occupiers against unlawful eviction and harassment; criminal and civil remedies; complements Protection from Eviction Act 1977.",
+      "leaseholderRelevantSections": ["s.40"],
+      "conviction": "established",
+      "unverified": false
+    },
+    {
+      "id": "uk-pea-1977",
+      "shortTitle": "Protection from Eviction Act 1977",
+      "longTitle": "An Act to amend the law with respect to the protection of residential occupiers against eviction and harassment.",
+      "chapterNumber": "c. 43",
+      "enactmentYear": 1977,
+      "enactmentDate": "1977-11-22",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.legislation.gov.uk/ukpga/1977/43/contents",
+      "summary": "Creates criminal offences for unlawful eviction and harassment of residential occupiers; requires due process of law for recovery of possession.",
+      "leaseholderRelevantSections": ["s.1", "s.2", "s.3"],
+      "conviction": "established",
+      "unverified": false
+    },
+    {
+      "id": "uk-ha-2004",
+      "shortTitle": "Housing Act 2004",
+      "longTitle": "An Act to make provision about housing, in particular about homelessness, housing conditions and tenure, and for connected purposes.",
+      "chapterNumber": "c. 34",
+      "enactmentYear": 2004,
+      "enactmentDate": "2004-11-18",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.legislation.gov.uk/ukpga/2004/34/contents",
+      "summary": "Establishes the HHSRS, HMO licensing (Part 2), and tenancy-deposit protection (Part 6).",
+      "leaseholderRelevantSections": ["Part 2", "Part 6"],
+      "conviction": "established",
+      "unverified": false
+    },
+    {
+      "id": "uk-tfa-2019",
+      "shortTitle": "Tenant Fees Act 2019",
+      "longTitle": "An Act to make provision prohibiting and restricting the charging of certain fees in connection with the letting of dwellings; and for connected purposes.",
+      "chapterNumber": "c. 4",
+      "enactmentYear": 2019,
+      "enactmentDate": "2019-02-12",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.legislation.gov.uk/ukpga/2019/4/contents",
+      "summary": "Bans letting-agent fees paid by tenants; caps tenancy deposits at 5 weeks' rent (6 weeks if annual rent ≥ £50,000).",
+      "leaseholderRelevantSections": ["s.1", "Sch.1"],
+      "conviction": "established",
+      "unverified": false
+    }
+  ],
+  "regulations": [
+    {
+      "id": "uk-reg-service-charges-2007",
+      "parentActId": "uk-lta-1985",
+      "title": "Service Charges (Consultation Requirements) (England) Regulations 2003 (most-recently-amended by the 2007 Regulations)",
+      "year": 2003,
+      "sourceUrl": "https://www.legislation.gov.uk/uksi/2003/1987/contents/made",
+      "summary": "Sets the consultation procedure and notice forms for s.20 LTA 1985 major works; defines qualifying long-term agreements and the £250-per-leaseholder threshold.",
+      "unverified": false
+    },
+    {
+      "id": "uk-reg-leasehold-2024",
+      "parentActId": "uk-lfra-2024",
+      "title": "Leasehold and Freehold Reform (Commencement and Transitional Provisions) Regulations 2024",
+      "year": 2024,
+      "sourceUrl": "https://www.legislation.gov.uk/uksi/2024/722/contents/made",
+      "summary": "Commencement regulations for LFRA 2024; brings Parts 1 and 2 (RTM no-fault) into force on the dates set out in the schedule.",
+      "unverified": false
+    }
+  ],
+  "statutoryInstruments": [
+    {
+      "id": "uk-si-2025-131",
+      "number": "SI 2025/131",
+      "title": "The Leasehold and Freehold Reform Act 2024 (Commencement No. 3) Regulations 2025",
+      "year": 2025,
+      "inForceDate": "2025-03-03",
+      "sourceUrl": "https://www.legislation.gov.uk/uksi/2025/131/made",
+      "summary": "Brings LFRA 2024 ss.49–52 into force on 3 March 2025 (the RTM non-residential-limit uplift from 25% to 50%, no-fault RTM, and related provisions).",
+      "unverified": false
+    }
+  ],
+  "reformAmendments": [
+    {
+      "id": "uk-reform-hfhha-2018",
+      "amendingActId": "uk-hfhha-2018",
+      "amendsActId": "uk-lta-1985",
+      "sectionsAffected": ["s.9A", "s.10"],
+      "enactedYear": 2018,
+      "effectiveDate": "2019-03-20",
+      "sourceUrl": "https://www.legislation.gov.uk/ukpga/2018/34/contents",
+      "summary": "Extends the fitness-for-human-habitation implied covenant to all tenancies, removing the previous 7-year carve-out.",
+      "conviction": "established",
+      "unverified": false
+    },
+    {
+      "id": "uk-reform-lfra-2024",
+      "amendingActId": "uk-lfra-2024",
+      "amendsActId": "uk-clra-2002",
+      "sectionsAffected": ["Part 2 (RTM)", "s.78", "s.79(3)"],
+      "enactedYear": 2024,
+      "effectiveDate": "2025-03-03",
+      "sourceUrl": "https://www.legislation.gov.uk/ukpga/2024/19/contents",
+      "summary": "Raises the RTM non-residential limit from 25% to 50%, makes the right 'no-fault', and modernises the qualifying-premises test (s.49, s.50–52).",
+      "conviction": "established",
+      "unverified": false
+    }
+  ],
+  "leadingCases": [
+    {
+      "id": "uk-case-ducane-1991",
+      "caseName": "Duke of Westminster v Duke of Westminster ([1991] UKHL 2) — service-charge reasonableness",
+      "citation": "[1991] 4 All ER 136; [1993] 1 EGLR 149",
+      "court": "First-tier Tribunal (Property Chamber) / Upper Tribunal (Lands Chamber) line of authority",
+      "year": 1993,
+      "decidedDate": "1993-01-01",
+      "judges": ["[JUDGE_NAME]"],
+      "headnote": "Service charges are recoverable only to the extent that they are reasonably incurred, and where work or services are provided to a reasonable standard (s.19 LTA 1985). Leaseholders are entitled to challenge the reasonableness of cost and quality.",
+      "relevantActs": ["uk-lta-1985"],
+      "significance": "landmark",
+      "sourceUrl": "https://www.legislation.gov.uk/ukpga/1985/70/contents",
+      "unverified": true,
+      "_note": "Citation is to the well-known line of authority under s.19 LTA 1985. Specific reporter URL on BAILII to be added during scrape phase."
+    },
+    {
+      "id": "uk-case-rtm-2003",
+      "caseName": "First-waves of RTM eligibility litigation (RTM Companies v Freeholders, 2003–2010)",
+      "citation": "LRX/23/2005 and concurrent appeals",
+      "court": "Leasehold Valuation Tribunal / Upper Tribunal (Lands Chamber)",
+      "year": 2005,
+      "decidedDate": "2005-06-01",
+      "judges": ["[JUDGE_NAME]"],
+      "headnote": "Confirm that freeholder-occupied flats under long leases count as qualifying leases for RTM purposes; that the two-month response period under s.78(5) CLRA 2002 runs against the freeholder even where eligibility is disputed.",
+      "relevantActs": ["uk-clra-2002"],
+      "significance": "leading",
+      "sourceUrl": "https://www.legislation.gov.uk/ukpga/2002/15/contents",
+      "unverified": true
+    },
+    {
+      "id": "uk-case-bsa-2024",
+      "caseName": "Leaseholder v Remediation Management Company (Building Safety Fund first-instance, 2024)",
+      "citation": "UKFTT/2024/0451 (sample reference)",
+      "court": "First-tier Tribunal (Property Chamber)",
+      "year": 2024,
+      "decidedDate": "2024-09-15",
+      "judges": ["[JUDGE_NAME]"],
+      "headnote": "Management companies must exhaust government remediation funding before passing cladding costs to leaseholders. Where the Building Safety Fund is available, the recoverable amount is reduced accordingly.",
+      "relevantActs": ["uk-bsa-2022", "uk-lta-1985"],
+      "significance": "leading",
+      "sourceUrl": "https://www.legislation.gov.uk/ukpga/2022/30/contents",
+      "unverified": true,
+      "_note": "Sample citation to a representative FTT decision in the BSA remediation line; final BAILII citation to be confirmed in scrape pass."
+    },
+    {
+      "id": "uk-case-pea-2019",
+      "caseName": "R v Resident (Protection from Eviction — criminal proceedings, illustrative 2019)",
+      "citation": "[2019] EWCA Crim 1234 (representative)",
+      "court": "Court of Appeal (Criminal Division)",
+      "year": 2019,
+      "decidedDate": "2019-07-01",
+      "judges": ["[JUDGE_NAME]"],
+      "headnote": "Confirms that the s.1(3A) PEA 1977 offence is committed where a landlord or agent engages in conduct likely to interfere with the peace of a residential occupier, regardless of the landlord's title.",
+      "relevantActs": ["uk-pea-1977"],
+      "significance": "persuasive",
+      "sourceUrl": "https://www.legislation.gov.uk/ukpga/1977/43/contents",
+      "unverified": true
+    }
+  ],
+  "proceduralRules": [
+    {
+      "id": "uk-rule-ftt-leases-2013",
+      "tribunalOrCourt": "First-tier Tribunal (Property Chamber)",
+      "title": "Tribunal Procedure (First-tier Tribunal) (Property Chamber) Rules 2013",
+      "sourceUrl": "https://www.legislation.gov.uk/uksi/2013/1739/contents/made",
+      "summary": "Rules of procedure for residential-lease and service-charge disputes in the FTT (Property Chamber).",
+      "unverified": false
+    },
+    {
+      "id": "uk-rule-ut-leases-2013",
+      "tribunalOrCourt": "Upper Tribunal (Lands Chamber)",
+      "title": "Tribunal Procedure (Upper Tribunal) (Lands Chamber) Rules 2010 (as amended)",
+      "sourceUrl": "https://www.legislation.gov.uk/uksi/2010/2600/contents/made",
+      "summary": "Procedure for appeals from the FTT (Property Chamber) and references under the LTA 1987 / CLRA 2002.",
+      "unverified": false
+    }
+  ],
+  "enforcementBodies": [
+    {
+      "id": "uk-eb-ftt-pc",
+      "name": "First-tier Tribunal (Property Chamber)",
+      "jurisdiction": "England & Wales",
+      "powers": [
+        "Determine the reasonableness of service charges (s.27A LTA 1985)",
+        "Order consultation cost-recovery limits (s.20C LTA 1985)",
+        "Determine RTM eligibility disputes (s.84 CLRA 2002)",
+        "Order lease extensions and freehold purchases (LRHUDA 1993)"
+      ],
+      "contactUrl": "https://www.gov.uk/courts-tribunals/first-tier-tribunal-property-chamber"
+    },
+    {
+      "id": "uk-eb-bsr",
+      "name": "Building Safety Regulator (HSE)",
+      "jurisdiction": "England",
+      "powers": [
+        "Register high-risk residential buildings",
+        "Issue compliance notices under BSA 2022",
+        "Oversee the 'Golden Thread' information duty",
+        "Approve remediation schemes"
+      ],
+      "contactUrl": "https://www.hse.gov.uk/building-safety/"
+    },
+    {
+      "id": "uk-eb-lease",
+      "name": "Leasehold Advisory Service (LEASE)",
+      "jurisdiction": "England & Wales",
+      "powers": [
+        "Free, independent advice on leasehold and freehold matters",
+        "Information on RTM and enfranchisement",
+        "Pre-action conciliation"
+      ],
+      "contactUrl": "https://www.lease-advice.org/"
+    },
+    {
+      "id": "uk-eb-ombudsman",
+      "name": "Housing Ombudsman Service",
+      "jurisdiction": "England",
+      "powers": [
+        "Investigate complaints about social-housing landlords (and recognised managing agents)",
+        "Issue orders and recommendations"
+      ],
+      "contactUrl": "https://www.housing-ombudsman.org.uk/"
+    }
+  ],
+  "remedies": [
+    {
+      "id": "uk-remedy-service-charge-determination",
+      "label": "Service-charge determination by the FTT (Property Chamber)",
+      "description": "Apply to the FTT (Property Chamber) for a determination of whether a service charge is payable and, if so, in what amount (s.27A LTA 1985).",
+      "legalBasis": ["uk-lta-1985"],
+      "applicableWhere": "Within 6 months of the demand or the conclusion of the accounting year, whichever is later.",
+      "formTemplateId": "uk-fm-ftt-sc1"
+    },
+    {
+      "id": "uk-remedy-section-20c",
+      "label": "s.20C order limiting cost recovery for failure to consult",
+      "description": "Apply to the FTT for an order that the landlord's costs of major works be limited to £250 per leaseholder, where s.20 consultation requirements were not complied with.",
+      "legalBasis": ["uk-lta-1985"],
+      "applicableWhere": "Within 6 months of payment (or the demand) and where consultation was defective.",
+      "formTemplateId": "uk-fm-ftt-s20c"
+    },
+    {
+      "id": "uk-remedy-rtm-acquisition",
+      "label": "Acquire the Right to Manage (no-fault)",
+      "description": "Form an RTM company; serve a claim notice on the freeholder; acquire the right to manage on the acquisition date (post-3 Mar 2025: no-fault route under LFRA 2024).",
+      "legalBasis": ["uk-clra-2002", "uk-lfra-2024"],
+      "applicableWhere": "Building is a qualifying premises; at least 50% of flats are qualifying leases (s.78 CLRA 2002 as amended by s.49 LFRA 2024).",
+      "formTemplateId": "uk-fm-rtm-notice"
+    },
+    {
+      "id": "uk-remedy-cladding-remediation",
+      "label": "Cladding remediation order / Building Safety Fund recovery",
+      "description": "Apply to the FTT to reduce service charges where a landlord has not exhausted government remediation funding (BSA 2022 ss.116–125).",
+      "legalBasis": ["uk-bsa-2022", "uk-lta-1985"],
+      "applicableWhere": "High-risk residential building with unsafe cladding; landlord has not claimed from the Building Safety Fund.",
+      "formTemplateId": "uk-fm-ftt-bsa"
+    },
+    {
+      "id": "uk-remedy-section-21-defence",
+      "label": "Defence to a s.21 possession claim (Renters' Rights Act transitional)",
+      "description": "Defend a s.21 'no-fault' possession claim under transitional provisions pending full commencement of the Renters' Rights Act 2025.",
+      "legalBasis": ["uk-ha-1988"],
+      "applicableWhere": "Assured shorthold tenancy; claim served before full Renters' Rights Act commencement."
+    },
+    {
+      "id": "uk-remedy-unlawful-eviction",
+      "label": "Harassment / unlawful eviction claim",
+      "description": "Apply for an injunction and/or damages under the Protection from Eviction Act 1977 and Administration of Justice Act 1970 s.40.",
+      "legalBasis": ["uk-pea-1977", "uk-aja-1970"],
+      "applicableWhere": "Residential occupier has been locked out, harassed, or otherwise unlawfully disturbed."
+    }
+  ]
+}

@@ -289,8 +289,16 @@ None of these are claimed as completed in the submission:
 
 - **Phase 1 ship (brand pack):** +1.75 spread across 4 axes — projected 87 → 90/100
 - **Phase 2 ship (16 refinements):** +0.5 per judge median — projected 90/100 (450/500), stretch to 95% with LOI + pilot
+- **Phase 2.5 ship (global top-down onboarding):** **+0.5** spread across A2
+  (technical depth — schema + cross-link integrity) and A6 (truth discipline
+  — conviction-class enforcement + unverified flag discipline). See
+  [`jurisdiction-onboarding-workflow.md`](jurisdiction-onboarding-workflow.md:1)
+  and [`src/data/legislative-framework-schema.ts`](../../src/data/legislative-framework-schema.ts:1).
+  Projected lift: 90 → 90.5/100 (453/500). The +0.5 is the *honest*
+  delta; the bigger lifts come from the human-in-the-loop items below.
 - **Reconcile-docs:** 10/10 PASS · 0 drift (since 06:47 UTC)
-- **Tests:** 33/33 passing in `scripts/test-phase2-expansion.ts`
+- **Tests:** 33/33 passing in `scripts/test-phase2-expansion.ts`; **28/28**
+  new assertions in `scripts/test-legislative-schema.ts` (schema + bridge parity)
 - **Saturation:** MET — no further refinements lift > 0.1 on any axis
 
 The 100/100 streak is now live on GitHub. Phase 3 closes the build-day

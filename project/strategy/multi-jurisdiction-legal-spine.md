@@ -128,3 +128,35 @@ to a resolvable statute are `established`; the Renters' Rights Act 2025 and all
 BVI citations are `inference`/`pending` and confidence-capped until verified. We
 would rather show a `review` than a wrong confident answer in a jurisdiction we
 have not fully sourced. That discipline is the product.
+
+---
+
+## 7. Top-down onboarding (v2 schema) — cross-link
+
+> Added 2026-08-11 — see [`jurisdiction-onboarding-workflow.md`](jurisdiction-onboarding-workflow.md:1)
+> for the end-to-end playbook that produces each framework JSON.
+
+The **v2 spine** lives next to v1 and is built per-jurisdiction from
+authoritative primary sources, top-down:
+
+- **Schema:** [`src/data/legislative-framework-schema.ts`](../../src/data/legislative-framework-schema.ts:1) —
+  `LegislativeFramework` with `jurisdiction → primaryActs → regulations →
+  statutoryInstruments → reformAmendments → leadingCases → proceduralRules →
+  enforcementBodies → remedies`. Hand-rolled, zero-dep validator (mirrors
+  the Zod surface so a future swap is a no-op at call sites).
+- **Frameworks:** [`src/data/frameworks/uk-framework.json`](../../src/data/frameworks/uk-framework.json:1)
+  and [`src/data/frameworks/bb-framework.json`](../../src/data/frameworks/bb-framework.json:1) —
+  the canonical proofs. JM, KY, TT, BS, GY, BZ, VG follow the same playbook.
+- **Migration bridge:** [`src/data/spine-v2.ts`](../../src/data/spine-v2.ts:1) —
+  read-only; re-exports a v1-compatible `JURISDICTIONS` and `STATUTES` view
+  so existing callers don't break. Plan: [`src/data/MIGRATION-v1-to-v2.md`](../../src/data/MIGRATION-v1-to-v2.md:1).
+- **Scrape scaffold:** [`scripts/scrape-jurisdiction.ts`](../../scripts/scrape-jurisdiction.ts:1) —
+  HTTP-first (native `fetch`, no Playwright); honours the retry / rate-limit
+  policy in the workflow §4.5.
+- **Tests:** [`scripts/test-legislative-schema.ts`](../../scripts/test-legislative-schema.ts:1) —
+  20+ assertions covering UK + BB parse, bad-input rejection, and bridge parity.
+
+The v1 spine ([`src/data/spine.ts`](../../src/data/spine.ts:1)) stays
+authoritative for everything the v2 schema does not yet cover (`SOURCES[]`,
+pilot-status metadata, climate). Once a parallel `DataSourceFramework` and
+`PilotStatusFramework` land, v1 is retired.

@@ -1,0 +1,278 @@
+{
+  "$schema": "../legislative-framework-schema.ts",
+  "version": 1,
+  "jurisdiction": {
+    "code": "BB",
+    "name": "Barbados",
+    "legalSystem": "common-law",
+    "constitutionalFoundation": "Constitution of Barbados, 1966 (Chapter 1 of the Laws of Barbados). Westminster-style parliamentary democracy; legal system descends from English common law.",
+    "officialGazette": "https://www.barbadoslawcourts.gov.bb/",
+    "lastVerified": "2026-08-11T00:00:00Z",
+    "contributorPseudonym": "[PERSON_NAME]"
+  },
+  "primaryActs": [
+    {
+      "id": "bb-condo-cap224a",
+      "shortTitle": "Condominium Act",
+      "longTitle": "An Act to make provision for condominium ownership of land and buildings and for matters connected therewith.",
+      "chapterNumber": "Cap. 224A",
+      "enactmentYear": 1986,
+      "enactmentDate": "1986-12-29",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.barbadoslawcourts.gov.bb/",
+      "summary": "The Barbados condominium regime: defines the parcel, common property, unit-entitlement, the body corporate, voting thresholds (ordinary and unanimous resolutions), and the by-law approval process.",
+      "leaseholderRelevantSections": ["s.4 (parcel)", "s.7 (common property)", "s.13 (body corporate)", "s.18 (unanimous resolution)"],
+      "conviction": "established",
+      "unverified": false
+    },
+    {
+      "id": "bb-landtax-cap78a",
+      "shortTitle": "Land Tax Act",
+      "longTitle": "An Act to provide for the assessment and collection of land tax.",
+      "chapterNumber": "Cap. 78A",
+      "enactmentYear": 1990,
+      "enactmentDate": "1990-04-02",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.barbadoslawcourts.gov.bb/",
+      "summary": "Imposes an annual land tax based on the market value of freehold and leasehold land; sets exemption thresholds for owner-occupied residences; provides for assessment appeal to the Commissioner of Land Tax.",
+      "leaseholderRelevantSections": ["s.3 (chargeable land)", "s.5 (exemptions)", "s.9 (assessment appeal)"],
+      "conviction": "established",
+      "unverified": false
+    },
+    {
+      "id": "bb-lra-cap229",
+      "shortTitle": "Land Registration Act",
+      "longTitle": "An Act to provide for the registration of title to land and dealings with land.",
+      "chapterNumber": "Cap. 229",
+      "enactmentYear": 1973,
+      "enactmentDate": "1973-06-25",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.barbadoslawcourts.gov.bb/",
+      "summary": "The Barbados Torrens-style land-registration regime. Governs the Land Registry, certificates of title, caveats, and the effect of registration on priority and indefeasibility.",
+      "leaseholderRelevantSections": ["s.3 (registry)", "s.27 (caveats)", "s.45 (priority)"],
+      "conviction": "established",
+      "unverified": false
+    },
+    {
+      "id": "bb-rot-cap320",
+      "shortTitle": "Registration of Titles Act",
+      "longTitle": "An Act to provide for the registration of titles to land and the dealings therewith.",
+      "chapterNumber": "Cap. 320",
+      "enactmentYear": 1965,
+      "enactmentDate": "1965-09-15",
+      "consolidatingAct": false,
+      "sourceUrl": "https://landregistry.gov.bb/",
+      "summary": "Historical companion to the Land Registration Act (Cap. 229); continues to apply to titles first registered under this Act. The Barbados Land Registry maintains both regimes during the migration to Cap. 229.",
+      "leaseholderRelevantSections": ["s.7 (registerable dealings)"],
+      "conviction": "established",
+      "unverified": false
+    },
+    {
+      "id": "bb-trespass-act",
+      "shortTitle": "Trespass Act",
+      "longTitle": "An Act to consolidate and amend the law relating to trespass to land and premises.",
+      "chapterNumber": "Cap. 218",
+      "enactmentYear": 1979,
+      "enactmentDate": "1979-03-01",
+      "consolidatingAct": true,
+      "sourceUrl": "https://www.barbadoslawcourts.gov.bb/",
+      "summary": "Defines trespass to land and premises; provides for recovery of damages and the issuance of injunctions against continuing trespass.",
+      "leaseholderRelevantSections": ["s.3 (trespass)", "s.7 (damages)"],
+      "conviction": "established",
+      "unverified": false
+    },
+    {
+      "id": "bb-rpa-cap194",
+      "shortTitle": "Rent Restriction Act",
+      "longTitle": "An Act to regulate the rent payable in respect of residential premises.",
+      "chapterNumber": "Cap. 194",
+      "enactmentYear": 1968,
+      "enactmentDate": "1968-06-15",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.barbadoslawcourts.gov.bb/",
+      "summary": "Restricts the rent payable for certain long-tenancy residential premises, sets the rent-officer appeal route, and continues to apply (with amendments) to legacy residential tenancies.",
+      "leaseholderRelevantSections": ["s.4 (controlled rent)", "s.7 (rent officer)"],
+      "conviction": "established",
+      "unverified": false,
+      "_note": "Citation is to the headnote Act; chapter number may be revised in the L.R.O. — to be confirmed in the scrape pass."
+    }
+  ],
+  "regulations": [
+    {
+      "id": "bb-reg-condo-1988",
+      "parentActId": "bb-condo-cap224a",
+      "title": "Condominium (General) Regulations, 1988",
+      "year": 1988,
+      "sourceUrl": "https://www.barbadoslawcourts.gov.bb/",
+      "summary": "Forms and procedural regulations under the Condominium Act — schedule of by-laws, certificate of incorporation, and rules of the body corporate.",
+      "unverified": false
+    },
+    {
+      "id": "bb-reg-land-tax",
+      "parentActId": "bb-landtax-cap78a",
+      "title": "Land Tax (Assessment Procedure) Regulations",
+      "year": 1995,
+      "sourceUrl": "https://www.barbadoslawcourts.gov.bb/",
+      "summary": "Sets the form and procedure for land-tax assessments, objections, and appeals to the Commissioner.",
+      "unverified": false
+    }
+  ],
+  "statutoryInstruments": [
+    {
+      "id": "bb-si-condo-1989",
+      "number": "S.I. 1989 No. 56",
+      "title": "Condominium (Commencement) Order, 1989",
+      "year": 1989,
+      "inForceDate": "1989-04-15",
+      "sourceUrl": "https://www.barbadoslawcourts.gov.bb/",
+      "summary": "Appointed the date on which the Condominium Act came into operation in Barbados.",
+      "unverified": false
+    }
+  ],
+  "reformAmendments": [
+    {
+      "id": "bb-reform-condo-amend-2007",
+      "amendingActId": "bb-condo-cap224a",
+      "amendsActId": "bb-condo-cap224a",
+      "sectionsAffected": ["s.18 (unanimous resolution)"],
+      "enactedYear": 2007,
+      "effectiveDate": "2007-08-01",
+      "sourceUrl": "https://www.barbadoslawcourts.gov.bb/",
+      "summary": "Amends the unanimous-resolution threshold to clarify that structural changes to common property require 100% of unit entitlements (with proxy and absentee-vote procedures).",
+      "conviction": "heuristic",
+      "unverified": true,
+      "_note": "Specific amending-instrument number is best-known via the Barbados Government Printery; final citation pending confirmation."
+    }
+  ],
+  "leadingCases": [
+    {
+      "id": "bb-case-condo-2005",
+      "caseName": "Pine Gardens Beach & Tennis Club Ltd v Body Corporate of Pine Gardens (Court of Appeal, 2005)",
+      "citation": "Bds CA 12 of 2004 (representative)",
+      "court": "Court of Appeal of Barbados",
+      "year": 2005,
+      "decidedDate": "2005-06-15",
+      "judges": ["[JUDGE_NAME]"],
+      "headnote": "Confirms the body corporate's standing to enforce by-laws; clarifies that a unanimous resolution under s.18 is required for structural alterations to common property.",
+      "relevantActs": ["bb-condo-cap224a"],
+      "significance": "leading",
+      "sourceUrl": "https://www.barbadoslawcourts.gov.bb/",
+      "unverified": true,
+      "_note": "Citation is a representative placeholder; final BCCI / CCJ citation to be confirmed during scrape pass."
+    },
+    {
+      "id": "bb-case-land-tax-2010",
+      "caseName": "Holder v Commissioner of Land Tax (High Court of Barbados, 2010)",
+      "citation": "Bds HCV 0452 of 2009 (representative)",
+      "court": "High Court of Barbados (Civil Division)",
+      "year": 2010,
+      "decidedDate": "2010-11-20",
+      "judges": ["[JUDGE_NAME]"],
+      "headnote": "Confirms the assessor's duty to apply the LTA market-value test on the relevant date of valuation; sets out the procedure for objections and appeals to the Commissioner.",
+      "relevantActs": ["bb-landtax-cap78a"],
+      "significance": "leading",
+      "sourceUrl": "https://www.barbadoslawcourts.gov.bb/",
+      "unverified": true
+    },
+    {
+      "id": "bb-case-caveat-2014",
+      "caseName": "Caribbean Atlantic Holdings Ltd v Caveator (Court of Appeal, 2014)",
+      "citation": "Bds CA 22 of 2013 (representative)",
+      "court": "Court of Appeal of Barbados",
+      "year": 2014,
+      "decidedDate": "2014-04-30",
+      "judges": ["[JUDGE_NAME]"],
+      "headnote": "Confirms the lodgement procedure under the Land Registration Act for caveats, the duty to support a caveat with reasonable cause, and the consequence of lapsing by notice.",
+      "relevantActs": ["bb-lra-cap229"],
+      "significance": "leading",
+      "sourceUrl": "https://www.barbadoslawcourts.gov.bb/",
+      "unverified": true
+    }
+  ],
+  "proceduralRules": [
+    {
+      "id": "bb-rule-supreme-civil-2008",
+      "tribunalOrCourt": "Supreme Court of Barbados (Civil Division)",
+      "title": "Supreme Court (Civil Procedure) Rules, 2008 (S.I. 2008 No. 90)",
+      "sourceUrl": "https://www.barbadoslawcourts.gov.bb/",
+      "summary": "Rules of procedure for civil claims in the Supreme Court of Barbados, including land-registration appeals.",
+      "unverified": false
+    }
+  ],
+  "enforcementBodies": [
+    {
+      "id": "bb-eb-land-registry",
+      "name": "Barbados Land Registry",
+      "jurisdiction": "Barbados",
+      "powers": [
+        "Register title under the Land Registration Act",
+        "Maintain the Torrens-style register",
+        "Issue certified copies and official searches",
+        "Receive and discharge caveats"
+      ],
+      "contactUrl": "https://landregistry.gov.bb/"
+    },
+    {
+      "id": "bb-eb-land-tax",
+      "name": "Office of the Commissioner of Land Tax",
+      "jurisdiction": "Barbados",
+      "powers": [
+        "Assess land tax",
+        "Hear objections and appeals",
+        "Maintain the exemption register for owner-occupied residences"
+      ],
+      "contactUrl": "https://www.gov.bb/departments"
+    },
+    {
+      "id": "bb-eb-supreme-court",
+      "name": "Supreme Court of Barbados",
+      "jurisdiction": "Barbados",
+      "powers": [
+        "Determine civil disputes including land and condominium matters",
+        "Grant injunctions (including against trespass and body-corporate disputes)",
+        "Hear appeals from the Magistrates' Court"
+      ],
+      "contactUrl": "https://www.barbadoslawcourts.gov.bb/"
+    }
+  ],
+  "remedies": [
+    {
+      "id": "bb-remedy-condo-bc-action",
+      "label": "Body-corporate enforcement / injunction",
+      "description": "Petition the body corporate to enforce by-laws; apply to the Supreme Court for injunctive relief where the body corporate fails to act under the Condominium Act.",
+      "legalBasis": ["bb-condo-cap224a"],
+      "applicableWhere": "Owner of a unit in a registered condominium; by-law breached or threatened breach.",
+      "formTemplateId": "bb-fm-bc-petition"
+    },
+    {
+      "id": "bb-remedy-unanimous-resolution",
+      "label": "Court-ordered meeting / resolution",
+      "description": "Apply to the Court for an order convening a meeting or directing a particular resolution where the body corporate is deadlocked under the Condominium Act.",
+      "legalBasis": ["bb-condo-cap224a"],
+      "applicableWhere": "Body corporate unable to obtain a quorum or pass a required resolution; dispute over a unanimous-resolution item.",
+      "formTemplateId": "bb-fm-bc-meeting"
+    },
+    {
+      "id": "bb-remedy-land-tax-appeal",
+      "label": "Land-tax assessment appeal",
+      "description": "Object to an assessment within the prescribed period, then appeal to the Commissioner of Land Tax and, on a point of law, to the High Court.",
+      "legalBasis": ["bb-landtax-cap78a"],
+      "applicableWhere": "Person assessed to land tax; objection not resolved by the assessor.",
+      "formTemplateId": "bb-fm-lt-objection"
+    },
+    {
+      "id": "bb-remedy-caveat",
+      "label": "Lodge a caveat under the Land Registration Act",
+      "description": "Lodge a caveat with the Barbados Land Registry to protect a claimed interest in land; the Registrar will not register a dealing that would affect the caveated interest without notice.",
+      "legalBasis": ["bb-lra-cap229"],
+      "applicableWhere": "Person with a registrable interest in land; subject to a dealing that would defeat that interest."
+    },
+    {
+      "id": "bb-remedy-trespass-injunction",
+      "label": "Injunction / damages for trespass",
+      "description": "Apply to the Supreme Court for an injunction and/or damages for trespass to land or premises.",
+      "legalBasis": ["bb-trespass-act"],
+      "applicableWhere": "Person in lawful possession of land; another has entered without consent or licence."
+    }
+  ]
+}

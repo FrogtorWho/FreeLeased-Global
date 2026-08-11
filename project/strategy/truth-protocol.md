@@ -269,9 +269,40 @@ flowchart LR
 - **Blind inputs** → [[independent-research-briefs]].
 - **Applied outputs** → [[research-report-01-lfra-rtm]], [[fact-check-register]].
 - **Data of record** → [[../../src/data/spine|spine.ts]] (`conviction` per statute).
+- **v2 legislative records** → [[../../src/data/legislative-framework-schema|legislative-framework-schema.ts]]
+  + the per-jurisdiction JSONs under
+  [[../../src/data/frameworks|src/data/frameworks/]] (UK, BB).
 - **Alignment gate** → [[../../src/lib/consensus|consensus.ts]] · **fairness** → [[../../src/lib/fairness|fairness.ts]].
 
 > [!success] Definition of done for any claim
 > It has a Claim Card, a verdict from `scoreClaim`, a primary-source citation (or
 > an explicit `not found`), a maturity label that matches its `conviction`, and a
 > `reviewOn` date. Only then may it enter the deck, the overview, or the product.
+
+---
+
+## Conviction caps apply to legislative records (v2)
+
+> Added 2026-08-11 — see [`jurisdiction-onboarding-workflow.md`](jurisdiction-onboarding-workflow.md:1).
+
+Every record in the v2 `LegislativeFramework` schema (primary acts,
+regulations, statutory instruments, reform amendments, leading cases,
+procedural rules, enforcement bodies, remedies) carries a `conviction`
+field constrained to the canonical 4-class set:
+
+| Class | Confidence cap (DSP-0a) | When it is publishable |
+|---|---|---|
+| `established` | 0.95 | ≥1 independent Tier 1 source (legislation.gov.uk, an official gazette). |
+| `heuristic` | 0.60 | Pattern-based; jurisdiction wording varies; corroborating Tier 2 source. |
+| `contested` | 0.40 | Disputed or method-dependent; cap pending review. |
+| `unfalsifiable` | 0.20 | Cannot be checked against a source. |
+
+If any of the §6 validation gates fail (URL doesn't resolve,
+cross-link doesn't resolve, `[PERSON_NAME]` discipline broken), the
+record is published with `unverified: true` AND its conviction is
+capped at `heuristic` or `contested` — never `established`. This is
+enforced by `LegislativeFrameworkSchema.parse()` in
+[[../../src/data/legislative-framework-schema|legislative-framework-schema.ts]]
+and re-asserted by
+[[../../scripts/test-legislative-schema|test-legislative-schema.ts]] on
+every CI pass.

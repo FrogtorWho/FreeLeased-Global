@@ -53,15 +53,35 @@ In particular:
 - **No hidden LLM costs.** The `computeStats` counter is real. If you add an LLM call, you must justify the spend and surface it.
 - **No scope creep on CoC §5.** Do not reintroduce prohibited practices (social scoring, emotion inference, etc.). The CoC compliance statement at [`project/submission-pack/compliance-statement-v3.md`](project/submission-pack/compliance-statement-v3.md) is the source of truth.
 
-## Adding a new jurisdiction (5 steps)
+## Adding a new jurisdiction (canonical workflow)
 
-Per [`project/strategy/multi-jurisdiction-legal-spine.md`](project/strategy/multi-jurisdiction-legal-spine.md), the jurisdiction expansion protocol is:
+> The 5-step v1 protocol below remains for **legacy contributions**.
+> The **canonical pattern is now the top-down onboarding workflow** —
+> follow [`project/strategy/jurisdiction-onboarding-workflow.md`](project/strategy/jurisdiction-onboarding-workflow.md:1).
+> It produces a single `src/data/frameworks/{code}-framework.json` per
+> jurisdiction, validated against the
+> [`LegislativeFramework`](src/data/legislative-framework-schema.ts:1)
+> schema. The v1 spine ([`src/data/spine.ts`](src/data/spine.ts)) stays
+> intact for legacy data (sources, pilot-status, climate) until a
+> parallel `DataSourceFramework` and `PilotStatusFramework` land.
+> See [`src/data/MIGRATION-v1-to-v2.md`](src/data/MIGRATION-v1-to-v2.md:1)
+> for the bridge.
+
+Per [`project/strategy/multi-jurisdiction-legal-spine.md`](project/strategy/multi-jurisdiction-legal-spine.md), the legacy v1 jurisdiction-expansion protocol remains:
 
 1. **Add to the spine.** Append a `Jurisdiction` entry to [`src/data/spine.ts`](src/data/spine.ts) with code, name, capital, tenure system, registry URL, and `inPilot` flag.
 2. **Seed statutes.** Add 3–5 verified statutes to `STATUTES` in [`src/data/spine.ts`](src/data/spine.ts). Each must carry: `id`, `jurisdiction`, `shortTitle`, `citation`, `url`, `covers`, and `conviction: "verified"`.
 3. **Seed sources.** Add 2–4 tier-2 or tier-3 sources to `SOURCES` in [`src/data/spine.ts`](src/data/spine.ts). Tier-0 (supra-national) and tier-1.5 (OSM/Overture) are inherited automatically.
 4. **Wire the bridge.** If the new jurisdiction's legal tradition differs from `common_law`, add a `JurisdictionFramework` to [`src/data/uk-framework.ts`](src/data/uk-framework.ts) (or a new `*-framework.ts` file) and register it in [`custom-routes.ts`](custom-routes.ts:903) via the `jurisdictionFrameworks` array.
 5. **Run `npm run verify`.** If the reconciler flags drift (e.g. jurisdiction count changed), update the affected doc claims. The 10/10 must hold.
+
+For **new contributions**, prefer the v2 workflow — it is more
+disciplined (top-down, scrape-driven, schema-validated) and the test
+harness ([`scripts/test-legislative-schema.ts`](scripts/test-legislative-schema.ts:1))
+catches cross-link and URL regressions automatically. The scrape
+scaffold ([`scripts/scrape-jurisdiction.ts`](scripts/scrape-jurisdiction.ts:1))
+probes every URL and writes a `*-scrape-report.json` next to the
+framework.
 
 After these 5 steps, the new jurisdiction appears in:
 - `/api/spine/jurisdictions`

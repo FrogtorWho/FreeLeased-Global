@@ -324,3 +324,33 @@ The gauntlet loop will always:
 3. Request additional evidence rather than guessing
 4. Route contested or low-confidence verdicts to HITL
 5. Persist every conviction delta with the triggering dossier ID
+
+---
+
+## MAINTENANCE sub-loop — uses the new LegislativeFramework schema
+
+> Added 2026-08-11 — see [`jurisdiction-onboarding-workflow.md`](jurisdiction-onboarding-workflow.md:1).
+
+The MAINTENANCE sub-loop (sub-loop 4) now reads from the v2
+`LegislativeFramework` schema defined in
+[`src/data/legislative-framework-schema.ts`](../../src/data/legislative-framework-schema.ts:1)
+and the per-jurisdiction JSONs under
+[`src/data/frameworks/`](../../src/data/frameworks/). The
+`lastVerified` field on each `primaryActs[]`, `statutoryInstruments[]`,
+and `remedies[]` record drives the SLA cadence described in the
+workflow §10:
+
+- **Primary statute (UK)** — re-verify every 180 days (LFRA / BSA
+  amendments are frequent).
+- **Primary statute (BB / JM / KY)** — every 365 days.
+- **Statutory instrument** — every 90 days.
+- **Leading case** — every 365 days.
+- **Procedural rule / enforcement body / remedy** — every 365 / 365 / 180
+  days.
+
+A `*` marking in the nightly `staleness` report is the trigger for a
+re-extract (workflow §4–§6). The scrape scaffold
+[`scripts/scrape-jurisdiction.ts`](../../scripts/scrape-jurisdiction.ts:1)
+probes every URL in the framework on demand; the test harness
+[`scripts/test-legislative-schema.ts`](../../scripts/test-legislative-schema.ts:1)
+validates the schema on every CI pass.

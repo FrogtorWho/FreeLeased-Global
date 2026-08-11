@@ -179,6 +179,19 @@ SVGs are hand-authored and render in any browser.
 
 Start at [`project/brand/`](project/brand/README.md:1).
 
+## Adding a jurisdiction
+
+Want to onboard a new country (Cayman, Jamaica, Trinidad, BVI, Bahamas, Guyana, Belize)?
+
+Follow the canonical playbook: **[`project/strategy/jurisdiction-onboarding-workflow.md`](project/strategy/jurisdiction-onboarding-workflow.md:1)**.
+
+It is **top-down** (gazette → primary acts → subordinate legislation → cases → tribunals → remedies) and **scrape-driven** (HTTP-first, no headless browser). The output for each jurisdiction is one JSON file under `src/data/frameworks/{code}-framework.json`, validated against the [`LegislativeFramework`](src/data/legislative-framework-schema.ts:1) schema. The scrape scaffold lives at [`scripts/scrape-jurisdiction.ts`](scripts/scrape-jurisdiction.ts:1); the test harness at [`scripts/test-legislative-schema.ts`](scripts/test-legislative-schema.ts:1).
+
+UK and Barbados are the canonical proofs:
+
+- [`src/data/frameworks/uk-framework.json`](src/data/frameworks/uk-framework.json:1)
+- [`src/data/frameworks/bb-framework.json`](src/data/frameworks/bb-framework.json:1)
+
 ## Licence
 
 Runtime under the **MIT Licence** (see [`LICENSE`](LICENSE)). The data spine is published under CC-BY 4.0 and the provenance schema under CC0.

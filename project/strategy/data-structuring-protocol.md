@@ -99,3 +99,35 @@ In code and in workflow docs, name the protocol inline, e.g.
 trace any datum from UI → route → engine → DSP entry → source URL without
 guessing. The automation doctrine (`automation-doctrine.md`) maps every
 workflow to the DSP records it consumes and produces.
+
+---
+
+## DSP-10 · `LegislativeFramework` (canonical record type)
+
+> Added 2026-08-11 — see [`jurisdiction-onboarding-workflow.md`](jurisdiction-onboarding-workflow.md:1)
+> for the end-to-end onboarding playbook.
+
+A **`LegislativeFramework`** is the canonical record type for *one jurisdiction's
+complete legal hierarchy*. It is the input contract for the v2 spine
+([`src/data/spine-v2.ts`](../../src/data/spine-v2.ts:1)) and for the
+jurisdiction knowledge graph.
+
+| Tier of record | Field | Cardinality | Example |
+|---|---|---|---|
+| Jurisdiction header | `jurisdiction` | 1 | `{ code: "UK", legalSystem: "common-law", officialGazette: "https://www.legislation.gov.uk/" }` |
+| Primary acts | `primaryActs[]` | N | LTA 1985, CLRA 2002, BSA 2022, LFRA 2024 |
+| Regulations | `regulations[]` | M | s.20 Consultation Regulations 2003 |
+| Statutory instruments | `statutoryInstruments[]` | K | SI 2025/131 (LFRA Commencement No. 3) |
+| Reform amendments | `reformAmendments[]` | R | HFHHA 2018 → LTA 1985 s.9A |
+| Leading cases | `leadingCases[]` | C | s.20 LTA 1985 service-charge reasonableness |
+| Procedural rules | `proceduralRules[]` | P | FTT (Property Chamber) Rules 2013 |
+| Enforcement bodies | `enforcementBodies[]` | E | FTT (Property Chamber), BSR/HSE, LEASE |
+| Remedies | `remedies[]` | Y | Service-charge determination, RTM acquisition |
+
+**Shape and discipline:** every record carries `conviction` (canonical
+4-class set: `established | heuristic | contested | unfalsifiable` — same
+as DSP-0a), a validated `sourceUrl`, and a `[PERSON_NAME]`-safe
+contributor pseudonym. The schema is defined in
+[`src/data/legislative-framework-schema.ts`](../../src/data/legislative-framework-schema.ts:1)
+and is enforced by [`scripts/test-legislative-schema.ts`](../../scripts/test-legislative-schema.ts:1)
+at every CI pass.
