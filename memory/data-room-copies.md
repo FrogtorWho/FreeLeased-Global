@@ -174,4 +174,18 @@ reversal is one `Get-ChildItem` away if needed.)
 
 ---
 
+## Shogo/ Folder Classification (discretion_id DECISION-SHOGO-001)
+
+The `Shogo/` folder at `G:\My Drive\Development\Future Caribbean\Data Room\Shogo\` was left unclassified by the mapping pass. Decision rationale:
+
+- Folder name suggests Shogo runtime artefacts (agent plans, screenshots, runtime reports)
+- The workspace already has `.shogo/` containing the same kind of content
+- Risk: copying these into the Data Room would (a) duplicate workspace content, (b) include screenshots that may show internal/sensitive state, (c) be agent operational data rather than submission evidence
+
+**Decision:** `DECISION: SKIP` — keep `Shogo/` folder empty until Sam explicitly classifies it. Reversibility: N/A (no copies made). To populate later, run the explorer + selective copy with discretion_ids DECISION-SHOGO-002, etc.
+
+**Cross-reference:** See `memory/data-room-map.md` for the original mapping note.
+
+---
+
 *Journal written 2026-08-11. Reversible. Honest.*

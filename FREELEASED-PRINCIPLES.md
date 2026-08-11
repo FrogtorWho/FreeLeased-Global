@@ -43,3 +43,17 @@ a bug and must be raised immediately.
 - Any change to the registered address, RTM incorporation status, or
   estate geography must be reflected in this document **and** in the
   compiled `[PERSON_NAME]` placeholders before being merged.
+
+---
+
+## Cross-References
+
+- Validation layer for these principles lives in [`memory/data-room-map.md`](memory/data-room-map.md:1) (folder → TRL mapping)
+- Reverse-copy decisions: [`memory/data-room-copies.md`](memory/data-room-copies.md:1)
+- Overnight agent operating manual: [`project/strategy/gauntlet-loop.md`](project/strategy/gauntlet-loop.md:1)
+- Visual reference: [`project/strategy/architecture-diagram.md`](project/strategy/architecture-diagram.md:1)
+- Cold-start one-pager: [`AGENT_BRIEF.md`](AGENT_BRIEF.md:1)
+
+## Pseudonymisation Note
+
+The placeholder `[PERSON_NAME]` appears throughout this document. It is a **literal pseudonymisation token** — never replace it with a real name. Real names, when needed, are stored in `MEMORY.md` under controlled access. This rule is enforced by the gauntlet loop's PROCESS sub-loop and is auditable via `git log -S "[PERSON_NAME]"`.

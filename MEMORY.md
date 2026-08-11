@@ -60,3 +60,22 @@ Long-lived facts and learnings.
 ## External Repositories
 
 - **Data Room** — `G:\My Drive\Development\Future Caribbean\Data Room\` (Google Drive, synced locally). Validation layer for TRL claims. See `memory/data-room-map.md` for the folder → TRL mapping and gap report. READ-ONLY for the agent.
+
+---
+
+## Doc Graph (added 2026-08-11)
+
+The FreeLeased documentation forms a single navigable graph. If you're lost, start here:
+
+1. [`AGENT_BRIEF.md`](AGENT_BRIEF.md:1) — 60-second cold-start one-pager
+2. [`MEMORY.md`](MEMORY.md:1) — this file; long-lived facts
+3. [`FREELEASED-PRINCIPLES.md`](FREELEASED-PRINCIPLES.md:1) — immutable business facts
+4. [`project/strategy/gauntlet-loop.md`](project/strategy/gauntlet-loop.md:1) — overnight operating manual
+5. [`project/strategy/architecture-diagram.md`](project/strategy/architecture-diagram.md:1) — visual reference
+6. [`project/strategy/loop-protocol.md`](project/strategy/loop-protocol.md:1) — methodology
+7. [`project/strategy/maturity-ladder.md`](project/strategy/maturity-ladder.md:1) — philosophy
+8. [`project/strategy/trl-levels-freeleased.md`](project/strategy/trl-levels-freeleased.md:1) — TRL checklist
+9. [`memory/data-room-map.md`](memory/data-room-map.md:1) — Data Room → TRL mapping
+10. [`memory/data-room-copies.md`](memory/data-room-copies.md:1) — reverse-copy journal
+11. [`HEARTBEAT.md`](HEARTBEAT.md:1) — cadence + daily progress log
+12. [`AI_JOURNAL.md`](AI_JOURNAL.md:1) — append-only loop history

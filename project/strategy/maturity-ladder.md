@@ -124,6 +124,8 @@ and a repeatable path to add jurisdictions from the statutory spine.
 multiple jurisdictions; onboarding a new jurisdiction is a bounded, repeatable task.
 **Status:** ⬜ vision.
 
+> **Cross-reference:** The project-specific evidence requirements for each level (with Data Room folder pointers) are in [`trl-levels-freeleased.md`](project/strategy/trl-levels-freeleased.md:1). Use that file when populating evidence; this file is the *philosophy*, that file is the *checklist*.
+
 ---
 
 ## How we move the needle (loop hook)
@@ -136,3 +138,12 @@ verified/inference/pending discipline in [[truth-protocol]]. Nearest promotions:
 > [!note] Demo honesty
 > In the pitch we state **"Level 4→5, verified in-lab on synthetic-labelled data,
 > first real case in progress"** — a credible, checkable claim beats an inflated one.
+
+---
+
+## Related docs
+
+- [`trl-levels-freeleased.md`](project/strategy/trl-levels-freeleased.md:1) — project-specific TRL evidence map
+- [`gauntlet-loop.md`](project/strategy/gauntlet-loop.md:1) — overnight self-improvement loop
+- [`memory/data-room-map.md`](memory/data-room-map.md:1) — Data Room folder → TRL mapping
+- [`memory/data-room-copies.md`](memory/data-room-copies.md:1) — reverse-copy journal for Data Room evidence

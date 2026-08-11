@@ -31,7 +31,11 @@ Append a new bullet under the matching date heading on each check-in. Format: `*
 - **14:00 UTC** — Fixes shipped in commit `33d1c50` (mobile, counter, lint, caps, HEARTBEAT)
 - **16:00 UTC** — Stage 6/7 synergy + 15 ideas committed (`2fd6b0d`)
 - **18:00 UTC** — TRL levels adapted to FreeLeased; Logbook entry written; this daily log added
-- **End-of-day TRL:** Level 4 → reaching into Level 5
+- **20:00 UTC** — Data Room mapped (24 folders, 0 files); TRL gap report committed (`7d14d3f`, `3a5957c`)
+- **23:00 UTC** — Gauntlet loop shipped (`492875d`, `4db1fee`); tsc CI step added
+- **23:30 UTC** — Data Room populated with 45 files (38 copies + 7 originals); reverse-copy journal created (`5a93c62`, `839a8d2`)
+- **01:00 UTC (Tue crossover)** — Doc pass: architecture-diagram.md, AGENT_BRIEF.md, cross-links updated
+- **End-of-day TRL:** Level 4 → reaching into 5; Data Room 21/24 folders evidenced
 
 ### Cadence rules (carry forward)
 - 09:00 UTC daily: pull yesterday's numbers vs today's, append 1-line summary

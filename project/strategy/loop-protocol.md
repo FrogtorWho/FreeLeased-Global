@@ -4,6 +4,8 @@
 
 The Loop Protocol applies the reconciliation engine methodology to the build process itself. Every phase of the 12-month roadmap follows the same loop:
 
+> **Implementation reference:** The methodology in this doc is operationalised by the [`gauntlet-loop.md`](project/strategy/gauntlet-loop.md:1) — 5 sub-loops (PROCESS → RESEARCH → UPDATE → MAINTENANCE → SELF-IMPROVE). The overnight agent runs MAINTENANCE + SELF-IMPROVE nightly at 02:00 + 03:00 UTC. This file describes *how*; the gauntlet describes *what runs*.
+
 ```
 ┌─ Loop ──────────────────────────────────────────────┐
 │                                                      │

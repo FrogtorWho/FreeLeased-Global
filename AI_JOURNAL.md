@@ -233,3 +233,12 @@ Post-sprint: weekly Sunday 18:00 UTC full audit rerun; per-PR tsc + tests + ruff
 - Reversibility: every copy is reversible by `Remove-Item` on the target file; full journal at `memory/data-room-copies.md` (45 rows + 7 SKIP categories + per-folder distribution + bulk-reversal one-liner)
 - Files copied span 21 of 24 sub-folders; the 3 empty sub-folders (`03_Product Evidence/screenshots/`, `05_User Testing and Pilot/pilot_feedback/`, `06_Business and Traction/revenue/`, `07_Legal and Permissions/releases/`) are honestly empty because their evidence does not yet exist
 - Total reverses performed: 0
+
+## 2026-08-11 — Doc Pass: Diagrams, Brief, Cross-Links
+- Created project/strategy/architecture-diagram.md (5 Mermaid diagrams: gauntlet, meta-loop, crumpled-bill, TRL, data-room heat map)
+- Created AGENT_BRIEF.md (60-second cold-start one-pager for overnight agent)
+- Updated maturity-ladder.md, loop-protocol.md, FREELEASED-PRINCIPLES.md with cross-links to gauntlet/trl-levels/data-room
+- Added Shogo/ folder classification decision to memory/data-room-copies.md (SKIP, reversible if needed)
+- Updated HEARTBEAT.md Daily Progress Log with late entries
+- All docs now form a single navigable graph: MEMORY → AGENT_BRIEF → gauntlet → architecture-diagram → data-room
+- Loop integrity restored: docs ↔ code ↔ data-room mutually referenced
