@@ -58,7 +58,7 @@ flowchart LR
     subgraph Docs["DOCS (validation)"]
         D1[memory/data-room-map.md<br/>folder → TRL]
         D2[memory/data-room-copies.md<br/>reverse-copy journal]
-        D3[Data Room/<br/>45 files, 21/24 folders]
+        D3[Data Room/<br/>45 files, 22/24 folders] _(updated 2026-08-11 — TruthDiff caught this drift)_
         D4[AI_JOURNAL.md<br/>append-only loop log]
         D5[HEARTBEAT.md<br/>cadence + daily log]
     end

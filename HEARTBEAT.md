@@ -37,7 +37,8 @@ Append a new bullet under the matching date heading on each check-in. Format: `*
 - **01:00 UTC (Tue crossover)** — Doc pass: architecture-diagram.md, AGENT_BRIEF.md, cross-links updated
 - **01:14 UTC** — public/sw.js + scripts/health-check.ts shipped
 - **01:25 UTC** — WCAG-AA quick-wins + TruthDiff.tsx component
-- **End-of-day TRL:** Level 4 → reaching into 5; Data Room 21/24 folders evidenced
+- **01:50 UTC** — TruthDiff caught 21→22 drift; self-corrected
+- **End-of-day TRL:** Level 4 → reaching into 5; Data Room 22/24 folders evidenced _(updated 2026-08-11 — TruthDiff caught this drift)_
 
 ### Cadence rules (carry forward)
 - 09:00 UTC daily: pull yesterday's numbers vs today's, append 1-line summary

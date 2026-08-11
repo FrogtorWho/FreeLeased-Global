@@ -92,10 +92,11 @@ const CLAIMS: Claim[] = [
   },
   {
     id: "data-room",
-    doc: "21/24 Data Room folders evidenced",
+    doc: "22/24 Data Room folders evidenced",
     docSource: "memory/data-room-copies.md",
     codeCheck: "count of distinct target folders with content (≥1 OK row)",
-    expected: 21,
+    // updated 2026-08-11 — TruthDiff caught this drift (was 21; canonical claim is now 22).
+    expected: 22,
   },
 ];
 

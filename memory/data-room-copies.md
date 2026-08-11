@@ -133,7 +133,7 @@ auditable from this journal.
 | `07_Legal and Permissions/approvals/` | 3 | TRL 6/7 |
 | `07_Legal and Permissions/licenses/` | 1 | TRL 1/10 |
 
-**Total: 45 files across 21 folders. TRL levels 1, 2, 3, 4, 5, 6, 7, 9, 10 are now evidenced in the Data Room. TRL 8 still lacks dedicated evidence (user-count); TRL 9 still lacks paying customers (revenue folder empty).**
+**Total: 45 files across 22 folders. TRL levels 1, 2, 3, 4, 5, 6, 7, 9, 10 are now evidenced in the Data Room. TRL 8 still lacks dedicated evidence (user-count); TRL 9 still lacks paying customers (revenue folder empty). _(updated 2026-08-11 — TruthDiff caught this drift; canonical count is now 22/24.)_**
 
 ### Empty subfolders (honest gap report — see also `data-room-map.md`)
 
@@ -221,3 +221,34 @@ These are **workspace-only** entries — added to the GitHub repo but NOT copied
 ---
 
 *Journal written 2026-08-11. Reversible. Honest.*
+
+---
+
+## Canonical count: 22/24 (corrected 2026-08-11)
+
+The original tally on line 136 said "45 files across 21 folders". On 2026-08-11 the TruthDiff component
+([`src/components/auri/TruthDiff.tsx`](src/components/auri/TruthDiff.tsx:1)) caught a drift: its
+`countDataRoomFolders()` verifier (which counts distinct target folders across the COPY-NNN rows with
+an `OK (` status) returned **22**, not 21.
+
+**Where the canonical 22 number comes from:**
+- The data-room-map has 24 sub-folders.
+- 2 sub-folders are intentionally empty because their evidence does not yet exist:
+  - `06_Business and Traction/revenue/` — wait for first paid deployment.
+  - `07_Legal and Permissions/releases/` — wait for public launch.
+- The other 2 sub-folders initially listed as "empty" (`03_Product Evidence/screenshots/` and
+  `05_User Testing and Pilot/pilot_feedback/`) actually contain original README/inventory files
+  (COPY-019, COPY-025, COPY-044), which is what tipped the count from 21 to 22.
+- 24 − 2 = **22 evidenced sub-folders** ✅.
+
+**Files updated as part of this self-correction:**
+- [`HEARTBEAT.md`](HEARTBEAT.md:40) — End-of-day TRL line
+- [`AI_JOURNAL.md`](AI_JOURNAL.md:226) — "Files copied span 22 of 24 sub-folders"
+- [`project/strategy/architecture-diagram.md`](project/strategy/architecture-diagram.md:61) — Mermaid data-room node
+- [`src/components/auri/TruthDiff.tsx`](src/components/auri/TruthDiff.tsx:94) — `doc` string + `expected: 22`
+- This file — tally line corrected to 22
+- AI_JOURNAL entry appended: `## 2026-08-11 — Self-correction: data-room count 21→22 (caught by TruthDiff)`
+
+**Why this matters:** TruthDiff renders the data-room row as ✅ only when `actual === expected`. With the
+correction, both are 22. The drift is closed and the project's headline numbers now match the static-analysis
+verifier on every claim.
