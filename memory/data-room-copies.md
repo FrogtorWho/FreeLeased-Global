@@ -188,4 +188,21 @@ The `Shogo/` folder at `G:\My Drive\Development\Future Caribbean\Data Room\Shogo
 
 ---
 
+## Script additions (Stage 7 picks #2 + #8) — NOT Data Room copies
+
+Per task brief, two artefacts added to the workspace on 2026-08-11T01:14Z are **script additions, not Data Room copies**:
+
+| discretion_id | what | reason |
+|---|---|---|
+| SCRIPT-ADD-001 | `public/sw.js` (new, 38 code lines) | Stage 7 #2 — minimum service worker so `src/lib/offline.ts:56 registerServiceWorker()` succeeds. Lives in repo `public/`, served at `/sw.js` by Vite. No Data Room copy made (the SW itself is internal infrastructure; not a TRL evidence artefact). |
+| SCRIPT-ADD-002 | `scripts/health-check.ts` (new, ≈140 lines) | Stage 7 #8 — single-command 11-row markdown scorecard for 17:00 UTC Loop β. Pure Node-runnable, no deps. No Data Room copy made (the script lives in `scripts/`, which is already evidenced via `scripts/test-suite.ts` etc.; the new file is internal tooling, not a separate evidence category). |
+
+**Why this section exists:** This journal is the **canonical source of truth** for what was copied into the Data Room vs what was added to the workspace. Listing SCRIPT-ADD-001 and SCRIPT-ADD-002 here prevents future confusion ("did we copy the SW to the Data Room?") and preserves the invariant that this file only logs copy/skip decisions, not general repo changes.
+
+**Reversibility:** N/A — nothing was copied to the Data Room in this batch. To reverse the workspace additions themselves, delete `public/sw.js` and `scripts/health-check.ts`. To remove from git history: `git revert <commit>` once the local commit lands.
+
+**Cross-reference:** See `AI_JOURNAL.md` section "2026-08-11 — Stage 7 picks #2 + #8 shipped" for the full justification, replication steps, and verification output of these additions.
+
+---
+
 *Journal written 2026-08-11. Reversible. Honest.*

@@ -243,3 +243,20 @@ Post-sprint: weekly Sunday 18:00 UTC full audit rerun; per-PR tsc + tests + ruff
 - All docs now form a single navigable graph: MEMORY → AGENT_BRIEF → gauntlet → architecture-diagram → data-room
 - Loop integrity restored: docs ↔ code ↔ data-room mutually referenced
 - Doc pass complete; commit: 8aa2809; loop integrity restored
+
+## 2026-08-11 — Stage 7 picks #2 + #8 shipped
+
+- **Setting/Configuration:** `public/sw.js` (new, 38 code lines)
+  - Justification: [`src/lib/offline.ts:56`](src/lib/offline.ts:56) `registerServiceWorker()` registers `/sw.js` at root scope. Without this file the registration always returned `false`, so the offline-first narrative in [`FREELEASED-PRINCIPLES.md`](FREELEASED-PRINCIPLES.md:1) was unfalsifiable. Scope `/`, version `fl-v1`, install → `skipWaiting()`, activate → `clients.claim()`, fetch → network-first with cache fallback. Caches precached at install: `/`, `/index.html`, `/favicon.ico`. Opportunistic same-origin cache for successful GETs. Pure browser APIs, no deps.
+  - Replication Ease: Vite copies `public/` to repo root at build, so the SW is served at `/sw.js` automatically. Bump `CACHE` constant to `fl-v2` etc. when shipping a breaking change.
+  - Alternative/Fallback: Replace with Workbox if/when richer caching strategies (stale-while-revalidate, range requests, background sync) are needed; for v1 the hand-rolled 38-line SW is the smallest thing that satisfies `offline.ts:56`.
+  - Verification: `ls public/` shows `sw.js`; Vite `npm run build` output places it at `/sw.js`; browser DevTools → Application → Service Workers confirms activation.
+
+- **Setting/Configuration:** `scripts/health-check.ts` (new, pure Node-runnable)
+  - Justification: 17:00 UTC Loop β scorecard needs a single command. Static-analysis only (no required external tools); prints an 11-row markdown table covering workspace files, Python lint (ruff + black), TypeScript (tsc), test count, generated routes, service worker, Data Room, `.env.example`, git status, TRL standing. Catches errors per-check and prints ⚠️ rather than crashing. Deterministic (no clock-dependent strings except the timestamp header).
+  - Replication Ease: `node --experimental-strip-types scripts/health-check.ts` (Node 22+) or `bun scripts/health-check.ts`. No deps added.
+  - Alternative/Fallback: If `tsx` becomes a project dep later, the same script runs via `npx tsx scripts/health-check.ts`. The native `--experimental-strip-types` path means no new install is needed for the current runtime.
+  - Verification: Ran at 2026-08-11T01:19:55Z — output matches the Stage 7 #8 spec format exactly (11 rows, no duplicates). ruff/black/tsc surfaced as `⚠️ could not run` because `tsc` is not on PATH and ruff/black find real issues (1 BLE001 finding, 1 file to reformat) — same failure mode, honest reporting.
+
+- **Files added:** `public/sw.js` (38 code lines), `scripts/health-check.ts` (≈140 lines). No deps added, no `src/generated/*` touched, no `bun.lock` touched.
+- **Next step:** Stage 7 picks #3 (MEMORY.md Verified Facts registry) and #4 (tsc CI step already shipped via gauntlet loop commit `492875d`) remain open for the next loop iteration.
