@@ -47,6 +47,30 @@ Every deliverable must have: executive summary, structured sections, data-backed
 - **App URL**: https://57bf2c29-3d43-4ba6-b01a-3885c39bce04.preview.shogo.ai
 - **Internal deadline**: 14 Aug (T-2 buffer); public deadline: 16 Aug
 
+## Research pack
+
+The narrative research pack that grounds the "follow the money"
+thesis for judges and the pitch:
+
+- [`project/research/truth-shadow-economy.md`](../research/truth-shadow-economy.md:1) —
+  shadow economy, lawfare, money-laundering, corporate shells +
+  the leaseholder-vs-freeholder asymmetry thesis (630 lines,
+  Tier 1/2/3 sources tagged; 10 explicit `unverified: true`
+  items logged in the fact-check-register).
+- [`project/research/caribbean-jurisdiction-test.md`](../research/caribbean-jurisdiction-test.md:1) —
+  JM + KY vs BB + UK legal-framework stress test.
+- [`project/research/defensibility-and-novelty.md`](../research/defensibility-and-novelty.md:1) —
+  defensibility arguments.
+- [`project/research/market-and-business-model.md`](../research/market-and-business-model.md:1) —
+  market sizing + GTM.
+- [`project/research/roadmap.md`](../research/roadmap.md:1) —
+  product roadmap.
+
+The asymmetry numbers (cost-per-dossier pre/post FreeLeased,
+leaseholder-vs-freeholder cost ratio) feed directly into
+[`project/pitch/elevator-pitch.md`](../pitch/elevator-pitch.md:1)
+and [`project/pitch/deck-v7.md`](../pitch/deck-v7.md:1).
+
 ## File Map
 
 ```

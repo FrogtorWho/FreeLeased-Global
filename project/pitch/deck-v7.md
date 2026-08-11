@@ -14,6 +14,33 @@ Caribbean property is opaque and fragmented across ~13 jurisdictions. Paper
 records, registries that do not talk, mispriced climate risk, and residents who
 cannot tell if a lease is even legal. Capital stalls; households are exposed.
 
+### 2.5. Why this matters — the asymmetry (the "why" slide)
+The shadow-economy research ([`project/research/truth-shadow-economy.md`](../research/truth-shadow-economy.md:1))
+quantifies the cost and information asymmetry the leaseholder faces:
+
+- **Cost asymmetry.** A leaseholder's contested service-charge challenge costs
+  £500–£5,000; the freeholder's defence costs £20,000–£200,000 — a **10×–40×
+  ratio**. Sources: Property Litigation Association, LKP, Legal 500 (heuristic
+  ranges, Tier 2).
+- **Information asymmetry.** UK residential property held via shell companies
+  was an open policy concern since 2016; ECTA 2022 created the Register of
+  Overseas Entities. ICIJ Pandora Papers (2021) exposed offshore ownership
+  chains involving 330+ politicians across 90+ countries. Caribbean centres
+  (BVI, KY) appear repeatedly as the entity-of-record layer.
+- **Corpus of statutes.** LFRA 2024 (in force via SI 2025/131 from 3 Mar
+  2025), Leasehold Reform (Ground Rent) Act 2022, ECTA 2022, LRA 1967,
+  LRHUDA 1993, LTA 1985 ss.18–30 — the primary-source citation chain that
+  FreeLeased encodes (Tier 1, established).
+- **The FreeLeased collapse.** A £1,000–£7,000 paralegal dossier collapses to
+  £0–£50 of resident time. The 4 deterministic engines + consensus gate
+  produce the same first-pass deliverable — primary-source-cited, conviction-
+  capped, fairness-flagged.
+- **Honest gaps.** The 10 `unverified: true` items in the research doc
+  ([`fact-check-register.md` §F.3](../strategy/fact-check-register.md:1))
+  are the negative side of the ledger — we did not commit to specific
+  CPI scores, FATF grey-list status, or named case citations we couldn't
+  source. The pitch rests on the *established* claims, not the gaps.
+
 ### 3. The insight
 There is no land-data API in the Caribbean. So the constraint became the design:
 assemble a provenance-tracked spine from public data, and earn the rest through

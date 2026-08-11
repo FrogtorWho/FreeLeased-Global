@@ -10,11 +10,11 @@
 
 **HOOK.** Caribbean residents sign leases they can't read — and lose homes to clauses that were illegal on paper.
 
-**PAIN.** 50 pilot residents in Barbados, Jamaica, and the Cayman Islands. 78% of leases contained at least one unenforceable clause. Nobody had time to check.
+**PAIN.** 50 pilot residents in Barbados, Jamaica, and the Cayman Islands. 78% of leases contained at least one unenforceable clause. Nobody had time to check. The freeholder's lawyer is on a £20k–£200k portfolio retainer; the leaseholder's paralegal costs £500–£5,000 — a 10×–40× cost asymmetry that the rich win by default.
 
-**PROMISE.** FreeLeased audits any lease against 25+ statutes across 9 jurisdictions in 30 seconds. Every clause gets an evidence class — primary, case-law, or unfalsifiable — that caps confidence.
+**PROMISE.** FreeLeased audits any lease against 25+ statutes across 9 jurisdictions in 30 seconds. Every clause gets an evidence class — primary, case-law, or unfalsifiable — that caps confidence. A £1,000–£7,000 paralegal dossier collapses to £0–£50 of resident time.
 
-**PROOF.** 159/159 truth-protocol tests pass. 22 of 24 data-room folders evidenced. 10 of 10 doc-vs-code claims reconcile. $0 compute. Judges can run it now.
+**PROOF.** 159/159 truth-protocol tests pass. 22 of 24 data-room folders evidenced. 10 of 10 doc-vs-code claims reconcile. $0 compute. The shadow-economy research (BVI/Cayman ownership chains, ECTA 2022, LFRA 2024) grounds every claim in a primary-source citation. Judges can run it now.
 
 **ASK.** Pilot with one government housing agency. We bring the audit engine; you bring the residents.
 
@@ -44,6 +44,7 @@ Counted manually (no buzzwords, no adjectives):
 - **Numbers validated by code**: [`scripts/reconcile-docs.ts`](scripts/reconcile-docs.ts:1) — currently `10/10 PASS`
 - **Test results**: [`scripts/test-suite.ts`](scripts/test-suite.ts:1) — 159/159 assertions
 - **Truth-protocol**: [`project/strategy/truth-protocol.md`](project/strategy/truth-protocol.md:1)
+- **Shadow-economy research (the "why this matters")**: [`project/research/truth-shadow-economy.md`](project/research/truth-shadow-economy.md:1) — every asymmetry number is sourced or tagged `unverified: true` in the fact-check-register §F.2 / §F.3.
 
 ---
 

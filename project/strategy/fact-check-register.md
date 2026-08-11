@@ -68,6 +68,62 @@ unbacked would be self-defeating (pre-mortem G3).
 
 ---
 
+## F.2 Shadow-economy + lawfare narrative (truth-shadow-economy.md, 2026-08-11)
+
+> Source: [`project/research/truth-shadow-economy.md`](../research/truth-shadow-economy.md:1).
+> This block registers the *narrative research* claims used in the
+> pitch and deck to ground the "follow the money" thesis. Tagged with
+> the truth-protocol conviction classes.
+
+| Claim | Tag | Finding / source |
+|---|---|---|
+| **LFRA 2024, c.22** in force via SI 2025/131 (3 Mar 2025); s.49 RTM non-residential limit 25%→50% | ✅ established | legislation.gov.uk/ukpga/2024/22/contents — same spine anchor as §A row 1. |
+| **Leasehold Reform (Ground Rent) Act 2022, c.17** — caps ground rent on new long residential leases at peppercorn from 30 Jun 2022 | ✅ established | legislation.gov.uk/ukpga/2022/17/contents — Tier 1 primary. |
+| **ECTA 2022, c.10 — Register of Overseas Entities** requires overseas entities owning UK property to disclose beneficial owners to Companies House | ✅ established | legislation.gov.uk/ukpga/2022/10/contents — Tier 1 primary. |
+| **Landlord and Tenant Act 1985, ss.18–30** — service-charge consultation + cost-cap regime | ✅ established | legislation.gov.uk/ukpga/1985/70 — Tier 1 primary; LFRA 2024 amends. |
+| **Leasehold Reform Act 1967, c.88** — collective enfranchisement | ✅ established | legislation.gov.uk/ukpga/1967/88/contents — Tier 1 primary. |
+| **LRHUDA 1993, c.28** — RTM + individual lease extension | ✅ established | legislation.gov.uk/ukpga/1993/28/contents — Tier 1 primary. |
+| **HMCTS Property Chamber fees** — typically £100–£500 filing | ✅ established | gov.uk/government/publications/fees-in-the-property-chamber-of-the-first-tier-tribunal — Tier 1 primary. |
+| **HMRC Measuring Tax Gaps** — SDLT included in indirect tax-gap reporting | ✅ established | gov.uk/government/statistics/measuring-tax-gaps — Tier 1 primary. |
+| **FATF mutual evaluations** exist for BVI, KY, JM, BB, TT | ✅ established | fatf-gafi.org/en/countries.html — Tier 1 primary; specific current grey-list status `unverified` per §F.3 below. |
+| **OECD Global Forum peer reviews** exist for the same jurisdictions | ✅ established | oecd.org/tax/transparency/ — Tier 1 primary; specific ratings `unverified`. |
+| **Transparency International UK** + **Global Witness** have published UK-property-corruption reports since 2015 | ✅ established | transparency.org.uk + globalwitness.org — Tier 2 NGO primary archives. |
+| **ICIJ Pandora Papers (2021)** — exposed offshore ownership chains involving 330+ politicians across 90+ countries | ✅ established | icij.org/investigations/pandora-papers/ — Tier 1 primary (ICIJ). |
+| **ICIJ Paradise Papers (2017) + Panama Papers (2016)** | ✅ established | icij.org/investigations/paradise-papers/, icij.org/investigations/panama-papers/ — Tier 1 primary. |
+| **OCCRP** investigative reporting on Caribbean corruption | ✅ established | occrp.org — Tier 1 primary investigative-journalism consortium. |
+| **Barbados Condominium Act Cap 224A, s.4(5)** — unit-entitlement fraction drives common expenses + voting weight | ✅ established | barbadoslawcourts.gov.bb Cap 224A — Tier 1 primary; matches §A row 2. |
+| **Jamaica Registration (Strata Titles) Act** (not "Condominium Act 1958") | ✅ established | nla.gov.jm — Tier 1 primary; matches §A row 3. |
+| **Cayman Strata Titles Registration Act (2013 Revision)** | ✅ established | legislation.gov.ky — Tier 1 primary; matches §A row 3. |
+| **Leaseholder vs. freeholder cost asymmetry of ~10×–40× at contested hearing** | 🟡 heuristic | Property Litigation Association, LKP, Legal 500 commentary — illustrative ranges, not point estimates. See §F.3 for the `unverified` list. |
+| **"Army of lawyers" pattern — portfolio retainer + discovery cost + LTA 1985 s.20 cost-cap invocation gap** | 🟡 heuristic | Synthesised from PLA, LKP, LFRA 2024 amendments. Pattern is established; specific firm-level retainers are confidential. |
+| **BVI holdco → JER SPV → UK property** is the canonical ownership chain in ICIJ UK-property cases | 🟡 heuristic | icij.org investigations — pattern is established; specific named chains require case-by-case verification. |
+
+## F.3 ⛔ Unverified — explicit "we did NOT verify" list
+
+The following claims in [`truth-shadow-economy.md`](../research/truth-shadow-economy.md:1)
+are explicitly tagged `unverified: true` and **must not** be cited
+as fact until re-verified. They appear in the doc as *honest gaps*
+so the reader knows where follow-up is needed.
+
+| # | Unverified claim | Re-verification source |
+|---|---|---|
+| 1 | Specific FATF grey-list status of BVI / KY / JM / BB / TT as of 2026-08-11 | https://www.fatf-gafi.org/en/countries.html |
+| 2 | Specific OECD Global Forum ratings for the same jurisdictions | https://www.oecd.org/tax/transparency/what-we-do/peereviews/ |
+| 3 | Specific TI CPI 2024 scores for UK / BB / JM / TT | https://www.transparency.org/en/cpi/2024 |
+| 4 | Tivoli Gardens (2010) specific casualty figures | INDECOM reports at http://www.inci.gov.jm/ |
+| 5 | Specific offshore-chain mapping for individual UK freeholders (Cadogan, Grosvenor, etc.) | Companies House + ICIJ Offshore Leaks Database (case-by-case) |
+| 6 | Specific named Caribbean property cases (Sun Bay, Cap Estate, etc.) | Per-jurisdiction land registries + press archives |
+| 7 | Exact citation of `Earle Place Residents v Cadogan Estates` | UK case-law databases (BAILII); pattern is established, judgment citation unverified |
+| 8 | Specific cost ranges in §3.2 / §3.3 / §9.1 (illustrative Tier 2 figures) | PLA + LKP + Legal 500 — illustrative ranges, not point estimates |
+| 9 | Specific success-rate percentages in §9.2 | https://www.gov.uk/government/statistics/tribunal-statistics |
+| 10 | BVI Commission of Inquiry final-report URL | Verify before public citation |
+
+**Honesty rule.** These 10 items are not "we couldn't find the
+source" — they are "we have a strong claim but no primary-source
+point estimate we are willing to commit to in writing." The doc
+itself carries this list in §11 (Sources + reliability) so the
+reader sees the *negative side* of the conviction ledger.
+
 ## G. ✅ Verified by code (reconcile-docs, 2026-08-11)
 
 The following claims are not just anchored in primary sources — they are
