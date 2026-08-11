@@ -164,6 +164,27 @@ guarded("Git status", () => {
 // 11. TRL standing
 row("TRL standing", "ok", "Level 4 (Working prototype in the lab)");
 
+// 11b. HITL Sign-off Queue component (Batch 3 — closes G4, G10, A4)
+// The component must exist at src/components/auri/SignoffQueue.tsx and export
+// a React component named `SignoffQueue`. We do a static check only.
+try {
+  const sq = readFileSync(join(ROOT, "src/components/auri/SignoffQueue.tsx"), "utf8");
+  const hasExport = /export\s+function\s+SignoffQueue\b/.test(sq);
+  const hasUrgency = /urgencyScore\b/.test(sq);
+  const hasAria = /aria-(label|expanded)\b/.test(sq);
+  const hasEmptyState = /All caught up/.test(sq);
+  const hasFilterChips = /Filter chips/i.test(sq);
+  const verdictPreview = /4-Agent DS Gauge/i.test(sq) && /Cited Statutes/i.test(sq);
+  if (hasExport && hasUrgency && hasAria && hasEmptyState && hasFilterChips && verdictPreview) {
+    row("HITL Sign-off Queue", "ok", "component present, urgency-sort + ARIA + filter chips + verdict preview + empty-state");
+  } else {
+    row("HITL Sign-off Queue", "warn",
+      `export=${hasExport} urgency=${hasUrgency} aria=${hasAria} emptyState=${hasEmptyState} filterChips=${hasFilterChips} verdictPreview=${verdictPreview}`);
+  }
+} catch {
+  row("HITL Sign-off Queue", "warn", "src/components/auri/SignoffQueue.tsx not found");
+}
+
 // 12. Doc-vs-code reconciliation (Stage 7 #13 — drift scorecard)
 // Reads scripts/reconcile-docs.ts output. We invoke the script via a
 // sub-process (Node strip-types) and surface its drift count. This catches

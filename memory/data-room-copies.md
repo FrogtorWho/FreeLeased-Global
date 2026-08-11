@@ -22,6 +22,29 @@ reversibility method that always resolves to "delete the target file".
 **Final tally:** 45 files in the Data Room (38 file copies + 7 originals),
 279,811 bytes total, 0 reverses performed, 6 categories logged as SKIPs.
 
+## Workspace-only additions (Batch 3 WIN)
+
+These files were added to the workspace on 2026-08-11T02:55Z and are
+**not** copied to the Data Room — they live in the workspace, are
+demonstrable to judges via the live demo, and are tracked by the
+buildathon submission as workspace evidence.
+
+| id | source | purpose | reversibility |
+|---|---|---|---|
+| COPY-W-001 | `src/components/auri/SignoffQueue.tsx` | HITL Sign-off Queue UI (urgency-sort, verdict preview, filter chips, ARIA) — closes G4 | delete target; no source change |
+| COPY-W-002 | `scripts/test-signoff-queue.ts` | 20+ assertions covering the Sign-off Queue | delete target; no source change |
+| COPY-W-003 | `scripts/health-check.ts` | new "HITL Sign-off Queue" row in the scorecard | delete target; no source change |
+| COPY-W-004 | `WIN-DAY-CHECKLIST.md` | print-and-tick page for 2026-08-16 — closes G10 | delete target; no source change |
+| COPY-W-005 | `README.md` | badges, quick-start, link to elevator pitch + checklist + projected score — closes A4 | delete target; no source change |
+| COPY-W-006 | `CONTRIBUTING.md` | OSS contributor guide + 5-step jurisdiction protocol | delete target; no source change |
+| COPY-W-007 | `scripts/test-all.ts` | `npm run test:all` aggregator | delete target; no source change |
+
+**Decision: SKIP** copy to Data Room for these — they are submission-
+critical (the Sign-off Queue is the live demo's HITL control plane), but
+they are workspace-only by buildathon convention. The Data Room mirrors
+the public README (see COPY-002); workspace-only changes are evidenced
+through `git log` and the live demo itself.
+
 ---
 
 ## Copy Log

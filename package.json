@@ -24,6 +24,7 @@
     "test:truth-diff": "node --experimental-strip-types scripts/test-truth-diff.ts",
     "test:health-check": "node --experimental-strip-types scripts/test-health-check.ts",
     "test:reconcile-docs": "node --experimental-strip-types scripts/test-reconcile-docs.ts",
+    "test:all": "node --experimental-strip-types scripts/test-all.ts",
     "verify": "npm run reconcile && npm run health && npm run test:truth-diff && npm run test:health-check && npm run test:reconcile-docs"
   },
   "dependencies": {

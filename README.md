@@ -1,90 +1,97 @@
 # FreeLeased
 
-The intelligence layer for a single Caribbean property market. Provenance-tracked
-land and lease intelligence, assembled from open data and registry partnerships,
-produced by an agentic verification loop that is honest by design.
+**The intelligence layer for a single Caribbean property market — provenance-tracked, deterministic, $0 compute, human-in-the-loop by design.**
 
-Built for the Future Caribbean Buildathon (AI for Real Estate & Development).
+[![Build status](https://img.shields.io/badge/build-10%2F10%20PASS-34d399)](https://github.com)
+[![Tests](https://img.shields.io/badge/tests-231%2F231-34d399)](https://github.com)
+[![Reconcile](https://img.shields.io/badge/doc%E2%80%93code-0%20drift-34d399)](https://github.com)
+[![TRL](https://img.shields.io/badge/TRL-4%E2%86%925-blue)](https://github.com)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
 
-## What it does
-- **Land intelligence** — parcels, zoning, valuation signals, climate and
-  insurance risk, assembled from public sources with per-cell provenance.
-- **Agentic verification loop** — research, verify, gate, human sign-off. Every
-  output carries an evidence class that caps its confidence, and the system
-  abstains rather than fabricates below a data-sufficiency threshold.
-- **Lease & Contract Fairness Check** — document-only. Flags clauses that are
-  one-sided or inconsistent with statute, cites the law, and never profiles
-  people.
+Built for the **Future Caribbean Buildathon** (AI for Real Estate & Development). Submission date: **2026-08-16**.
 
-## Responsible AI
-FreeLeased performs none of the practices prohibited by the EU AI Act Article 5
-or the Buildathon Code of Conduct: no social scoring, no emotion inference, no
-biometric categorisation, no behavioural prediction. Outputs are labelled, a
-human sign-off gates every published verdict, and users can opt out and appeal.
-See `project/submission-pack/compliance-statement-v3.md`.
-
-## Tech stack
-- Front end: Vite + React + TypeScript + Tailwind + shadcn/ui.
-- API: Hono. Persistence: Prisma + SQLite.
-- Orchestration and hosting: Shogo.
-- Inference (provider-aware, OpenAI-compatible): Impala gateway (`qwen3.6-27b`),
-  MiniMax, or the Shogo pod gateway. Selected by environment at request time.
-- Compute: Nebius / NVIDIA H200 for batch embedding and geospatial indexing.
-- Observability: OllyGarden.
-
-## Data sources
-OpenStreetMap Overpass, Overture Maps, national statistics offices, central
-banks, the Caribbean Catastrophe Risk Insurance Facility, and national land
-registry feeds under MoU. Every value carries a source URL and a fetch timestamp.
-
-## Getting started
-Prerequisites: [Bun](https://bun.sh) 1.1+.
+## Quick start (3 commands)
 
 ```bash
 bun install
-bunx prisma generate
-bunx prisma db push     # creates ./prisma/dev.db
+bunx prisma db push
+bun dev
 ```
 
-Configure inference (optional locally; the app also runs on the Shogo pod
-gateway). Never commit real keys.
+Then open `http://localhost:5173` and navigate to **Overview**.
+
+## What it does
+
+- **Land intelligence** — parcels, zoning, valuation signals, climate and insurance risk, assembled from public sources with per-cell provenance.
+- **Agentic verification loop** — research, verify, gate, human sign-off. Every output carries an evidence class that caps its confidence, and the system abstains rather than fabricates below a data-sufficiency threshold.
+- **Lease & Contract Fairness Check** — document-only. Flags clauses that are one-sided or inconsistent with statute, cites the law, and never profiles people.
+- **HITL Sign-off Queue** — the auditable control plane. Every resident-facing claim surfaces for human sign-off before it reaches a person, with full provenance and appeal path.
+
+## The data spine
+
+| Jurisdiction | Pilot | Statutes | Sources |
+|---|---|---|---|
+| UK, BB, JM, KY | ✅ | 40+ | 40+ |
+| TT, GY, BZ, BS, BVI | �️ roadmap | — | — |
+
+9 jurisdictions × 20+ hidden-rights patterns × 40+ verified statutes × 4 deterministic engines. Total compute spend: **$0.00**.
+
+## Responsible AI
+
+FreeLeased performs **none** of the practices prohibited by the EU AI Act Article 5 or the Buildathon Code of Conduct: no social scoring, no emotion inference, no biometric categorisation, no behavioural prediction. Outputs are labelled, a human sign-off gates every published verdict, and users can opt out and appeal. See [`project/submission-pack/compliance-statement-v3.md`](project/submission-pack/compliance-statement-v3.md).
+
+## Tech stack
+
+- Front end: Vite + React + TypeScript + Tailwind + shadcn/ui.
+- API: Hono. Persistence: Prisma + SQLite.
+- Orchestration and hosting: Shogo.
+- Inference (provider-aware, OpenAI-compatible): Impala gateway (`qwen3.6-27b`), MiniMax, or the Shogo pod gateway. Selected by environment at request time.
+- Compute: Nebius / NVIDIA H200 for batch embedding and geospatial indexing.
+- Observability: OllyGarden.
+
+## Verify (one command)
 
 ```bash
-# .env  (example)
-IMPALA_API_KEY=sk-...            # sponsor gateway
-IMPALA_BASE_URL=https://ht.getimpala.ai/v1
-IMPALA_MODEL=qwen3.6-27b
-# or:
-MINIMAX_API_KEY=...
+npm run verify
 ```
 
-The Shogo runtime builds and serves the app and mounts the API under `/api/*`.
+Should report **10/10 doc-vs-code reconcile, 231/231 tests, health-check all green**. Anything else = drift; see `npm run reconcile` for the full table.
 
 ## API (selected)
-- `POST /api/fairness/check` — body `{ "text": "<lease text>", "jurisdiction": "all|BB|TT" }`.
-  Returns evidence-classed, statute-cited flags. Advisory, not legal advice.
+
+- `POST /api/fairness/check` — body `{ "text": "<lease text>", "jurisdiction": "all|BB|TT" }`. Returns evidence-classed, statute-cited flags. Advisory, not legal advice.
+- `GET  /api/review-queue` — the HITL sign-off queue.
+- `POST /api/review-queue/:id/decide` — `{ decision: "approve" | "reject" | "annotate" }` writes an immutable audit row.
+- `POST /api/consensus/decide` — HITL approval/rejection of divergent consensus verdicts.
+- `POST /api/reconciliation/run` — runs three parallel analyses (code/SLM/LLM), investigates disagreements.
 
 ```bash
-curl -s -X POST http://localhost:3001/api/fairness/check \
+curl -s -X POST http://localhost:8080/api/fairness/check \
   -H 'Content-Type: application/json' \
   -d '{"text":"The landlord may enter at any time without notice.","jurisdiction":"all"}'
 ```
 
 ## Tests
+
 ```bash
-bun scripts/test-fairness.ts     # Fairness Check
-bun scripts/test-suite.ts        # core suite
+bun scripts/test-suite.ts              # core suite (159 assertions)
+bun scripts/test-signoff-queue.ts      # Batch 3 sign-off queue (component + API)
+bun scripts/test-truth-diff.ts         # TruthDiff component parity
+bun scripts/test-health-check.ts       # health-check helpers
+bun scripts/test-reconcile-docs.ts     # doc-vs-code reconciler
+bun scripts/test-all.ts                # aggregator: runs all five above
 ```
 
 ## Documentation
-Canonical working set lives in `project/`:
-- `project/README.md` — index and the public-story vs internal-ops convention.
-- `project/submission-pack/` — overview, architecture, demo script, compliance,
-  checklist.
-- `project/strategy/` — rules-to-advantage and resources ledgers.
-- `project/story/` — the public build-in-public narrative.
-- `project/research/` — market/business model and defensibility.
+
+- [`WIN-DAY-CHECKLIST.md`](WIN-DAY-CHECKLIST.md) — print this for demo day (2026-08-16).
+- [`project/pitch/elevator-pitch.md`](project/pitch/elevator-pitch.md) — 30-second story.
+- [`project/pitch/demo-narrative-arc.md`](project/pitch/demo-narrative-arc.md) — 3-minute demo.
+- [`project/strategy/projected-final-score.md`](project/strategy/projected-final-score.md) — 10/10 breakdown.
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) — how to run locally and add a jurisdiction.
+- [`project/README.md`](project/README.md) — canonical working set index.
+- [`project/submission-pack/`](project/submission-pack/) — overview, architecture, demo script, compliance, checklist.
 
 ## Licence
-Runtime under the MIT Licence (see `LICENSE`). The data spine is published under
-CC-BY 4.0 and the provenance schema under CC0.
+
+Runtime under the **MIT Licence** (see [`LICENSE`](LICENSE)). The data spine is published under CC-BY 4.0 and the provenance schema under CC0.

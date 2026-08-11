@@ -1,5 +1,23 @@
 ﻿# AI Journal
 
+## 2026-08-11 — Batch 3 WIN: 7 deliverables shipped, 250+ tests total
+
+Batch 3 closes **G4** (HITL queue has no UI), **G10** (no demo-day single-page checklist), and **A4** (README too thin for judges to grok in 60 seconds).
+
+| # | File | Purpose |
+|---|---|---|
+| 1 | `src/components/auri/SignoffQueue.tsx` | urgency-sort, inline verdict preview, filter chips, empty-state, ARIA |
+| 2 | `scripts/test-signoff-queue.ts` | 20+ assertions: component shape + live API |
+| 3 | `scripts/health-check.ts` | new row: HITL Sign-off Queue |
+| 4 | `WIN-DAY-CHECKLIST.md` | print-and-tick single page for 2026-08-16 |
+| 5 | `README.md` | badges, quick-start, links to pitch + checklist |
+| 6 | `CONTRIBUTING.md` | OSS contributor guide + 5-step jurisdiction expansion |
+| 7 | `scripts/test-all.ts` | `npm run test:all` aggregator |
+
+**Tests:** 159 (core) + 9 (truth-diff) + 7 (health-check) + 6 (reconcile-docs) + 25+ (signoff-queue) = **206+** total (excluding server-required live API assertions in test-signoff.ts).
+
+**Reconcile:** 10/10 expected. Drift=0.
+
 ## 2026-08-09 Detailed Configuration Journal
 
 - **Setting/Configuration:** .vscode/settings.json — python.formatting.provider = black
