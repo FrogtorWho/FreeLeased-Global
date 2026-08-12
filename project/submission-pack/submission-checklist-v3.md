@@ -1,3 +1,12 @@
+<!--
+purpose: buildathon submission checklist — every rubric row, status, evidence pointer, MCP/social/audit-trail inclusion.
+audience: buildathon judges (rubric walk), Sam (Day-1 checklist).
+status: v3 (Phase 13, convergence 2026-08-12)
+last-updated: 2026-08-12
+owner: Sam Peacock (principal) · Shogo (agent)
+cross-links: README-GITHUB.md, architecture-v3.md, compliance-statement-v3.md, demo-script-v3.md, project-overview-v3.md, ../../project/management/convergence-checklist.md, ../../docs/MCP-INTEGRATION.md, ../../project/marketing/social-activation-runbook.md
+-->
+
 # FreeLeased — Submission Checklist and Rubric Coverage (v3)
 
 Deadline: 17 August 2026, midnight AST. Build sprint ends 16 August.

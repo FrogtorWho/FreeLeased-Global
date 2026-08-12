@@ -1,3 +1,12 @@
+<!--
+purpose: how FreeLeased integrates with OllyGarden for telemetry + trace-id observability across the gauntlet loops.
+audience: buildathon judges (technical track), Sam (operations).
+status: v3 (Phase 13)
+last-updated: 2026-08-12
+owner: Sam Peacock (principal) · Shogo (agent)
+cross-links: README-GITHUB.md, architecture-v3.md, ../../docs/ollygarden-integration.md, ../strategy/gauntlet-loop.md
+-->
+
 # Observability — OllyGarden Setup
 
 OllyGarden gives us production-grade traces of the agentic loop, which is direct

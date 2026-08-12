@@ -1,0 +1,43 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schema/mcp-config.json",
+  "name": "freeleased-convergence",
+  "version": "3.0.0",
+  "description": "FreeLeased MCP server registration — GAUNTLET 3.0 convergence.",
+  "servers": {
+    "freeleased": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "--experimental-strip-types",
+        "src/mcp/server.ts"
+      ],
+      "cwd": "${workspaceFolder}",
+      "description": "FreeLeased data-spine MCP server. Exposes read_dossier, list_jurisdictions, get_legal_rights, analyse_lease, search_statutes.",
+      "tools": [
+        "read_dossier",
+        "list_jurisdictions",
+        "get_legal_rights",
+        "analyse_lease",
+        "search_statutes"
+      ]
+    }
+  },
+  "compatibility": {
+    "claude-desktop": true,
+    "cursor": true,
+    "continue": true,
+    "cline": true,
+    "openai-agents": true
+  },
+  "metadata": {
+    "spine_version": "3.0.0-convergence",
+    "fetch_date_policy": "2026-08-12 (UTC)",
+    "license": "Apache-2.0",
+    "owner": "Sam Peacock (principal) · Shogo (agent)",
+    "cross_links": [
+      "docs/MCP-INTEGRATION.md",
+      "project/management/convergence-checklist.md",
+      "src/mcp/server.ts"
+    ]
+  }
+}

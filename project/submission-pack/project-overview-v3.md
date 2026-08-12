@@ -1,3 +1,12 @@
+<!--
+purpose: one-page product brief for FreeLeased / RTM Sovereign — the submission elevator pitch.
+audience: buildathon judges, partner agencies, DFIs.
+status: v4 (Phase 13)
+last-updated: 2026-08-12
+owner: Sam Peacock (principal) · Shogo (agent)
+cross-links: architecture-v3.md, compliance-statement-v3.md, demo-script-v3.md, README-GITHUB.md, ../strategy/IC-MEMO-Q3-2026.md, ../../docs/MCP-INTEGRATION.md
+-->
+
 # FreeLeased / RTM Sovereign — Project Overview (v4)
 
 **Track:** AI for Real Estate & Development.

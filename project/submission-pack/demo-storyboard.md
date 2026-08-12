@@ -1,3 +1,12 @@
+<!--
+purpose: scene-by-scene storyboard — timestamps, on-screen visuals, voice-over, captions.
+audience: video producer, accessibility reviewers.
+status: v3 (Phase 13)
+last-updated: 2026-08-12
+owner: Sam Peacock (principal) · Shogo (agent)
+cross-links: demo-script-v3.md, ../demo/demo-video-script.md, project-overview-v3.md
+-->
+
 # FreeLeased — Demo Storyboard (shot-by-shot)
 
 Pairs with `demo-script-v3.md`. Every claim has an on-screen action. API calls

@@ -1,3 +1,12 @@
+<!--
+purpose: technical architecture document — five sub-loops of the gauntlet, data spine shape, evidence classes, MCP wiring.
+audience: buildathon judges (technical track), engineers evaluating for reuse, Caribbean registry partners.
+status: v4 (Phase 13, MCP integration added 2026-08-12)
+last-updated: 2026-08-12
+owner: Sam Peacock (principal) · Shogo (agent)
+cross-links: README-GITHUB.md, compliance-statement-v3.md, demo-script-v3.md, project-overview-v3.md, ../strategy/gauntlet-loop.md, ../../src/mcp/server.ts, ../../docs/MCP-INTEGRATION.md
+-->
+
 # FreeLeased / RTM Sovereign — Architecture and Agentic Workflow (v4)
 
 **Track:** AI for Real Estate & Development · leasehold governance, service-charge audit & RTM.

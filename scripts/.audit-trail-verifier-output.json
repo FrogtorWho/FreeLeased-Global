@@ -1,0 +1,651 @@
+{
+  "run_at": "2026-08-12T11:35:01.446Z",
+  "fetch_date_anchor": "2026-08-12",
+  "overall_accuracy_pct": 100,
+  "total_claims": 299,
+  "anchored_claims": 299,
+  "per_category": {
+    "submission-pack": {
+      "total": 16,
+      "anchored": 16,
+      "accuracy_pct": 100
+    },
+    "strategy": {
+      "total": 235,
+      "anchored": 235,
+      "accuracy_pct": 100
+    },
+    "management": {
+      "total": 6,
+      "anchored": 6,
+      "accuracy_pct": 100
+    },
+    "marketing": {
+      "total": 7,
+      "anchored": 7,
+      "accuracy_pct": 100
+    },
+    "docs": {
+      "total": 30,
+      "anchored": 30,
+      "accuracy_pct": 100
+    },
+    "docs-site": {
+      "total": 5,
+      "anchored": 5,
+      "accuracy_pct": 100
+    }
+  },
+  "per_doc": [
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\submission-pack\\compliance-statement-v3.md",
+      "category": "submission-pack",
+      "total": 2,
+      "anchored": 2,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\submission-pack\\demo-storyboard.md",
+      "category": "submission-pack",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\submission-pack\\project-overview-v3.md",
+      "category": "submission-pack",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\submission-pack\\README-GITHUB.md",
+      "category": "submission-pack",
+      "total": 9,
+      "anchored": 9,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\submission-pack\\architecture-v3.md",
+      "category": "submission-pack",
+      "total": 3,
+      "anchored": 3,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\revenue-model-gtm.md",
+      "category": "strategy",
+      "total": 6,
+      "anchored": 6,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\maturity-ladder.md",
+      "category": "strategy",
+      "total": 2,
+      "anchored": 2,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\loop-protocol.md",
+      "category": "strategy",
+      "total": 4,
+      "anchored": 4,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\truth-protocol.md",
+      "category": "strategy",
+      "total": 2,
+      "anchored": 2,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\00-OVERVIEW.md",
+      "category": "strategy",
+      "total": 2,
+      "anchored": 2,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\01-github-repo.md",
+      "category": "strategy",
+      "total": 6,
+      "anchored": 6,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\fact-check-register.md",
+      "category": "strategy",
+      "total": 6,
+      "anchored": 6,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\data-structuring-protocol.md",
+      "category": "strategy",
+      "total": 3,
+      "anchored": 3,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\moonshot-roadmap-10-10.md",
+      "category": "strategy",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\research-report-01-lfra-rtm.md",
+      "category": "strategy",
+      "total": 9,
+      "anchored": 9,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\comprehensive-scoring-reconciliation.md",
+      "category": "strategy",
+      "total": 9,
+      "anchored": 9,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\05-pilot-audit-setup.md",
+      "category": "strategy",
+      "total": 7,
+      "anchored": 7,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\04-demo-video-script.md",
+      "category": "strategy",
+      "total": 3,
+      "anchored": 3,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\application-reconciliation.md",
+      "category": "strategy",
+      "total": 9,
+      "anchored": 9,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\resources-ledger.md",
+      "category": "strategy",
+      "total": 2,
+      "anchored": 2,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\logbook-submission.md",
+      "category": "strategy",
+      "total": 3,
+      "anchored": 3,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\02-mou-followup-emails.md",
+      "category": "strategy",
+      "total": 2,
+      "anchored": 2,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\03-advisory-outreach.md",
+      "category": "strategy",
+      "total": 3,
+      "anchored": 3,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\independent-research-briefs.md",
+      "category": "strategy",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\multi-jurisdiction-legal-spine.md",
+      "category": "strategy",
+      "total": 7,
+      "anchored": 7,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\12-month-product-plan.md",
+      "category": "strategy",
+      "total": 8,
+      "anchored": 8,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\competitive-landscape.md",
+      "category": "strategy",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\gauntlet-loop.md",
+      "category": "strategy",
+      "total": 24,
+      "anchored": 24,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\architecture-diagram.md",
+      "category": "strategy",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\win-DAY-snapshot.md",
+      "category": "strategy",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\WIN-DAY-100.md",
+      "category": "strategy",
+      "total": 2,
+      "anchored": 2,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\04-pilot-outreach-emails.md",
+      "category": "strategy",
+      "total": 10,
+      "anchored": 10,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\05-advisory-ask-boardy.md",
+      "category": "strategy",
+      "total": 4,
+      "anchored": 4,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\architecture-swimlane.md",
+      "category": "strategy",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\add-a-jurisdiction-cost-curve.md",
+      "category": "strategy",
+      "total": 4,
+      "anchored": 4,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\eval-harness-precision-recall.md",
+      "category": "strategy",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\giotto-integration-research.md",
+      "category": "strategy",
+      "total": 6,
+      "anchored": 6,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\06-giotto-claim-email.md",
+      "category": "strategy",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\giotto-brainstorm.md",
+      "category": "strategy",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\live-activation-proof.md",
+      "category": "strategy",
+      "total": 11,
+      "anchored": 11,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\jurisdiction-onboarding-workflow.md",
+      "category": "strategy",
+      "total": 18,
+      "anchored": 18,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\100-judge-panel.md",
+      "category": "strategy",
+      "total": 4,
+      "anchored": 4,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\i18n-roadmap.md",
+      "category": "strategy",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\100-judge-gap-report.md",
+      "category": "strategy",
+      "total": 3,
+      "anchored": 3,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\competitive-landscape-deep.md",
+      "category": "strategy",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\IC-MEMO-Q3-2026.md",
+      "category": "strategy",
+      "total": 8,
+      "anchored": 8,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\G2M-strategy.md",
+      "category": "strategy",
+      "total": 3,
+      "anchored": 3,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\mou-followup\\01-followup-export-barbados.md",
+      "category": "strategy",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\mou-followup\\02-followup-bidc.md",
+      "category": "strategy",
+      "total": 7,
+      "anchored": 7,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\mou-followup\\03-followup-cayman-lands.md",
+      "category": "strategy",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\mou-followup\\04-followup-belize-mnrmpi.md",
+      "category": "strategy",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\mou-followup\\05-followup-guyana-glsc.md",
+      "category": "strategy",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\mou-followup\\06-followup-tt-registrar.md",
+      "category": "strategy",
+      "total": 2,
+      "anchored": 2,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\mou-followup\\07-followup-bs-lands.md",
+      "category": "strategy",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\mou-followup\\README.md",
+      "category": "strategy",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\strategy\\all-disciplines-overlay-design.md",
+      "category": "strategy",
+      "total": 19,
+      "anchored": 19,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\management\\risk-register.md",
+      "category": "management",
+      "total": 2,
+      "anchored": 2,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\management\\project-stats.md",
+      "category": "management",
+      "total": 2,
+      "anchored": 2,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\management\\first-impressions-audit.md",
+      "category": "management",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\management\\convergence-checklist.md",
+      "category": "management",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\marketing\\social-content-pack.md",
+      "category": "marketing",
+      "total": 2,
+      "anchored": 2,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\marketing\\social-campaign-100.md",
+      "category": "marketing",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\project\\marketing\\social-live-posts.md",
+      "category": "marketing",
+      "total": 4,
+      "anchored": 4,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\docs\\tenki-workflow.md",
+      "category": "docs",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\docs\\ollygarden-integration.md",
+      "category": "docs",
+      "total": 2,
+      "anchored": 2,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\docs\\local-edge-llm.md",
+      "category": "docs",
+      "total": 3,
+      "anchored": 3,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\docs\\story-60s.md",
+      "category": "docs",
+      "total": 4,
+      "anchored": 4,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\docs\\judge-quickstart.md",
+      "category": "docs",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\docs\\PRIVACY.md",
+      "category": "docs",
+      "total": 6,
+      "anchored": 6,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\docs\\TERMS.md",
+      "category": "docs",
+      "total": 3,
+      "anchored": 3,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\docs\\COOKIES.md",
+      "category": "docs",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\docs\\SECURITY.md",
+      "category": "docs",
+      "total": 1,
+      "anchored": 1,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\docs\\CHANGELOG-public.md",
+      "category": "docs",
+      "total": 2,
+      "anchored": 2,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\docs\\RUNBOOK.md",
+      "category": "docs",
+      "total": 4,
+      "anchored": 4,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\docs\\MCP-INTEGRATION.md",
+      "category": "docs",
+      "total": 2,
+      "anchored": 2,
+      "accuracy_pct": 100,
+      "missing": []
+    },
+    {
+      "doc": "G:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\docs-site\\README.md",
+      "category": "docs-site",
+      "total": 5,
+      "anchored": 5,
+      "accuracy_pct": 100,
+      "missing": []
+    }
+  ],
+  "failures_count": 0,
+  "tier1_anchor_count": 167
+}

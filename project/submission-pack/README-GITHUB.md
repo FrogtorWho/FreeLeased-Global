@@ -1,3 +1,12 @@
+<!--
+purpose: top-level README for the submission pack — explains what FreeLeased is to a first-time GitHub visitor / buildathon judge.
+audience: buildathon judges, open-source contributors, prospective Caribbean housing-agency partners, leaseholders.
+status: v3 (last full pass 2026-08-12)
+last-updated: 2026-08-12
+owner: Sam Peacock (principal) · Shogo (agent)
+cross-links: architecture-v3.md, compliance-statement-v3.md, demo-script-v3.md, project-overview-v3.md, submission-checklist-v3.md, ../strategy/gauntlet-loop.md, ../../docs/MCP-INTEGRATION.md
+-->
+
 # FreeLeased 🏠
 
 > Open-source, local-first, resident-led AI platform for leasehold governance.

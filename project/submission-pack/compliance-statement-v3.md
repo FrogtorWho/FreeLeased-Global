@@ -1,3 +1,12 @@
+<!--
+purpose: explicit compliance posture — GDPR, UK DPA 2018, Caribbean data-protection regimes, evidence-class honest framing.
+audience: buildathon judges, partner agencies, regulators.
+status: v3 (Phase 13)
+last-updated: 2026-08-12
+owner: Sam Peacock (principal) · Shogo (agent)
+cross-links: README-GITHUB.md, architecture-v3.md, project-overview-v3.md, ../../docs/PRIVACY.md, ../../docs/SECURITY.md, ../../docs/THREAT-MODEL.md
+-->
+
 # Compliance & Responsible AI Statement
 
 **FreeLeased — Future Caribbean Global AI Buildathon**

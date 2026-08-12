@@ -1,3 +1,12 @@
+<!--
+purpose: 60-second narrated demo script — what is shown, what is said, on which screen.
+audience: demo video producer, buildathon judges reviewing the video.
+status: v3 (Phase 13)
+last-updated: 2026-08-12
+owner: Sam Peacock (principal) · Shogo (agent)
+cross-links: README-GITHUB.md, demo-storyboard.md, project-overview-v3.md, ../demo/demo-video-script.md, ../../memory/2026-08-12-judge-panel-100-scorecard.md
+-->
+
 # FreeLeased — Demo Script (v3, 3 to 5 minutes)
 
 Target: 4 minutes. Structure maps to the judging rubric (business strength + agentic AI excellence). Record screen with voiceover. Timestamps are guides.
