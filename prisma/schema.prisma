@@ -60,17 +60,135 @@ model Tenant {
   @@map("tenants")
 }
 
+// ─── Phase 17: RBAC + Access Governance ──────────────────────────────────────
+// 5 roles implemented:
+//   ADMIN     — Sam; full access, user mgmt, audit log, AI-agent army
+//   PARTNER   — org-scoped; sees own tenant's data, no conviction metadata
+//   EMPLOYEE  — system role for AI-agent army; observability + pause/resume
+//   JUDGE     — read-only; scoped to curated demo slice (secret_slice enforcer)
+//   RESIDENT  — free tier; sees only own dossier
+// SQLite has no native enum, so role is a String constrained by the
+// application layer (src/lib/rbac.ts).
 model User {
   id        String   @id @default(cuid())
   tenantId  String   @default("tenant_default") @map("tenant_id")
   email     String   @unique
   name      String?
+  role      String   @default("RESIDENT") // ADMIN | PARTNER | EMPLOYEE | JUDGE | RESIDENT
+  // RESIDENT-only: their pseudonym (so the dossier query can be `where residentId = user.residentId`)
+  residentId String? @map("resident_id")
+  // JUDGE-only: tag that scopes them to the curated demo slice
+  judgeDemoOnly Boolean @default(false) @map("judge_demo_only")
+  // Optional metadata: JSON blob, e.g. lastLoginAt, mfaEnabled, etc.
+  metadata  String   @default("{}")
+  passwordHash String? @map("password_hash") // local-first, no third-party auth
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
   tenant    Tenant   @relation(fields: [tenantId], references: [id])
 
+  sessions  Session[]
+  auditLogs AuditLog[]
+
   @@index([tenantId])
+  @@index([role])
+  @@index([residentId])
   @@map("users")
+}
+
+// Session — server-side record, 24h expiry, refresh-on-use.
+model Session {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  expiresAt DateTime @map("expires_at")
+  ipAddress String?  @map("ip_address")
+  userAgent String?  @map("user_agent")
+  createdAt DateTime @default(now()) @map("created_at")
+  revokedAt DateTime? @map("revoked_at")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("sessions")
+}
+
+// AuditLog — every privileged action writes one row. Hash-chained for
+// immutability (see docs/SECURITY-AUDIT.md and the auditHash field).
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String?  @map("user_id")        // null = system action
+  action    String                          // e.g. "rbac_filter", "mcp_tool_call", "review_decide"
+  resource  String                          // e.g. "dossier", "user_account", "analyse_lease"
+  resourceId String? @map("resource_id")   // optional target id
+  before    String?                         // JSON snapshot before
+  after     String?                         // JSON snapshot after
+  metadata  String   @default("{}")         // JSON: stripped fields, IP, etc.
+  ipAddress String?  @map("ip_address")
+  userAgent String?  @map("user_agent")
+  timestamp DateTime @default(now())
+  // Hash chain: previous_hash + canon(this row) → sha256, hex-encoded.
+  // Verified by scripts/audit-trail-verifier.ts.
+  auditHash String?  @map("audit_hash")
+  prevHash  String?  @map("prev_hash")
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([action])
+  @@index([resource])
+  @@index([timestamp])
+  @@map("audit_logs")
+}
+
+// PermissionGrant — explicit role × resource × permission grant.
+// The default matrix is hard-coded in src/lib/rbac.ts; this table
+// allows runtime overrides (e.g. a Partner temporarily granted
+// ADMIN on a specific dossier for a demo).
+model PermissionGrant {
+  id         String   @id @default(cuid())
+  role       String                          // "ADMIN" | "PARTNER" | "EMPLOYEE" | "JUDGE" | "RESIDENT"
+  resource   String                          // "dossier" | "engine_output" | "audit_log" | ...
+  permission String                          // "READ" | "WRITE" | "ADMIN"
+  scope      String   @default("global")     // "global" | "tenant:<id>" | "user:<id>" | "demo_only"
+  grantedBy  String?  @map("granted_by")     // userId who created the grant
+  expiresAt  DateTime? @map("expires_at")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@unique([role, resource, permission, scope])
+  @@index([role])
+  @@index([resource])
+  @@map("permission_grants")
+}
+
+// Notification — out-of-band alerts for events (HITL override,
+// verdict-ready, queue-overflow, etc.). Created by the system,
+// surfaced to the relevant role.
+model Notification {
+  id        String   @id @default(cuid())
+  tenantId  String   @default("tenant_default") @map("tenant_id")
+  userId    String?  @map("user_id")        // null = broadcast to role
+  role      String?                          // when null, targeted only via userId
+  kind      String                           // "hitl_pending" | "verdict_ready" | "queue_overflow" | "system_health"
+  title     String
+  body      String
+  metadata  String   @default("{}")          // JSON: action URL, related_ids, severity
+  readAt    DateTime? @map("read_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([userId, readAt])
+  @@index([role])
+  @@index([tenantId])
+  @@map("notifications")
+}
+
+// FeatureFlag — kill switches for each engine. Defaults to enabled.
+// Toggle off to disable an engine without redeploying.
+model FeatureFlag {
+  key       String   @id                    // "consensus_gate" | "fairness_engine" | "vlm_pipeline" | "reconciliation"
+  enabled   Boolean  @default(true)
+  reason    String?                          // human note when disabled
+  updatedBy String?  @map("updated_by")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("feature_flags")
 }
 
 // Dossier sign-off ledger — the HITL / resident acceptance record (Redaction Protocol).

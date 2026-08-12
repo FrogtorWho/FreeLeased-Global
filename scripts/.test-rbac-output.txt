@@ -1,0 +1,52 @@
+(node:19040) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+──── 1. Role coverage — 5 roles defined ────
+
+──── 2. ADMIN permissions — full access ────
+
+──── 3. PARTNER tenant scoping ────
+
+──── 4. EMPLOYEE permissions ────
+
+──── 5. JUDGE secret-slice enforcement ────
+
+──── 6. RESIDENT own-only access ────
+
+──── 7. Role hierarchy (hasRoleAtLeast) ────
+
+──── 8. canCreateUser — no admin escalation ────
+
+──── 9. filterForUser — secret-slice enforcer ────
+
+──── 10. filterForUser — PARTNER tenant scoping ────
+
+──── 11. filterForUser — RESIDENT own-only ────
+
+──── 12. stripHiddenFields — recursive ────
+
+──── 13. Rate limiter ────
+
+──── 14. Retention policy ────
+
+──── 15. Feature flags ────
+
+──── 16. Notifications module ────
+
+──── 17. Auth module ────
+
+──── 18. Audit hash chain — SHA-256 integrity ────
+
+──── 19. Hidden field sets — completeness ────
+
+──── 20. Anonymous user — denied all ────
+
+──── 21. RBAC matrix — full coverage ────
+
+──── 22. Cross-partner isolation ────
+
+══════ TOTALS ══════
+PASS: 259
+FAIL: 0
+
+✅ All 259 RBAC + oversight assertions passed.

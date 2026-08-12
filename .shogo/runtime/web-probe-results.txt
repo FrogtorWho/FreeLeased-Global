@@ -1,0 +1,32 @@
+﻿[FAIL] https://futurecaribbean.dev - The remote name could not be resolved: 'futurecaribbean.dev'
+
+[FAIL] https://futurecaribbean.dev/buildathon - The remote name could not be resolved: 'futurecaribbean.dev'
+
+[FAIL] https://www.futurecaribbean.dev - The remote name could not be resolved: 'www.futurecaribbean.dev'
+
+[FAIL] https://www.futurecaribbean.dev/buildathon - The remote name could not be resolved: 'www.futurecaribbean.dev'
+
+[FAIL] https://futurecaribbean.dev/judging - The remote name could not be resolved: 'futurecaribbean.dev'
+
+[FAIL] https://futurecaribbean.dev/tracks - The remote name could not be resolved: 'futurecaribbean.dev'
+
+[FAIL] https://futurecaribbean.dev/about - The remote name could not be resolved: 'futurecaribbean.dev'
+
+[FAIL] https://www.futurecaribbean.dev/about - The remote name could not be resolved: 'www.futurecaribbean.dev'
+
+[FAIL] https://docs.futurecaribbean.dev - The remote name could not be resolved: 'docs.futurecaribbean.dev'
+
+[OK] https://github.com/futurecaribbean (200, 161470 bytes)
+  TITLE: 
+  BODY:
+  :root { --tab-size-preference: 4; } pre, code { tab-size: var(--tab-size-preference); } {"locale":"en","featureFlags":["actions_enable_background_steps","activity_diff_file_tree","activity_repos_file_tree","activity_repos_overview_header","activity_repos_overview_sidebar","agent_author_search_expansion","agent_author_search_expansion_ui_pulls","alternate_user_config_repo","billing_billable_licenses_cost_center_bucket_fix","billing_cost_center_list_assigned_resources","billing_cost_center_user_level_budgets","billing_discount_threshold_notification","billing_multi_user_cost_center_total_user_count","billing_user_level_budgets","billing_user_level_budgets_manage","blocking_route_query_suspense","ccr_files_changed_model_picker","ccr_mcp_skills_ga","code_quality_enablement_banner_targeting","code_quality_new_repo_selection_card","code_quality_remove_preview","code_view_raf_sticky_lines","code_view_react_header","codespaces_prebuild_region_target_update","coding_agent_tbb_quota_banner","coding_agent_third_party_model_ui","contentful_primer_code_blocks","copilot_agent_snippy","copilot_api_agentic_issue_marshal_yaml","copilot_automations_pagination","copilot_chat_attach_multiple_images","
+
+[FAIL] https://www.futurecaribbean.dev/track-9 - The remote name could not be resolved: 'www.futurecaribbean.dev'
+
+[FAIL] https://www.futurecaribbean.dev/ai-real-estate - The remote name could not be resolved: 'www.futurecaribbean.dev'
+
+[FAIL] https://www.futurecaribbean.dev/scoring - The remote name could not be resolved: 'www.futurecaribbean.dev'
+
+[FAIL] https://www.futurecaribbean.dev/rubric - The remote name could not be resolved: 'www.futurecaribbean.dev'
+
+

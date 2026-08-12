@@ -1,0 +1,35 @@
+﻿[OK] https://api.github.com/orgs/futurecaribbean/repos (200, 2 bytes)
+[]
+
+[FAIL] https://api.github.com/orgs/future-caribbean/repos - The remote server returned an error: (404) Not Found.
+
+[OK] https://api.github.com/orgs/FutureCaribbean/repos (200, 2 bytes)
+[]
+
+[FAIL] https://api.github.com/repos/futurecaribbean/buildathon - The remote server returned an error: (404) Not Found.
+
+[FAIL] https://api.github.com/repos/futurecaribbean/.github - The remote server returned an error: (404) Not Found.
+
+[OK] https://api.github.com/users/futurecaribbean (200, 1284 bytes)
+{"login":"FutureCaribbean","id":302182358,"node_id":"O_kgDOEgLv1g","avatar_url":"https://avatars.githubusercontent.com/u/302182358?v=4","gravatar_id":"","url":"https://api.github.com/users/FutureCaribbean","html_url":"https://github.com/FutureCaribbean","followers_url":"https://api.github.com/users/FutureCaribbean/followers","following_url":"https://api.github.com/users/FutureCaribbean/following{/other_user}","gists_url":"https://api.github.com/users/FutureCaribbean/gists{/gist_id}","starred_url":"https://api.github.com/users/FutureCaribbean/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/FutureCaribbean/subscriptions","organizations_url":"https://api.github.com/users/FutureCaribbean/orgs","repos_url":"https://api.github.com/users/FutureCaribbean/repos","events_url":"https://api.github.com/users/FutureCaribbean/events{/privacy}","received_events_url":"https://api.github.com/users/FutureCaribbean/received_events","type":"Organization","user_view_type":"public","site_admin":false,"name":"Future Caribbean","company":null,"blog":"","location":null,"email":null,"hireable":null,"bio":null,"twitter_username":null,"public_repos":0,"public_gists":0,"followers":0,"following":0,"created_at":"2026-07-10T15:05:27Z","updated_at":"2026-07-13T15:07:11Z"}
+
+[FAIL] https://github.com/futurecaribbean/futurecaribbean.github.io - The request was aborted: The connection was closed unexpectedly.
+
+[FAIL] https://api.github.com/repos/futurecaribbean/futurecaribbean.github.io - The remote server returned an error: (404) Not Found.
+
+[FAIL] https://api.github.com/repos/futurecaribbean/website - The remote server returned an error: (404) Not Found.
+
+[FAIL] https://api.github.com/repos/futurecaribbean/docs - The remote server returned an error: (404) Not Found.
+
+[OK] https://api.github.com/search/repositories?q=freeleased (200, 5709 bytes)
+{"total_count":1,"incomplete_results":false,"items":[{"id":1327907942,"node_id":"R_kgDOTyZEZg","name":"FreeLeased-Global","full_name":"FrogtorWho/FreeLeased-Global","private":false,"owner":{"login":"FrogtorWho","id":129592238,"node_id":"U_kgDOB7lrrg","avatar_url":"https://avatars.githubusercontent.com/u/129592238?v=4","gravatar_id":"","url":"https://api.github.com/users/FrogtorWho","html_url":"https://github.com/FrogtorWho","followers_url":"https://api.github.com/users/FrogtorWho/followers","following_url":"https://api.github.com/users/FrogtorWho/following{/other_user}","gists_url":"https://api.github.com/users/FrogtorWho/gists{/gist_id}","starred_url":"https://api.github.com/users/FrogtorWho/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/FrogtorWho/subscriptions","organizations_url":"https://api.github.com/users/FrogtorWho/orgs","repos_url":"https://api.github.com/users/FrogtorWho/repos","events_url":"https://api.github.com/users/FrogtorWho/events{/privacy}","received_events_url":"https://api.github.com/users/FrogtorWho/received_events","type":"User","user_view_type":"public","site_admin":false},"html_url":"https://github.com/FrogtorWho/FreeLeased-Global","description":"Future Caribbean Buildathon Track 9 Submission - Agentic AI Right-to-Manage Platform","fork":false,"url":"https://api.github.com/repos/FrogtorWho/FreeLeased-Global","forks_url":"https://api.github.com/repos/FrogtorWho/FreeLeased-Global/forks","keys_url":"https://api.github.com/repos...
+
+[OK] https://api.github.com/search/repositories?q=future+caribbean+buildathon (200, 47356 bytes)
+{"total_count":8,"incomplete_results":false,"items":[{"id":1253938916,"node_id":"R_kgDOSr2W5A","name":"future_caribbean_ai_buildathon","full_name":"jechaviz/future_caribbean_ai_buildathon","private":false,"owner":{"login":"jechaviz","id":6210208,"node_id":"MDQ6VXNlcjYyMTAyMDg=","avatar_url":"https://avatars.githubusercontent.com/u/6210208?v=4","gravatar_id":"","url":"https://api.github.com/users/jechaviz","html_url":"https://github.com/jechaviz","followers_url":"https://api.github.com/users/jechaviz/followers","following_url":"https://api.github.com/users/jechaviz/following{/other_user}","gists_url":"https://api.github.com/users/jechaviz/gists{/gist_id}","starred_url":"https://api.github.com/users/jechaviz/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/jechaviz/subscriptions","organizations_url":"https://api.github.com/users/jechaviz/orgs","repos_url":"https://api.github.com/users/jechaviz/repos","events_url":"https://api.github.com/users/jechaviz/events{/privacy}","received_events_url":"https://api.github.com/users/jechaviz/received_events","type":"User","user_view_type":"public","site_admin":false},"html_url":"https://github.com/jechaviz/future_caribbean_ai_buildathon","description":"Vlang product CLI and automation for Future Caribbean AI Buildathon","fork":false,"url":"https://api.github.com/repos/jechaviz/future_caribbean_ai_buildathon","forks_url":"https://api.github.com/repos/jechaviz/future_caribbean_ai_buildathon/forks","keys_url":"https://...
+
+[OK] https://api.github.com/search/repositories?q=leasehold+RTM (200, 55 bytes)
+{"total_count":0,"incomplete_results":false,"items":[]}
+
+[FAIL] https://api.github.com/search/code?q=leasehold+RTM+repo:futurecaribbean - The remote server returned an error: (401) Unauthorized.
+
+

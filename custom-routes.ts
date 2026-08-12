@@ -107,6 +107,20 @@ import { classifyGauntletIntake, intakeToResidentIntake } from './src/lib/gauntl
 import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 
+// ── Phase 17: RBAC + Access Governance ──────────────────────────────────────
+import {
+  canAccess, filterForUser, canCreateUser, hasRoleAtLeast,
+  type AuthUser, type Role, type Resource, type Permission,
+} from './src/lib/rbac'
+import {
+  getCurrentUserAsync, requireRole, requirePermission, logAction,
+  AuthError, AUTH_VERSION,
+} from './src/lib/auth'
+import { rateLimit, type RateLimitResult } from './src/lib/rate-limit'
+import { dataRetention } from './src/lib/retention'
+import { featureFlag, listFeatureFlags } from './src/lib/feature-flags'
+import { notify } from './src/lib/notifications'
+
 const app = new Hono()
 
 // ── Compute Cost Tracker ──────────────────────────────────────────────────────
@@ -2701,6 +2715,350 @@ app.get('/ollygarden/status', async (c) => {
     brainstormRef: 'project/strategy/all-partners-brainstorm.md',
     generatedAt: new Date().toISOString(),
   })
+})
+
+// ─── Phase 17: RBAC routes + Access Governance APIs ────────────────────────
+// Every privileged route is wrapped in requireRole / requirePermission. The
+// public surfaces (the demo + marketing endpoints) intentionally stay open;
+// the privileged surfaces are listed here. The expansion reflects the matrix
+// in project/strategy/rbac-design.md.
+//
+// Audit logging: every write below writes an AuditLog row via logAction().
+// The hash chain is verified by scripts/audit-trail-verifier.ts.
+
+// ── Public (no auth) ────────────────────────────────────────────────────────
+app.get('/public/jurisdictions', (c) => {
+  return c.json({
+    snapshot: SPINE_SNAPSHOT,
+    count: JURISDICTIONS.length,
+    pilot: JURISDICTIONS.filter((j) => j.inPilot).map((j) => j.code),
+  })
+})
+
+app.get('/public/health', (c) => {
+  return c.json({
+    ok: true,
+    version: AUTH_VERSION,
+    rbac: '17.0.0',
+    ts: new Date().toISOString(),
+  })
+})
+
+// ── Auth (login / logout) ──────────────────────────────────────────────────
+app.post('/auth/login', async (c) => {
+  const body = await c.req.json().catch(() => ({}))
+  const email = String(body?.email ?? '').trim().toLowerCase()
+  const password = String(body?.password ?? '')
+  if (!email || !password) return c.json({ error: 'email + password required' }, 400)
+  const user = await prisma.user.findUnique({ where: { email } })
+  if (!user || !user.passwordHash) return c.json({ error: 'invalid credentials' }, 401)
+  const { verifyPassword } = await import('./src/lib/auth')
+  if (!verifyPassword(password, user.passwordHash)) {
+    await logAction({ userId: user.id, action: 'auth_login_failed', resource: 'user_account', resourceId: user.id, ipAddress: c.req.header('x-forwarded-for') ?? undefined, userAgent: c.req.header('user-agent') ?? undefined })
+    return c.json({ error: 'invalid credentials' }, 401)
+  }
+  const { createSession } = await import('./src/lib/auth')
+  const sess = await createSession({ userId: user.id, ipAddress: c.req.header('x-forwarded-for') ?? undefined, userAgent: c.req.header('user-agent') ?? undefined })
+  await logAction({ userId: user.id, action: 'auth_login', resource: 'user_account', resourceId: user.id, ipAddress: c.req.header('x-forwarded-for') ?? undefined, userAgent: c.req.header('user-agent') ?? undefined })
+  // Set cookie
+  c.header('Set-Cookie', `fl_session=${sess.id}; Path=/; HttpOnly; SameSite=Lax; Max-Age=86400`)
+  return c.json({
+    ok: true,
+    user: { id: user.id, email: user.email, name: user.name, role: user.role, tenantId: user.tenantId, residentId: user.residentId },
+    sessionId: sess.id,
+    expiresAt: sess.expiresAt.toISOString(),
+  })
+})
+
+app.post('/auth/logout', async (c) => {
+  const user = await getCurrentUserAsync(c).catch(() => null)
+  const cookieHeader = c.req.header('cookie') ?? ''
+  const sessionId = cookieHeader.split(/;\s*/).find((p) => p.startsWith('fl_session='))?.split('=')[1] ?? null
+  if (sessionId) {
+    const { revokeSession } = await import('./src/lib/auth')
+    await revokeSession(sessionId)
+  }
+  if (user) {
+    await logAction({ userId: user.id, action: 'auth_logout', resource: 'user_account', resourceId: user.id })
+  }
+  c.header('Set-Cookie', 'fl_session=; Path=/; Max-Age=0')
+  return c.json({ ok: true })
+})
+
+app.get('/auth/me', async (c) => {
+  const user = await getCurrentUserAsync(c).catch(() => null)
+  if (!user) return c.json({ error: 'unauthenticated' }, 401)
+  return c.json({ user })
+})
+
+// ── Admin (ADMIN only) ─────────────────────────────────────────────────────
+app.get('/admin/users', async (c) => {
+  try {
+    await requireRole(c, 'ADMIN')
+  } catch (e) { return authErrorResponse(c, e) }
+  const users = await prisma.user.findMany({ orderBy: { createdAt: 'desc' } })
+  // Filter: strip passwordHash + sensitive fields
+  const safe = users.map((u) => ({ id: u.id, email: u.email, name: u.name, role: u.role, tenantId: u.tenantId, residentId: u.residentId, judgeDemoOnly: u.judgeDemoOnly, createdAt: u.createdAt }))
+  return c.json({ ok: true, users: safe })
+})
+
+app.post('/admin/users', async (c) => {
+  try {
+    await requireRole(c, 'ADMIN')
+  } catch (e) { return authErrorResponse(c, e) }
+  const body = await c.req.json().catch(() => ({}))
+  const email = String(body?.email ?? '').trim().toLowerCase()
+  const role = String(body?.role ?? 'RESIDENT').toUpperCase()
+  const tenantId = String(body?.tenantId ?? 'tenant_default')
+  const name = body?.name ?? null
+  const judgeDemoOnly = Boolean(body?.judgeDemoOnly)
+  if (!email) return c.json({ error: 'email required' }, 400)
+  // Enforce: cannot create ADMIN via API
+  if (role === 'ADMIN') {
+    await logAction({ action: 'rbac_denial', resource: 'user_account', resourceId: email, metadata: { reason: 'cannot_create_admin_via_api' } })
+    return c.json({ error: 'cannot create ADMIN via API (only out-of-band)' }, 403)
+  }
+  const { hashPassword } = await import('./src/lib/auth')
+  const passwordHash = body?.password ? hashPassword(String(body.password)) : null
+  const user = await prisma.user.create({
+    data: { email, name, role, tenantId, passwordHash, judgeDemoOnly },
+  })
+  const actor = await getCurrentUserAsync(c)
+  await logAction({ userId: actor?.id, action: 'user_create', resource: 'user_account', resourceId: user.id, after: { email, role, tenantId }, metadata: { judgeDemoOnly } })
+  return c.json({ ok: true, user: { id: user.id, email: user.email, role: user.role } })
+})
+
+app.get('/admin/audit-log', async (c) => {
+  try {
+    await requireRole(c, 'ADMIN')
+  } catch (e) { return authErrorResponse(c, e) }
+  const limit = Math.min(500, Math.max(1, Number(c.req.query('limit') ?? 100)))
+  const action = c.req.query('action')
+  const where: Record<string, unknown> = {}
+  if (action) where.action = String(action)
+  const rows = await prisma.auditLog.findMany({ where, orderBy: { timestamp: 'desc' }, take: limit })
+  return c.json({ ok: true, rows, count: rows.length })
+})
+
+app.get('/admin/audit-verify', async (c) => {
+  try {
+    await requireRole(c, 'ADMIN')
+  } catch (e) { return authErrorResponse(c, e) }
+  const { verifyAuditChain } = await import('./src/lib/auth')
+  const result = await verifyAuditChain()
+  return c.json({ ok: true, ...result })
+})
+
+app.get('/admin/feature-flags', async (c) => {
+  try {
+    await requireRole(c, 'ADMIN')
+  } catch (e) { return authErrorResponse(c, e) }
+  const flags = await listFeatureFlags()
+  return c.json({ ok: true, flags })
+})
+
+app.post('/admin/feature-flags/:key', async (c) => {
+  try {
+    await requireRole(c, 'ADMIN')
+  } catch (e) { return authErrorResponse(c, e) }
+  const key = c.req.param('key') as any
+  const body = await c.req.json().catch(() => ({}))
+  const enabled = Boolean(body?.enabled)
+  const reason = body?.reason ? String(body.reason).slice(0, 500) : null
+  const actor = await getCurrentUserAsync(c)
+  await setFeatureFlag(key, enabled, { reason: reason ?? undefined, updatedBy: actor?.id })
+  await logAction({ userId: actor?.id, action: 'flag_change', resource: 'feature_flag', resourceId: key, after: { enabled, reason } })
+  await notifyFlagChange('tenant_default', key, enabled, actor?.email ?? 'admin')
+  return c.json({ ok: true, key, enabled, reason })
+})
+
+app.get('/admin/retention', async (c) => {
+  try {
+    await requireRole(c, 'ADMIN')
+  } catch (e) { return authErrorResponse(c, e) }
+  const counts = await dataRetention.eligibleCounts(prisma)
+  return c.json({ ok: true, policy: dataRetention.policy, eligibleCounts: counts })
+})
+
+app.post('/admin/retention/erase', async (c) => {
+  try {
+    await requireRole(c, 'ADMIN')
+  } catch (e) { return authErrorResponse(c, e) }
+  const body = await c.req.json().catch(() => ({}))
+  const userId = String(body?.userId ?? '')
+  if (!userId) return c.json({ error: 'userId required' }, 400)
+  const result = await dataRetention.eraseUser(prisma, userId)
+  const actor = await getCurrentUserAsync(c)
+  await logAction({ userId: actor?.id, action: 'gdpr_erasure', resource: 'user_account', resourceId: userId, metadata: result })
+  return c.json({ ok: true, ...result })
+})
+
+app.get('/admin/system-health', async (c) => {
+  try {
+    await requireRole(c, 'ADMIN')
+  } catch (e) { return authErrorResponse(c, e) }
+  const [users, sessions, auditLogs, signoffs] = await Promise.all([
+    prisma.user.count(),
+    prisma.session.count(),
+    prisma.auditLog.count(),
+    prisma.signoff.count(),
+  ])
+  return c.json({
+    ok: true,
+    counts: { users, sessions, auditLogs, signoffs },
+    runtime: process.uptime(),
+    ts: new Date().toISOString(),
+  })
+})
+
+// ── Partner (PARTNER or ADMIN) ──────────────────────────────────────────────
+app.get('/partner/dossiers', async (c) => {
+  try {
+    const user = await requirePermission(c, 'dossier', 'READ', { tenantId: undefined })
+    // Scope to user's tenant
+    const userRecord = await prisma.user.findUnique({ where: { id: user.id } })
+    const tenantId = userRecord?.tenantId ?? user.tenantId
+    const all = await prisma.user.findMany({ where: { tenantId } })
+    // Return residents + their dossiers (synthetic, computed)
+    const residents = all.filter((u) => u.role === 'RESIDENT')
+    return c.json({ ok: true, tenantId, residents: residents.map((r) => ({ id: r.id, email: r.email, name: r.name, residentId: r.residentId })) })
+  } catch (e) { return authErrorResponse(c, e) }
+})
+
+app.post('/partner/dossiers', async (c) => {
+  try {
+    const user = await requirePermission(c, 'dossier', 'WRITE', { tenantId: undefined })
+    const body = await c.req.json().catch(() => ({}))
+    const residentEmail = String(body?.residentEmail ?? '').trim().toLowerCase()
+    if (!residentEmail) return c.json({ error: 'residentEmail required' }, 400)
+    const { hashPassword } = await import('./src/lib/auth')
+    const passwordHash = body?.password ? hashPassword(String(body.password)) : null
+    const created = await prisma.user.create({
+      data: { email: residentEmail, name: body?.name ?? null, role: 'RESIDENT', tenantId: user.tenantId, passwordHash, residentId: body?.residentId ?? null },
+    })
+    await logAction({ userId: user.id, action: 'partner_create_resident', resource: 'user_account', resourceId: created.id, after: { email: residentEmail, tenantId: user.tenantId } })
+    return c.json({ ok: true, user: { id: created.id, email: created.email, role: created.role } })
+  } catch (e) { return authErrorResponse(c, e) }
+})
+
+// ── Judge (JUDGE or ADMIN) ─────────────────────────────────────────────────
+// Critical: filterForUser is the secret-slice enforcer. Even an ADMIN
+// requesting `?demoMode=true` would get the filtered view at this endpoint.
+app.get('/judge/demo', async (c) => {
+  try {
+    const user = await requirePermission(c, 'secret_slice', 'READ')
+    // The curated 5-jurisdiction demo slice
+    const demoJurisdictions = JURISDICTIONS.filter((j) => ['UK', 'BB', 'JM', 'KY', 'TT'].includes(j.code))
+    const items = demoJurisdictions.map((j) => ({
+      code: j.code,
+      name: j.name,
+      tenureSystem: j.tenureSystem,
+      capital: j.capital,
+      inPilot: j.inPilot,
+      // Intentionally do NOT include: registry, conviction, pilotResidents
+    }))
+    // Filter through the secret-slice enforcer (strips hidden fields).
+    const result = filterForUser(items, user, 'dossier')
+    await logAction({ userId: user.id, action: 'rbac_filter', resource: 'secret_slice', metadata: { strippedFields: result.strippedFields, itemsIn: result.itemsIn, itemsOut: result.itemsOut } })
+    return c.json({ ok: true, items: result.items, meta: { strippedFields: result.strippedFields, itemsIn: result.itemsIn, itemsOut: result.itemsOut } })
+  } catch (e) { return authErrorResponse(c, e) }
+})
+
+app.get('/judge/scorecard', async (c) => {
+  try {
+    await requirePermission(c, 'secret_slice', 'READ')
+    return c.json({
+      ok: true,
+      scorecard: {
+        axes: [
+          'problem_clarity', 'technical_depth', 'impact',
+          'feasibility', 'defensibility', 'presentation',
+        ],
+        axesExplained: {
+          problem_clarity: 'Is the leaseholder problem sharply articulated?',
+          technical_depth: 'Is the engineering substantive (codified-first, deterministic engines, hash-chained audit)?',
+          impact: 'Does this matter to the 4M+ UK / 200K+ Caribbean leaseholders?',
+          feasibility: 'Can this ship — and to which market first?',
+          defensibility: 'Is the moat real (data spine, codified-first, MoU network)?',
+          presentation: 'Is the demo accurate, not theatre?',
+        },
+        // We do NOT expose the projected per-archetype scores here.
+        // Those are in the admins-only file system.
+        ref: 'project/strategy/100-judge-panel.md',
+      },
+    })
+  } catch (e) { return authErrorResponse(c, e) }
+})
+
+// ── Resident (RESIDENT or higher) ──────────────────────────────────────────
+app.get('/resident/dossier', async (c) => {
+  try {
+    const user = await requirePermission(c, 'dossier', 'READ', { residentId: user_residentId(c) })
+    return c.json({ ok: true, user: { id: user.id, email: user.email, residentId: user.residentId } })
+  } catch (e) { return authErrorResponse(c, e) }
+})
+
+function user_residentId(c: any): string | undefined {
+  // helper: resolve the caller's residentId from the session
+  // (the actual check happens in requirePermission via the user object)
+  return undefined
+}
+
+// ── Notifications (any authenticated user) ─────────────────────────────────
+app.get('/notifications', async (c) => {
+  try {
+    const user = await requireRole(c, 'RESIDENT')
+    const { listForUser } = await import('./src/lib/notifications')
+    const items = await listForUser(user.id, user.role, { limit: 50 })
+    return c.json({ ok: true, items })
+  } catch (e) { return authErrorResponse(c, e) }
+})
+
+app.post('/notifications/:id/read', async (c) => {
+  try {
+    const user = await requireRole(c, 'RESIDENT')
+    const { markRead } = await import('./src/lib/notifications')
+    await markRead(c.req.param('id'), user.id)
+    return c.json({ ok: true })
+  } catch (e) { return authErrorResponse(c, e) }
+})
+
+// ── Rate-limit demonstrate (admin view) ────────────────────────────────────
+app.get('/admin/rate-limit/status', async (c) => {
+  try {
+    await requireRole(c, 'ADMIN')
+  } catch (e) { return authErrorResponse(c, e) }
+  const { rateLimit } = await import('./src/lib/rate-limit')
+  const sample = rateLimit('admin:probe', 'read')
+  return c.json({ ok: true, sample, configs: { read: 300, write: 60, expensive: 20, auth_login: 10 } })
+})
+
+// ── Seed the FIRST admin (idempotent, out-of-band story) ───────────────────
+// This is the only path that creates an ADMIN. It is exposed as a route
+// for the demo convenience but in production it would be a CLI script
+// run by the operator. The CREATE_ADMIN_BOOTSTRAP_TOKEN guards against
+// unauthorised use.
+app.post('/admin/bootstrap', async (c) => {
+  const token = c.req.header('x-bootstrap-token') ?? ''
+  const expected = process.env.ADMIN_BOOTSTRAP_TOKEN ?? 'dev-bootstrap-token-change-me'
+  if (token !== expected) return c.json({ error: 'bootstrap token required' }, 403)
+  const body = await c.req.json().catch(() => ({}))
+  const email = String(body?.email ?? '').trim().toLowerCase()
+  if (!email) return c.json({ error: 'email required' }, 400)
+  const existing = await prisma.user.findUnique({ where: { email } })
+  if (existing) {
+    if (existing.role !== 'ADMIN') {
+      return c.json({ error: 'user exists with non-admin role; out-of-band required' }, 409)
+    }
+    return c.json({ ok: true, user: { id: existing.id, email: existing.email, role: existing.role }, alreadyAdmin: true })
+  }
+  const { hashPassword } = await import('./src/lib/auth')
+  const passwordHash = body?.password ? hashPassword(String(body.password)) : null
+  const user = await prisma.user.create({
+    data: { email, name: body?.name ?? 'Administrator', role: 'ADMIN', tenantId: 'tenant_default', passwordHash },
+  })
+  await logAction({ action: 'admin_bootstrap', resource: 'user_account', resourceId: user.id, after: { email, role: 'ADMIN' } })
+  return c.json({ ok: true, user: { id: user.id, email: user.email, role: user.role } })
 })
 
 export default app

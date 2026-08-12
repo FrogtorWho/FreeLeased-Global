@@ -360,6 +360,49 @@ function dispatchTool(name: string, args: any) {
   }
 }
 
+// ── RBAC gating (Phase 17) ─────────────────────────────────────────────────
+// Each MCP tool has a minimum required role. The implementation is duplicated
+// in custom-routes.ts (for the HTTP surface) so the two stay in sync.
+import { canAccess, hasRoleAtLeast, type Role, type AuthUser } from "../lib/rbac.ts";
+
+const TOOL_MIN_ROLE: Record<string, Role> = {
+  read_dossier: "RESIDENT",      // owner-only in practice; intercepted by RESIDENT.residentId
+  list_jurisdictions: "RESIDENT",// public listing, but require any auth
+  get_legal_rights: "RESIDENT",
+  analyse_lease: "RESIDENT",
+  search_statutes: "RESIDENT",
+};
+
+// Pull the request-level AuthUser from the JSON-RPC params (set by the
+// transport wrapper). Falls back to a default RESIDENT for stdio/CLI use,
+// which is the local-first assumption: the operator is the RESIDENT.
+function extractAuthUser(req: JsonRpcRequest): AuthUser | null {
+  const meta = (req.params as any)?.__authUser;
+  if (meta && typeof meta === "object" && meta.role) return meta as AuthUser;
+  return null;
+}
+
+function checkToolAccess(toolName: string, user: AuthUser | null): AuthUser {
+  const min = TOOL_MIN_ROLE[toolName];
+  if (!min) throw new Error(`Unknown tool: ${toolName}`);
+  if (!user) {
+    // For stdio/local use, default to RESIDENT so the operator can still
+    // run the engines. The HTTP surface (custom-routes.ts) does not allow
+    // this fallback — it requires a real session.
+    user = {
+      id: "local-operator",
+      email: "local@freeleased",
+      role: "RESIDENT",
+      tenantId: "tenant_default",
+      residentId: "demo-resident",
+    };
+  }
+  if (!hasRoleAtLeast(user, min)) {
+    throw new Error(`RBAC: tool ${toolName} requires role ${min} (have ${user.role})`);
+  }
+  return user;
+}
+
 function handle(req: JsonRpcRequest): JsonRpcResponse {
   const id = req.id ?? null;
   if (!req || req.jsonrpc !== "2.0" || typeof req.method !== "string") {
@@ -394,11 +437,16 @@ function handle(req: JsonRpcRequest): JsonRpcResponse {
             error: { code: -32602, message: "tools/call requires `name`" },
           };
         }
+        // RBAC: enforce minimum role per tool (Phase 17).
+        const user = checkToolAccess(name, extractAuthUser(req));
         const out = dispatchTool(name, a || {});
+        // Strip hidden fields per role (the secret-slice enforcer).
+        const { stripHiddenFields } = await import("../lib/rbac.ts");
+        const filtered = stripHiddenFields(out as Record<string, unknown>, user);
         return {
           jsonrpc: "2.0",
           id,
-          result: { content: [{ type: "json", json: out }] },
+          result: { content: [{ type: "json", json: filtered }] },
         };
       }
       case "notifications/initialized":
