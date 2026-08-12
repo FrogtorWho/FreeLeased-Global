@@ -209,6 +209,30 @@ try {
   row("Doc-vs-code reconciliation", "warn", `could not run: ${(e as Error).message}`);
 }
 
+// 13. LLM provider probes (OpenRouter, Gemini) — fast non-blocking env checks.
+// Static only: we read the .env file, observe whether the keys are placeholders
+// or absent, and report the configured status. No network.
+try {
+  const envText = readFileSync(join(ROOT, ".env"), "utf8");
+  const orLine = envText.match(/^OPENROUTER_API_KEY=(.*)$/m)?.[1]?.trim() ?? "";
+  const gemLine = envText.match(/^GEMINI_API_KEY=(.*)$/m)?.[1]?.trim() ?? "";
+  const orConfigured = orLine.length > 0 && orLine !== "your_openrouter_api_key_here";
+  const gemConfigured = gemLine.length > 0 && gemLine !== "your_gemini_api_key_here";
+  row(
+    "LLM: OpenRouter",
+    orConfigured ? "ok" : "warn",
+    orConfigured ? "OPENROUTER_API_KEY configured" : "key missing/placeholder",
+  );
+  row(
+    "LLM: Gemini",
+    gemConfigured ? "ok" : "warn",
+    gemConfigured ? "GEMINI_API_KEY configured" : "key missing/placeholder",
+  );
+} catch {
+  row("LLM: OpenRouter", "warn", "could not read .env");
+  row("LLM: Gemini", "warn", "could not read .env");
+}
+
 // ── Render ────────────────────────────────────────────────────────────
 const ts = new Date().toISOString().replace(/\.\d+Z$/, "Z");
 console.log(`# FreeLeased Health Check \u2014 ${ts}`);
