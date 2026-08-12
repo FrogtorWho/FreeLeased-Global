@@ -1,0 +1,7 @@
+﻿# FreeLeased — required reviewers for sensitive paths
+/project/strategy/ @sam-peacock
+/src/core/ @sam-peacock
+/src/data/frameworks/ @sam-peacock
+/.env @sam-peacock
+/src-rhd-extracted/ @sam-peacock
+/scripts/_*.ps1 @sam-peacock

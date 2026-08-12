@@ -144,3 +144,27 @@ Use GitHub Issues. Include:
 ## Licence
 
 By contributing, you agree your contributions are licensed under the Apache-2.0 runtime licence (see [`LICENSE`](LICENSE)). Data contributions to the spine are released under CC-BY 4.0.
+
+
+## Per-PR controls (added 2026-08-12 after the fire-and-forget failures)
+
+Every PR must:
+- Pass 
+ode scripts/reconcile-docs.ts (10/10 PASS · 0 drift)
+- Pass 
+ode scripts/test-llm-chain.ts (59/59)
+- Pass 
+ode scripts/test-rbac.ts (259/259)
+- Pass 
+ode scripts/test-gauntlet.ts (211/211)
+- Pass 
+ode scripts/health-check.ts
+- Have at least one Rose AI review comment (once OllyGarden Rose is activated)
+- Have a [PERSON_NAME] token if a real name is referenced
+
+Forbidden in any PR:
+- Untracked files in src-rhd-extracted/
+- console.log() with full objects (PII risk — Rose will flag)
+- Missing service.name resource attribute on OTLP exporters
+- Untracked *.log files or __pycache__/
+- New dependencies without explicit Sam approval
