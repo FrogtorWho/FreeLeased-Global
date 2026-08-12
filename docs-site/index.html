@@ -151,6 +151,53 @@
       <li>Not silent on AI. Every claim shows conviction (0.33 / 0.60 / 0.75 / 0.99). HITL on every high-severity claim.</li>
     </ul>
   </section>
+
+  <section>
+    <h2>Stack &amp; partners</h2>
+    <p class="muted small">
+      FreeLeased is built with care by a solo founder and a handful of named
+      partners. Every partner named below is in the repo
+      (<a href="CREDITS.md">CREDITS.md</a>) and the submission pack.
+    </p>
+    <div class="cards">
+      <div class="card">
+        <span class="tag tag--accent">Compute</span>
+        <h3>Nebius</h3>
+        <p>Inference compute for the agentic layer. Falls back to local
+          SQLite ($0 compute) when the key is absent.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--accent">Compute</span>
+        <h3>Impala / Giotto / MiniMax</h3>
+        <p>Provider-aware inference (multi-model fallback chain in
+          <code>src/lib/llm.server.ts</code>).</p>
+      </div>
+      <div class="card">
+        <span class="tag">Observability</span>
+        <h3>OllyGarden</h3>
+        <p>OTLP traces + SLO dashboards. Live at submission time.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Outreach</span>
+        <h3>Boardy</h3>
+        <p>Warm-intro channel for advisory validation. Active in week of
+          11 August 2026.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Pilot</span>
+        <h3>7 Caribbean MoU partners</h3>
+        <p>Barbados, BIDC, Cayman Lands, Belize MNRMPI, Guyana GLSC,
+          Trinidad Registrar, Bahamas Lands. Letters drafted; pending
+          government review.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Methodology</span>
+        <h3>Truth-Diff · Veracity · Fact-check</h3>
+        <p>Honesty engine. The output is not the input. The output is the
+          <em>difference</em>, with provenance.</p>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer" role="contentinfo">

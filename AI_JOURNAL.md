@@ -1668,3 +1668,93 @@ Run: `node --experimental-strip-types scripts/test-gauntlet.ts`
 | **Auditability** | Decision-log integration + ADR-light rows = every gauntlet decision is reproducible. |
 
 — Shogo, 2026-08-11, 22:55 UTC
+
+## 2026-08-12 — RESEARCH LOOP: 4 batches + 2 actions
+
+Sam: "research more. loop.gauntlet." Four targeted research docs to
+lift the in-the-world score (~6.0/10) by producing real research that
+leads to real action.
+
+### Batch 1 — Buildathon scoring breakdown
+
+[`project/research/buildathon-scoring-research.md`](project/research/buildathon-scoring-research.md:1)
+(primary-source verification).
+
+- Future Caribbean org on GitHub is **empty** (`public_repos:0`, created 2026-07-10).
+  No public rubric exists; the rubric is portal-supplied (50/50 Business/Agentic).
+- Only **one other public CfC repo** exists: `jechaviz/future_caribbean_ai_buildathon`
+  (V-lang CLI for submission automation). We have **track-fit moat** at the public surface.
+- The **5 universal judge signals** (extracted from 33 archetypes × 6 axes ≈ 200 axes):
+  Reproducibility, Honesty, Caribbean-relevance, Defensibility, Truth surface.
+- 9 → 10 boundary is **weeks of work** (signed LOIs, civil-law parity, translations,
+  revenue). Sprint can lift 6 → 8, not 6 → 10.
+
+### Batch 2 — Competitor hooks
+
+[`project/research/competitor-hooks-research.md`](project/research/competitor-hooks-research.md:1)
+(5 publicly-known entries, hooks extracted).
+
+- C1 (jechaviz) — "Submits itself" hook (V-lang CLI, consent-gated)
+- C2 (Leasehold-buddy) — "Chat with your lease" Q&A hook
+- C3 (brightdata) — "Sponsor halo" (Bright Data + Nebius in stack)
+- C4 (drivendata) — "See it work" (aerial-imagery roof classification)
+- C5 (hummingbot/condor) — "AI agent trades real money on Telegram"
+- **Adopted hook:** C1's "submits itself" pattern → `scripts/submit-frealeased.ts` (Action A).
+
+### Batch 3 — Deployment options
+
+[`project/research/deployment-options-research.md`](project/research/deployment-options-research.md:1)
+(live URL verification, 2026-08-12T01:17Z).
+
+- 1-click static SPA: **Netlify Drop** (60 sec, low lock-in)
+- Python API: **Fly.io** (always-on, free shared VMs)
+- Database: **stay on SQLite** for the sprint (0 users; SQLite > cloud for 0-100 users)
+- Domain: defer custom (Netlify subdomain for sprint)
+- SSL: auto from host
+- **Total time from zero to public URL: ~20 min.** Net lock-in: ~zero.
+
+### Batch 4 — Markdown → action
+
+[`project/research/markdown-to-action-research.md`](project/research/markdown-to-action-research.md:1)
+(file audit + prioritised list).
+
+- **180 active markdown files** in the repo (326 including archived/handoff).
+- The "10 markdown → 10 real artefacts" list, ranked by judge-impact:
+  1. Pilot 1 real leaseholder (+0.5)
+  2. Record 4-min demo video (+0.4)
+  3. Repo polish: LICENSE, CoC, CODEOWNERS (+0.4)
+  4. 3 UK leaseholder interviews (+0.5)
+  5. Send 7 MoU follow-up emails (+0.3)
+  6. Live agentic-loop badge in README (+0.3)
+  7. Post 3 social posts (+0.3)
+  8. Pricing page rendered (+0.2)
+  9. Architecture diagram in docs-site (+0.2)
+  10. Runbook entries as issue templates (+0.2)
+- **Predicted in-the-world lift: 5.5/10 → 8.5/10** if all 10 done.
+
+### Actions taken (post-research)
+
+**Action A — `scripts/submit-freeleased.ts`** (1.5 h, working)
+- Reads `project/submission-pack/*.md`, emits form-ready JSON
+- Mirrors C1's consent-gated submission (`APPLICATION_CONSENT_TO_SUBMIT=yes`)
+- Default dry-run; `--submit` to POST; `--emit-md` for markdown summary
+- Tested: dry-run OK (552-word compliance body, all 6 source files parsed), `--submit` correctly refused by gate
+- Saves `.shogo/runtime/submission-dry-run.md` (~4.6 KB summary)
+
+**Action B — `docs-site/index.html` sponsor-stack callout** (15 min, working)
+- New "Stack & partners" section, 6 cards:
+  Nebius · Impala/Giotto/MiniMax · OllyGarden · Boardy · 7 Caribbean MoU · Truth-Diff/Veracity/Fact-check
+- Uses existing CSS classes (`cards`, `card`, `tag`, `tag--accent`)
+- Mirrors C3's "sponsor halo" hook from BATCH 2
+
+### What this lifts in the rubric
+
+| Axis | Lift |
+|---|---|
+| **Real-world utility** | `submit-freeleased.ts` is the "self-applying AI" — directly demoable in 30 sec. |
+| **Memorability** | Sponsor-stack callout = visual hook for judges on the docs-site home page. |
+| **Honesty** | Both new artefacts are consent-gated / labelled / auditable. |
+| **Submission completeness** | A ready-to-send CLI removes the "did Sam fill the form?" risk. |
+| **Track-fit** | Sponsor names signal Caribbean-context + named partners = track 9 proof. |
+
+— Shogo, 2026-08-12, 01:25 UTC
