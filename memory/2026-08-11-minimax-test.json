@@ -1,7 +1,7 @@
 {
-  "documentId": "minimax_live_1786453662519",
-  "startedAt": "2026-08-11T13:07:41.295Z",
-  "finishedAt": "2026-08-11T13:07:42.519Z",
+  "documentId": "minimax_live_1786577104708",
+  "startedAt": "2026-08-12T23:25:02.871Z",
+  "finishedAt": "2026-08-12T23:25:04.708Z",
   "miniconfigured": true,
   "apiKeyMasked": "sk-c***",
   "request": {
@@ -14,9 +14,9 @@
     "ok": false,
     "source": "minimax",
     "text": "",
-    "error": "HTTP 401: {\"type\":\"error\",\"error\":{\"type\":\"authorized_error\",\"message\":\"invalid api key (2049)\",\"http_code\":\"401\"},\"request_id\":\"06ca51aca98c62a0aa7f041e1cb6ce04\"}"
+    "error": "HTTP 401: {\"type\":\"error\",\"error\":{\"type\":\"authorized_error\",\"message\":\"invalid api key (2049)\",\"http_code\":\"401\"},\"request_id\":\"06cc33d03a43493e5846e69e6e0d772f\"}"
   },
-  "networkTimingMs": 1223,
+  "networkTimingMs": 1835,
   "sourceFile": "live (calls https://api.minimax.chat/v1/chat/completions)",
   "scriptSource": "scripts/activate-minimax-live.ts",
   "wrapperSource": "src/lib/minimax.ts",
@@ -25,7 +25,7 @@
     "livePartner": "MiniMax",
     "notes": [
       "MINIMAX_API_KEY present — live call attempted.",
-      "End-to-end latency: 1223 ms."
+      "End-to-end latency: 1835 ms."
     ]
   }
 }
