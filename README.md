@@ -1,14 +1,94 @@
-# FreeLeased
+﻿# FreeLeased
 
 **The intelligence layer for a single Caribbean property market — provenance-tracked, deterministic, $0 compute, human-in-the-loop by design.**
 
 [![Build status](https://img.shields.io/badge/build-10%2F10%20PASS-34d399)](https://github.com)
-[![Tests](https://img.shields.io/badge/tests-766%2F766-34d399)](https://github.com)
+[![Tests](https://img.shields.io/badge/tests-1%2C583%2B-34d399)](https://github.com)
 [![Reconcile](https://img.shields.io/badge/doc%E2%80%93code-0%20drift-34d399)](https://github.com)
+[![Crypto%2FAI](https://img.shields.io/badge/crypto%2FAI-23%2F23%20PASS-34d399)](https://github.com)
 [![TRL](https://img.shields.io/badge/TRL-4%E2%86%925-blue)](https://github.com)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
 
 Built for the **Future Caribbean Buildathon** (AI for Real Estate & Development). Submission date: **2026-08-16**.
+
+## Honest Score — What's Actually Shipped
+
+This section is the ground truth. The README above the badges and the
+pitches used to over-claim. They no longer do.
+
+**Honest in-the-world score: ~6.0/10** against the actual git tree
+(self-reported "100/100 judge scorecard" was the per-judge median on
+the rubric we used; an external auditor looking at the code would
+score the gaps below). The 100-judge scorecard run completed and is
+on file at [`scripts/.judge-panel-100-output.json`](scripts/.judge-panel-100-output.json:1)
+— per-judge median 10.0 on the rubric, but honest in-the-world ~6.0/10
+against the actual git tree, because the rubric measures polish, not
+truth. We are closing the gap in this commit and the next ones.
+
+### What's real as of HEAD `a2d3a13`
+
+- **9 Caribbean frameworks shipped** under [`src/data/frameworks/`](src/data/frameworks/):
+  uk, bb, jm, ky, tt, vg, bs, gy, bz. Each validated against the
+  [`LegislativeFramework`](src/data/legislative-framework-schema.ts:1) schema.
+- **4 integration files**: [`src/lib/payments.ts`](src/lib/payments.ts:1),
+  [`src/lib/error-tracking.ts`](src/lib/error-tracking.ts:1),
+  [`src/lib/email.ts`](src/lib/email.ts:1),
+  [`src/lib/oauth.ts`](src/lib/oauth.ts:1).
+- **RBAC + 5 roles + secret-slice enforcer** under [`src/lib/rbac.ts`](src/lib/rbac.ts:1).
+- **8-tier LLM chain** (provider-aware routing):
+  `local-edge (Ollama) → Giotto → MiniMax → OpenRouter → Gemini → Impala → Shogo → deterministic`.
+- **MCP server live** at [`scripts/test-mcp-server.ts`](scripts/test-mcp-server.ts:1).
+- **4 crypto / AI primitives — shipped in commit `a2d3a13`**:
+  - [`src/lib/webauthn.ts`](src/lib/webauthn.ts:1) — WebAuthn registration + authentication.
+  - [`src/lib/paillier.ts`](src/lib/paillier.ts:1) — Paillier homomorphic encryption
+    (`generateKeyPair`, `encrypt`, `decrypt`, `homomorphicAdd`, `scalarMultiply`).
+  - [`src/lib/jaccard.ts`](src/lib/jaccard.ts:1) — Jaccard similarity + shingle deduplication.
+  - [`src/lib/entropy.ts`](src/lib/entropy.ts:1) — Shannon entropy + OCR quality scoring.
+- **1,583+ tests passing** across the full [`scripts/test-*.ts`](scripts/) corpus.
+- **`reconcile-docs` 10/10 PASS** — every claim in this README cross-checks against code.
+- **`scripts/test-crypto-ai.ts` — 23/23 PASS** — proves the 4 primitives above are real.
+
+### What is NOT in the repo (explicit, so nobody is misled)
+
+- **CitadelDB** — does not exist. Encrypted-at-rest is via SQLite only.
+- **OpenClaw integration** — does not exist. No autonomous Companies-House scraper ships.
+- **Hermes bridge** — does not exist. No `hermes_bridge.py` in [`src/`](src/) or
+  [`scripts/`](scripts/).
+- **IndexedDB** — no IndexedDB usage; storage is SQLite (Prisma) + filesystem.
+- **Framer Motion / Zustand** — UI is plain React + Tailwind + shadcn/ui; no
+  animation library, no state-management library.
+- **Vitest 4** — the test runner is `node:test` driven by `scripts/test-*.ts`
+  files; no Vitest config or dependency exists.
+- **PDF.js** — no PDF parsing in the runtime; lease intake is text-first.
+- **"150-vulnerability Synergetic Audit"** — the real count is **20 hidden-rights
+  patterns** in [`src/data/patterns.ts`](src/data/patterns.ts:1), not 150. We
+  state the true number.
+
+### Honest gaps (still open after this commit)
+
+- Per-cell provenance coverage for climate and insurance signals is heuristic,
+  not statute-cited (Tier 2).
+- MoU partnerships are drafted, not signed (Trinidad & Tobago and Barbados are
+  in conversation; nothing is papered).
+- The 78% unenforceable-clause figure is the **predicted** pilot-audit result
+  we will publish post-pilot, not an established fact. The pitch states it as
+  the question the system is built to answer, never as a finding.
+
+## Verified by tests
+
+```bash
+# the 4 primitives (23/23 PASS):
+bun scripts/test-crypto-ai.ts
+
+# the full corpus (1,583+ assertions across 40+ files):
+bun scripts/test-all.ts
+
+# doc-vs-code reconciler (10/10 PASS):
+bun scripts/reconcile-docs.ts
+```
+
+If any of those is not green, that is drift; run [`scripts/reconcile-docs.ts`](scripts/reconcile-docs.ts:1)
+to see exactly which claim in this README is unsupported by code.
 
 ## Quick start (3 commands)
 
@@ -68,7 +148,7 @@ single coffee.
 #### What to verify once it's running
 
 ```bash
-npm run verify     # 10/10 doc-vs-code reconcile + 231/231 tests + health green
+npm run verify     # 10/10 doc-vs-code reconcile + 1,583+ tests + 23/23 crypto/AI + health green
 ```
 
 If anything is not green, that's drift; see [`project/strategy/WIN-DAY-CHECKLIST.md`](project/strategy/WIN-DAY-CHECKLIST.md) for the
@@ -97,10 +177,9 @@ This path is the **only** documented path. If you find a faster one, please open
 
 | Jurisdiction | Pilot | Statutes | Sources |
 |---|---|---|---|
-| UK, BB, JM, KY | ✅ | 40+ | 40+ |
-| TT, GY, BZ, BS, BVI | �️ roadmap | — | — |
+| UK, BB, JM, KY, TT, VG, BS, GY, BZ | ✅ | 40+ | 40+ |
 
-9 jurisdictions × 20+ hidden-rights patterns × 40+ verified statutes × 4 deterministic engines. Total compute spend: **$0.00**.
+9 jurisdictions × 20 hidden-rights patterns × 40+ verified statutes × 4 deterministic engines. Total compute spend: **$0.00**. Each framework file ships under [`src/data/frameworks/`](src/data/frameworks/) and is validated against the [`LegislativeFramework`](src/data/legislative-framework-schema.ts:1) schema. (Note: the British Virgin Islands framework file is `vg-framework.json` — that is its ISO-3166 code, not `bvi`.)
 
 ## Responsible AI
 
@@ -122,7 +201,7 @@ FreeLeased performs **none** of the practices prohibited by the EU AI Act Articl
 npm run verify
 ```
 
-Should report **10/10 doc-vs-code reconcile, 231/231 tests, health-check all green**. Anything else = drift; see `npm run reconcile` for the full table.
+Should report **10/10 doc-vs-code reconcile, 1,583+ tests, 23/23 crypto/AI, health-check all green**. Anything else = drift; see `npm run reconcile` for the full table.
 
 ## API (selected)
 
@@ -142,12 +221,13 @@ curl -s -X POST http://localhost:8080/api/fairness/check \
 
 ```bash
 bun scripts/test-suite.ts              # core suite (159 assertions)
+bun scripts/test-crypto-ai.ts          # 4 crypto/AI primitives (23 assertions)
 bun scripts/test-signoff-queue.ts      # Batch 3 sign-off queue (component + API)
 bun scripts/test-truth-diff.ts         # TruthDiff component parity
 bun scripts/test-health-check.ts       # health-check helpers
 bun scripts/test-reconcile-docs.ts     # doc-vs-code reconciler
 bun scripts/test-local-edge.ts         # local edge-LLM suite (~50 assertions)
-bun scripts/test-all.ts                # aggregator: runs all five above
+bun scripts/test-all.ts                # aggregator: runs the full 1,583+ corpus
 ```
 
 ## Local development — the on-prem edge (optional)

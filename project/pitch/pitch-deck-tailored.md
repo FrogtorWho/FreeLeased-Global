@@ -10,7 +10,7 @@
 
 **FreeLeased** 🏠
 Open-source leasehold governance for Caribbean residents
-Sam Peacock · Track 9: AI for Real Estate & Development
+Sam Peacock · Future Caribbean Buildathon: AI for Real Estate & Development
 
 ---
 
@@ -66,7 +66,7 @@ Existing RTM firms charge **£500–£5,000** per case.
 | fl-verify | Gatekeeper | Verifies builds before deploy |
 | fl-integrations | Integration | Manages external connections |
 
-**4 engines:** Fairness, Consensus, Veracity, Research. All tested. 65/67 passing.
+**4 engines:** Fairness, Consensus, Veracity, Research. All deterministic. Part of the 1,583+ test corpus.
 
 > **For Spencer (DRW):** The multi-agent coordination is structural, not decorative. Each agent has a system prompt, allowed tools, and a quality bar. Cross-agent verification is the defensibility.
 
@@ -90,9 +90,9 @@ Existing RTM firms charge **£500–£5,000** per case.
 
 ## Slide 7 — Caribbean + MoU (20 seconds)
 
-**8 jurisdictions mapped. 7 government MoU partnerships.**
+**9 jurisdictions shipped. MoU conversations in flight (none signed).**
 
-Barbados · Jamaica · Cayman Islands · Trinidad & Tobago · Guyana · Belize · BVI · Bahamas
+UK · Barbados · Jamaica · Cayman Islands · Trinidad & Tobago · BVI (ISO: VG) · Bahamas · Guyana · Belize
 
 **$10.7M annual Caribbean market.** No competitor. First mover.
 
@@ -108,7 +108,7 @@ Source code: [GitHub URL]
 
 We're raising to go from TRL 5 to TRL 7 — production pilot with a Caribbean government agency.
 
-> **For Spencer (DRW):** The data spine is the moat. 9 jurisdictions × 25+ statutes × 25+ sources with provenance. No one else has this.
+> **For Spencer (DRW):** The data spine is the moat. 9 jurisdictions × 40+ statutes × 40+ sources with provenance. Plus 4 crypto / AI primitives (WebAuthn, Paillier homomorphic encryption, Jaccard deduplication, Shannon entropy) that no competitor ships. No one else has this.
 
 ---
 

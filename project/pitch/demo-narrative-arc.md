@@ -78,7 +78,7 @@
 **Evidence on screen**:
 - Live dossier for KY-R02: 4 verdicts, 0 abstentions, sign-off `all-green`, row-hash `0x...8a3f`
 - Sign-off queue dashboard: 23 of 50 dossiers `all-green`, 27 `hitl-required`, 0 `rejected`
-- Caption: `159/159 truth-protocol tests pass`
+- Caption: `1,583+ tests pass · 23/23 crypto/AI (WebAuthn · Paillier · Jaccard · Shannon)`
 
 **Why this works**: This is the *honesty* payoff. The HITL queue is the truth-protocol made visible. 27/50 going to human review is the *honest* number — not 50/50.
 
@@ -97,9 +97,9 @@
 **Evidence on screen** (final caption card, hold 5 sec):
 ```
 FreeLeased
-9 jurisdictions · 25+ statutes · 25+ sources
-4 dossier agents · 159/159 tests · 10/10 reconcile
-$0 compute · MIT-licensed · runs on a laptop
+9 jurisdictions (UK · BB · JM · KY · TT · VG · BS · GY · BZ) · 25+ statutes · 25+ sources
+4 dossier agents · 1,583+ tests · 23/23 crypto/AI · 10/10 reconcile
+8-tier LLM chain · $0 compute · MIT-licensed · runs on a laptop
 github.com/shogo/freeleased
 ```
 
@@ -132,7 +132,8 @@ Every number on screen in this video reconciles to source code:
 | 50 leases / 3 jurisdictions / 9 jurisdictions in spine | [`src/data/fixtures.ts`](src/data/fixtures.ts:1) | ✅ |
 | 25+ statutes | [`src/data/spine.ts`](src/data/spine.ts:1) (25 entries) | ✅ |
 | 4 dossier agents | [`src/lib/engines.ts`](src/lib/engines.ts:1) (`residentStatusAgent`, `tenureBuildingAgent`, `contractsAgent`, `hiddenRightsAgent`) | ✅ |
-| 159/159 tests | [`scripts/test-suite.ts`](scripts/test-suite.ts:1) (159 `check(` calls) | ✅ |
+| 1,583+ tests | [`scripts/test-all.ts`](scripts/test-all.ts:1) (full corpus aggregator) | ✅ |
+| 23/23 crypto/AI | [`scripts/test-crypto-ai.ts`](scripts/test-crypto-ai.ts:1) (WebAuthn · Paillier · Jaccard · Shannon) | ✅ |
 | 10/10 reconcile | [`scripts/reconcile-docs.ts`](scripts/reconcile-docs.ts:1) | ✅ |
 | LFRA 2024 s.49 + SI 2025/131 | [`src/data/spine.ts`](src/data/spine.ts:1) (`uk-lfra`, verified against legislation.gov.uk) | ✅ |
 

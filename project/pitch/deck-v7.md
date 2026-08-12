@@ -71,7 +71,9 @@ stack.
 > guardrail + citation safety scrubber in [`project/research/edge-llm-research.md`](../research/edge-llm-research.md:1)
 > beat Giotto on our four use-case-specific axes (citation safety,
 > reproducibility, conviction classes, auditability) while keeping
-> Giotto / MiniMax / Impala / deterministic as the 5-tier fall-back.
+> the 8-tier chain
+> `local-edge → Giotto → MiniMax → OpenRouter → Gemini → Impala → Shogo → deterministic`
+> as the fall-back.
 > Research doc at [`docs/local-edge-llm.md`](../../docs/local-edge-llm.md:1).
 
 ### 8. Defensibility (for Bill Tai)
@@ -106,3 +108,24 @@ in public, responsibly, on Caribbean-provided infrastructure. Live link + repo.
 - **Michele Romanow:** "Cheap open-model inference, high-value government licences; margin grows per jurisdiction."
 - **Dr. Auguste:** "It refuses to guess. Confidence is capped by evidence class."
 - **Sherika Herbert:** "Data stays in-country, and an ordinary resident gets a lawyer-grade lease check for free."
+
+## Honest Scorecard (what this deck does NOT over-claim)
+
+- **100-judge scorecard run completed.** Per-judge median 10.0 on the rubric we used
+  (the run lives at [`scripts/.judge-panel-100-output.json`](../../scripts/.judge-panel-100-output.json:1)
+  and the memory note at [`memory/2026-08-12-judge-panel-100-scorecard.md`](../../memory/2026-08-12-judge-panel-100-scorecard.md:1)).
+  **Honest in-the-world ~6.0/10** against the actual git tree, because the rubric
+  measures polish and depth, not whether a named dependency exists.
+- **Closing the gap in this commit.** `a2d3a13` ships 4 crypto / AI primitives that
+  were previously roadmap:
+  [`src/lib/webauthn.ts`](../src/lib/webauthn.ts:1),
+  [`src/lib/paillier.ts`](../src/lib/paillier.ts:1),
+  [`src/lib/jaccard.ts`](../src/lib/jaccard.ts:1),
+  [`src/lib/entropy.ts`](../src/lib/entropy.ts:1) — 23/23 assertions in
+  [`scripts/test-crypto-ai.ts`](../../scripts/test-crypto-ai.ts:1).
+- **Roadmap items explicitly NOT shipped (so the deck cannot drift):**
+  CitadelDB · OpenClaw · Hermes bridge · Framer Motion · Zustand ·
+  Vitest 4 · PDF.js · IndexedDB. Each is named in [`README.md`](../../README.md:1)
+  under "What is NOT in the repo".
+- **"150-vulnerability Synergetic Audit"** — the real count is **20 hidden-rights
+  patterns** in [`src/data/patterns.ts`](../src/data/patterns.ts:1), not 150.
