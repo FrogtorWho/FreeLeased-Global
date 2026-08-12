@@ -1,5 +1,5 @@
 #!/usr/bin/env node --experimental-strip-types
-// FreeLeased — Gauntlet Loop upgrade tests (Phase 16).
+// FreeLeased — Gauntlet Loop upgrade tests (Phase 16 + Gauntlet 2.0).
 //
 // Verifies the contract added to `project/strategy/gauntlet-loop.md`:
 //   - Ingest Protocol (6 questions)
@@ -10,6 +10,10 @@
 //   - Doctrine (≥ 5 principles)
 //   - Decision Log (7 columns)
 //   - Section presence in gauntlet-loop.md
+//   - Gauntlet 2.0: Client Type Matrix, Engine Catalogue (8), Overlay
+//     Catalogue (5), AI-Employee Army (10 specialist + 5 support + 3
+//     intern + 4 vendor), Tiered Pricing, Single-Person Admin TODO,
+//     Discipline Coverage Matrix, 2.0 Doctrine lines 6-7.
 //
 // Run: node --experimental-strip-types scripts/test-gauntlet.ts
 //   or: bun scripts/test-gauntlet.ts
@@ -220,10 +224,249 @@ const lineCount = gauntlet.split("\n").length;
 check(`gauntlet-loop.md has ≥ 800 lines (got ${lineCount})`, lineCount >= 800);
 check(`gauntlet-loop.md has ≥ 20,000 chars (got ${gauntlet.length})`, gauntlet.length >= 20_000);
 
+// ── Gauntlet 2.0 — Section presence for the 10 new sections ─────────────
+const SECTIONS_2_0 = [
+  "## Client Type Matrix",
+  "## Engine Catalogue (8 engines)",
+  "## Overlay Catalogue (5 overlays)",
+  "## AI-Employee Army",
+  "## Tiered Pricing",
+  "## Single-Person Admin TODO",
+  "## Discipline Coverage Matrix",
+  "## Gauntlet 2.0 Test Surface",
+  "## Gauntlet 2.0 \u2014 Doctrine Update",
+  "## Gauntlet 2.0 \u2014 Single-Person-Admin Verification",
+];
+for (const s of SECTIONS_2_0) {
+  check(`Gauntlet 2.0 section present: ${s}`, gauntlet.includes(s));
+}
+
+// ── Gauntlet 2.0 — Engine Catalogue (8 engines) ─────────────────────────
+const ENGINE_KEYWORDS: Array<[string, RegExp]> = [
+  ["Engine 1 — Legal Engine", /^###\s+1\.\s+Legal Engine/m],
+  ["Engine 2 — Planning Engine", /^###\s+2\.\s+Planning Engine/m],
+  ["Engine 3 — Building Safety Engine", /^###\s+3\.\s+Building Safety Engine/m],
+  ["Engine 4 — Environmental Engine", /^###\s+4\.\s+Environmental Engine/m],
+  ["Engine 5 — Valuation Engine", /^###\s+5\.\s+Valuation Engine/m],
+  ["Engine 6 — Financial Engine", /^###\s+6\.\s+Financial Engine/m],
+  ["Engine 7 — Tenure-Mix Engine", /^###\s+7\.\s+Tenure-Mix Engine/m],
+  ["Engine 8 — Dispute Resolution Engine", /^###\s+8\.\s+Dispute Resolution Engine/m],
+];
+for (const [name, re] of ENGINE_KEYWORDS) {
+  check(`Engine catalogue: ${name}`, re.test(gauntlet));
+}
+check(
+  "Engine catalogue: 8 distinct engines (count of ### N. headings)",
+  (gauntlet.match(/^###\s+\d+\.\s+[A-Z]/gm) || []).length >= 8
+);
+
+// ── Gauntlet 2.0 — Overlay Catalogue (5 overlays) ───────────────────────
+const OVERLAY_KEYWORDS: Array<[string, RegExp]> = [
+  ["Overlay 1 — Macro", /^###\s+Overlay\s+1\s+—\s+Macro Overlay/m],
+  ["Overlay 2 — Micro", /^###\s+Overlay\s+2\s+—\s+Micro Overlay/m],
+  ["Overlay 3 — Prediction", /^###\s+Overlay\s+3\s+—\s+Prediction Overlay/m],
+  ["Overlay 4 — Strategy", /^###\s+Overlay\s+4\s+—\s+Strategy Overlay/m],
+  ["Overlay 5 — Money Trail", /Money Trail Overlay/],
+  ["Macro context decay 90 days", /90 days\s+\(rate \/ price\)/i],
+  ["Micro dossier is the *deliverable*", /\*deliverable\*/i],
+  ["Prediction carries confidence interval", /confidence interval/i],
+  ["Strategy Overlay emits ActionPlan", /`ActionPlan`/],
+  ["Money Trail overlay — corporate structure unknowns", /structure: unknown/i],
+];
+for (const [name, re] of OVERLAY_KEYWORDS) {
+  check(`Overlay catalogue: ${name}`, re.test(gauntlet));
+}
+
+// ── Gauntlet 2.0 — Client Type Matrix (≥ 10 rows) ───────────────────────
+const CTM_KEYWORDS: Array<[string, RegExp]> = [
+  ["Singular resident row", /Singular resident/i],
+  ["Leaseholder collective row", /Leaseholder collective/i],
+  ["Property manager row", /Property manager/i],
+  ["Institutional investor row", /Institutional investor/i],
+  ["Housing association row", /Housing association/i],
+  ["Local authority row", /Local authority/i],
+  ["Tribunal row", /\bTribunal\b/],
+  ["Solicitor firm row", /Solicitor firm/i],
+  ["Mortgage lender row", /Mortgage lender/i],
+  ["Insurance provider row", /Insurance provider/i],
+  ["Pricing tier column (Free)", /\| Free \|/],
+  ["Pricing tier column (Pro)", /\| Pro \|/],
+  ["Pricing tier column (Institutional)", /\| Institutional \|/],
+];
+for (const [name, re] of CTM_KEYWORDS) {
+  check(`Client type matrix: ${name}`, re.test(gauntlet));
+}
+
+// ── Gauntlet 2.0 — AI-Employee Army (10 specialist + 5 support + 3 intern + 4 vendor) ──
+const SPECIALIST_AGENTS: Array<[string, RegExp]> = [
+  ["Counsel (LLB + 10yr PQE)", /\bCounsel\b/],
+  ["Surveyor (MRICS + 10yr)", /\bSurveyor\b/],
+  ["Planner (RTPI + 8yr)", /\bPlanner\b/],
+  ["Valuer (RICS Red Book)", /\bValuer\b/],
+  ["Fire Engineer (IFE / IFireE)", /Fire Engineer/],
+  ["Ecologist (CIEEM)", /\bEcologist\b/],
+  ["Mortgage Broker (CeMAP)", /Mortgage Broker/],
+  ["Solicitor (Dispute Resolution)", /Solicitor \(Dispute Resolution\)/],
+  ["Chartered Accountant (ACA)", /Chartered Accountant/],
+  ["Marketing Strategist", /Marketing Strategist/],
+];
+for (const [name, re] of SPECIALIST_AGENTS) {
+  check(`AI army specialist: ${name}`, re.test(gauntlet));
+}
+check(
+  "AI army specialist count = 10",
+  (gauntlet.match(/Tier 1 — Specialist Consultants \(10 roles/g) || []).length === 1
+);
+const SUPPORT_AGENTS = ["Compliance Officer", "DevOps Engineer", "PR / Comms", "Customer Success", "Data Engineer"];
+for (const a of SUPPORT_AGENTS) {
+  check(`AI army support: ${a}`, gauntlet.includes(a));
+}
+check(
+  "AI army support count = 5",
+  (gauntlet.match(/Tier 2 — Support Functions \(5 roles/g) || []).length === 1
+);
+const INTERN_AGENTS = ["Junior Analyst", "Paralegal", "Admin"];
+for (const a of INTERN_AGENTS) {
+  check(`AI army intern: ${a}`, gauntlet.includes(a));
+}
+check(
+  "AI army intern count = 3",
+  (gauntlet.match(/Tier 3 — Intern Roles \(3 roles/g) || []).length === 1
+);
+const VENDORS = ["Giotto.ai", "Nebius", "OllyGarden", "Local-edge LLM"];
+for (const v of VENDORS) {
+  check(`AI army vendor: ${v}`, gauntlet.includes(v));
+}
+check(
+  "AI army vendor count = 4",
+  (gauntlet.match(/Tier 4 — Specialist Vendors \(4 external\)/g) || []).length === 1
+);
+// Cross-communication pattern
+check(
+  "AI army cross-comm: pub/sub message bus",
+  /pub\/sub/i.test(gauntlet) && /src\/lib\/federation\.ts/i.test(gauntlet)
+);
+check(
+  "AI army cross-comm: example chain (Counsel → DR → Accountant)",
+  /Counsel\b[\s\S]*Solicitor[\s\S]*Chartered Accountant[\s\S]*Strategy Overlay/i.test(gauntlet)
+);
+
+// ── Gauntlet 2.0 — Tiered Pricing (Free / Pro / Institutional) ──────────
+const PRICING_TIERS: Array<[string, RegExp]> = [
+  ["Free Resident tier", /Free Resident\s+—\s+£0/],
+  ["Pro Advisor tier", /Pro Advisor\s+—\s+£9\/mo/],
+  ["Institutional tier", /Institutional\s+—\s+£500\+\/mo/],
+  ["Free tier — 5 dossiers/yr limit", /5 dossiers \/ year/i],
+  ["Pro tier — 50 dossiers/mo limit", /50 dossiers \/ month/],
+  ["Pro tier — multi-jurisdiction", /Multi-jurisdiction \(UK \+ 1 of BB/],
+  ["Institutional — white-label", /white-label/i],
+  ["Institutional — dedicated advisor", /Dedicated advisor agent/i],
+  ["Institutional — SLA 99.5%", /SLA: 99\.5%/],
+  ["Conversion funnel", /Free Resident[\s\S]*Pro Advisor[\s\S]*Institutional/],
+];
+for (const [name, re] of PRICING_TIERS) {
+  check(`Pricing: ${name}`, re.test(gauntlet));
+}
+
+// ── Gauntlet 2.0 — Single-Person Admin TODO (4 cadences) ───────────────
+const TODO_CADENCES: Array<[string, RegExp]> = [
+  ["Daily cadence (5 minutes)", /### Daily \(5 minutes\)/],
+  ["Weekly cadence (30 minutes)", /### Weekly \(30 minutes\)/],
+  ["Monthly cadence (2 hours)", /### Monthly \(2 hours\)/],
+  ["Quarterly cadence (1 day)", /### Quarterly \(1 day\)/],
+  ["Ad-hoc cadence", /### Ad-hoc/],
+  ["Automation budget", /Automation budget/],
+  ["Daily: overnight gauntlet output", /overnight gauntlet output/i],
+  ["Daily: hitl-required review", /hitl-required/i],
+  ["Weekly: partner outreach auto-emails", /partner outreach/i],
+  ["Quarterly: conviction-class drift review", /conviction-class drift/i],
+];
+for (const [name, re] of TODO_CADENCES) {
+  check(`Single-admin TODO: ${name}`, re.test(gauntlet));
+}
+
+// ── Gauntlet 2.0 — Discipline Coverage Matrix ──────────────────────────
+const DISCIPLINES: Array<[string, RegExp]> = [
+  ["Legal discipline row", /\*\*Legal\*\*/],
+  ["Planning discipline row", /\*\*Planning\*\*/],
+  ["Building Safety discipline row", /\*\*Building Safety\*\*/],
+  ["Environmental discipline row", /\*\*Environmental\*\*/],
+  ["Valuation discipline row", /\*\*Valuation\*\*/],
+  ["Financial discipline row", /\*\*Financial\*\*/],
+  ["Tenure-Mix discipline row", /\*\*Tenure-Mix\*\*/],
+  ["Dispute Resolution discipline row", /\*\*Dispute Resolution\*\*/],
+  ["Macro overlay row", /\*\*Macro\*\*/],
+  ["Micro overlay row", /\*\*Micro\*\*/],
+  ["Prediction overlay row", /\*\*Prediction\*\*/],
+  ["Strategy overlay row", /\*\*Strategy\*\*/],
+  ["Money Trail overlay row", /\*\*Money Trail\*\*/],
+  ["Property type — Flat (leasehold)", /Flat \(leasehold\)/i],
+  ["Property type — Mixed-tenure block", /Mixed-tenure block/i],
+  ["Property type — High-rise", /High-rise/],
+  ["Property type — Heritage / listed", /Heritage \/ listed/i],
+  ["Property type — Caribbean", /Caribbean/i],
+  ["Property type — Mixed-use", /Mixed-use/i],
+  ["Scale ladder 1 unit", /\b1 unit\b/],
+  ["Scale ladder 10 units", /\b10 units\b/],
+  ["Scale ladder 100 units", /\b100 units\b/],
+  ["Scale ladder 1,000 units", /\b1,000 units\b/],
+  ["Scale ladder 10,000 units", /\b10,000 units\b/],
+];
+for (const [name, re] of DISCIPLINES) {
+  check(`Discipline matrix: ${name}`, re.test(gauntlet));
+}
+
+// ── Gauntlet 2.0 — Doctrine extension (7 lines) ────────────────────────
+check(
+  "Doctrine 2.0 line 6: never optimise for coverage at cost of correctness",
+  /Never optimise for coverage at the cost of correctness/i.test(gauntlet)
+);
+check(
+  "Doctrine 2.0 line 7: never forget the resident is the customer",
+  /Never forget the resident is the customer/i.test(gauntlet)
+);
+
+// ── Gauntlet 2.0 — Test surface summary ─────────────────────────────────
+check(
+  "Test surface: Gauntlet 2.0 test surface section present",
+  gauntlet.includes("## Gauntlet 2.0 Test Surface")
+);
+check(
+  "Test surface: declares ≥ 30 new assertions",
+  /≥ 30 new assertions/i.test(gauntlet) || /\+ ≥ 30 new = ≥ 95 assertions/i.test(gauntlet)
+);
+
+// ── Gauntlet 2.0 — Cross-link to overlay design doc ─────────────────────
+check(
+  "Cross-link to all-disciplines-overlay-design.md",
+  gauntlet.includes("all-disciplines-overlay-design.md")
+);
+
+// ── Gauntlet 2.0 — Companion docs present ───────────────────────────────
+check(
+  "Companion docs: all-disciplines-research.md exists",
+  existsSync(resolve(ROOT, "project/research/all-disciplines-research.md"))
+);
+check(
+  "Companion docs: all-disciplines-overlay-design.md exists",
+  existsSync(resolve(ROOT, "project/strategy/all-disciplines-overlay-design.md"))
+);
+
+// ── Gauntlet 2.0 — Engine conviction caps in catalogue ──────────────────
+const ENGINE_CONVICTION_CAP_KEYWORDS: Array<[string, RegExp]> = [
+  ["Engine conviction cap: 0.99 (established)", /`established` 0\.99/],
+  ["Engine conviction cap: 0.75 (heuristic)", /`heuristic` 0\.75/],
+  ["Engine conviction cap: 0.60 (contested)", /`contested` 0\.60/],
+  ["Engine conviction cap: 0.33 (unfalsifiable)", /`unfalsifiable` 0\.33/],
+];
+for (const [name, re] of ENGINE_CONVICTION_CAP_KEYWORDS) {
+  check(`Engine conviction cap: ${name}`, re.test(gauntlet));
+}
+
 // ── Report ──────────────────────────────────────────────────────────────
 console.log("");
 console.log("════════════════════════════════════════════════════════════════");
-console.log(` GAUNTLET LOOP TESTS (Phase 16)`);
+console.log(` GAUNTLET LOOP TESTS (Phase 16 + Gauntlet 2.0)`);
 console.log(` Source: project/strategy/gauntlet-loop.md`);
 console.log("════════════════════════════════════════════════════════════════");
 console.log(`  Passed: ${passed}`);
@@ -239,6 +482,6 @@ if (fails.length > 0) {
   process.exit(1);
 }
 console.log("");
-console.log("  Result: PASS — gauntlet loop is a 'superior decision maker'.");
+console.log("  Result: PASS — gauntlet loop (Phase 16 + Gauntlet 2.0) is a 'superior decision maker'.");
 console.log("════════════════════════════════════════════════════════════════");
 process.exit(0);

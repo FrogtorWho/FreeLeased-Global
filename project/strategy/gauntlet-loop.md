@@ -1009,3 +1009,386 @@ Minimum assertions (current count: 38+):
 | Section presence | 6 | All six new sections are non-empty in `project/strategy/gauntlet-loop.md` |
 
 Total: â‰¥ 38 assertions.
+
+---
+
+# Gauntlet 2.0 — Full Metamorphosis
+
+> Added 2026-08-12. The gauntlet grows from 4 dossier engines + 4 sub-loops into a full-stack automated consultancy: **8 engines × 5 overlays × AI-employee army × tiered pricing × single-person-admin TODO**.
+
+The sections below extend (not replace) the historical gauntlet design above. Every existing test in [`scripts/test-gauntlet.ts`](../../scripts/test-gauntlet.ts:1) continues to pass; new sections are gated by new assertion groups.
+
+The design contract is in [`all-disciplines-overlay-design.md`](all-disciplines-overlay-design.md:1); the competitor landscape that motivated it is in [`../research/all-disciplines-research.md`](../research/all-disciplines-research.md:1).
+
+---
+
+## Client Type Matrix
+
+The gauntlet is for **everyone** — singular resident through institutional investor, on any tenure, any use, any jurisdiction. The client-type matrix below defines how the system *defaults* differ; users can override.
+
+| Client type | Engines prioritised (default) | Overlays applied (default) | Pricing tier | Free-tier allowed? |
+|---|---|---|---|---|
+| **Singular resident** (leaseholder / owner-occupier / tenant) | 1 Legal, 2 Planning (if buying), 6 Financial, 7 Tenure-Mix | Micro + Strategy | Free | Yes |
+| **Leaseholder collective (RTM / RMC)** | 1, 6, 7, 8 | Macro + Micro + Strategy + Money trail | Pro | Limited (collective view is pro-tier) |
+| **Property manager / agent** | 1, 4, 6, 8 | Macro + Micro | Pro | Limited (manager view is pro-tier) |
+| **Institutional investor** (fund / REIT) | 2 Planning, 4 Environmental, 5 Valuation, 6 Financial | Macro + Money trail + Prediction | Institutional | No |
+| **Housing association / RSL** | 1, 3 Building Safety, 6, 8 | Macro + Money trail | Institutional | No |
+| **Local authority** (planning, building control, housing) | 1, 2, 3, 4, 8 | Macro + Money trail | Custom (per-tender) | No |
+| **Tribunal** (FTT Property Chamber) | 1, 8 | Micro + Money trail + Strategy | Custom (per-case) | No |
+| **Solicitor firm** (panel / partner) | 1, 6, 7, 8 | Micro + Strategy + Prediction | Pro / Institutional | No |
+| **Mortgage lender** | 5 Valuation, 6 Financial, 7 Tenure-Mix | Macro + Money trail | Institutional | No |
+| **Insurance provider** (block policy) | 3 Building Safety, 5, 6 | Macro + Money trail | Institutional | No |
+
+The Strategy Overlay always surfaces the client-type lens explicitly so the resident sees *which lens* the dossier used. A singular resident can opt into a Macro view; an institutional client can opt into a singular-resident UX — but the *defaults* are the matrix above.
+
+---
+
+## Engine Catalogue (8 engines)
+
+The Gauntlet 1.x dossier had 4 engines (Resident Status, Tenure+Building, Contracts, Hidden Rights). Gauntlet 2.0 expands to **8 engines**. The expansion is *additive* — every existing engine remains; the 4 new ones fill the gaps the competitor research identified.
+
+Every engine follows the same shape:
+
+- **Inputs** — what the engine reads.
+- **Outputs** — what the engine emits (a `Verdict` with conviction + capped confidence + citations + fetchedAt).
+- **Evidence requirements** — what the resident must submit for the engine to run at `established` conviction.
+- **Conviction class cap** — the maximum confidence the engine can claim for a given evidence quality.
+- **Edge cases** — situations where the engine must localise, dual-track, or downgrade.
+
+The full design contract — including `LegalVerdict`, `PlanningVerdict`, `BuildingSafetyVerdict`, `EnvironmentalVerdict`, `ValuationVerdict`, `FinancialVerdict`, `TenureMixVerdict`, `DisputeResolutionVerdict` — is in [`all-disciplines-overlay-design.md` §3.1](all-disciplines-overlay-design.md:1). The catalogue summary:
+
+### 1. Legal Engine
+Leaseholder rights, statutory rights, RTM, lease extensions, service-charge disputes, breach identification, appeal routes. Inputs: lease text, accounts, jurisdiction, LLM call. Outputs: `LegalVerdict`. Conviction cap: `established` 0.99 → `unfalsifiable` 0.33. Edge cases: mixed-tenure, pre-LFRA 2024, Caribbean, commonhold.
+
+### 2. Planning Engine
+Zoning, permitted development, conservation, listed-building consent, Article 4, Section 106, local plan. Inputs: address, property description, local-authority data feeds. Outputs: `PlanningVerdict`. Cap: `established` 0.99 → `unfalsifiable` 0.33. Edge cases: mixed-use, conservation + Article 4, Caribbean, AONB / SSSI / wildlife handoff to Engine 4.
+
+### 3. Building Safety Engine
+BSA 2022, EWS1, fire risk assessments, ACM cladding, structural, HSE notifications, BSR gateway regime. Inputs: building height + age + materials, EWS1 form, FRA, BSR gateway status. Outputs: `BuildingSafetyVerdict`. Cap: `established` 0.99 → `unfalsifiable` 0.33. Edge cases: pre-BSA, mixed-tenure + mixed-height, Caribbean, ACM remediation funding handoff to Engine 6.
+
+### 4. Environmental Engine
+Flood risk, contamination, EPC, heat networks, wildlife regs (CIEEM), biodiversity net gain (BNG), Net Zero / Part L. Inputs: address, EPC, environmental search. Outputs: `EnvironmentalVerdict`. Cap: `established` 0.99 → `unfalsifiable` 0.33. Edge cases: flood zone 3 + insurance, wildlife regs (CIEEM), BNG 10% mandatory for new extensions, Caribbean.
+
+### 5. Valuation Engine
+RICS Red Book, AVM (hedonic regression), comparable analysis, market trend, lease-length adjustment, BSA haircut. Inputs: property attributes + Land Price Paid + comparables + BSA cost (from Engine 3) + Macro. Outputs: `ValuationVerdict`. Cap: `established` 0.99 → `unfalsifiable` 0.33. Edge cases: lease < 80 years (marriage-value premium), BSA remediation haircut, ground-rent trap, Caribbean.
+
+### 6. Financial Engine
+Service-charge fairness (LTA §19), ground-rent trap, sinking-fund analysis, RTM premium calculation, lease-extension premium, apportionment. Inputs: lease + accounts + ground rent + sinking-fund schedule. Outputs: `FinancialVerdict`. Cap: `established` 0.99 → `unfalsifiable` 0.33. Edge cases: reserve fund vs sinking fund mislabel, mixed-use apportionment, Caribbean.
+
+### 7. Tenure-Mix Engine
+Freehold / leasehold / commonhold / RTM mix, collective enfranchisement, RTM eligibility, lease-extension eligibility, commonhold conversion. Inputs: title register + lease(s) + building composition. Outputs: `TenureMixVerdict`. Cap: `established` 0.99 → `unfalsifiable` 0.33. Edge cases: mixed-tenure RTM counting (units not floor area), commonhold (no RTM), Caribbean, common-parts vs flat lease.
+
+### 8. Dispute Resolution Engine
+Tribunal procedure (FTT Property Chamber — Leasehold), mediation routes, escalation, evidence bundle assembly, witness statement scaffolding. Inputs: triggering dispute + tribunal rules + evidence + mediation route. Outputs: `DisputeVerdict`. Cap: `established` 0.99 → `unfalsifiable` 0.33. Edge cases: cross-jurisdiction (Caribbean tribunals), multi-claimant sequencing, mediation vs tribunal.
+
+The 8 engines share a common `Engine<TIn, TOut>` shape (see [`src/lib/engines.ts`](../../src/lib/engines.ts:1) — existing) and a common output `Verdict` shape (existing in [`src/lib/consensus.ts`](../../src/lib/consensus.ts:1)). Each engine emits a conviction class + cap; the consensus gate ([`consensus.ts:58 SURFACE_THRESHOLD = 0.5`](../../src/lib/consensus.ts:58)) decides surface / review / cap.
+
+---
+
+## Overlay Catalogue (5 overlays)
+
+Above the 8 engines, 5 cross-cutting overlays run *across* the engines. Each overlay is a function `(engineOutputs, dossierContext) → overlayOutput` that adds a layer of analysis no single engine can produce on its own.
+
+### Overlay 1 — Macro Overlay
+Sets the macro context: property-price trends, interest-rate context, regional economics, building-safety reform velocity. Inputs: region, property type, macro data feeds (ONS HPI, BoE rates, RICS RMS), reform-velocity tracker. Outputs: `MacroContext`. Decay: 90 days (rate / price) or per statute cycle.
+
+### Overlay 2 — Micro Overlay
+Synthesises the 8 engine outputs into a single property-specific dossier narrative. Inputs: all 8 verdicts + resident intake + existing dossier for diff. Outputs: `MicroDossier` (the *deliverable*). Decay: 30 days personal advice / 90 days property context / 365 days statute context.
+
+### Overlay 3 — Prediction Overlay
+Forward-looking risk forecasts. Inputs: all 8 verdicts + Macro + Learning Engine + public forecasts. Outputs: `PredictionSet`. Decay: 90 days. Honesty rule: every prediction carries a confidence interval; wide CI → "no reliable prediction".
+
+### Overlay 4 — Strategy Overlay
+The "what to do next" layer. Inputs: Micro + Prediction + client type + pricing tier + resource constraints. Outputs: `ActionPlan`. Decay: 30 days (depends on dossier). Action types: `automated`, `pro-tier`, `institutional`.
+
+### Overlay 5 — Money Trail Overlay (Follow-the-Money)
+Traces the money: who pays whom, who benefits, what flows where. Inputs: all 8 verdicts + service-charge accounts + lease payment clauses + freeholder structure + RTM structure. Outputs: `MoneyTrail` (text + Mermaid visual). Decay: 90 days (accounts) / 365 days (lease). Honesty rule: explicit evidence required; corporate-structure unknowns → "structure: unknown".
+
+Full design contract in [`all-disciplines-overlay-design.md` §3.2](all-disciplines-overlay-design.md:1).
+
+---
+
+## AI-Employee Army
+
+Named, specialist agents. Each agent's `execute()` is a deterministic stub by default — replaceable by a real LLM call (Giotto for legal reasoning, Nebius for data analysis, local-edge for privacy-sensitive tasks) without changing the call site. The agents communicate via pub/sub ([`src/lib/federation.ts`](../../src/lib/federation.ts:1)).
+
+### Tier 1 — Specialist Consultants (10 roles, "PQE" of FreeLeased)
+
+| Agent | Role | Cost / call (indicative) | Vendor (call route) |
+|---|---|---:|---|
+| **Counsel** (LLB + 10yr PQE) | Legal advice | £0.40 | Giotto |
+| **Surveyor** (MRICS + 10yr) | Building survey | £0.30 | Nebius |
+| **Planner** (RTPI + 8yr) | Planning applications | £0.25 | Giotto |
+| **Valuer** (RICS Red Book) | Valuations | £0.35 | Nebius |
+| **Fire Engineer** (IFE / IFireE) | Fire risk assessments | £0.30 | Giotto |
+| **Ecologist** (CIEEM) | Environmental / wildlife | £0.20 | Local-edge |
+| **Mortgage Broker** (CeMAP) | Financing | £0.15 | Local-edge |
+| **Solicitor (Dispute Resolution)** | Tribunals, mediation | £0.45 | Giotto |
+| **Chartered Accountant** (ACA) | Sinking-fund analysis | £0.30 | Nebius |
+| **Marketing Strategist** | Community organising | £0.20 | Local-edge |
+
+### Tier 2 — Support Functions (5 roles)
+
+| Agent | Role | Cost / call | Vendor |
+|---|---|---:|---|
+| **Compliance Officer** (GDPR / CoC) | Privacy + CoC compliance | £0.10 | Local-edge |
+| **DevOps Engineer** | Automation, deployment | £0.05 | Local-edge |
+| **PR / Comms** | Community engagement | £0.15 | Giotto |
+| **Customer Success** | Onboarding, training | £0.10 | Local-edge |
+| **Data Engineer** | Spine + spine maintenance | £0.15 | Local-edge |
+
+### Tier 3 — Intern Roles (3 roles, the juniors)
+
+| Agent | Role | Cost / call | Vendor |
+|---|---|---:|---|
+| **Junior Analyst** | First-pass triage | £0.03 | Local-edge |
+| **Paralegal** | Evidence bundling | £0.05 | Local-edge |
+| **Admin** | Diary / scheduling | £0.02 | Local-edge |
+
+### Tier 4 — Specialist Vendors (4 external)
+
+| Vendor | Specialty | Called by | API surface |
+|---|---|---|---|
+| **Giotto.ai** | Legal reasoning + multimodal | Counsel, Planner, Fire Engineer, PR | `POST /v1/chat` |
+| **Nebius** | Data analysis + numerical reasoning | Surveyor, Valuer, Accountant | `POST /v1/infer` |
+| **OllyGarden** | Telemetry, observability | DevOps, Data Engineer | `OTLP` |
+| **Local-edge LLM** (llama-3 / qwen-2.5 / phi-3) | Privacy-sensitive inference | Ecologist, Mortgage, Compliance, Customer Success | `POST /v1/chat` (local) |
+
+### Cross-communication patterns
+
+The agents communicate via pub/sub. Example: **Counsel** publishes a legal memo → **Solicitor (DR)** subscribes and cross-references in tribunal evidence bundle → **Chartered Accountant** subscribes to quantify the financial impact → **Strategy Overlay** subscribes to surface the action in the resident's plan. No agent blocks; all messages carry conviction class + fetchedAt + sourceUrl.
+
+### Cost model (per dossier)
+
+Assuming 8 engines × 1 specialist + 5 overlays × 1 support + 1 intern triage + 2–3 cross-comm pings:
+
+```
+Specialist consultants: 8 × £0.30 (avg) = £2.40
+Support functions:       5 × £0.10 (avg) = £0.50
+Interns:                 3 × £0.03 (avg) = £0.09
++ Giotto multimodal (PROCESS sub-loop):  £0.50
++ Telemetry (OllyGarden OTLP):          £0.05
+─────────────────────────────────────────────
+Total per dossier (indicative):          ~£3.50
+```
+
+Full design contract in [`all-disciplines-overlay-design.md` §3.4](all-disciplines-overlay-design.md:1).
+
+---
+
+## Tiered Pricing
+
+### Free Resident — £0
+- Singular resident. Leaseholder, owner-occupier, or tenant.
+- Lease Reader (existing) — single-lease analysis, indicative.
+- 1 jurisdiction (default: UK).
+- 5 dossiers / year (rate-limited, anti-abuse).
+- Public overlays only (Macro snapshot).
+- No automation (no scheduled re-fetch, no alerts).
+- Plain-English summaries, no legal-grade memo.
+- Citation chain visible (per the truth protocol).
+- **Conversion trigger.** Resident hits a question the free tier can't answer → upsell to Pro.
+
+### Pro Advisor — £9/mo or £90/yr
+- Singular resident, leaseholder collective, property manager, small firm.
+- Everything in Free Resident, plus:
+  - All 8 engines (full output).
+  - All 5 overlays (Micro + Strategy + Prediction + Money trail + Macro).
+  - Multi-jurisdiction (UK + 1 of BB / JM / TT etc.).
+  - 50 dossiers / month.
+  - Automation: weekly re-fetch + freshness alerts + decay warnings.
+  - Advanced UI: Money Trail visual map, action-plan kanban, tribunal evidence index.
+  - 1 free-tier colleague seat (per Pro account).
+- **Conversion trigger.** Pro user hits volume limit (50 dossiers/mo) or needs institutional-grade features → upsell to Institutional.
+
+### Institutional — £500+/mo (custom-priced)
+- Institutional investor, housing association, local authority, tribunal, solicitor firm, mortgage lender, insurance provider.
+- Everything in Pro, plus:
+  - Dedicated advisor agent (named, persistent).
+  - Bulk operations (CSV / API ingest of 1000+ units).
+  - White-label (the institution's brand on the dossier).
+  - Custom integrations (Yardi / RealPage / CoStar feed).
+  - Unlimited dossiers.
+  - Multi-jurisdiction (all available).
+  - SLA: 99.5% uptime, 24h response on HITL.
+  - Private spine (institution's own jurisdictional data).
+  - Custom reports (PDF + dashboards).
+
+### The conversion funnel
+
+```
+Free Resident (5 dossiers/yr, indicative)
+   │
+   │ needs more / wants automation
+   ▼
+Pro Advisor (£9/mo or £90/yr)
+   │
+   │ needs bulk / multi-jurisdiction / white-label
+   ▼
+Institutional (£500+/mo, custom)
+```
+
+Free tier is the marketing funnel; Pro tier is the self-serve revenue; Institutional is the ARR backbone. A single institutional client at £500/mo × 12 = £6k/yr covers the entire single-person-admin operational cost (see §Single-Person Admin TODO below).
+
+Full pricing design in [`all-disciplines-overlay-design.md` §3.5](all-disciplines-overlay-design.md:1).
+
+---
+
+## Single-Person Admin TODO
+
+For Sam (and any future solo admin), a TODO list that runs the whole org. Everything below is automatable except the items marked `[HITL]`.
+
+### Daily (5 minutes)
+- [ ] **Read overnight gauntlet output** (`memory/<date>.md` MAINTENANCE + SELF-IMPROVE sections). Auto-emailed at 07:00.
+- [ ] **Review any dossier flagged `hitl-required`** from yesterday. Action: sign-off, override, or escalate.
+- [ ] **Check telemetry health** — 99.5%+ of OTLP spans reached OllyGarden (auto-aggregated).
+- [ ] **Check the conviction-drift watch list** — any statute that dropped below 0.60?
+
+### Weekly (30 minutes)
+- [ ] **Review partner outreach auto-emails** — the gauntlet drafts outreach to RICS / RTPI / Law Society partners; Sam approves any that need human judgement. `[HITL]`
+- [ ] **Review pricing-experiment results** — the gauntlet runs A/B on Pro tier copy + institutional pitch. Sam approves any experiments with > £500/mo impact. `[HITL]`
+- [ ] **Review the Spine Update Log** (Data Engineer agent) — any new statutes / case-law / tribunal decisions to add?
+- [ ] **Review the Money-Trail red-flag queue** — any new corporate-structure red flags to surface?
+
+### Monthly (2 hours)
+- [ ] **Review pricing-experiment results** (cumulative) — adjust tiers if a Pro → Institutional conversion has slipped.
+- [ ] **Review the Compliance Log** (Compliance Officer agent) — any GDPR / CoC issues?
+- [ ] **Review the customer-success sequence** (Customer Success agent) — onboarding conversion rate?
+- [ ] **Review the Money-Trail revenue projections** — how much is the Money Trail Overlay driving engagement?
+
+### Quarterly (1 day)
+- [ ] **Review conviction-class drift** — for every statute in the spine, what's the 90-day conviction trend? Commit updates to `data/learning_state.json`.
+- [ ] **Review the engine catalogue** — are all 8 engines still pulling their weight? Any to retire? Any to add? `[HITL]`
+- [ ] **Review the overlay catalogue** — same for the 5 overlays.
+- [ ] **Review the AI-employee army** — are the named agents still the right roles? Any new entrants? Any to retire? `[HITL]`
+- [ ] **Review the client-type matrix** — are the default engines + overlays still right per client type? `[HITL]`
+- [ ] **Review the tiered pricing** — are the conversion funnels still healthy?
+- [ ] **Annual security audit** — see [`../../docs/SECURITY.md`](../../docs/SECURITY.md:1).
+
+### Ad-hoc
+- [ ] **Review any item the gauntlet marks `hitl-required`** — these can come at any time.
+- [ ] **Review any `[HITL]` flagged in the daily / weekly / monthly / quarterly lists above.**
+
+### Automation budget
+
+The single-person-admin TODO is designed to fit into ~1 hour of focused human time per week (most of it quarterly). The rest is automated. If the list ever exceeds 2 hours/week, the architecture is wrong — and the SELF-IMPROVE sub-loop is the place that catches it (Bayesian conviction update on the *admin workload* itself).
+
+Full design contract in [`all-disciplines-overlay-design.md` §3.6](all-disciplines-overlay-design.md:1).
+
+---
+
+## Discipline Coverage Matrix
+
+The matrix below maps disciplines × client types × pricing tiers × scales. "✓" means default-enabled; "—" means not applicable; "↑" means upsell trigger.
+
+### By Discipline
+
+| Discipline | Free | Pro | Institutional |
+|---|:-:|:-:|:-:|
+| **Legal** (leaseholder rights, RTM, lease extensions, disputes) | ✓ (singular only) | ✓ | ✓ |
+| **Planning** (zoning, PD, conservation, listed, A4, S106) | ✓ (if buying) | ✓ | ✓ |
+| **Building Safety** (BSA, EWS1, FRA, ACM, structural) | — | ✓ (collective / manager) | ✓ |
+| **Environmental** (flood, contamination, EPC, BNG, wildlife) | — | ✓ (manager) | ✓ |
+| **Valuation** (AVM, comparable, lease-length, BSA haircut) | — | ✓ | ✓ |
+| **Financial** (service charge, ground rent, sinking fund, RTM premium) | ✓ (singular) | ✓ | ✓ |
+| **Tenure-Mix** (freehold / leasehold / commonhold / RTM mix) | ✓ (singular) | ✓ | ✓ |
+| **Dispute Resolution** (tribunal, mediation, evidence bundle) | — | ✓ (collective) | ✓ |
+| **Macro** (price trends, rates, regional econ, reform velocity) | — | ✓ | ✓ |
+| **Micro** (synthesised dossier) | ✓ | ✓ | ✓ |
+| **Prediction** (forward risk forecasts) | — | ✓ | ✓ |
+| **Strategy** (ranked action plan) | ✓ (singular) | ✓ | ✓ |
+| **Money Trail** (follow-the-money flows) | — | ✓ (collective) | ✓ |
+
+### By Client Type
+
+| Client type | Free | Pro | Institutional |
+|---|:-:|:-:|:-:|
+| Singular resident | ✓ | ✓ (upsell ↑) | — |
+| Leaseholder collective (RTM / RMC) | limited ↑ | ✓ | ✓ (if multi-block) |
+| Property manager / agent | limited ↑ | ✓ | ✓ (if multi-property) |
+| Institutional investor | — | — | ✓ |
+| Housing association / RSL | — | — | ✓ |
+| Local authority | — | — | ✓ (custom) |
+| Tribunal | — | — | ✓ (custom) |
+| Solicitor firm | — | ✓ | ✓ (panel) |
+| Mortgage lender | — | — | ✓ |
+| Insurance provider | — | — | ✓ |
+
+### By Property Type
+
+| Property type | Engines touched | Overlays touched |
+|---|---|---|
+| **Flat (leasehold)** | 1, 3, 4, 6, 7, 8 | Micro + Macro + Money trail + Strategy |
+| **Flat (commonhold)** | 1, 3, 4, 5, 6 | Micro + Macro + Money trail |
+| **House (freehold)** | 2, 4, 5 | Micro + Macro + Strategy |
+| **Mixed-tenure block** | 1, 3, 4, 6, 7, 8 (all) | All overlays |
+| **Mixed-use building** | 1, 2, 3, 4, 6, 7, 8 | Macro + Micro + Money trail + Strategy |
+| **High-rise (BSA-relevant)** | 1, 2, 3, 4, 5, 6, 8 | All overlays |
+| **Heritage / listed** | 1, 2, 3, 4, 5, 6 | Macro + Micro + Strategy + Prediction |
+| **Caribbean (any)** | All 8 (jurisdiction-localised) | All 5 (jurisdiction-localised) |
+| **Commercial (institutional)** | 2, 4, 5, 6 | Macro + Money trail + Prediction |
+| **Conservation area / AONB** | 1, 2, 4, 5, 6 | Macro + Strategy |
+
+### By Scale (1 → 10,000 units)
+
+| Scale | Approach |
+|---|---|
+| **1 unit** (singular resident) | Single dossier, indicative; user is the customer |
+| **10 units** (small block) | Per-unit dossier + block overlay; collective view unlocked at Pro |
+| **100 units** (large block / small estate) | Bulk ingest (CSV / API); per-unit + portfolio overlays |
+| **1,000 units** (institutional portfolio) | White-label; dedicated advisor; private spine |
+| **10,000 units** (housing association / local authority) | Multi-tenant architecture (per [`scripts/migrate-multi-tenant.ts`](../../scripts/migrate-multi-tenant.ts:1)); institutional tier; custom integrations |
+
+The scale ladder is what makes single-person-admin viable — the architecture is the same; only the pricing tier changes.
+
+---
+
+## Gauntlet 2.0 Test Surface
+
+The test file [`scripts/test-gauntlet.ts`](../../scripts/test-gauntlet.ts:1) is extended in the Gauntlet 2.0 batch with these new assertion groups:
+
+| Group | Asserts | Description |
+|-------|--------:|-------------|
+| Engine catalogue | 8 | Each of the 8 engines named in the catalogue |
+| Overlay catalogue | 5 | Each of the 5 overlays named in the catalogue |
+| Client type matrix | 10 | Each row of the client type matrix has at least one match |
+| AI-employee army | 4 | All 4 tiers (specialist / support / intern / vendor) named |
+| Specialist agents | 10 | All 10 specialist consultants named |
+| Pricing tiers | 3 | All 3 tiers (Free / Pro / Institutional) named |
+| Single-admin TODO cadences | 4 | Daily / Weekly / Monthly / Quarterly present |
+| Discipline coverage | ≥ 5 | Legal, Planning, Building Safety, Environmental, Valuation, Financial, Tenure-Mix, Dispute |
+| Engine conviction caps | 4 | `established` / `heuristic` / `contested` / `unfalsifiable` named |
+| Scale ladder | 4 | 1, 10, 100, 1000+ units named |
+
+New total: prior assertions (≥ 65 from Phase 16) + ≥ 30 new = ≥ 95 assertions.
+
+---
+
+## Gauntlet 2.0 — Doctrine Update
+
+The original 5 doctrine lines are extended by Gauntlet 2.0 with 2 more:
+
+6. **Never optimise for coverage at the cost of correctness.** Gauntlet 2.0 covers 8 engines and 5 overlays; but every engine still follows the truth protocol. A wrong answer across 8 engines is worse than a missing engine. If we can't verify an engine's verdict, we mark it `unfalsifiable` 0.33, not `established` 0.99.
+
+7. **Never forget the resident is the customer.** The 8 engines and 5 overlays exist to serve the resident. The AI-employee army exists to serve the resident. The tiered pricing exists so the resident can start free and grow. If any layer ever loses the resident view, it is wrong.
+
+These 7 lines are the gauntlet's contract with itself.
+
+---
+
+## Gauntlet 2.0 — Single-Person-Admin Verification
+
+If Sam (or any future solo admin) can run the gauntlet from the §Single-Person Admin TODO above, in ≤ 2 hours/week of focused human time, the architecture is correct. The test file [`scripts/test-gauntlet.ts`](../../scripts/test-gauntlet.ts:1) does *not* verify this directly (it can't) — it verifies the *artefacts* the admin needs.
+
+The artefacts are:
+1. The overnight gauntlet output (auto-generated, in `memory/<date>.md`).
+2. The partner-outreach queue (auto-generated, in `[HITL]` queue).
+3. The pricing-experiment results (auto-generated, in `[HITL]` queue).
+4. The conviction-drift watch list (auto-generated, in `data/learning_state.json`).
+5. The engine / overlay / agent / pricing / matrix catalogues (this document).
+
+If any artefact is missing or stale, the admin TODO breaks. The SELF-IMPROVE sub-loop catches this.
+
+---
+
+**End of Gauntlet 2.0 expansion.** The historical sections above remain the source of truth for the 5 sub-loops, the ingest protocol, the dated conviction contract, the outcomes / game-theory / strategy / doctrine lines, the decision-log integration, and the verification harness. The new sections above are the source of truth for the 8 engines, 5 overlays, AI-employee army, tiered pricing, single-person-admin TODO, client-type matrix, and discipline coverage matrix. Together they form the gauntlet as it exists today.
