@@ -1491,3 +1491,38 @@ to truth instead of to hype.**
 ---
 
 **End of Convergence Audit Methodology — Gauntlet 3.0.**
+
+
+## Gauntlet v3.0 — Adapted for Real-World Impact
+
+Lessons learned from the 2026-08-12 sprint where every prior batch was interrupted or overscored:
+
+### 1. Ingest lesson
+Every task must declare WHO / WHAT / WHY NOW / COST OF BEING WRONG / CONVICTION / DATE before any code is written. Without these, fire-and-forget dispatch fails and produces markdown theatre.
+
+### 2. Batch-size lesson
+Tasks >30 min scope have been interrupted 5+ times in this session. Stay ≤15 min per dispatch. Split bigger work into smaller dispatches with checkpoints.
+
+### 3. Dialogue lesson
+Round-by-round checkpoints with explicit reports are 100% more reliable than single-shot fire-and-forget. Every dispatch should include at least one checkpoint that reads + reports state.
+
+### 4. Disk-vs-world lesson
+On-disk score inflated (9.45/10 from 1,583 tests + 326 markdown files) but in-the-world score was 5.7/10 until a 3-day deploy sprint. The gauntlet must weight artefacts IN THE WORLD (live URLs, deployed apps, sent emails) above artefacts ON DISK.
+
+### 5. Honest-gap protocol
+Naming 9-10 honest gaps with unblock dates is more valuable than claiming 10/10. Judges who score 10 are the ones who NAME their uncertainties, not the ones who pretend they have none.
+
+### 6. Per-partner dependency map
+Nebius / OllyGarden / Giotto / MiniMax / Tenki / Boardy / OpenRouter / Gemini have asymmetric fall-back chains. Never claim "fully working" until each provider is actually exercised with a real key.
+
+### 7. Sam-side vs agent-side split
+Be explicit about which actions are Sam's (send MoU emails, post to social, record demo video, claim Giotto key, deploy dist) vs which are agent's (write code, write tests, write docs). The agent cannot do Sam's actions; pretending otherwise is the root cause of false "done" claims.
+
+### 8. Saturation-by-rubric vs saturation-by-buildathon
+The gauntlet can be rubric-saturated (10/10 across all axes) but still buildathon-bound (still need real users / real revenue / real pilot). Saturation = buildathon-bound is the honest stopping criterion.
+
+### What this gauntlet is NOT
+- NOT a judge simulator (use scripts/judge-panel-100.ts for that)
+- NOT a test runner (use npm run test:all for that)
+- NOT a deploy system (use scripts/start-public.sh for that)
+- IS: the meta-system that decides what to do next, given everything we know
