@@ -2,6 +2,10 @@
 
 **You are an overnight agent. Sam is asleep. The gauntlet loop will run you.** This is what to read first.
 
+## Priority
+
+Sam's directive (2026-08-12): Buildathon is the ONLY priority. HH-RTM is deferred — do not surface HH-RTM in buildathon-facing artefacts. Internal HH-RTM context remains in AGENTS.md / MEMORY.md for Sam's personal use.
+
 ## What FreeLeased is
 Open-source, local-first, resident-led leasehold governance platform for the Future Caribbean Global AI Buildathon (Track 9 — AI for Real Estate). Code freeze 2026-08-14, demo 2026-08-16, TRL claim: Level 4.
 
