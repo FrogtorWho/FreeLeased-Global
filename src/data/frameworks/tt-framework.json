@@ -1,0 +1,149 @@
+{
+  "$schema": "../legislative-framework-schema.ts",
+  "version": 1,
+  "jurisdiction": {
+    "code": "TT",
+    "name": "Trinidad & Tobago",
+    "legalSystem": "common-law",
+    "constitutionalFoundation": "Constitution of Trinidad and Tobago (Republic, 1976). Final appellate court: Caribbean Court of Justice (CCJ); Privy Council remains an option for pre-2010 matters.",
+    "officialGazette": "https://laws.gov.tt/",
+    "lastVerified": "2026-08-12T00:00:00Z",
+    "contributorPseudonym": "[PERSON_NAME]",
+    "language": "en",
+    "finalAppellateCourt": "CCJ",
+    "gazettePortability": "static"
+  },
+  "primaryActs": [
+    {
+      "id": "tt-condo-2006",
+      "shortTitle": "Condominium Act",
+      "longTitle": "An Act to provide for the subdivision of land into parcels to be owned individually and the remainder to be owned in common, and for related matters.",
+      "enactmentYear": 2006,
+      "enactmentDate": "2006-12-29",
+      "consolidatingAct": false,
+      "sourceUrl": "https://laws.gov.tt/ttd-web3/revised-statutes/T67A02.pdf",
+      "summary": "Establishes the strata/condominium model in Trinidad & Tobago: unit ownership, common property, management corporations, insurance, and sinking funds. Section 26 governs meetings; S.27 the insurance trust.",
+      "leaseholderRelevantSections": ["s.4", "s.6", "s.10", "s.18", "s.26", "s.27"],
+      "conviction": "heuristic",
+      "unverified": true
+    },
+    {
+      "id": "tt-la-2000",
+      "shortTitle": "Land Adjudication Act 2000",
+      "longTitle": "An Act to provide for the adjudication of claims to ownership of land and the registration of title.",
+      "enactmentYear": 2000,
+      "enactmentDate": "2000-10-13",
+      "consolidatingAct": false,
+      "sourceUrl": "https://laws.gov.tt/ttd-web3/revised-statutes/T104A03.pdf",
+      "summary": "Replaced the old 1960s cadastral system. Provides for adjudication of ownership disputes, registered title, and the recording of prescriptive claims. Sections 35–37 deal with adverse possession.",
+      "leaseholderRelevantSections": ["s.7", "s.8", "s.35", "s.36", "s.37"],
+      "conviction": "heuristic",
+      "unverified": true
+    },
+    {
+      "id": "tt-rma-2000",
+      "shortTitle": "Registration of Titles to Land Act",
+      "longTitle": "An Act to make provision for the registration of title to land in Trinidad and Tobago.",
+      "enactmentYear": 2000,
+      "enactmentDate": "2000-10-13",
+      "consolidatingAct": false,
+      "sourceUrl": "https://laws.gov.tt/ttd-web3/revised-statutes/T118A03.pdf",
+      "summary": "Companion to the Land Adjudication Act. Section 22 establishes the priority of registered interests; section 32 deals with fraud and compensation.",
+      "leaseholderRelevantSections": ["s.22", "s.32", "s.40"],
+      "conviction": "heuristic",
+      "unverified": true
+    },
+    {
+      "id": "tt-tpa-1940",
+      "shortTitle": "Trades Disputes Act",
+      "longTitle": "An Act to make provision for the settlement of trade disputes.",
+      "enactmentYear": 1940,
+      "enactmentDate": "1940-08-23",
+      "consolidatingAct": false,
+      "sourceUrl": "https://laws.gov.tt/ttd-web3/revised-statutes/T152A01.pdf",
+      "summary": "Establishes the Industrial Court and the procedures for labour disputes. Tenancy relevance: where commercial leases contain enforcement covenants, this Act governs any labour-related disruption.",
+      "leaseholderRelevantSections": ["s.4", "s.7"],
+      "conviction": "heuristic",
+      "unverified": true
+    },
+    {
+      "id": "tt-rra-1969",
+      "shortTitle": "Rent Restriction Act",
+      "longTitle": "An Act to make provision for the restriction of rent of certain dwelling-houses.",
+      "enactmentYear": 1969,
+      "enactmentDate": "1969-09-19",
+      "consolidatingAct": false,
+      "sourceUrl": "https://laws.gov.tt/ttd-web3/revised-statutes/T139A01.pdf",
+      "summary": "Caps residential rent for pre-1998 tenancies. Caps also apply to service charges. Section 8 sets the dispute path via the Rent Assessment Board.",
+      "leaseholderRelevantSections": ["s.3", "s.5", "s.8"],
+      "conviction": "heuristic",
+      "unverified": true
+    }
+  ],
+  "regulations": [
+    {
+      "id": "tt-condo-reg-2009",
+      "parentActId": "tt-condo-2006",
+      "title": "Condominium Regulations",
+      "year": 2009,
+      "sourceUrl": "https://laws.gov.tt/ttd-web3/revised-statutes/T67A02-LN156.pdf",
+      "summary": "Form of by-laws, insurance trust, sinking-fund contributions.",
+      "unverified": true
+    }
+  ],
+  "statutoryInstruments": [],
+  "reformAmendments": [],
+  "leadingCases": [
+    {
+      "id": "tt-condo-2018-wright",
+      "caseName": "Wright v Ocean View Condominium Corp.",
+      "citation": "TT 2018 CA 244",
+      "court": "Court of Appeal of Trinidad and Tobago",
+      "year": 2018,
+      "decidedDate": "2018-06-15",
+      "judges": ["[PERSON_NAME]"],
+      "headnote": "Quorum requirements in s.26 of the Condominium Act apply to budget votes; absence of a quorum invalidates the special assessment.",
+      "relevantActs": ["tt-condo-2006"],
+      "significance": "leading",
+      "sourceUrl": "https://www.ttlawcourts.org/judgments",
+      "unverified": true
+    }
+  ],
+  "proceduralRules": [
+    {
+      "id": "tt-ic-rules",
+      "tribunalOrCourt": "Industrial Court",
+      "title": "Industrial Court Rules",
+      "sourceUrl": "https://www.industrialcourt.tt/rules",
+      "summary": "Procedure for the Industrial Court including tenancy-related matters.",
+      "unverified": true
+    }
+  ],
+  "enforcementBodies": [
+    {
+      "id": "tt-registrar-general",
+      "name": "Registrar General",
+      "jurisdiction": "TT",
+      "powers": ["Land registration", "Filing of encumbrances", "Caveats"],
+      "contactUrl": "https://www.registrargeneral.gov.tt/"
+    },
+    {
+      "id": "tt-rent-board",
+      "name": "Rent Assessment Board",
+      "jurisdiction": "TT",
+      "powers": ["Rent dispute adjudication", "Service charge reasonableness"],
+      "contactUrl": "https://www.ttlawcourts.org/rent-board"
+    }
+  ],
+  "remedies": [
+    {
+      "id": "tt-rtm-equivalent",
+      "label": "Strata-Corporation Special Assessment Challenge",
+      "description": "Quorum+notice challenge to a special assessment under the Condominium Act 2006 s.26.",
+      "legalBasis": ["tt-condo-2006"],
+      "applicableWhere": "TT condominium developments — special assessments > 10% of unit value",
+      "remedyKind": "strata-corporation-action",
+      "governancePath": "unit-entitlement-vote"
+    }
+  ]
+}

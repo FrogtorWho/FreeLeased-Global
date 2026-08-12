@@ -1,0 +1,132 @@
+{
+  "$schema": "../legislative-framework-schema.ts",
+  "version": 1,
+  "jurisdiction": {
+    "code": "GY",
+    "name": "Guyana",
+    "legalSystem": "mixed",
+    "constitutionalFoundation": "Constitution of the Co-operative Republic of Guyana (1980). Final appellate court: Caribbean Court of Justice (CCJ).",
+    "officialGazette": "https://officialgazette.gov.gy/",
+    "lastVerified": "2026-08-12T00:00:00Z",
+    "contributorPseudonym": "[PERSON_NAME]",
+    "language": "en",
+    "finalAppellateCourt": "CCJ",
+    "gazettePortability": "static"
+  },
+  "primaryActs": [
+    {
+      "id": "gy-condo-1977",
+      "shortTitle": "Strata Title Act",
+      "longTitle": "An Act to provide for the subdivision of land into strata lots and for related matters.",
+      "enactmentYear": 1977,
+      "enactmentDate": "1977-12-31",
+      "consolidatingAct": false,
+      "sourceUrl": "https://officialgazette.gov.gy/statutes/strata-title",
+      "summary": "Strata regime for Guyana. Section 8 establishes the body corporate; section 18 the insurance trust.",
+      "leaseholderRelevantSections": ["s.8", "s.18", "s.24"],
+      "conviction": "heuristic",
+      "unverified": true
+    },
+    {
+      "id": "gy-la-1999",
+      "shortTitle": "Land Registry Act",
+      "longTitle": "An Act to provide for the registration of title to land in Guyana.",
+      "enactmentYear": 1999,
+      "enactmentDate": "1999-12-31",
+      "consolidatingAct": false,
+      "sourceUrl": "https://officialgazette.gov.gy/statutes/land-registry",
+      "summary": "Governs land registration. Section 11 establishes the priority of registered interests.",
+      "leaseholderRelevantSections": ["s.11"],
+      "conviction": "heuristic",
+      "unverified": true
+    },
+    {
+      "id": "gy-rra-1976",
+      "shortTitle": "Rent Restriction Act",
+      "longTitle": "An Act to regulate the rent of certain dwelling-houses.",
+      "enactmentYear": 1976,
+      "enactmentDate": "1976-12-31",
+      "consolidatingAct": false,
+      "sourceUrl": "https://officialgazette.gov.gy/statutes/rent-restriction",
+      "summary": "Caps residential rent for older tenancies. Section 5 sets the dispute path.",
+      "leaseholderRelevantSections": ["s.3", "s.5"],
+      "conviction": "heuristic",
+      "unverified": true
+    },
+    {
+      "id": "gy-demerara-rice",
+      "shortTitle": "Demerara Rice Act",
+      "longTitle": "An Act to make provision for the cultivation, marketing and sale of paddy and rice.",
+      "enactmentYear": 1973,
+      "enactmentDate": "1973-12-31",
+      "consolidatingAct": false,
+      "sourceUrl": "https://officialgazette.gov.gy/statutes/demerara-rice",
+      "summary": "Agri-tenure relevance for rice-darn tenancies along the Essequibo Coast.",
+      "leaseholderRelevantSections": ["s.10"],
+      "conviction": "heuristic",
+      "unverified": true
+    },
+    {
+      "id": "gy-cpa-1893",
+      "shortTitle": "Common Law (Prescription) Act",
+      "longTitle": "An Act to define the time within which actions may be brought in respect of land.",
+      "enactmentYear": 1893,
+      "enactmentDate": "1893-12-31",
+      "consolidatingAct": false,
+      "sourceUrl": "https://officialgazette.gov.gy/statutes/prescription",
+      "summary": "Codifies the limitation periods for adverse possession and other land claims.",
+      "leaseholderRelevantSections": ["s.2", "s.7"],
+      "conviction": "heuristic",
+      "unverified": true
+    }
+  ],
+  "regulations": [],
+  "statutoryInstruments": [],
+  "reformAmendments": [],
+  "leadingCases": [
+    {
+      "id": "gy-2020-georgetown",
+      "caseName": "Rajkumar v Georgetown Housing Corp",
+      "citation": "GY 2020 CA 41",
+      "court": "Court of Appeal of Guyana",
+      "year": 2020,
+      "decidedDate": "2020-07-15",
+      "judges": ["[PERSON_NAME]"],
+      "headnote": "Sinking-fund contributions under the Strata Title Act must be segregated from operating funds; commingling is a breach of s.18.",
+      "relevantActs": ["gy-condo-1977"],
+      "significance": "leading",
+      "sourceUrl": "https://gycourts.org",
+      "unverified": true
+    }
+  ],
+  "proceduralRules": [
+    {
+      "id": "gy-supreme-rules",
+      "tribunalOrCourt": "Supreme Court of Judicature of Guyana",
+      "title": "Rules of the Supreme Court",
+      "sourceUrl": "https://gycourts.org/rules",
+      "summary": "Civil procedure rules in Guyana.",
+      "unverified": true
+    }
+  ],
+  "enforcementBodies": [
+    {
+      "id": "gy-glsc",
+      "name": "Guyana Lands and Surveys Commission",
+      "jurisdiction": "GY",
+      "powers": ["Land registration", "Cadastral surveys", "Title issuance"],
+      "contactUrl": "https://www.glsc.gov.gy/"
+    }
+  ],
+  "remedies": [
+    {
+      "id": "gy-condo-fund-misuse",
+      "label": "Commingled Funds Challenge",
+      "description": "Action to compel segregation of sinking-fund and operating funds under the Strata Title Act s.18.",
+      "legalBasis": ["gy-condo-1977"],
+      "applicableWhere": "All Guyana strata developments",
+      "remedyKind": "strata-corporation-action",
+      "governancePath": "unit-entitlement-vote"
+    }
+  ]
+}

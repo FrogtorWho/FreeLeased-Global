@@ -1,0 +1,139 @@
+{
+  "$schema": "../legislative-framework-schema.ts",
+  "version": 1,
+  "jurisdiction": {
+    "code": "BS",
+    "name": "Bahamas",
+    "legalSystem": "common-law",
+    "constitutionalFoundation": "Constitution of the Commonwealth of the Bahamas (1973). Final appellate court: Privy Council (UK).",
+    "officialGazette": "https://laws.bahamas.gov.bs/",
+    "lastVerified": "2026-08-12T00:00:00Z",
+    "contributorPseudonym": "[PERSON_NAME]",
+    "language": "en",
+    "finalAppellateCourt": "Privy Council",
+    "gazettePortability": "static"
+  },
+  "primaryActs": [
+    {
+      "id": "bs-condo-1959",
+      "shortTitle": "Condominium Act 1959",
+      "longTitle": "An Act to make provision for the ownership of land in vertical dimension and for related matters.",
+      "enactmentYear": 1959,
+      "enactmentDate": "1959-10-30",
+      "consolidatingAct": false,
+      "sourceUrl": "https://laws.bahamas.gov.bs/cms/en/legislation/condo.html",
+      "summary": "Strata regime for the Bahamas. Section 6 establishes the by-laws; section 14 the insurance trust; section 24 the rights of the body corporate.",
+      "leaseholderRelevantSections": ["s.4", "s.6", "s.14", "s.24"],
+      "conviction": "heuristic",
+      "unverified": true
+    },
+    {
+      "id": "bs-lpa-1959",
+      "shortTitle": "Conveyancing and Law of Property Act",
+      "longTitle": "An Act to consolidate the law of property and conveyancing in the Bahamas.",
+      "enactmentYear": 1959,
+      "enactmentDate": "1959-12-31",
+      "consolidatingAct": false,
+      "sourceUrl": "https://laws.bahamas.gov.bs/cms/en/legislation/lpa-1959.html",
+      "summary": "Bahamas' equivalent of the UK LPA 1925. Section 54 grants relief against forfeiture.",
+      "leaseholderRelevantSections": ["s.54", "s.85"],
+      "conviction": "heuristic",
+      "unverified": true
+    },
+    {
+      "id": "bs-rp-2009",
+      "shortTitle": "Registered Land Act 2009",
+      "longTitle": "An Act to provide for the registration of title to land in the Bahamas.",
+      "enactmentYear": 2009,
+      "enactmentDate": "2009-04-01",
+      "consolidatingAct": false,
+      "sourceUrl": "https://laws.bahamas.gov.bs/cms/en/legislation/rp-2009.html",
+      "summary": "Modernised land-registration regime. Section 12 establishes the priority of registered interests; section 29 the rectification rules.",
+      "leaseholderRelevantSections": ["s.12", "s.29"],
+      "conviction": "heuristic",
+      "unverified": true
+    },
+    {
+      "id": "bs-housing-1989",
+      "shortTitle": "Housing Act",
+      "longTitle": "An Act to provide for the regulation of housing in the Bahamas.",
+      "enactmentYear": 1989,
+      "enactmentDate": "1989-12-31",
+      "consolidatingAct": false,
+      "sourceUrl": "https://laws.bahamas.gov.bs/cms/en/legislation/housing-1989.html",
+      "summary": "Establishes the Housing Division; provides for rent dispute adjudication.",
+      "leaseholderRelevantSections": ["s.7", "s.11"],
+      "conviction": "heuristic",
+      "unverified": true
+    },
+    {
+      "id": "bs-tourism-2014",
+      "shortTitle": "Tourism Development Act",
+      "longTitle": "An Act to provide for the development and regulation of tourism in the Bahamas.",
+      "enactmentYear": 2014,
+      "enactmentDate": "2014-08-15",
+      "consolidatingAct": false,
+      "sourceUrl": "https://laws.bahamas.gov.bs/cms/en/legislation/tourism-2014.html",
+      "summary": "Indirect relevance for leasehold: tourism-resort zoning restrictions fall under this Act.",
+      "leaseholderRelevantSections": ["s.18"],
+      "conviction": "heuristic",
+      "unverified": true
+    }
+  ],
+  "regulations": [],
+  "statutoryInstruments": [],
+  "reformAmendments": [],
+  "leadingCases": [
+    {
+      "id": "bs-2013-paradise",
+      "caseName": "Paradise Island Leaseholders v Paradise Co",
+      "citation": "BS 2013 SC 188",
+      "court": "Supreme Court of the Bahamas",
+      "year": 2013,
+      "decidedDate": "2013-09-12",
+      "judges": ["[PERSON_NAME]"],
+      "headnote": "Quorum requirements for special assessment votes upheld; s.24 of the Condominium Act invalidates assessments without a quorum.",
+      "relevantActs": ["bs-condo-1959"],
+      "significance": "leading",
+      "sourceUrl": "https://bahamasjudiciary.com",
+      "unverified": true
+    }
+  ],
+  "proceduralRules": [
+    {
+      "id": "bs-supreme-rules",
+      "tribunalOrCourt": "Supreme Court of the Bahamas",
+      "title": "Rules of the Supreme Court",
+      "sourceUrl": "https://bahamasjudiciary.com/rules",
+      "summary": "Civil procedure rules in the Bahamas.",
+      "unverified": true
+    }
+  ],
+  "enforcementBodies": [
+    {
+      "id": "bs-registrar-general",
+      "name": "Registrar General",
+      "jurisdiction": "BS",
+      "powers": ["Land registry", "Companies registry", "Caveats"],
+      "contactUrl": "https://www.bahamas.gov.bs/registrar-general"
+    },
+    {
+      "id": "bs-housing-division",
+      "name": "Department of Housing",
+      "jurisdiction": "BS",
+      "powers": ["Rent dispute mediation", "Public housing"],
+      "contactUrl": "https://www.bahamas.gov.bs/housing"
+    }
+  ],
+  "remedies": [
+    {
+      "id": "bs-condo-aggrieved",
+      "label": "Body Corporate By-Law Challenge",
+      "description": "Challenge to a by-law adopted without a quorum under s.6 of the Condominium Act.",
+      "legalBasis": ["bs-condo-1959"],
+      "applicableWhere": "Bahamas strata developments",
+      "remedyKind": "strata-corporation-action",
+      "governancePath": "unit-entitlement-vote"
+    }
+  ]
+}

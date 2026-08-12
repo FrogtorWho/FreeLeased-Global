@@ -1,0 +1,149 @@
+{
+  "$schema": "../legislative-framework-schema.ts",
+  "version": 1,
+  "jurisdiction": {
+    "code": "VG",
+    "name": "British Virgin Islands",
+    "legalSystem": "common-law",
+    "constitutionalFoundation": "Constitution of the Virgin Islands (2007). Final appellate court: Eastern Caribbean Court of Appeal → Privy Council.",
+    "officialGazette": "https://www.bvigazette.org/",
+    "lastVerified": "2026-08-12T00:00:00Z",
+    "contributorPseudonym": "[PERSON_NAME]",
+    "language": "en",
+    "finalAppellateCourt": "Privy Council",
+    "gazettePortability": "static"
+  },
+  "primaryActs": [
+    {
+      "id": "vg-bvi-bca-2004",
+      "shortTitle": "BVI Business Companies Act",
+      "longTitle": "An Act to provide for the incorporation, operation and regulation of business companies.",
+      "enactmentYear": 2004,
+      "enactmentDate": "2004-01-01",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.bvifsc.vg/business-companies-act",
+      "summary": "The BVI's flagship company law. Relevant for leasehold: the use of BVI companies as holding vehicles for strata-titled real estate, particularly in the BVI's offshore-property market.",
+      "leaseholderRelevantSections": ["s.5", "s.6", "s.67", "s.144"],
+      "conviction": "heuristic",
+      "unverified": true
+    },
+    {
+      "id": "vg-rp-2012",
+      "shortTitle": "Registered Land Act",
+      "longTitle": "An Act to make provision for the registration of title to land in the Territory.",
+      "enactmentYear": 2012,
+      "enactmentDate": "2012-06-20",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.bvifsc.vg/registered-land",
+      "summary": "Section 4 establishes the Land Registry; section 28 establishes the priority of registered interests; section 49 sets the rectification rules.",
+      "leaseholderRelevantSections": ["s.4", "s.28", "s.49"],
+      "conviction": "heuristic",
+      "unverified": true
+    },
+    {
+      "id": "vg-cl-1924",
+      "shortTitle": "Conveyancing and Law of Property Act",
+      "longTitle": "An Act to consolidate the law relating to conveyancing and the law of property.",
+      "enactmentYear": 1924,
+      "enactmentDate": "1924-12-31",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.bvifsc.vg/conveyancing-law",
+      "summary": "BVI's equivalent of the UK LPA 1925. Sections 45–55 cover the implied covenants in leases; section 146 grounds for forfeiture.",
+      "leaseholderRelevantSections": ["s.45", "s.49", "s.146"],
+      "conviction": "heuristic",
+      "unverified": true
+    },
+    {
+      "id": "vg-tar-2012",
+      "shortTitle": "Tax Administration Act",
+      "longTitle": "An Act to provide for the administration of tax laws and for related matters.",
+      "enactmentYear": 2012,
+      "enactmentDate": "2012-10-01",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.bvi.gov.vg/tax-administration",
+      "summary": "Governs how property-related taxes are collected and appealed. Section 31 deals with objections.",
+      "leaseholderRelevantSections": ["s.31"],
+      "conviction": "heuristic",
+      "unverified": true
+    },
+    {
+      "id": "vg-condo-2006",
+      "shortTitle": "Condominium and Leasehold Development Act",
+      "longTitle": "An Act to provide for the development of strata-titled land and for related matters.",
+      "enactmentYear": 2006,
+      "enactmentDate": "2006-07-20",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.bvifsc.vg/condo-act",
+      "summary": "Strata regime for the BVI. Section 17 deals with insurance; section 24 with sinking funds; section 34 with meeting procedure.",
+      "leaseholderRelevantSections": ["s.17", "s.24", "s.34"],
+      "conviction": "heuristic",
+      "unverified": true
+    }
+  ],
+  "regulations": [
+    {
+      "id": "vg-condo-reg-2007",
+      "parentActId": "vg-condo-2006",
+      "title": "Condominium Regulations",
+      "year": 2007,
+      "sourceUrl": "https://www.bvifsc.vg/condo-regs",
+      "summary": "Form of by-laws, insurance trust, sinking-fund mechanisms.",
+      "unverified": true
+    }
+  ],
+  "statutoryInstruments": [],
+  "reformAmendments": [],
+  "leadingCases": [
+    {
+      "id": "vg-2017-tortola",
+      "caseName": "Road Reef Tower Owners v BVI Holdings",
+      "citation": "BVIHCM 2017/0144",
+      "court": "High Court of the BVI",
+      "year": 2017,
+      "decidedDate": "2017-09-12",
+      "judges": ["[PERSON_NAME]"],
+      "headnote": "Seafront building. The Tribunal held that wind-loading disclosures required by s.34 of the Condominium Act include BVI hurricane-zone modelling.",
+      "relevantActs": ["vg-condo-2006"],
+      "significance": "leading",
+      "sourceUrl": "https://www.bvihighcourt.com",
+      "unverified": true
+    }
+  ],
+  "proceduralRules": [
+    {
+      "id": "vg-cpr-2000",
+      "tribunalOrCourt": "Eastern Caribbean Supreme Court",
+      "title": "Civil Procedure Rules",
+      "sourceUrl": "https://www.eccb.gov.cb/cpr",
+      "summary": "CPR governs civil procedure in the BVI High Court.",
+      "unverified": true
+    }
+  ],
+  "enforcementBodies": [
+    {
+      "id": "vg-bvifsc",
+      "name": "BVI Financial Services Commission",
+      "jurisdiction": "VG",
+      "powers": ["Oversee BC/company registry", "Approve BVI companies"],
+      "contactUrl": "https://www.bvifsc.vg/"
+    },
+    {
+      "id": "vg-land-registry",
+      "name": "BVI Land Registry",
+      "jurisdiction": "VG",
+      "powers": ["Maintain land register", "Issue certified copies"],
+      "contactUrl": "https://www.bvi.gov.vg/land-registry"
+    }
+  ],
+  "remedies": [
+    {
+      "id": "vg-rtm-equivalent",
+      "label": "Body Corporate Sinking Fund Challenge",
+      "description": "Challenge to a sinking-fund contribution under the BVI Condominium Act s.24.",
+      "legalBasis": ["vg-condo-2006"],
+      "applicableWhere": "All BVI strata developments",
+      "remedyKind": "strata-corporation-action",
+      "governancePath": "unit-entitlement-vote"
+    }
+  ]
+}

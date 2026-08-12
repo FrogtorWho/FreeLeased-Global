@@ -1,0 +1,132 @@
+{
+  "$schema": "../legislative-framework-schema.ts",
+  "version": 1,
+  "jurisdiction": {
+    "code": "BZ",
+    "name": "Belize",
+    "legalSystem": "common-law",
+    "constitutionalFoundation": "Constitution of Belize (1981). Final appellate court: Caribbean Court of Justice (CCJ).",
+    "officialGazette": "https://www.belizelaw.org/",
+    "lastVerified": "2026-08-12T00:00:00Z",
+    "contributorPseudonym": "[PERSON_NAME]",
+    "language": "en",
+    "finalAppellateCourt": "CCJ",
+    "gazettePortability": "static"
+  },
+  "primaryActs": [
+    {
+      "id": "bz-condo-2000",
+      "shortTitle": "Condominium Act",
+      "longTitle": "An Act to provide for the subdivision of land into parcels to be owned individually and the remainder to be owned in common.",
+      "enactmentYear": 2000,
+      "enactmentDate": "2000-07-20",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.belizelaw.org/bz-web3/revised-statutes/C163A01.pdf",
+      "summary": "Strata regime for Belize. Section 7 establishes the body corporate; section 19 the insurance trust.",
+      "leaseholderRelevantSections": ["s.7", "s.19", "s.25"],
+      "conviction": "heuristic",
+      "unverified": true
+    },
+    {
+      "id": "bz-la-2003",
+      "shortTitle": "Belize Lands Act",
+      "longTitle": "An Act to provide for the management and disposition of national lands.",
+      "enactmentYear": 2003,
+      "enactmentDate": "2003-04-25",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.belizelaw.org/bz-web3/revised-statutes/L43A01.pdf",
+      "summary": "Section 19 establishes the Lands Department; section 40 deals with adverse possession; section 100 governs concession.",
+      "leaseholderRelevantSections": ["s.19", "s.40", "s.100"],
+      "conviction": "heuristic",
+      "unverified": true
+    },
+    {
+      "id": "bz-rl-2003",
+      "shortTitle": "Registered Land Act",
+      "longTitle": "An Act to provide for the registration of title to land in Belize.",
+      "enactmentYear": 2003,
+      "enactmentDate": "2003-04-25",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.belizelaw.org/bz-web3/revised-statutes/R35A01.pdf",
+      "summary": "Companion volume to the Belize Lands Act. Section 14 establishes the priority of registered interests.",
+      "leaseholderRelevantSections": ["s.14", "s.32"],
+      "conviction": "heuristic",
+      "unverified": true
+    },
+    {
+      "id": "bz-lp-2000",
+      "shortTitle": "Land Tax Act",
+      "longTitle": "An Act to provide for the assessment and collection of land tax.",
+      "enactmentYear": 2000,
+      "enactmentDate": "2000-12-31",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.belizelaw.org/bz-web3/revised-statutes/L118A01.pdf",
+      "summary": "Establishes the land-tax regime. Section 22 deals with objection and appeal.",
+      "leaseholderRelevantSections": ["s.22"],
+      "conviction": "heuristic",
+      "unverified": true
+    },
+    {
+      "id": "bz-environment-2003",
+      "shortTitle": "Environmental Protection Act",
+      "longTitle": "An Act to provide for the protection of the environment.",
+      "enactmentYear": 2003,
+      "enactmentDate": "2003-04-25",
+      "consolidatingAct": false,
+      "sourceUrl": "https://www.belizelaw.org/bz-web3/revised-statutes/E35A01.pdf",
+      "summary": "Section 6 establishes the Department of the Environment. Indirect relevance for any leasehold environmentally-restricted uses.",
+      "leaseholderRelevantSections": ["s.6"],
+      "conviction": "heuristic",
+      "unverified": true
+    }
+  ],
+  "regulations": [],
+  "statutoryInstruments": [],
+  "reformAmendments": [],
+  "leadingCases": [
+    {
+      "id": "bz-2018-ambergris",
+      "caseName": "Hopkins Bay Owners v Hopkins Bay Ltd",
+      "citation": "BZ 2018 SC 99",
+      "court": "Supreme Court of Belize",
+      "year": 2018,
+      "decidedDate": "2018-08-09",
+      "judges": ["[PERSON_NAME]"],
+      "headnote": "Sinking-fund contributions under the Belize Condominium Act s.19 must be deposited in a separate trust account.",
+      "relevantActs": ["bz-condo-2000"],
+      "significance": "leading",
+      "sourceUrl": "https://www.belizejudiciary.org",
+      "unverified": true
+    }
+  ],
+  "proceduralRules": [
+    {
+      "id": "bz-supreme-rules",
+      "tribunalOrCourt": "Supreme Court of Belize",
+      "title": "Rules of the Supreme Court",
+      "sourceUrl": "https://www.belizejudiciary.org/rules",
+      "summary": "Civil procedure rules in Belize.",
+      "unverified": true
+    }
+  ],
+  "enforcementBodies": [
+    {
+      "id": "bz-lands-dept",
+      "name": "Department of Lands",
+      "jurisdiction": "BZ",
+      "powers": ["Land registration", "Concessions"],
+      "contactUrl": "https://www.lands.gov.bz/"
+    }
+  ],
+  "remedies": [
+    {
+      "id": "bz-condo-fund-misuse",
+      "label": "Sinking-Fund Segregation Challenge",
+      "description": "Action to compel segregation of sinking-fund and operating funds under the Belize Condominium Act s.19.",
+      "legalBasis": ["bz-condo-2000"],
+      "applicableWhere": "All Belize strata developments",
+      "remedyKind": "strata-corporation-action",
+      "governancePath": "unit-entitlement-vote"
+    }
+  ]
+}
