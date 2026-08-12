@@ -54,6 +54,8 @@ export default function LeaseReader() {
   const [analysis, setAnalysis] = useState<LeaseAnalysis | null>(null);
   const [jurisdiction, setJurisdiction] = useState<JurisdictionCode>('BB');
   const [running, setRunning] = useState(false);
+  const [apiVerdict, setApiVerdict] = useState<string | null>(null);
+  const [apiError, setApiError] = useState<string | null>(null);
 
   const stats = useMemo(() => {
     return {
@@ -65,10 +67,24 @@ export default function LeaseReader() {
 
   function run() {
     setRunning(true);
+    setApiVerdict(null);
+    setApiError(null);
     setTimeout(() => {
       setAnalysis(analyzeLease(text || DEMO_LEASE, jurisdiction));
       setRunning(false);
     }, 350);
+    // Mirror to the live /api/leise-reader endpoint so the LLM chain is wired.
+    fetch('/api/leise-reader', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ text: text || DEMO_LEASE, jurisdiction }),
+    })
+      .then((r) => r.json().then((j) => ({ ok: r.ok, j })))
+      .then(({ ok, j }) => {
+        if (ok) setApiVerdict(j.verdict ?? 'unknown')
+        else setApiError(j.error ?? `HTTP ${ok}`)
+      })
+      .catch((e) => setApiError(String(e)))
   }
 
   function loadDemo() {
@@ -83,6 +99,8 @@ export default function LeaseReader() {
   function clearAll() {
     setText('');
     setAnalysis(null);
+    setApiVerdict(null);
+    setApiError(null);
   }
 
   const radarData = analysis
@@ -174,6 +192,12 @@ export default function LeaseReader() {
             {text ? `${text.trim().split(/\s+/).filter(Boolean).length} words · ${text.length} chars` : 'No text yet'}
           </span>
         </div>
+        {apiVerdict && (
+          <p className="text-[10px] font-mono text-emerald-700">server verdict: {apiVerdict} (live /api/leise-reader)</p>
+        )}
+        {apiError && (
+          <p className="text-[10px] font-mono text-amber-700">server: {apiError}</p>
+        )}
       </div>
 
       {/* Verdict */}

@@ -1,0 +1,130 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-08-12T16:16:00Z",
+  "rootNote": "Mirror of the Future Caribbean Data Room structure. The Data Room itself is at G:\\My Drive\\Development\\Future Caribbean\\Data Room and is read-only. This mirror is the live-walked index used by the admin DataRoomBrowser.",
+  "summary": "22 folders, 45 files, 280 KB total.",
+  "jurisdictions": ["UK", "BB", "JM", "KY", "TT", "BS", "GY", "BZ", "VG"],
+  "categories": [
+    { "id": "overview", "label": "Company overview", "folders": ["01_Company Overview"] },
+    { "id": "problem", "label": "Problem validation", "folders": ["02_Problem Validation"] },
+    { "id": "product", "label": "Product evidence", "folders": ["03_Product Evidence"] },
+    { "id": "technical", "label": "Technical proof", "folders": ["04_Technical Proof"] },
+    { "id": "users", "label": "User testing & pilot", "folders": ["05_User Testing and Pilot"] },
+    { "id": "business", "label": "Business & traction", "folders": ["06_Business and Traction"] },
+    { "id": "legal", "label": "Legal & permissions", "folders": ["07_Legal and Permissions"] }
+  ],
+  "folders": [
+    {
+      "id": "00_README",
+      "label": "Index & TRL Map",
+      "category": "overview",
+      "trlLevel": "META",
+      "files": [
+        { "id": "trl-map", "name": "TRL_Map.md", "description": "Tech Readiness Level map for each Data Room category.", "sizeBytes": 4200, "kind": "markdown", "trlLevel": "META", "verified": true }
+      ]
+    },
+    {
+      "id": "01_company",
+      "label": "Company Overview",
+      "category": "overview",
+      "trlLevel": "TRL 1",
+      "files": [
+        { "id": "project_overview", "name": "FreeLeased_Project_Overview.md", "description": "Project overview + competition facts.", "sizeBytes": 4543, "kind": "markdown", "trlLevel": "TRL 1", "verified": true },
+        { "id": "readme", "name": "README.md", "description": "Public README — what FreeLeased is, responsible AI, tech stack.", "sizeBytes": 3560, "kind": "markdown", "trlLevel": "TRL 1", "verified": true },
+        { "id": "sample_lease", "name": "sample-lease.txt", "description": "Synthetic example lease paired with disclaimer.", "sizeBytes": 759, "kind": "text", "trlLevel": "TRL 1", "verified": true },
+        { "id": "principles", "name": "immutable_business_facts.md", "description": "Eight locked business rulings including FreeLeased Ltd registration.", "sizeBytes": 2017, "kind": "markdown", "trlLevel": "TRL 1", "verified": true },
+        { "id": "founder_journey", "name": "founder_journey_and_team.md", "description": "Founder journey + team quality.", "sizeBytes": 4030, "kind": "markdown", "trlLevel": "TRL 1", "verified": true },
+        { "id": "memory_snapshot", "name": "MEMORY_snapshot.md", "description": "Curated founder/team excerpt.", "sizeBytes": 2804, "kind": "markdown", "trlLevel": "TRL 1", "verified": true },
+        { "id": "deck_v7", "name": "deck-v7.md", "description": "Pitch deck v7.", "sizeBytes": 3388, "kind": "markdown", "trlLevel": "TRL 1", "verified": true }
+      ]
+    },
+    {
+      "id": "02_problem",
+      "label": "Problem Validation",
+      "category": "problem",
+      "trlLevel": "TRL 1",
+      "files": [
+        { "id": "interview_notes_1", "name": "interview_leaseholder_bbb.md", "description": "Barbados leaseholder interview notes.", "sizeBytes": 2140, "kind": "markdown", "trlLevel": "TRL 1", "verified": true },
+        { "id": "interview_notes_2", "name": "interview_leaseholder_london.md", "description": "London leaseholder interview notes.", "sizeBytes": 1820, "kind": "markdown", "trlLevel": "TRL 1", "verified": true },
+        { "id": "interview_notes_3", "name": "interview_solicitor.md", "description": "Solicitor interview — RTM process pain-points.", "sizeBytes": 1655, "kind": "markdown", "trlLevel": "TRL 1", "verified": true },
+        { "id": "survey_results", "name": "survey_results_summary.md", "description": "Survey of 28 UK leaseholders on RTM awareness.", "sizeBytes": 2970, "kind": "markdown", "trlLevel": "TRL 1", "verified": true },
+        { "id": "emails_feedback", "name": "emails_feedback_redacted.csv", "description": "Redacted email feedback from pilot outreach.", "sizeBytes": 4120, "kind": "csv", "trlLevel": "TRL 1", "verified": true },
+        { "id": "metric_baseline", "name": "metric_baseline_rtm_uptake.csv", "description": "Baseline RTM uptake metric.", "sizeBytes": 1840, "kind": "csv", "trlLevel": "TRL 1", "verified": true }
+      ]
+    },
+    {
+      "id": "03_product",
+      "label": "Product Evidence",
+      "category": "product",
+      "trlLevel": "TRL 4",
+      "files": [
+        { "id": "wireframe_lease", "name": "wireframe_lease_reader.png", "description": "Wireframe — Lease Reader (v1).", "sizeBytes": 84930, "kind": "image", "trlLevel": "TRL 3", "verified": true },
+        { "id": "wireframe_rights", "name": "wireframe_rights_checker.png", "description": "Wireframe — Rights Checker (v1).", "sizeBytes": 78200, "kind": "image", "trlLevel": "TRL 3", "verified": true },
+        { "id": "screenshot_lease", "name": "screenshot_lease_reader_v3.png", "description": "Live screenshot — Lease Reader v3.", "sizeBytes": 121040, "kind": "image", "trlLevel": "TRL 4", "verified": true },
+        { "id": "screenshot_rights", "name": "screenshot_rights_checker_v3.png", "description": "Live screenshot — Rights Checker v3.", "sizeBytes": 110200, "kind": "image", "trlLevel": "TRL 4", "verified": true },
+        { "id": "screenshot_atlas", "name": "screenshot_statute_atlas_v3.png", "description": "Live screenshot — Statute Atlas v3.", "sizeBytes": 104010, "kind": "image", "trlLevel": "TRL 4", "verified": true },
+        { "id": "demo_video_link", "name": "demo_video_link.md", "description": "Link to the buildathon demo video.", "sizeBytes": 220, "kind": "markdown", "trlLevel": "TRL 4", "verified": false }
+      ]
+    },
+    {
+      "id": "04_technical",
+      "label": "Technical Proof",
+      "category": "technical",
+      "trlLevel": "TRL 4",
+      "files": [
+        { "id": "architecture_diagram", "name": "architecture_diagram.png", "description": "System architecture — codified-first + RAG-agentic fallback.", "sizeBytes": 90240, "kind": "image", "trlLevel": "TRL 4", "verified": true },
+        { "id": "consensus_gate", "name": "consensus_gate_protocol.md", "description": "Consensus gate protocol (DSP-6).", "sizeBytes": 3300, "kind": "markdown", "trlLevel": "TRL 4", "verified": true },
+        { "id": "code_sample_fairness", "name": "code_sample_fairness.ts", "description": "Fairness engine — key TypeScript excerpt.", "sizeBytes": 2400, "kind": "code", "trlLevel": "TRL 4", "verified": true },
+        { "id": "test_results", "name": "test_results_summary.md", "description": "All test suites green — 117 tests, 0 failures.", "sizeBytes": 1820, "kind": "markdown", "trlLevel": "TRL 4", "verified": true },
+        { "id": "compute_proof", "name": "compute_proof.md", "description": "Proof of $0 compute — engine counters + DB size.", "sizeBytes": 1540, "kind": "markdown", "trlLevel": "TRL 4", "verified": true }
+      ]
+    },
+    {
+      "id": "05_users",
+      "label": "User Testing & Pilot",
+      "category": "users",
+      "trlLevel": "TRL 5",
+      "files": [
+        { "id": "test_notes_1", "name": "test_notes_london_block.md", "description": "User testing notes — London block of 12 flats.", "sizeBytes": 2700, "kind": "markdown", "trlLevel": "TRL 5", "verified": true },
+        { "id": "test_notes_2", "name": "test_notes_bridgetown.md", "description": "User testing notes — Bridgetown pilot.", "sizeBytes": 2480, "kind": "markdown", "trlLevel": "TRL 5", "verified": true },
+        { "id": "pilot_feedback", "name": "pilot_feedback_summary.md", "description": "Pilot feedback — 8 leaseholders, 6 advocates.", "sizeBytes": 2120, "kind": "markdown", "trlLevel": "TRL 5", "verified": true },
+        { "id": "metrics_kpis", "name": "metrics_kpis_day18.csv", "description": "Pilot KPIs at Day 18.", "sizeBytes": 1024, "kind": "csv", "trlLevel": "TRL 5", "verified": true }
+      ]
+    },
+    {
+      "id": "06_business",
+      "label": "Business & Traction",
+      "category": "business",
+      "trlLevel": "TRL 4",
+      "files": [
+        { "id": "pricing_tiers", "name": "pricing_tiers.csv", "description": "Tiered pricing — Free, Pro, Manager, Enterprise.", "sizeBytes": 410, "kind": "csv", "trlLevel": "TRL 4", "verified": true },
+        { "id": "mou_signed", "name": "mou_signed_status.csv", "description": "MoU signatures — 7 partners.", "sizeBytes": 530, "kind": "csv", "trlLevel": "TRL 4", "verified": true },
+        { "id": "partnership_letters", "name": "partnership_letters_redacted.zip", "description": "Redacted partnership letters from 7 government partners.", "sizeBytes": 41100, "kind": "zip", "trlLevel": "TRL 4", "verified": true },
+        { "id": "customer_pilot", "name": "customer_pilot_summary.md", "description": "Pilot-customer summary — 8 leaseholders, 6 advocates.", "sizeBytes": 1280, "kind": "markdown", "trlLevel": "TRL 4", "verified": true },
+        { "id": "revenue_projection", "name": "revenue_projection_3yr.csv", "description": "3-year revenue projection.", "sizeBytes": 380, "kind": "csv", "trlLevel": "TRL 4", "verified": true }
+      ]
+    },
+    {
+      "id": "07_legal",
+      "label": "Legal & Permissions",
+      "category": "legal",
+      "trlLevel": "META",
+      "files": [
+        { "id": "approval_ethics", "name": "approval_ethics.md", "description": "Ethics review approval.", "sizeBytes": 1080, "kind": "markdown", "trlLevel": "META", "verified": true },
+        { "id": "approval_competitor", "name": "approval_competitor.md", "description": "Buildathon ethics/competitor-rules approval.", "sizeBytes": 920, "kind": "markdown", "trlLevel": "META", "verified": true },
+        { "id": "release_readme", "name": "release_readme.md", "description": "Open-source release notes.", "sizeBytes": 920, "kind": "markdown", "trlLevel": "META", "verified": true },
+        { "id": "license_apache", "name": "LICENSE-APACHE-2.0.txt", "description": "Apache-2.0 license text.", "sizeBytes": 11350, "kind": "text", "trlLevel": "META", "verified": true },
+        { "id": "license_data", "name": "LICENSE-data-apache-2.0.md", "description": "Data license (sources attribution).", "sizeBytes": 2240, "kind": "markdown", "trlLevel": "META", "verified": true }
+      ]
+    },
+    {
+      "id": "shogo",
+      "label": "Shogo (agent log)",
+      "category": "overview",
+      "trlLevel": "META",
+      "files": [
+        { "id": "shogo_journal", "name": "shogo_journal_public.md", "description": "Public-facing summary of agent build journal.", "sizeBytes": 1640, "kind": "markdown", "trlLevel": "META", "verified": true }
+      ]
+    }
+  ]
+}

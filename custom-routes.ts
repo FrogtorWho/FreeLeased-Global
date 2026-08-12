@@ -3061,5 +3061,142 @@ app.post('/admin/bootstrap', async (c) => {
   return c.json({ ok: true, user: { id: user.id, email: user.email, role: user.role } })
 })
 
+// ── Round 2: freeleased-app Lease Reader endpoint ────────────────────────────
+// Called by the React SPA at /api/leise-reader. Returns the regex-based
+// pattern-match verdict for the supplied text + jurisdiction. This is the
+// wire-up that turns the React app from a static mock into a working tool.
+app.post('/leise-reader', async (c) => {
+  const body = await c.req.json().catch(() => ({}))
+  const text = typeof body?.text === 'string' ? body.text : ''
+  const jurisdiction = typeof body?.jurisdiction === 'string' ? body.jurisdiction : 'BB'
+  if (!text.trim()) return c.json({ error: 'text is required' }, 400)
+  if (!['UK', 'BB', 'JM', 'KY', 'TT', 'BS', 'GY', 'BZ', 'VG'].includes(jurisdiction)) {
+    return c.json({ error: `unknown jurisdiction "${jurisdiction}"` }, 400)
+  }
+  incrementEngineCall('fairnessCheck')
+  const result = analyzeLease(text, jurisdiction)
+  return c.json({
+    ok: true,
+    verdict: result.overallConviction,
+    flags: result.flags,
+    summary: result.summary,
+    jurisdiction,
+    textLength: text.length,
+    generatedAt: new Date().toISOString(),
+  })
+})
+
+// ── Round 5: Payments (mock provider) ───────────────────────────────────────
+app.post('/payments/checkout', async (c) => {
+  try {
+    await requireRole(c, 'RESIDENT')
+  } catch (e) { return authErrorResponse(c, e) }
+  const user = await requireRole(c, 'RESIDENT').catch(() => null)
+  if (!user) return c.json({ error: 'authentication required' }, 401)
+  const body = await c.req.json().catch(() => ({}))
+  const { createCheckoutSession } = await import('./src/lib/payments')
+  const result = createCheckoutSession({
+    tier: body?.tier ?? 'pro',
+    customerEmail: body?.customerEmail ?? user.email,
+    auth: { userId: user.id, role: user.role },
+  })
+  if (!result.ok) return c.json({ error: result.error }, result.status)
+  return c.json({ ok: true, session: result.session })
+})
+
+app.post('/payments/webhook', async (c) => {
+  const payload = await c.req.text()
+  const signature = c.req.header('x-payment-signature') ?? ''
+  const { verifyWebhook, recordWebhook } = await import('./src/lib/payments')
+  if (!verifyWebhook(payload, signature)) {
+    return c.json({ error: 'invalid signature' }, 401)
+  }
+  const evt = JSON.parse(payload)
+  recordWebhook(evt)
+  return c.json({ ok: true, received: true })
+})
+
+app.get('/payments/portal', async (c) => {
+  try {
+    await requireRole(c, 'PARTNER')
+  } catch (e) { return authErrorResponse(c, e) }
+  const user = await requireRole(c, 'PARTNER').catch(() => null)
+  if (!user) return c.json({ error: 'authentication required' }, 401)
+  const customerId = c.req.query('customerId') ?? user.id
+  const { getCustomerSubscription } = await import('./src/lib/payments')
+  const result = getCustomerSubscription({
+    customerId,
+    auth: { userId: user.id, role: user.role },
+  })
+  if (!result.ok) return c.json({ error: result.error }, result.status)
+  return c.json({ ok: true, subscription: result.subscription })
+})
+
+// ── Round 6: Error tracking (admin retrieval) ──────────────────────────────
+app.get('/admin/errors', async (c) => {
+  try {
+    await requireRole(c, 'ADMIN')
+  } catch (e) { return authErrorResponse(c, e) }
+  const { getRecentErrors } = await import('./src/lib/error-tracking')
+  const limit = Number(c.req.query('limit') ?? 50)
+  return c.json({ ok: true, errors: getRecentErrors({ limit }) })
+})
+
+// ── Round 7: Email service (admin + partner) ────────────────────────────────
+app.post('/email/send', async (c) => {
+  try {
+    await requireRole(c, 'PARTNER')
+  } catch (e) { return authErrorResponse(c, e) }
+  const body = await c.req.json().catch(() => ({}))
+  const { sendEmail, sendTemplated } = await import('./src/lib/email')
+  if (body?.templateName) {
+    const msg = sendTemplated({
+      templateName: body.templateName,
+      vars: body?.vars ?? {},
+      to: body?.to ?? '',
+    })
+    return c.json({ ok: true, message: msg })
+  }
+  const msg = sendEmail({
+    to: body?.to ?? '',
+    subject: body?.subject ?? '(no subject)',
+    body: body?.body ?? '',
+  })
+  return c.json({ ok: true, message: msg })
+})
+
+app.get('/admin/email-queue', async (c) => {
+  try {
+    await requireRole(c, 'ADMIN')
+  } catch (e) { return authErrorResponse(c, e) }
+  const { listQueued } = await import('./src/lib/email')
+  return c.json({ ok: true, items: listQueued(Number(c.req.query('limit') ?? 50)) })
+})
+
+// ── Round 9: OAuth (login + callback) ───────────────────────────────────────
+app.get('/auth/oauth/:provider/login', async (c) => {
+  const { oauthLogin } = await import('./src/lib/oauth')
+  const provider = c.req.param('provider') as any
+  const redirectUri = c.req.query('redirect_uri') ?? undefined
+  const result = oauthLogin({ provider, redirectUri })
+  return c.json({ ok: true, authUrl: result.authUrl, state: result.state })
+})
+
+app.get('/auth/oauth/:provider/callback', async (c) => {
+  const { oauthCallback, linkOAuthAccount } = await import('./src/lib/oauth')
+  const provider = c.req.param('provider') as any
+  const code = c.req.query('code') ?? ''
+  const state = c.req.query('state') ?? ''
+  const result = oauthCallback({ provider, code, state })
+  if ('error' in result) return c.json({ error: result.error }, 400)
+  // Auto-link the account to the demo user (Buildathon demo only).
+  const link = linkOAuthAccount({
+    userId: result.userId,
+    provider: result.provider,
+    oauthId: result.oauthId,
+  })
+  return c.json({ ok: true, user: result, link })
+})
+
 export default app
 

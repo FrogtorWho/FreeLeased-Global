@@ -1,0 +1,4 @@
+To https://github.com/FrogtorWho/FreeLeased-Global.git
+   0ef0b25..d579891  main -> main
+EXIT=0
+d579891 feat(rbac): 5-role access governance + secret slice + 10 overlooked-system catch-ups (post-reset)
