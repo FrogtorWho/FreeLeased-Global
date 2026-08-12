@@ -1,0 +1,46 @@
+﻿{
+    "date":  "2026-08-11T21:11:59Z",
+    "base_url":  "https://57bf2c29-3d43-4ba6-b01a-3885c39bce04.preview.shogo.ai",
+    "docs_url":  "https://sam-peacock.github.io/FreeLeased-Global",
+    "deadline_seconds":  60,
+    "elapsed_seconds":  3,
+    "pass_count":  4,
+    "fail_count":  1,
+    "steps":  [
+                  {
+                      "step":  1,
+                      "name":  "homepage reachable + meaningful",
+                      "status":  "PASS",
+                      "seconds":  1,
+                      "note":  "HTTP 200; brand+CTA verified by separate GET"
+                  },
+                  {
+                      "step":  2,
+                      "name":  "\u0027Try the demo\u0027 reachable",
+                      "status":  "PASS",
+                      "seconds":  0,
+                      "note":  "https://57bf2c29-3d43-4ba6-b01a-3885c39bce04.preview.shogo.ai/#demo responded 200"
+                  },
+                  {
+                      "step":  3,
+                      "name":  "synthetic lease dossier + engines",
+                      "status":  "PASS",
+                      "seconds":  0,
+                      "note":  "fairness API returned 710 bytes with verdict/evidence/statute/severity"
+                  },
+                  {
+                      "step":  4,
+                      "name":  "TruthDiff honesty layer reachable",
+                      "status":  "FAIL",
+                      "seconds":  1,
+                      "note":  "no /truth.html or /api/truth responded with TruthDiff content"
+                  },
+                  {
+                      "step":  5,
+                      "name":  "cover letter with pseudonym",
+                      "status":  "PASS",
+                      "seconds":  1,
+                      "note":  "onboarding API reachable (200)"
+                  }
+              ]
+}
