@@ -1,0 +1,32 @@
+﻿{
+    "sealed_at":  "2026-08-13T01:11:53.9085826Z",
+    "schema_version":  1,
+    "mode":  "verify",
+    "count":  6,
+    "tokens":  {
+                   "JWT_SECRET":  {
+                                      "sha256":  "7dd5250ab48c3e0e6a16b46b9783e95da59f959dd0004584c96009d318beaaf8",
+                                      "length":  128
+                                  },
+                   "JUDGE_1_TOKEN":  {
+                                         "sha256":  "caba6837d775d6d2c5ed12c68de6bf08e4a69731d64a9660b2ef548e983dd777",
+                                         "length":  43
+                                     },
+                   "JUDGE_2_TOKEN":  {
+                                         "sha256":  "6b7bfc5e440dbffb326fa2ebbc749cfc86753c70e665539539c8a9e35ebfc8d5",
+                                         "length":  43
+                                     },
+                   "JUDGE_3_TOKEN":  {
+                                         "sha256":  "73b2c220190b9e78d104783f9c53bba630a8d8fca8e06420329dabb16eda788b",
+                                         "length":  43
+                                     },
+                   "JUDGE_4_TOKEN":  {
+                                         "sha256":  "402f30119e26b26f79eb26e2b68de625b79ebc37dac5058b3f29f423ee5d4942",
+                                         "length":  43
+                                     },
+                   "JUDGE_5_TOKEN":  {
+                                         "sha256":  "22da9c7c767da6ceb340793e7c7a05f805f53ffc5037ab7aceb5f9ee7b0a6044",
+                                         "length":  43
+                                     }
+               }
+}
