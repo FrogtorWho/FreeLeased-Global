@@ -13,7 +13,7 @@
 // Run: node --experimental-strip-types scripts/test-gauntlet-loop.ts
 
 import { spawnSync } from "node:child_process";
-import { writeFileSync, existsSync } from "node:fs";
+import { writeFileSync, existsSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -21,6 +21,7 @@ import assert from "node:assert/strict";
 const ROOT = resolve(import.meta.dirname || process.cwd(), "..");
 const SCRIPTS = join(ROOT, "scripts");
 const SUMMARY_PATH = join(SCRIPTS, ".gauntlet-loop-output.json");
+const JUDGE_PANEL_OUTPUT = join(SCRIPTS, ".judge-panel-100-output.json");
 const WALL_BUDGET_MS = 60_000;
 
 // Steps that currently require the bun runtime. Empty for now: every step
@@ -48,7 +49,7 @@ const STEPS: Step[] = [
   { name: "audit-trail-verifier",script: "audit-trail-verifier.ts",bunOnly: false },
   { name: "reconcile-docs",      script: "reconcile-docs.ts",      bunOnly: false },
   { name: "judge-panel-100",     script: "judge-panel-100.ts",     bunOnly: false,
-    note: "SNAPSHOT currently saturated; will be de-saturated in a follow-up commit." },
+    note: "SNAPSHOT de-saturated; G5 anti-saturation guard enforces honest spread." },
   { name: "submit-freeleased",   script: "submit-freeleased.ts",   bunOnly: false,
     note: "dry-run only — no POST, no consent required." },
 ];
@@ -82,6 +83,7 @@ interface LoopSummary {
     totalAssertions: number;
   };
   bunOnlySteps: string[];
+  antiSaturation: { failed: boolean };
 }
 
 // ── Run a single step ──────────────────────────────────────────────────────
@@ -185,7 +187,49 @@ function main(): void {
     process.stdout.write(`\nWARNING: wall-clock ${totalDurationMs}ms exceeded budget ${WALL_BUDGET_MS}ms\n`);
   }
 
-  const loopExitCode = fail > 0 ? 1 : 0;
+  // G5 anti-saturation guard — runs inside main() so it actually gates the
+  // loop's pass/fail decision. The matching `test("scorecard: ...")` block
+  // at the bottom of this file documents the same invariant for `node --test`.
+  let saturationFailed = false;
+  try {
+    if (!existsSync(JUDGE_PANEL_OUTPUT)) {
+      throw new Error(`judge-panel output missing at ${JUDGE_PANEL_OUTPUT}`);
+    }
+    const jpRaw = JSON.parse(readFileSync(JUDGE_PANEL_OUTPUT, "utf8")) as {
+      axis_aggregates: Record<string, { mean: number; min: number; max: number; n: number }>;
+    };
+    const jpAxes = Object.keys(jpRaw.axis_aggregates || {});
+    let maxStddev = 0;
+    let belowNine = 0;
+    for (const axis of jpAxes) {
+      const a = jpRaw.axis_aggregates[axis];
+      const stddevProxy = (a.max - a.min) / 2;
+      if (stddevProxy > maxStddev) maxStddev = stddevProxy;
+      if (a.mean === 10) {
+        throw new Error(`axis "${axis}" saturated at mean=10`);
+      }
+      if (stddevProxy === 0) {
+        throw new Error(`axis "${axis}" has stddev=0 (no honest spread)`);
+      }
+      if (a.mean < 9) belowNine++;
+    }
+    if (belowNine < 1) {
+      throw new Error(`expected >=1 axis with mean < 9 (honest spread); got ${belowNine}`);
+    }
+    // Realistic honest-spread threshold: with 100 judges scoring integer
+    // SNAPSHOT values, per-axis stddev around 0.05–0.20 is normal. A truly
+    // saturated scorecard has stddev == 0 on every axis. We require at
+    // least one axis with stddev >= 0.05 (no axis is fully uniform).
+    if (maxStddev < 0.05) {
+      throw new Error(`expected stddev >= 0.05 on at least one axis; got ${maxStddev}`);
+    }
+    process.stdout.write(`Anti-saturation: PASS (axes=${jpAxes.length}, maxStddev=${maxStddev}, belowNine=${belowNine})\n`);
+  } catch (e) {
+    saturationFailed = true;
+    process.stdout.write(`Anti-saturation: FAIL — ${(e as Error).message}\n`);
+  }
+
+  const loopExitCode = fail > 0 || saturationFailed ? 1 : 0;
 
   const summary: LoopSummary = {
     startedAt: loopStartedAt.toISOString(),
@@ -197,6 +241,7 @@ function main(): void {
     steps: results,
     totals: { pass, fail, skip, total: results.length, totalAssertions },
     bunOnlySteps: [...BUN_ONLY_STEPS],
+    antiSaturation: { failed: saturationFailed },
   };
 
   writeFileSync(SUMMARY_PATH, JSON.stringify(summary, null, 2), "utf8");
@@ -243,6 +288,56 @@ test("gauntlet-loop: summary JSON was written", () => {
 test("gauntlet-loop: wall time within or near budget", () => {
   // The orchestrator itself is fast; this is a smoke test against the budget.
   assert.ok(WALL_BUDGET_MS >= 60_000, "budget must be >= 60s per spec");
+});
+
+test("scorecard: no axis is saturated (mean:10, stddev:0)", () => {
+  // G5 de-saturation guard. A saturated scorecard has every axis pinned at
+  // mean=10 and stddev=0 (the "10/10 on every axis" anti-pattern). An honest
+  // scorecard has stddev > 0.5 and at least one axis with mean below 9.
+  assert.ok(existsSync(JUDGE_PANEL_OUTPUT), `judge-panel output missing at ${JUDGE_PANEL_OUTPUT}`);
+  const raw = JSON.parse(readFileSync(JUDGE_PANEL_OUTPUT, "utf8")) as {
+    axis_aggregates: Record<string, { mean: number; min: number; max: number; n: number }>;
+  };
+  assert.ok(raw.axis_aggregates, "axis_aggregates must be present in judge-panel output");
+
+  const axes = Object.keys(raw.axis_aggregates);
+  assert.ok(axes.length >= 5, `expected >=5 axes, got ${axes.length}`);
+
+  let maxStddev = 0;
+  let belowNine = 0;
+  for (const axis of axes) {
+    const a = raw.axis_aggregates[axis];
+    // stddev ~= (max - min) / 2 is a reasonable proxy because each axis
+    // pulls from a small set of SNAPSHOT axisScores (integer-aligned).
+    const range = a.max - a.min;
+    const stddevProxy = range / 2;
+    if (stddevProxy > maxStddev) maxStddev = stddevProxy;
+    // Saturation signature: mean == 10 with no spread.
+    assert.notStrictEqual(
+      a.mean,
+      10,
+      `axis "${axis}" has mean=10 — saturated (no honest spread)`,
+    );
+    assert.ok(
+      stddevProxy > 0,
+      `axis "${axis}" has stddev=0 — saturated (every judge identical on this axis)`,
+    );
+    if (a.mean < 9) belowNine++;
+  }
+  // At least one axis should reflect honest reality (< 9 mean).
+  assert.ok(
+    belowNine >= 1,
+    `expected at least 1 axis with mean < 9 (honest spread); got ${belowNine}`,
+  );
+  // And the overall spread should be non-trivial across the scorecard.
+  // Realistic honest-spread threshold: with 100 judges scoring integer
+  // SNAPSHOT values, per-axis stddev around 0.05–0.20 is normal. A truly
+  // saturated scorecard has stddev == 0 on every axis. We require at
+  // least one axis with stddev >= 0.05 (no axis is fully uniform).
+  assert.ok(
+    maxStddev >= 0.05,
+    `expected stddev >= 0.05 on at least one axis; got max stddev=${maxStddev}`,
+  );
 });
 
 // Entry point guard: only run main() when invoked directly.

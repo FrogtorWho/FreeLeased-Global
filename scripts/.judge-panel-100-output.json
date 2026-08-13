@@ -1,53 +1,53 @@
 {
-  "run_at": "2026-08-12T11:35:55.588Z",
+  "run_at": "2026-08-13T11:12:27.198Z",
   "fetch_date": "2026-08-12",
-  "overall_mean": 10,
-  "overall_median": 10,
-  "overall_min": 10,
-  "overall_max": 10,
-  "judges_below_9_5": 0,
+  "overall_mean": 8.614,
+  "overall_median": 8.83,
+  "overall_min": 7.45,
+  "overall_max": 9.25,
+  "judges_below_9_5": 100,
   "reproducible": true,
   "axis_aggregates": {
     "legality": {
-      "mean": 10,
-      "min": 10,
-      "max": 10,
+      "mean": 9.006,
+      "min": 8.95,
+      "max": 9.17,
       "n": 53
     },
     "feasibility": {
-      "mean": 10,
-      "min": 10,
-      "max": 10,
+      "mean": 8.825,
+      "min": 8.7,
+      "max": 9,
       "n": 58
     },
     "equity": {
-      "mean": 10,
-      "min": 10,
-      "max": 10,
+      "mean": 9.02,
+      "min": 8.95,
+      "max": 9.25,
       "n": 23
     },
     "impact": {
-      "mean": 10,
-      "min": 10,
-      "max": 10,
+      "mean": 7.642,
+      "min": 7.45,
+      "max": 7.75,
       "n": 25
     },
     "innovation": {
-      "mean": 10,
-      "min": 10,
-      "max": 10,
+      "mean": 7.698,
+      "min": 7.65,
+      "max": 7.75,
       "n": 22
     },
     "evidence": {
-      "mean": 10,
-      "min": 10,
-      "max": 10,
+      "mean": 9.013,
+      "min": 8.95,
+      "max": 9.05,
       "n": 11
     },
     "clarity": {
-      "mean": 10,
-      "min": 10,
-      "max": 10,
+      "mean": 8.344,
+      "min": 8.29,
+      "max": 8.38,
       "n": 8
     }
   },
@@ -66,22 +66,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.99,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "clarity",
-          "score": 10,
+          "score": 8.32,
           "weight": 1,
-          "evidence": "scripts/audit-trail-verifier.ts"
+          "evidence": "scripts/reconcile-docs.ts"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.655,
+        "mean": 8.655,
+        "min": 8.32,
+        "max": 8.99
       }
     },
     {
@@ -98,22 +98,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.75,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.875,
+        "mean": 8.875,
+        "min": 8.75,
+        "max": 9
       }
     },
     {
@@ -130,22 +130,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.01,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "equity",
-          "score": 10,
+          "score": 9.01,
           "weight": 1,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 9.01,
+        "mean": 9.01,
+        "min": 9.01,
+        "max": 9.01
       }
     },
     {
@@ -162,22 +162,22 @@
       "rows": [
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.77,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.02,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.895,
+        "mean": 8.895,
+        "min": 8.77,
+        "max": 9.02
       }
     },
     {
@@ -194,22 +194,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.03,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "equity",
-          "score": 10,
+          "score": 9.03,
           "weight": 1,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 9.03,
+        "mean": 9.03,
+        "min": 9.03,
+        "max": 9.03
       }
     },
     {
@@ -226,22 +226,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.04,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.79,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.915,
+        "mean": 8.915,
+        "min": 8.79,
+        "max": 9.04
       }
     },
     {
@@ -258,22 +258,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.05,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "clarity",
-          "score": 10,
+          "score": 8.38,
           "weight": 1,
-          "evidence": "scripts/audit-trail-verifier.ts"
+          "evidence": "scripts/reconcile-docs.ts"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.715,
+        "mean": 8.715,
+        "min": 8.38,
+        "max": 9.05
       }
     },
     {
@@ -290,22 +290,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.95,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.7,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.825,
+        "mean": 8.825,
+        "min": 8.7,
+        "max": 8.95
       }
     },
     {
@@ -322,22 +322,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.96,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "equity",
-          "score": 10,
+          "score": 8.96,
           "weight": 1,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.96,
+        "mean": 8.96,
+        "min": 8.96,
+        "max": 8.96
       }
     },
     {
@@ -354,22 +354,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.96,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.71,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.835,
+        "mean": 8.835,
+        "min": 8.71,
+        "max": 8.96
       }
     },
     {
@@ -386,22 +386,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.97,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "equity",
-          "score": 10,
+          "score": 8.97,
           "weight": 1,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.97,
+        "mean": 8.97,
+        "min": 8.97,
+        "max": 8.97
       }
     },
     {
@@ -418,22 +418,22 @@
       "rows": [
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.73,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "evidence",
-          "score": 10,
+          "score": 8.98,
           "weight": 1,
           "evidence": "src/data/spine.ts:152-213 (STATUTES)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.855,
+        "mean": 8.855,
+        "min": 8.73,
+        "max": 8.98
       }
     },
     {
@@ -450,22 +450,22 @@
       "rows": [
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.74,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.99,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.865,
+        "mean": 8.865,
+        "min": 8.74,
+        "max": 8.99
       }
     },
     {
@@ -482,22 +482,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "clarity",
-          "score": 10,
+          "score": 8.33,
           "weight": 1,
-          "evidence": "scripts/audit-trail-verifier.ts"
+          "evidence": "scripts/reconcile-docs.ts"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.665,
+        "mean": 8.665,
+        "min": 8.33,
+        "max": 9
       }
     },
     {
@@ -514,22 +514,22 @@
       "rows": [
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.71,
           "weight": 1.2,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.96,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.335,
+        "mean": 8.335,
+        "min": 7.71,
+        "max": 8.96
       }
     },
     {
@@ -546,22 +546,22 @@
       "rows": [
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.72,
           "weight": 1.2,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.97,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.345,
+        "mean": 8.345,
+        "min": 7.72,
+        "max": 8.97
       }
     },
     {
@@ -578,22 +578,22 @@
       "rows": [
         {
           "axis": "innovation",
-          "score": 10,
+          "score": 7.73,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.98,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.355,
+        "mean": 8.355,
+        "min": 7.73,
+        "max": 8.98
       }
     },
     {
@@ -610,22 +610,22 @@
       "rows": [
         {
           "axis": "equity",
-          "score": 10,
+          "score": 9.04,
           "weight": 1,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         },
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.04,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 9.04,
+        "mean": 9.04,
+        "min": 9.04,
+        "max": 9.04
       }
     },
     {
@@ -642,22 +642,22 @@
       "rows": [
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.8,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "evidence",
-          "score": 10,
+          "score": 9.05,
           "weight": 1,
           "evidence": "src/data/spine.ts:152-213 (STATUTES)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.925,
+        "mean": 8.925,
+        "min": 8.8,
+        "max": 9.05
       }
     },
     {
@@ -674,22 +674,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.05,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "clarity",
-          "score": 10,
+          "score": 8.38,
           "weight": 1,
-          "evidence": "scripts/audit-trail-verifier.ts"
+          "evidence": "scripts/reconcile-docs.ts"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.715,
+        "mean": 8.715,
+        "min": 8.38,
+        "max": 9.05
       }
     },
     {
@@ -706,22 +706,22 @@
       "rows": [
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.7,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "evidence",
-          "score": 10,
+          "score": 8.95,
           "weight": 1,
           "evidence": "src/data/spine.ts:152-213 (STATUTES)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.825,
+        "mean": 8.825,
+        "min": 8.7,
+        "max": 8.95
       }
     },
     {
@@ -738,22 +738,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.96,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.71,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.835,
+        "mean": 8.835,
+        "min": 8.71,
+        "max": 8.96
       }
     },
     {
@@ -770,22 +770,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.97,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "equity",
-          "score": 10,
+          "score": 8.97,
           "weight": 1,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.97,
+        "mean": 8.97,
+        "min": 8.97,
+        "max": 8.97
       }
     },
     {
@@ -802,22 +802,22 @@
       "rows": [
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.73,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.98,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.855,
+        "mean": 8.855,
+        "min": 8.73,
+        "max": 8.98
       }
     },
     {
@@ -834,22 +834,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.99,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.74,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.865,
+        "mean": 8.865,
+        "min": 8.74,
+        "max": 8.99
       }
     },
     {
@@ -866,22 +866,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "clarity",
-          "score": 10,
+          "score": 8.33,
           "weight": 1,
-          "evidence": "scripts/audit-trail-verifier.ts"
+          "evidence": "scripts/reconcile-docs.ts"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.665,
+        "mean": 8.665,
+        "min": 8.33,
+        "max": 9
       }
     },
     {
@@ -898,22 +898,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.01,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "evidence",
-          "score": 10,
+          "score": 9.01,
           "weight": 1,
           "evidence": "src/data/spine.ts:152-213 (STATUTES)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 9.01,
+        "mean": 9.01,
+        "min": 9.01,
+        "max": 9.01
       }
     },
     {
@@ -930,22 +930,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.02,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.77,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.895,
+        "mean": 8.895,
+        "min": 8.77,
+        "max": 9.02
       }
     },
     {
@@ -962,22 +962,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.03,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.78,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.905,
+        "mean": 8.905,
+        "min": 8.78,
+        "max": 9.03
       }
     },
     {
@@ -994,22 +994,22 @@
       "rows": [
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.78,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "clarity",
-          "score": 10,
+          "score": 8.36,
           "weight": 1,
-          "evidence": "scripts/audit-trail-verifier.ts"
+          "evidence": "scripts/reconcile-docs.ts"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.57,
+        "mean": 8.57,
+        "min": 8.36,
+        "max": 8.78
       }
     },
     {
@@ -1026,22 +1026,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.04,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "equity",
-          "score": 10,
+          "score": 9.04,
           "weight": 1,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 9.04,
+        "mean": 9.04,
+        "min": 9.04,
+        "max": 9.04
       }
     },
     {
@@ -1058,22 +1058,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.05,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.8,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.925,
+        "mean": 8.925,
+        "min": 8.8,
+        "max": 9.05
       }
     },
     {
@@ -1090,22 +1090,22 @@
       "rows": [
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.65,
           "weight": 1.2,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         },
         {
           "axis": "equity",
-          "score": 10,
+          "score": 9.15,
           "weight": 1.2,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.4,
+        "mean": 8.4,
+        "min": 7.65,
+        "max": 9.15
       }
     },
     {
@@ -1122,22 +1122,22 @@
       "rows": [
         {
           "axis": "innovation",
-          "score": 10,
+          "score": 7.66,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.91,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.285,
+        "mean": 8.285,
+        "min": 7.66,
+        "max": 8.91
       }
     },
     {
@@ -1154,22 +1154,22 @@
       "rows": [
         {
           "axis": "innovation",
-          "score": 10,
+          "score": 7.67,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.67,
           "weight": 1.2,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 7.67,
+        "mean": 7.67,
+        "min": 7.67,
+        "max": 7.67
       }
     },
     {
@@ -1186,22 +1186,22 @@
       "rows": [
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.68,
           "weight": 1.2,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.93,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.305,
+        "mean": 8.305,
+        "min": 7.68,
+        "max": 8.93
       }
     },
     {
@@ -1218,22 +1218,22 @@
       "rows": [
         {
           "axis": "innovation",
-          "score": 10,
+          "score": 7.69,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.94,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.315,
+        "mean": 8.315,
+        "min": 7.69,
+        "max": 8.94
       }
     },
     {
@@ -1250,22 +1250,22 @@
       "rows": [
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.7,
           "weight": 1.2,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.95,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.325,
+        "mean": 8.325,
+        "min": 7.7,
+        "max": 8.95
       }
     },
     {
@@ -1282,22 +1282,22 @@
       "rows": [
         {
           "axis": "equity",
-          "score": 10,
+          "score": 9.01,
           "weight": 1,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         },
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.51,
           "weight": 1,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.26,
+        "mean": 8.26,
+        "min": 7.51,
+        "max": 9.01
       }
     },
     {
@@ -1314,22 +1314,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.01,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.76,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.885,
+        "mean": 8.885,
+        "min": 8.76,
+        "max": 9.01
       }
     },
     {
@@ -1346,22 +1346,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.02,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "evidence",
-          "score": 10,
+          "score": 9.02,
           "weight": 1,
           "evidence": "src/data/spine.ts:152-213 (STATUTES)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 9.02,
+        "mean": 9.02,
+        "min": 9.02,
+        "max": 9.02
       }
     },
     {
@@ -1378,22 +1378,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.03,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "clarity",
-          "score": 10,
+          "score": 8.36,
           "weight": 1,
-          "evidence": "scripts/audit-trail-verifier.ts"
+          "evidence": "scripts/reconcile-docs.ts"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.695,
+        "mean": 8.695,
+        "min": 8.36,
+        "max": 9.03
       }
     },
     {
@@ -1410,22 +1410,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.04,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "equity",
-          "score": 10,
+          "score": 9.04,
           "weight": 1,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 9.04,
+        "mean": 9.04,
+        "min": 9.04,
+        "max": 9.04
       }
     },
     {
@@ -1442,22 +1442,22 @@
       "rows": [
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.8,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "evidence",
-          "score": 10,
+          "score": 9.05,
           "weight": 1,
           "evidence": "src/data/spine.ts:152-213 (STATUTES)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.925,
+        "mean": 8.925,
+        "min": 8.8,
+        "max": 9.05
       }
     },
     {
@@ -1474,22 +1474,22 @@
       "rows": [
         {
           "axis": "equity",
-          "score": 10,
+          "score": 8.95,
           "weight": 1,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         },
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.45,
           "weight": 1,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.2,
+        "mean": 8.2,
+        "min": 7.45,
+        "max": 8.95
       }
     },
     {
@@ -1506,22 +1506,22 @@
       "rows": [
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.71,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "clarity",
-          "score": 10,
+          "score": 8.29,
           "weight": 1,
-          "evidence": "scripts/audit-trail-verifier.ts"
+          "evidence": "scripts/reconcile-docs.ts"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.5,
+        "mean": 8.5,
+        "min": 8.29,
+        "max": 8.71
       }
     },
     {
@@ -1538,22 +1538,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.97,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.72,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.845,
+        "mean": 8.845,
+        "min": 8.72,
+        "max": 8.97
       }
     },
     {
@@ -1570,22 +1570,22 @@
       "rows": [
         {
           "axis": "innovation",
-          "score": 10,
+          "score": 7.68,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.93,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.305,
+        "mean": 8.305,
+        "min": 7.68,
+        "max": 8.93
       }
     },
     {
@@ -1602,22 +1602,22 @@
       "rows": [
         {
           "axis": "equity",
-          "score": 10,
+          "score": 8.99,
           "weight": 1,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         },
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.49,
           "weight": 1,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.24,
+        "mean": 8.24,
+        "min": 7.49,
+        "max": 8.99
       }
     },
     {
@@ -1634,22 +1634,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.99,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "equity",
-          "score": 10,
+          "score": 8.99,
           "weight": 1,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.99,
+        "mean": 8.99,
+        "min": 8.99,
+        "max": 8.99
       }
     },
     {
@@ -1666,22 +1666,22 @@
       "rows": [
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.75,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "evidence",
-          "score": 10,
+          "score": 9,
           "weight": 1,
           "evidence": "src/data/spine.ts:152-213 (STATUTES)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.875,
+        "mean": 8.875,
+        "min": 8.75,
+        "max": 9
       }
     },
     {
@@ -1698,22 +1698,22 @@
       "rows": [
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.71,
           "weight": 1.2,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.96,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.335,
+        "mean": 8.335,
+        "min": 7.71,
+        "max": 8.96
       }
     },
     {
@@ -1730,22 +1730,22 @@
       "rows": [
         {
           "axis": "innovation",
-          "score": 10,
+          "score": 7.72,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.97,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.345,
+        "mean": 8.345,
+        "min": 7.72,
+        "max": 8.97
       }
     },
     {
@@ -1762,22 +1762,22 @@
       "rows": [
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.78,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.03,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.905,
+        "mean": 8.905,
+        "min": 8.78,
+        "max": 9.03
       }
     },
     {
@@ -1794,22 +1794,22 @@
       "rows": [
         {
           "axis": "innovation",
-          "score": 10,
+          "score": 7.74,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.74,
           "weight": 1.2,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 7.74,
+        "mean": 7.74,
+        "min": 7.74,
+        "max": 7.74
       }
     },
     {
@@ -1826,22 +1826,22 @@
       "rows": [
         {
           "axis": "innovation",
-          "score": 10,
+          "score": 7.75,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "equity",
-          "score": 10,
+          "score": 9.25,
           "weight": 1.2,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.5,
+        "mean": 8.5,
+        "min": 7.75,
+        "max": 9.25
       }
     },
     {
@@ -1858,22 +1858,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.95,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "equity",
-          "score": 10,
+          "score": 8.95,
           "weight": 1,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.95,
+        "mean": 8.95,
+        "min": 8.95,
+        "max": 8.95
       }
     },
     {
@@ -1890,22 +1890,22 @@
       "rows": [
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.71,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.96,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.835,
+        "mean": 8.835,
+        "min": 8.71,
+        "max": 8.96
       }
     },
     {
@@ -1922,22 +1922,22 @@
       "rows": [
         {
           "axis": "innovation",
-          "score": 10,
+          "score": 7.67,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.17,
           "weight": 1.2,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.42,
+        "mean": 8.42,
+        "min": 7.67,
+        "max": 9.17
       }
     },
     {
@@ -1954,22 +1954,22 @@
       "rows": [
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.67,
           "weight": 1.2,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.92,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.295,
+        "mean": 8.295,
+        "min": 7.67,
+        "max": 8.92
       }
     },
     {
@@ -1986,22 +1986,22 @@
       "rows": [
         {
           "axis": "innovation",
-          "score": 10,
+          "score": 7.68,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.93,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.305,
+        "mean": 8.305,
+        "min": 7.68,
+        "max": 8.93
       }
     },
     {
@@ -2018,22 +2018,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.99,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.74,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.865,
+        "mean": 8.865,
+        "min": 8.74,
+        "max": 8.99
       }
     },
     {
@@ -2050,22 +2050,22 @@
       "rows": [
         {
           "axis": "innovation",
-          "score": 10,
+          "score": 7.7,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.7,
           "weight": 1.2,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 7.7,
+        "mean": 7.7,
+        "min": 7.7,
+        "max": 7.7
       }
     },
     {
@@ -2082,22 +2082,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.01,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.76,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.885,
+        "mean": 8.885,
+        "min": 8.76,
+        "max": 9.01
       }
     },
     {
@@ -2114,22 +2114,22 @@
       "rows": [
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.77,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "evidence",
-          "score": 10,
+          "score": 9.02,
           "weight": 1,
           "evidence": "src/data/spine.ts:152-213 (STATUTES)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.895,
+        "mean": 8.895,
+        "min": 8.77,
+        "max": 9.02
       }
     },
     {
@@ -2146,22 +2146,22 @@
       "rows": [
         {
           "axis": "innovation",
-          "score": 10,
+          "score": 7.73,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.73,
           "weight": 1.2,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 7.73,
+        "mean": 7.73,
+        "min": 7.73,
+        "max": 7.73
       }
     },
     {
@@ -2178,22 +2178,22 @@
       "rows": [
         {
           "axis": "equity",
-          "score": 10,
+          "score": 9.04,
           "weight": 1,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         },
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.04,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 9.04,
+        "mean": 9.04,
+        "min": 9.04,
+        "max": 9.04
       }
     },
     {
@@ -2210,22 +2210,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.05,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "equity",
-          "score": 10,
+          "score": 9.05,
           "weight": 1,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 9.05,
+        "mean": 9.05,
+        "min": 9.05,
+        "max": 9.05
       }
     },
     {
@@ -2242,22 +2242,22 @@
       "rows": [
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.65,
           "weight": 1.2,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.9,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.275,
+        "mean": 8.275,
+        "min": 7.65,
+        "max": 8.9
       }
     },
     {
@@ -2274,22 +2274,22 @@
       "rows": [
         {
           "axis": "innovation",
-          "score": 10,
+          "score": 7.65,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.65,
           "weight": 1.2,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 7.65,
+        "mean": 7.65,
+        "min": 7.65,
+        "max": 7.65
       }
     },
     {
@@ -2306,22 +2306,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.96,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.71,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.835,
+        "mean": 8.835,
+        "min": 8.71,
+        "max": 8.96
       }
     },
     {
@@ -2338,22 +2338,22 @@
       "rows": [
         {
           "axis": "equity",
-          "score": 10,
+          "score": 8.97,
           "weight": 1,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         },
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.97,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.97,
+        "mean": 8.97,
+        "min": 8.97,
+        "max": 8.97
       }
     },
     {
@@ -2370,22 +2370,22 @@
       "rows": [
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.68,
           "weight": 1.2,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.93,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.305,
+        "mean": 8.305,
+        "min": 7.68,
+        "max": 8.93
       }
     },
     {
@@ -2402,22 +2402,22 @@
       "rows": [
         {
           "axis": "innovation",
-          "score": 10,
+          "score": 7.69,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.94,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.315,
+        "mean": 8.315,
+        "min": 7.69,
+        "max": 8.94
       }
     },
     {
@@ -2434,22 +2434,22 @@
       "rows": [
         {
           "axis": "equity",
-          "score": 10,
+          "score": 9,
           "weight": 1,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         },
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.5,
           "weight": 1,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.25,
+        "mean": 8.25,
+        "min": 7.5,
+        "max": 9
       }
     },
     {
@@ -2466,22 +2466,22 @@
       "rows": [
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.76,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.01,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.885,
+        "mean": 8.885,
+        "min": 8.76,
+        "max": 9.01
       }
     },
     {
@@ -2498,22 +2498,22 @@
       "rows": [
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.77,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "evidence",
-          "score": 10,
+          "score": 9.02,
           "weight": 1,
           "evidence": "src/data/spine.ts:152-213 (STATUTES)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.895,
+        "mean": 8.895,
+        "min": 8.77,
+        "max": 9.02
       }
     },
     {
@@ -2530,22 +2530,22 @@
       "rows": [
         {
           "axis": "innovation",
-          "score": 10,
+          "score": 7.73,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.98,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.355,
+        "mean": 8.355,
+        "min": 7.73,
+        "max": 8.98
       }
     },
     {
@@ -2562,22 +2562,22 @@
       "rows": [
         {
           "axis": "innovation",
-          "score": 10,
+          "score": 7.74,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.99,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.365,
+        "mean": 8.365,
+        "min": 7.74,
+        "max": 8.99
       }
     },
     {
@@ -2594,22 +2594,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.04,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.79,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.915,
+        "mean": 8.915,
+        "min": 8.79,
+        "max": 9.04
       }
     },
     {
@@ -2626,22 +2626,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.05,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "equity",
-          "score": 10,
+          "score": 9.05,
           "weight": 1,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 9.05,
+        "mean": 9.05,
+        "min": 9.05,
+        "max": 9.05
       }
     },
     {
@@ -2658,22 +2658,22 @@
       "rows": [
         {
           "axis": "innovation",
-          "score": 10,
+          "score": 7.65,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.65,
           "weight": 1.2,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 7.65,
+        "mean": 7.65,
+        "min": 7.65,
+        "max": 7.65
       }
     },
     {
@@ -2690,22 +2690,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.96,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.71,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.835,
+        "mean": 8.835,
+        "min": 8.71,
+        "max": 8.96
       }
     },
     {
@@ -2722,22 +2722,22 @@
       "rows": [
         {
           "axis": "innovation",
-          "score": 10,
+          "score": 7.67,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.67,
           "weight": 1.2,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 7.67,
+        "mean": 7.67,
+        "min": 7.67,
+        "max": 7.67
       }
     },
     {
@@ -2754,22 +2754,22 @@
       "rows": [
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.68,
           "weight": 1.2,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.93,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.305,
+        "mean": 8.305,
+        "min": 7.68,
+        "max": 8.93
       }
     },
     {
@@ -2786,22 +2786,22 @@
       "rows": [
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.74,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.99,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.865,
+        "mean": 8.865,
+        "min": 8.74,
+        "max": 8.99
       }
     },
     {
@@ -2818,22 +2818,22 @@
       "rows": [
         {
           "axis": "innovation",
-          "score": 10,
+          "score": 7.7,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.95,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.325,
+        "mean": 8.325,
+        "min": 7.7,
+        "max": 8.95
       }
     },
     {
@@ -2850,22 +2850,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.01,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.51,
           "weight": 1,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.26,
+        "mean": 8.26,
+        "min": 7.51,
+        "max": 9.01
       }
     },
     {
@@ -2882,22 +2882,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.02,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.77,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.895,
+        "mean": 8.895,
+        "min": 8.77,
+        "max": 9.02
       }
     },
     {
@@ -2914,22 +2914,22 @@
       "rows": [
         {
           "axis": "innovation",
-          "score": 10,
+          "score": 7.72,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.97,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.345,
+        "mean": 8.345,
+        "min": 7.72,
+        "max": 8.97
       }
     },
     {
@@ -2946,22 +2946,22 @@
       "rows": [
         {
           "axis": "equity",
-          "score": 10,
+          "score": 9.03,
           "weight": 1,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         },
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.53,
           "weight": 1,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.28,
+        "mean": 8.28,
+        "min": 7.53,
+        "max": 9.03
       }
     },
     {
@@ -2978,22 +2978,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 9.04,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "evidence",
-          "score": 10,
+          "score": 9.04,
           "weight": 1,
           "evidence": "src/data/spine.ts:152-213 (STATUTES)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 9.04,
+        "mean": 9.04,
+        "min": 9.04,
+        "max": 9.04
       }
     },
     {
@@ -3010,22 +3010,22 @@
       "rows": [
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.75,
           "weight": 1.2,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 9,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.375,
+        "mean": 8.375,
+        "min": 7.75,
+        "max": 9
       }
     },
     {
@@ -3042,22 +3042,22 @@
       "rows": [
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.7,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.95,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.825,
+        "mean": 8.825,
+        "min": 8.7,
+        "max": 8.95
       }
     },
     {
@@ -3074,22 +3074,22 @@
       "rows": [
         {
           "axis": "innovation",
-          "score": 10,
+          "score": 7.66,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "impact",
-          "score": 10,
+          "score": 7.66,
           "weight": 1.2,
-          "evidence": "src/data/spine.ts (jurisdictions BB..VG)"
+          "evidence": "https://www.legislation.gov.uk/uksi/2025/131/made"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 7.66,
+        "mean": 7.66,
+        "min": 7.66,
+        "max": 7.66
       }
     },
     {
@@ -3106,22 +3106,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.97,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "equity",
-          "score": 10,
+          "score": 8.97,
           "weight": 1,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.97,
+        "mean": 8.97,
+        "min": 8.97,
+        "max": 8.97
       }
     },
     {
@@ -3138,22 +3138,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.98,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.73,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.855,
+        "mean": 8.855,
+        "min": 8.73,
+        "max": 8.98
       }
     },
     {
@@ -3170,22 +3170,22 @@
       "rows": [
         {
           "axis": "legality",
-          "score": 10,
+          "score": 8.99,
           "weight": 1,
           "evidence": "src/data/spine.ts:70-147 (JURISDICTIONS)"
         },
         {
           "axis": "equity",
-          "score": 10,
+          "score": 8.99,
           "weight": 1,
           "evidence": "src/data/patterns.ts (HIDDEN_RIGHTS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.99,
+        "mean": 8.99,
+        "min": 8.99,
+        "max": 8.99
       }
     },
     {
@@ -3202,22 +3202,22 @@
       "rows": [
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.75,
           "weight": 1,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "evidence",
-          "score": 10,
+          "score": 9,
           "weight": 1,
           "evidence": "src/data/spine.ts:152-213 (STATUTES)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.875,
+        "mean": 8.875,
+        "min": 8.75,
+        "max": 9
       }
     },
     {
@@ -3234,22 +3234,22 @@
       "rows": [
         {
           "axis": "innovation",
-          "score": 10,
+          "score": 7.72,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         },
         {
           "axis": "feasibility",
-          "score": 10,
+          "score": 8.97,
           "weight": 1.2,
           "evidence": "src/mcp/server.ts (TOOLS)"
         }
       ],
       "summary": {
-        "weighted": 10,
-        "mean": 10,
-        "min": 10,
-        "max": 10
+        "weighted": 8.345,
+        "mean": 8.345,
+        "min": 7.72,
+        "max": 8.97
       }
     }
   ],
@@ -3260,8 +3260,9 @@
       "fetched": "2026-08-12",
       "conviction": "verified",
       "axisScores": {
-        "legality": 10,
-        "feasibility": 9
+        "legality": 9,
+        "feasibility": 8,
+        "equity": 8
       }
     },
     {
@@ -3270,8 +3271,9 @@
       "fetched": "2026-08-12",
       "conviction": "verified",
       "axisScores": {
-        "legality": 10,
-        "evidence": 10
+        "legality": 9,
+        "evidence": 9,
+        "clarity": 7
       }
     },
     {
@@ -3280,8 +3282,9 @@
       "fetched": "2026-08-12",
       "conviction": "verified",
       "axisScores": {
-        "legality": 10,
-        "equity": 10
+        "legality": 9,
+        "equity": 9,
+        "innovation": 7
       }
     },
     {
@@ -3290,8 +3293,9 @@
       "fetched": "2026-08-12",
       "conviction": "verified",
       "axisScores": {
-        "evidence": 10,
-        "feasibility": 9
+        "evidence": 9,
+        "feasibility": 8,
+        "innovation": 7
       }
     },
     {
@@ -3300,8 +3304,9 @@
       "fetched": "2026-08-12",
       "conviction": "verified",
       "axisScores": {
-        "innovation": 10,
-        "feasibility": 10
+        "innovation": 8,
+        "feasibility": 9,
+        "impact": 5
       }
     },
     {
@@ -3310,8 +3315,9 @@
       "fetched": "2026-08-12",
       "conviction": "verified",
       "axisScores": {
-        "feasibility": 10,
-        "evidence": 10
+        "feasibility": 9,
+        "evidence": 9,
+        "impact": 6
       }
     },
     {
@@ -3320,8 +3326,9 @@
       "fetched": "2026-08-12",
       "conviction": "verified",
       "axisScores": {
-        "evidence": 10,
-        "feasibility": 10
+        "evidence": 9,
+        "feasibility": 8,
+        "clarity": 7
       }
     },
     {
@@ -3330,8 +3337,9 @@
       "fetched": "2026-08-12",
       "conviction": "verified",
       "axisScores": {
-        "evidence": 10,
-        "clarity": 10
+        "evidence": 9,
+        "clarity": 8,
+        "feasibility": 7
       }
     },
     {
@@ -3340,8 +3348,9 @@
       "fetched": "2026-08-12",
       "conviction": "verified",
       "axisScores": {
-        "feasibility": 10,
-        "equity": 10
+        "feasibility": 9,
+        "equity": 9,
+        "innovation": 7
       }
     },
     {
@@ -3350,8 +3359,9 @@
       "fetched": "2026-08-12",
       "conviction": "verified",
       "axisScores": {
-        "evidence": 10,
-        "clarity": 10
+        "evidence": 9,
+        "clarity": 9,
+        "innovation": 6
       }
     },
     {
@@ -3360,8 +3370,9 @@
       "fetched": "2026-08-12",
       "conviction": "verified",
       "axisScores": {
-        "legality": 10,
-        "impact": 9
+        "legality": 9,
+        "impact": 8,
+        "clarity": 7
       }
     },
     {
@@ -3370,8 +3381,9 @@
       "fetched": "2026-08-12",
       "conviction": "verified",
       "axisScores": {
-        "impact": 10,
-        "equity": 10
+        "impact": 7,
+        "equity": 9,
+        "innovation": 8
       }
     },
     {
@@ -3380,8 +3392,9 @@
       "fetched": "2026-08-12",
       "conviction": "verified",
       "axisScores": {
-        "innovation": 10,
-        "equity": 10
+        "innovation": 7,
+        "equity": 8,
+        "clarity": 8
       }
     }
   ]

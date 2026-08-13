@@ -1,7 +1,7 @@
 {
-  "startedAt": "2026-08-13T00:31:25.183Z",
-  "finishedAt": "2026-08-13T00:31:31.881Z",
-  "totalDurationMs": 6697,
+  "startedAt": "2026-08-13T11:12:19.252Z",
+  "finishedAt": "2026-08-13T11:12:27.917Z",
+  "totalDurationMs": 8649,
   "wallBudgetMs": 60000,
   "wallBudgetExceeded": false,
   "exitCode": 0,
@@ -10,7 +10,7 @@
       "step": "test-gauntlet",
       "script": "test-gauntlet.ts",
       "exitCode": 0,
-      "durationMs": 642,
+      "durationMs": 566,
       "passed": true,
       "skipped": false,
       "status": "PASS",
@@ -33,23 +33,23 @@
       "step": "test-all-partners",
       "script": "test-all-partners.ts",
       "exitCode": 0,
-      "durationMs": 835,
+      "durationMs": 948,
       "passed": true,
       "skipped": false,
       "status": "PASS",
       "stdoutTail": "t script checks live_path_active helper\n\nTest 11: .env.example lists every new key\n  ✓ NEBIUS_API_KEY listed\n  ✓ OLLYGARDEN_API_KEY listed\n  ✓ MINIMAX_API_KEY listed\n  ✓ MINIMAX_BASE_URL listed (new)\n  ✓ USE_MINIMAX opt-in flag listed (new)\n  ✓ GIOTTO_API_KEY listed\n\nTest 12: no edits to src/generated/*, server.tsx, bun.lock\n  ✓ server.tsx still exists\n  ✓ bun.lock still exists\n  ✓ PR template exists (where the rule lives)\n  ✓ PR template lists src/generated/* as a no-edit rule\n  ✓ PR template lists server.tsx as a no-edit rule\n  ✓ PR template lists bun.lock as a no-edit rule\n  ✓ PR template carries the Tenki status checkbox\n\nTest 13: every integration has a documented fallback path\n  ✓ Section A (Nebius) fallback documented\n  ✓ Section B (Tenki) fallback documented\n  ✓ Section C (OllyGarden) fallback documented\n  ✓ Section D (MiniMax) fallback documented\n  ✓ Section E (Boardy) fallback documented\n  ✓ Section F (Nebius promo) fallback documented\n\nTest 14: docs/tenki-workflow.md + docs/ollygarden-integration.md present\n  ✓ docs/tenki-workflow.md exists\n  ✓ docs/ollygarden-integration.md exists\n  ✓ Tenki manual states never-blocks-merge\n  ✓ OllyGarden manual states fallback contract\n\nTest 15: CI-safe (no live network calls in test scripts)\n  ✓ this test script has no live network calls\n  ✓ nebius test script gates live calls on env var\n\nTest 16: honest disclosure paragraph present in brainstorm doc\n  ✓ Honest disclosure heading present\n  ✓ no-credit = no-claim rule stated\n  ✓ no-new-dependencies rule stated\n\nTest 17: top-5 ideas cross-link to their sponsor section\n  ✓ Tenki cross-links to Section B\n  ✓ OllyGarden cross-links to Section C\n  ✓ MiniMax cross-links to Section D\n  ✓ Boardy cross-links to Section E\n  ✓ Nebius cross-links to Section A or F\n\nTest 18: no remaining TODO / FIXME markers in the diff\n  ✓ no TODO/FIXME markers in new files (found 0)\n\n────────────────────────────────────────────────────────────\nPASSED: 99  FAILED: 0\n\n✓ All 18 assertion groups PASS.\n",
-      "stderrTail": "(node:20340) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+      "stderrTail": "(node:38520) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
     },
     {
       "step": "test-crypto-ai",
       "script": "test-crypto-ai.ts",
       "exitCode": 0,
-      "durationMs": 688,
+      "durationMs": 664,
       "passed": true,
       "skipped": false,
       "status": "PASS",
-      "stdoutTail": "identical strings have jaccard 1.0\n  ---\n  duration_ms: 1.0304\n  type: 'test'\n  ...\n# Subtest: jaccard: disjoint strings have jaccard 0.0\nok 12 - jaccard: disjoint strings have jaccard 0.0\n  ---\n  duration_ms: 0.2154\n  type: 'test'\n  ...\n# Subtest: jaccard: shingles produces correct k-grams\nok 13 - jaccard: shingles produces correct k-grams\n  ---\n  duration_ms: 0.1238\n  type: 'test'\n  ...\n# Subtest: jaccard: batchDeduplicate removes similar texts\nok 14 - jaccard: batchDeduplicate removes similar texts\n  ---\n  duration_ms: 0.5595\n  type: 'test'\n  ...\n# Subtest: jaccard: empty strings return 1.0\nok 15 - jaccard: empty strings return 1.0\n  ---\n  duration_ms: 0.2088\n  type: 'test'\n  ...\n# Subtest: entropy: empty string has 0 entropy\nok 16 - entropy: empty string has 0 entropy\n  ---\n  duration_ms: 0.3804\n  type: 'test'\n  ...\n# Subtest: entropy: single char has 0 entropy\nok 17 - entropy: single char has 0 entropy\n  ---\n  duration_ms: 0.2638\n  type: 'test'\n  ...\n# Subtest: entropy: random bytes have high entropy\nok 18 - entropy: random bytes have high entropy\n  ---\n  duration_ms: 1.267\n  type: 'test'\n  ...\n# Subtest: entropy: english text has moderate entropy\nok 19 - entropy: english text has moderate entropy\n  ---\n  duration_ms: 0.6539\n  type: 'test'\n  ...\n# Subtest: entropy: ocrQuality returns valid score\nok 20 - entropy: ocrQuality returns valid score\n  ---\n  duration_ms: 0.6062\n  type: 'test'\n  ...\n# Subtest: entropy: ocrQuality for empty text returns 0\nok 21 - entropy: ocrQuality for empty text returns 0\n  ---\n  duration_ms: 0.3598\n  type: 'test'\n  ...\n# Subtest: entropy: ocrQuality for short text scores low\nok 22 - entropy: ocrQuality for short text scores low\n  ---\n  duration_ms: 0.3687\n  type: 'test'\n  ...\n# Subtest: full chain: register + authenticate + verify\nok 23 - full chain: register + authenticate + verify\n  ---\n  duration_ms: 1.3298\n  type: 'test'\n  ...\n1..23\n# tests 23\n# suites 0\n# pass 23\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 100.8959\n",
-      "stderrTail": "(node:31676) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+      "stdoutTail": "identical strings have jaccard 1.0\n  ---\n  duration_ms: 1.0136\n  type: 'test'\n  ...\n# Subtest: jaccard: disjoint strings have jaccard 0.0\nok 12 - jaccard: disjoint strings have jaccard 0.0\n  ---\n  duration_ms: 0.2727\n  type: 'test'\n  ...\n# Subtest: jaccard: shingles produces correct k-grams\nok 13 - jaccard: shingles produces correct k-grams\n  ---\n  duration_ms: 0.3093\n  type: 'test'\n  ...\n# Subtest: jaccard: batchDeduplicate removes similar texts\nok 14 - jaccard: batchDeduplicate removes similar texts\n  ---\n  duration_ms: 0.4498\n  type: 'test'\n  ...\n# Subtest: jaccard: empty strings return 1.0\nok 15 - jaccard: empty strings return 1.0\n  ---\n  duration_ms: 0.1315\n  type: 'test'\n  ...\n# Subtest: entropy: empty string has 0 entropy\nok 16 - entropy: empty string has 0 entropy\n  ---\n  duration_ms: 0.2403\n  type: 'test'\n  ...\n# Subtest: entropy: single char has 0 entropy\nok 17 - entropy: single char has 0 entropy\n  ---\n  duration_ms: 0.1349\n  type: 'test'\n  ...\n# Subtest: entropy: random bytes have high entropy\nok 18 - entropy: random bytes have high entropy\n  ---\n  duration_ms: 0.8323\n  type: 'test'\n  ...\n# Subtest: entropy: english text has moderate entropy\nok 19 - entropy: english text has moderate entropy\n  ---\n  duration_ms: 0.2963\n  type: 'test'\n  ...\n# Subtest: entropy: ocrQuality returns valid score\nok 20 - entropy: ocrQuality returns valid score\n  ---\n  duration_ms: 0.3917\n  type: 'test'\n  ...\n# Subtest: entropy: ocrQuality for empty text returns 0\nok 21 - entropy: ocrQuality for empty text returns 0\n  ---\n  duration_ms: 0.2355\n  type: 'test'\n  ...\n# Subtest: entropy: ocrQuality for short text scores low\nok 22 - entropy: ocrQuality for short text scores low\n  ---\n  duration_ms: 0.2105\n  type: 'test'\n  ...\n# Subtest: full chain: register + authenticate + verify\nok 23 - full chain: register + authenticate + verify\n  ---\n  duration_ms: 3.4954\n  type: 'test'\n  ...\n1..23\n# tests 23\n# suites 0\n# pass 23\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 74.1556\n",
+      "stderrTail": "(node:39896) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
     },
     {
       "step": "test-truth",
@@ -60,13 +60,13 @@
       "skipped": false,
       "status": "PASS",
       "stdoutTail": "\nFreeLeased truth tests: 83/83 passing\nAll truth assertions passed.\n",
-      "stderrTail": "(node:22356) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+      "stderrTail": "(node:25164) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
     },
     {
       "step": "test-truth-diff",
       "script": "test-truth-diff.ts",
       "exitCode": 0,
-      "durationMs": 552,
+      "durationMs": 513,
       "passed": true,
       "skipped": false,
       "status": "PASS",
@@ -77,7 +77,7 @@
       "step": "test-rubric-coverage",
       "script": "test-rubric-coverage.ts",
       "exitCode": 0,
-      "durationMs": 536,
+      "durationMs": 492,
       "passed": true,
       "skipped": false,
       "status": "PASS",
@@ -88,46 +88,46 @@
       "step": "audit-trail-verifier",
       "script": "audit-trail-verifier.ts",
       "exitCode": 0,
-      "durationMs": 1567,
+      "durationMs": 3068,
       "passed": true,
       "skipped": false,
       "status": "PASS",
-      "stdoutTail": "[audit-trail-verifier] 115 docs · 308 claims\n  overall accuracy: 100.00% (308/308)\n  per-category:\n    submission-pack  100.00% (16/16)\n    strategy         100.00% (240/240)\n    management       100.00% (7/7)\n    marketing        100.00% (7/7)\n    docs             100.00% (33/33)\n    docs-site        100.00% (5/5)\n  tier-1 anchors: 11 URLs, 94 statutes, 62 hosts\n  failures: 0\n\n  report: g:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\scripts\\.audit-trail-verifier-output.json\n\n[audit-trail-verifier] PASS — 100% accuracy\n",
-      "stderrTail": "(node:33600) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+      "stdoutTail": "[audit-trail-verifier] 116 docs · 308 claims\n  overall accuracy: 100.00% (308/308)\n  per-category:\n    submission-pack  100.00% (16/16)\n    strategy         100.00% (240/240)\n    management       100.00% (7/7)\n    marketing        100.00% (7/7)\n    docs             100.00% (33/33)\n    docs-site        100.00% (5/5)\n  tier-1 anchors: 11 URLs, 94 statutes, 62 hosts\n  failures: 0\n\n  report: g:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\scripts\\.audit-trail-verifier-output.json\n\n[audit-trail-verifier] PASS — 100% accuracy\n",
+      "stderrTail": "(node:25276) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
     },
     {
       "step": "reconcile-docs",
       "script": "reconcile-docs.ts",
       "exitCode": 0,
-      "durationMs": 413,
+      "durationMs": 679,
       "passed": true,
       "skipped": false,
       "status": "PASS",
-      "stdoutTail": "07Z\n\n**10/10 claims pass** · 0 drifts\n\n| Claim | Doc says | Expected | Actual | Status | Source |\n|---|---|---:|---:|---|---|\n| tests | test assertions | 159 | 159 | PASS | scripts/test-suite.ts:78 (truth-protocol canonical) |\n| jurisdictions | jurisdictions in data spine | 9 | 9 | PASS | project/strategy/00-OVERVIEW.md:44 |\n| patterns | hidden-rights patterns | 20 | 20 | PASS | project/strategy/00-OVERVIEW.md:44 |\n| statutes | codified statutes | 25 | 25 | PASS | project/strategy/00-OVERVIEW.md:44 ('25+ statutes') |\n| engines | deterministic dossier agents | 4 | 4 | PASS | project/strategy/loop-protocol.md (4-agent dossier engines) |\n| loops | completed loops | 8 | 8 | PASS | project/strategy/loop-protocol.md (Loop N: headers) |\n| sprints | buildathon days | 21 | 21 | PASS | project/strategy/00-OVERVIEW.md:40 ('Day 11 of 21') |\n| moUs | MoU partner agencies | 7 | 7 | PASS | project/strategy/00-OVERVIEW.md:46 |\n| caps | conviction caps | 4 | 4 | PASS | src/lib/fairness.ts:13 (truth-protocol canonical) |\n| data-room-folders | Data Room folders evidenced | 22 | 22 | PASS | memory/data-room-copies.md:136 |\n\n## Per-claim notes\n- **tests** — counted via /^s*check(/gm on scripts/test-suite.ts\n- **jurisdictions** — counted via /code: \"[A-Z]{2,3}\"/ in src/data/spine.ts\n- **patterns** — counted via /id: \\d+,/ at line start in src/data/patterns.ts\n- **statutes** — counted via /shortTitle: \"/ in src/data/spine.ts (target ≥ 25; '25+' in doc)\n- **engines** — counted via /function <Name>Agent(/ in src/lib/engines.ts (4-agent orchestrator: Resident Status, Tenure+Building, Contracts, Hidden Rights)\n- **loops** — max Loop-N from '**Loop N:**' headers in loop-protocol.md\n- **sprints** — parsed 'Day N of M' from 00-OVERVIEW.md\n- **moUs** — parsed 'N Caribbean government agencies' from 00-OVERVIEW.md\n- **caps** — counted entries in CONFIDENCE_CAP table (one per EvidenceClass)\n- **data-room-folders** — counted distinct target folders across COPY-NNN rows with OK status\n\nDrift count: 0\n",
-      "stderrTail": "(node:31312) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+      "stdoutTail": "59Z\n\n**10/10 claims pass** · 0 drifts\n\n| Claim | Doc says | Expected | Actual | Status | Source |\n|---|---|---:|---:|---|---|\n| tests | test assertions | 159 | 159 | PASS | scripts/test-suite.ts:78 (truth-protocol canonical) |\n| jurisdictions | jurisdictions in data spine | 9 | 9 | PASS | project/strategy/00-OVERVIEW.md:44 |\n| patterns | hidden-rights patterns | 20 | 20 | PASS | project/strategy/00-OVERVIEW.md:44 |\n| statutes | codified statutes | 25 | 25 | PASS | project/strategy/00-OVERVIEW.md:44 ('25+ statutes') |\n| engines | deterministic dossier agents | 4 | 4 | PASS | project/strategy/loop-protocol.md (4-agent dossier engines) |\n| loops | completed loops | 8 | 8 | PASS | project/strategy/loop-protocol.md (Loop N: headers) |\n| sprints | buildathon days | 21 | 21 | PASS | project/strategy/00-OVERVIEW.md:40 ('Day 11 of 21') |\n| moUs | MoU partner agencies | 7 | 7 | PASS | project/strategy/00-OVERVIEW.md:46 |\n| caps | conviction caps | 4 | 4 | PASS | src/lib/fairness.ts:13 (truth-protocol canonical) |\n| data-room-folders | Data Room folders evidenced | 22 | 22 | PASS | memory/data-room-copies.md:136 |\n\n## Per-claim notes\n- **tests** — counted via /^s*check(/gm on scripts/test-suite.ts\n- **jurisdictions** — counted via /code: \"[A-Z]{2,3}\"/ in src/data/spine.ts\n- **patterns** — counted via /id: \\d+,/ at line start in src/data/patterns.ts\n- **statutes** — counted via /shortTitle: \"/ in src/data/spine.ts (target ≥ 25; '25+' in doc)\n- **engines** — counted via /function <Name>Agent(/ in src/lib/engines.ts (4-agent orchestrator: Resident Status, Tenure+Building, Contracts, Hidden Rights)\n- **loops** — max Loop-N from '**Loop N:**' headers in loop-protocol.md\n- **sprints** — parsed 'Day N of M' from 00-OVERVIEW.md\n- **moUs** — parsed 'N Caribbean government agencies' from 00-OVERVIEW.md\n- **caps** — counted entries in CONFIDENCE_CAP table (one per EvidenceClass)\n- **data-room-folders** — counted distinct target folders across COPY-NNN rows with OK status\n\nDrift count: 0\n",
+      "stderrTail": "(node:38780) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
     },
     {
       "step": "judge-panel-100",
       "script": "judge-panel-100.ts",
       "exitCode": 0,
-      "durationMs": 438,
+      "durationMs": 584,
       "passed": true,
       "skipped": false,
       "status": "PASS",
-      "note": "SNAPSHOT currently saturated; will be de-saturated in a follow-up commit.",
-      "stdoutTail": "[judge-panel-100] 100 judges scored\n  overall weighted mean   : 10\n  overall weighted median : 10\n  min                     : 10\n  max                     : 10\n  below 9.5               : 0\n  reproducible            : PASS\n  scorecard md            : g:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\memory\\2026-08-12-judge-panel-100-scorecard.md\n  machine-readable json   : g:\\My Drive\\Development\\Future Caribbean\\Shogo\\FreeLeased-Global\\workspace\\scripts\\.judge-panel-100-output.json\n",
-      "stderrTail": "(node:12052) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+      "note": "SNAPSHOT de-saturated; G5 anti-saturation guard enforces honest spread.",
+      "stdoutTail": "y, feasibility)\n  J063 Jaden Knight — 7.7 (innovation, impact)\n  J064 Jamaal Beckles — 8.885 (legality, feasibility)\n  J065 Janelle Caesar — 8.895 (feasibility, evidence)\n  J066 Jared Welch — 7.73 (innovation, impact)\n  J067 Jasmin Bostic — 9.04 (equity, legality)\n  J068 Jean-Baptiste Cadet — 9.05 (legality, equity)\n  J069 Jelani Ifill — 8.275 (impact, feasibility)\n  J070 Jenny-Ann Brathwaite — 7.65 (innovation, impact)\n  J071 Jeremy Springer — 8.835 (legality, feasibility)\n  J072 Joan Carrington — 8.97 (equity, legality)\n  J073 Joanne Inniss — 8.305 (impact, feasibility)\n  J074 Jonathan Welch — 8.315 (innovation, feasibility)\n  J075 Joy-Ann Bovell — 8.25 (equity, impact)\n  J076 Juanita Crichlow — 8.885 (feasibility, legality)\n  J077 Julian Inniss — 8.895 (feasibility, evidence)\n  J078 Kadeem Springer — 8.355 (innovation, feasibility)\n  J079 Kahlil Welch — 8.365 (innovation, feasibility)\n  J080 Karen-Ann Layne — 8.915 (legality, feasibility)\n  J081 Karlene Inniss — 9.05 (legality, equity)\n  J082 Kayla Brathwaite — 7.65 (innovation, impact)\n  J083 Keisha-Ann Caesar — 8.835 (legality, feasibility)\n  J084 Kerry-Ann Bostic — 7.67 (innovation, impact)\n  J085 Kevin Bynoe — 8.305 (impact, feasibility)\n  J086 Kia Springer — 8.865 (feasibility, legality)\n  J087 Kimberley Welch — 8.325 (innovation, feasibility)\n  J088 Kirk Inniss — 8.26 (legality, impact)\n  J089 Krystal Bostic — 8.895 (legality, feasibility)\n  J090 Kurt Caesar — 8.345 (innovation, feasibility)\n  J091 Latoya Inniss — 8.28 (equity, impact)\n  J092 Lawrence Carrington — 9.04 (legality, evidence)\n  J093 Leah-Ann Crichlow — 8.375 (impact, feasibility)\n  J094 Leroy Brathwaite — 8.825 (feasibility, legality)\n  J095 Lisa-May Springer — 7.66 (innovation, impact)\n  J096 Lorraine Inniss — 8.97 (legality, equity)\n  J097 Marcus Welch — 8.855 (legality, feasibility)\n  J098 Marcia-Ann Bovell — 8.99 (legality, equity)\n  J099 Marissa Inniss — 8.875 (feasibility, evidence)\n  J100 Maya Blackman — 8.345 (innovation, feasibility)\n",
+      "stderrTail": "(node:33956) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
     },
     {
       "step": "submit-freeleased",
       "script": "submit-freeleased.ts",
       "exitCode": 0,
-      "durationMs": 410,
+      "durationMs": 523,
       "passed": true,
       "skipped": false,
       "status": "PASS",
       "note": "dry-run only — no POST, no consent required.",
-      "stdoutTail": " interacts with users, it clearly discloses its AI nature. Audit trails are immutable and available for inspection. No content is published externally without explicit human approval through the 1-click approval workflow.\\n\\n## License & Open Source\\n\\nFreeLeased will be released under the Apache 2.0 permissive open-source license, enabling community audit and adaptation across jurisdictions. The complete source code, data models, and test suites will be publicly available on GitHub.\\n\\n## Limitations\\n\\nThis is a TRL Level 4→5 prototype (working prototype, first real-user test in progress). Statutory data is based on verified primary sources for pilot jurisdictions, but coverage is not yet comprehensive across all Caribbean jurisdictions. Caribbean legal adaptations are based on structural analogies with UK leasehold law — they require in-territory legal review before deployment. The platform is advisory, not a substitute for legal counsel. Compute spend is $0 (deterministic engines, local SQLite) which limits scalability until cloud infrastructure is adopted.\",\n    \"demoScript\": \"FreeLeased — Demo Script (v3, 3 to 5 minutes)\",\n    \"storyboard\": \"FreeLeased — Demo Storyboard (shot-by-shot)\",\n    \"observability\": \"Observability — OllyGarden Setup\",\n    \"repoUrl\": \"https://github.com/FrogtorWho/FreeLeased-Global\",\n    \"license\": \"Apache-2.0\",\n    \"wordCounts\": {\n      \"compliance\": 595,\n      \"overview\": 655,\n      \"architecture\": 756,\n      \"demoScript\": 552,\n      \"storyboard\": 314,\n      \"observability\": 281\n    },\n    \"deadline\": \"16 August 2026 (LIVE DEMO) / 17 August 2026 (submission close)\"\n  },\n  \"submittedAt\": \"2026-08-13T00:31:31.851Z\",\n  \"sourceMarkdown\": {\n    \"project-overview-v3.md\": 655,\n    \"architecture-v3.md\": 756,\n    \"compliance-statement-v3.md\": 595,\n    \"demo-script-v3.md\": 552,\n    \"demo-storyboard.md\": 314,\n    \"observability-ollygarden.md\": 281\n  }\n}\n\n[DRY-RUN] Consent-gated. Rerun with --submit AND APPLICATION_CONSENT_TO_SUBMIT=yes to POST.\n",
+      "stdoutTail": " interacts with users, it clearly discloses its AI nature. Audit trails are immutable and available for inspection. No content is published externally without explicit human approval through the 1-click approval workflow.\\n\\n## License & Open Source\\n\\nFreeLeased will be released under the Apache 2.0 permissive open-source license, enabling community audit and adaptation across jurisdictions. The complete source code, data models, and test suites will be publicly available on GitHub.\\n\\n## Limitations\\n\\nThis is a TRL Level 4→5 prototype (working prototype, first real-user test in progress). Statutory data is based on verified primary sources for pilot jurisdictions, but coverage is not yet comprehensive across all Caribbean jurisdictions. Caribbean legal adaptations are based on structural analogies with UK leasehold law — they require in-territory legal review before deployment. The platform is advisory, not a substitute for legal counsel. Compute spend is $0 (deterministic engines, local SQLite) which limits scalability until cloud infrastructure is adopted.\",\n    \"demoScript\": \"FreeLeased — Demo Script (v3, 3 to 5 minutes)\",\n    \"storyboard\": \"FreeLeased — Demo Storyboard (shot-by-shot)\",\n    \"observability\": \"Observability — OllyGarden Setup\",\n    \"repoUrl\": \"https://github.com/FrogtorWho/FreeLeased-Global\",\n    \"license\": \"Apache-2.0\",\n    \"wordCounts\": {\n      \"compliance\": 595,\n      \"overview\": 655,\n      \"architecture\": 756,\n      \"demoScript\": 552,\n      \"storyboard\": 314,\n      \"observability\": 281\n    },\n    \"deadline\": \"16 August 2026 (LIVE DEMO) / 17 August 2026 (submission close)\"\n  },\n  \"submittedAt\": \"2026-08-13T11:12:27.868Z\",\n  \"sourceMarkdown\": {\n    \"project-overview-v3.md\": 655,\n    \"architecture-v3.md\": 756,\n    \"compliance-statement-v3.md\": 595,\n    \"demo-script-v3.md\": 552,\n    \"demo-storyboard.md\": 314,\n    \"observability-ollygarden.md\": 281\n  }\n}\n\n[DRY-RUN] Consent-gated. Rerun with --submit AND APPLICATION_CONSENT_TO_SUBMIT=yes to POST.\n",
       "stderrTail": ""
     }
   ],
@@ -140,5 +140,8 @@
   },
   "bunOnlySteps": [
     "test-suite.ts"
-  ]
+  ],
+  "antiSaturation": {
+    "failed": false
+  }
 }
