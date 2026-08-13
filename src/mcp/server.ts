@@ -363,7 +363,7 @@ function dispatchTool(name: string, args: any) {
 // ── RBAC gating (Phase 17) ─────────────────────────────────────────────────
 // Each MCP tool has a minimum required role. The implementation is duplicated
 // in custom-routes.ts (for the HTTP surface) so the two stay in sync.
-import { canAccess, hasRoleAtLeast, type Role, type AuthUser } from "../lib/rbac.ts";
+import { canAccess, hasRoleAtLeast, stripHiddenFields, type Role, type AuthUser } from "../lib/rbac.ts";
 
 const TOOL_MIN_ROLE: Record<string, Role> = {
   read_dossier: "RESIDENT",      // owner-only in practice; intercepted by RESIDENT.residentId
@@ -441,7 +441,6 @@ function handle(req: JsonRpcRequest): JsonRpcResponse {
         const user = checkToolAccess(name, extractAuthUser(req));
         const out = dispatchTool(name, a || {});
         // Strip hidden fields per role (the secret-slice enforcer).
-        const { stripHiddenFields } = await import("../lib/rbac.ts");
         const filtered = stripHiddenFields(out as Record<string, unknown>, user);
         return {
           jsonrpc: "2.0",
