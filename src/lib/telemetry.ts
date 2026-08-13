@@ -61,7 +61,7 @@ export function startSpan(
       if (ring.length > RING_MAX) ring.shift();
       if (enabled()) {
         // Structured line an OTel collector / OllyGarden shim can parse.
-        console.log(JSON.stringify({ otel_span: span }));
+        console.log(JSON.stringify({ "otlp.span": span }));
       }
       return span;
     },
@@ -91,4 +91,13 @@ export function recentSpans(limit = 50): Span[] {
 
 export function clearSpans(): void {
   ring.length = 0;
+}
+
+// M3 — No-op shim for OTel-style current-span lookup. Returns `null`
+// because the lightweight ring buffer in this file does not maintain an
+// ambient "active" scope. Real OTel SDK adoption will replace this with
+// `trace.getActiveSpan()` (or equivalent) and consumers in `llm.server.ts`
+// will start recording fail-trace attributes against the live span.
+export function currentSpan(): ActiveSpan | null {
+  return null;
 }

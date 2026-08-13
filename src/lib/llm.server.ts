@@ -22,6 +22,7 @@ import {
 } from "./local-edge-llm.ts";
 import { giottoConfigured, callGiotto } from "./giotto.ts";
 import { minimaxConfigured, callMiniMax } from "./minimax.ts";
+import * as telemetry from "./telemetry.ts";
 import {
   openrouterConfigured,
   chatCompletion as openrouterChatCompletion,
@@ -220,7 +221,9 @@ async function runChain(
       }
       attemptLog.push({ name: "local-edge", ok: false, latencyMs, error: le.error ?? "empty response" });
     } catch (e) {
-      attemptLog.push({ name: "local-edge", ok: false, latencyMs: Date.now() - t0, error: e instanceof Error ? e.message : String(e) });
+      const message = e instanceof Error ? e.message : String(e);
+      telemetry.currentSpan()?.end({ status: 'error', attributes: { 'error.kind': (e as Error)?.name ?? 'Error', 'error.message': message } });
+      attemptLog.push({ name: "local-edge", ok: false, latencyMs: Date.now() - t0, error: message });
     }
   } else if (process.env.USE_LOCAL_EDGE === "1") {
     attemptLog.push({ name: "local-edge", ok: false, error: "Ollama daemon not reachable" });
@@ -238,7 +241,9 @@ async function runChain(
       }
       attemptLog.push({ name: "giotto", ok: false, latencyMs, error: r.error });
     } catch (e) {
-      attemptLog.push({ name: "giotto", ok: false, latencyMs: Date.now() - t0, error: e instanceof Error ? e.message : String(e) });
+      const message = e instanceof Error ? e.message : String(e);
+      telemetry.currentSpan()?.end({ status: 'error', attributes: { 'error.kind': (e as Error)?.name ?? 'Error', 'error.message': message } });
+      attemptLog.push({ name: "giotto", ok: false, latencyMs: Date.now() - t0, error: message });
     }
   }
 
@@ -254,7 +259,9 @@ async function runChain(
       }
       attemptLog.push({ name: "minimax", ok: false, latencyMs, error: r.error });
     } catch (e) {
-      attemptLog.push({ name: "minimax", ok: false, latencyMs: Date.now() - t0, error: e instanceof Error ? e.message : String(e) });
+      const message = e instanceof Error ? e.message : String(e);
+      telemetry.currentSpan()?.end({ status: 'error', attributes: { 'error.kind': (e as Error)?.name ?? 'Error', 'error.message': message } });
+      attemptLog.push({ name: "minimax", ok: false, latencyMs: Date.now() - t0, error: message });
     }
   }
 
@@ -275,7 +282,9 @@ async function runChain(
         attemptLog.push({ name: "openrouter", ok: false, latencyMs: Date.now() - t0, error: probe.error });
       }
     } catch (e) {
-      attemptLog.push({ name: "openrouter", ok: false, latencyMs: Date.now() - t0, error: e instanceof Error ? e.message : String(e) });
+      const message = e instanceof Error ? e.message : String(e);
+      telemetry.currentSpan()?.end({ status: 'error', attributes: { 'error.kind': (e as Error)?.name ?? 'Error', 'error.message': message } });
+      attemptLog.push({ name: "openrouter", ok: false, latencyMs: Date.now() - t0, error: message });
     }
   }
 
@@ -296,7 +305,9 @@ async function runChain(
         attemptLog.push({ name: "gemini", ok: false, latencyMs: Date.now() - t0, error: probe.error });
       }
     } catch (e) {
-      attemptLog.push({ name: "gemini", ok: false, latencyMs: Date.now() - t0, error: e instanceof Error ? e.message : String(e) });
+      const message = e instanceof Error ? e.message : String(e);
+      telemetry.currentSpan()?.end({ status: 'error', attributes: { 'error.kind': (e as Error)?.name ?? 'Error', 'error.message': message } });
+      attemptLog.push({ name: "gemini", ok: false, latencyMs: Date.now() - t0, error: message });
     }
   }
 
@@ -324,7 +335,9 @@ async function runChain(
         attemptLog.push({ name: http.name, ok: false, latencyMs, error: `HTTP ${res.status}: ${body.slice(0, 200)}` });
       }
     } catch (e) {
-      attemptLog.push({ name: http.name, ok: false, latencyMs: Date.now() - t0, error: e instanceof Error ? e.message : String(e) });
+      const message = e instanceof Error ? e.message : String(e);
+      telemetry.currentSpan()?.end({ status: 'error', attributes: { 'error.kind': (e as Error)?.name ?? 'Error', 'error.message': message } });
+      attemptLog.push({ name: http.name, ok: false, latencyMs: Date.now() - t0, error: message });
     }
   }
 

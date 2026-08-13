@@ -11,8 +11,26 @@ import { Hono } from 'hono'
 import { serveStatic } from 'hono/bun'
 import customRoutes from './custom-routes'
 import { createToolsHandlers } from '@shogo-ai/sdk/tools/server'
+import { startSpan } from './src/lib/telemetry'
 
 const app = new Hono()
+
+// H3 — HTTP server boundary tracing. Wraps every request in an
+// `http.server` span so server-side handlers correlate with downstream
+// LLM / DB spans via shared trace id.
+app.use('*', async (c, next) => {
+  const s = startSpan('http.server', {
+    'http.request.method': c.req.method,
+    'url.path': c.req.path,
+  });
+  try {
+    await next();
+    s.end({ status: 'ok', attributes: { 'http.response.status_code': c.res.status } });
+  } catch (e) {
+    s.end({ status: 'error', attributes: { 'http.response.status_code': c.res.status, 'error.message': String(e) } });
+    throw e;
+  }
+})
 
 // CORS — manual middleware so the wildcard always propagates
 app.use('*', async (c, next) => {

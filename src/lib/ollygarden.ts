@@ -25,6 +25,24 @@
 
 import type { Span } from "./telemetry";
 
+// M4 — Resource attributes emitted on every span. The OTLP/HTTP envelope
+// requires a `resource` block per `resourceSpans[]` entry. Centralising the
+// attribute set here means downstream consumers (OllyGarden collector,
+// dashboards, trace UIs) can pivot on `service.name` + `service.namespace`
+// + `deployment.environment` without ambiguity.
+const FREELASED_RESOURCE = {
+  "service.name": "freeleased",
+  "service.version": "0.1.0",
+  "service.namespace": "freeleased.app",
+  "deployment.environment": process.env.NODE_ENV ?? "development",
+} as const;
+
+// Helper: turn a FREELASED_RESOURCE entry into the OTLP-shaped
+// `{key, value:{stringValue}}` object the OTLP/HTTP JSON envelope expects.
+function resourceAttr(key: keyof typeof FREELASED_RESOURCE): { key: string; value: { stringValue: string } } {
+  return { key, value: { stringValue: FREELASED_RESOURCE[key] } };
+}
+
 export const DEFAULT_OLLYGARDEN_OTLP_ENDPOINT =
   process.env.OLLYGARDEN_OTLP_ENDPOINT ?? "https://in.ollygarden.cloud/v1/traces";
 
@@ -70,8 +88,10 @@ function toOTLP(span: Span): Record<string, unknown> {
       {
         resource: {
           attributes: [
-            { key: "service.name", value: { stringValue: "freeleased" } },
-            { key: "service.version", value: { stringValue: "0.1.0" } },
+            resourceAttr("service.name"),
+            resourceAttr("service.version"),
+            resourceAttr("service.namespace"),
+            resourceAttr("deployment.environment"),
           ],
         },
         scopeSpans: [
@@ -114,7 +134,7 @@ function toOTLP(span: Span): Record<string, unknown> {
 class ConsoleReporter implements OllyGardenReporter {
   report(span: Span): boolean {
     if (process.env.FL_TELEMETRY === "1") {
-      console.log(JSON.stringify({ otlp_span_fallback: toOTLP(span) }));
+      console.log(JSON.stringify({ "otlp.span": toOTLP(span) }));
     }
     return true;
   }
